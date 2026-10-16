@@ -10,6 +10,6 @@
 *.imscc binary
 
 # Preserve the exact bytes recorded in discovery_manifest.json, including on Windows.
-results/models/*.pnml -text
-results/figures/*.gv -text
-results/figures/*.svg -text
+results/models/*.pnml -text whitespace=cr-at-eol
+results/figures/*.gv -text whitespace=cr-at-eol
+results/figures/*.svg -text whitespace=cr-at-eol

@@ -23,7 +23,7 @@
 - [ ] Mindestens zwei weitere Statistiken und geeignete Visualisierungen.
 
 ## Discovery und Validierung
-- [ ] Mindestens zwei Discovery-Algorithmen anwenden; Modelle in den Anhang aufnehmen.
+- [x] Mindestens zwei Discovery-Algorithmen anwenden; Modelle in den Anhang aufnehmen (IM und Heuristics Miner, gemeinsame Completion-Projektion aller Fälle).
 - [ ] Relevante PM4Py-Metriken für Fitness, Precision, Generalization und Simplicity berechnen.
 - [ ] Mindestens zwei Simplicity-Metriken nach Literatur selbst implementieren.
 - [ ] Alle entdeckten Modelle mit den Metriken bewerten.

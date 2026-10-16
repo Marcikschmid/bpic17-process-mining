@@ -1,0 +1,229 @@
+{
+  "created_at_utc": "2026-10-16T21:51:46.249688+00:00",
+  "input": {
+    "path": "data/raw/BPI Challenge 2017.xes.gz",
+    "sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249"
+  },
+  "versions": {
+    "python": "3.12.10",
+    "pm4py": "2.7.23.11",
+    "graphviz_python": "0.21",
+    "graphviz_executable": "dot - graphviz version 16.1.0 (20260904.0139)"
+  },
+  "preprocessing": {
+    "raw_cases": 31509,
+    "raw_events": 1202267,
+    "raw_distinct_activities": 26,
+    "raw_lifecycle_counts": {
+      "ate_abort": 85224,
+      "complete": 475306,
+      "resume": 127160,
+      "schedule": 149104,
+      "start": 128227,
+      "suspend": 215402,
+      "withdraw": 21844
+    },
+    "discovery_cases": 31509,
+    "discovery_events": 475306,
+    "discovery_distinct_activities": 24,
+    "discovery_activity_counts": {
+      "A_Accepted": 31509,
+      "A_Cancelled": 10431,
+      "A_Complete": 31362,
+      "A_Concept": 31509,
+      "A_Create Application": 31509,
+      "A_Denied": 3753,
+      "A_Incomplete": 23055,
+      "A_Pending": 17228,
+      "A_Submitted": 20423,
+      "A_Validating": 38816,
+      "O_Accepted": 17228,
+      "O_Cancelled": 20898,
+      "O_Create Offer": 42995,
+      "O_Created": 42995,
+      "O_Refused": 4695,
+      "O_Returned": 23305,
+      "O_Sent (mail and online)": 39707,
+      "O_Sent (online only)": 2026,
+      "W_Assess potential fraud": 282,
+      "W_Call after offers": 342,
+      "W_Call incomplete files": 2793,
+      "W_Complete application": 19104,
+      "W_Handle leads": 3493,
+      "W_Validate application": 15848
+    },
+    "activities_absent_after_projection": [
+      "W_Personal Loan collection",
+      "W_Shortened completion "
+    ],
+    "excluded_events": 726961,
+    "case_identifiers_and_order_preserved": true,
+    "event_order": "Original XES order within each trace; no timestamp sorting.",
+    "filter": {
+      "attribute": "lifecycle:transition",
+      "values": [
+        "complete"
+      ],
+      "level": "event"
+    },
+    "other_preprocessing": "None; no case, outcome, date, activity or frequency filtering; no sampling or label changes."
+  },
+  "randomness": {
+    "random_seed": null,
+    "reason": "No stochastic discovery step or sampling; algorithms do not expose a random seed.",
+    "python_hash_seed": "unset",
+    "byte_reproducibility": "UUID node identifiers, timestamps and Graphviz layout may vary between runs; models represent the discovered behaviour."
+  },
+  "visualization": {
+    "rankdir": "TB",
+    "font_size": 14,
+    "nodesep": 0.1,
+    "ranksep": 0.1,
+    "place_diameter_inches": 0.2,
+    "silent_transition_size_inches": 0.08,
+    "note": "Layout changes only; all model nodes, arcs and original activity labels retained."
+  },
+  "models": {
+    "inductive_miner": {
+      "places": 34,
+      "transitions": 53,
+      "visible_transitions": 24,
+      "silent_transitions": 29,
+      "arcs": 114,
+      "activity_labels": [
+        "A_Accepted",
+        "A_Cancelled",
+        "A_Complete",
+        "A_Concept",
+        "A_Create Application",
+        "A_Denied",
+        "A_Incomplete",
+        "A_Pending",
+        "A_Submitted",
+        "A_Validating",
+        "O_Accepted",
+        "O_Cancelled",
+        "O_Create Offer",
+        "O_Created",
+        "O_Refused",
+        "O_Returned",
+        "O_Sent (mail and online)",
+        "O_Sent (online only)",
+        "W_Assess potential fraud",
+        "W_Call after offers",
+        "W_Call incomplete files",
+        "W_Complete application",
+        "W_Handle leads",
+        "W_Validate application"
+      ],
+      "initial_tokens": 1,
+      "final_tokens": 1,
+      "pnml_round_trip_verified": true,
+      "artifacts": {
+        "results/models/inductive_miner.pnml": {
+          "bytes": 23053,
+          "sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca"
+        },
+        "results/figures/inductive_miner.gv": {
+          "bytes": 22375,
+          "sha256": "882a9c302e551b7164742e8dc4fec99d9a43e049084f21ced5c1e2b983ba7658"
+        },
+        "results/figures/inductive_miner.pdf": {
+          "bytes": 44142,
+          "sha256": "b13c2f6540902f2b6fc68690473094d19dd97677f56d1372b43c7bfa6e2cb1ed"
+        },
+        "results/figures/inductive_miner.svg": {
+          "bytes": 61601,
+          "sha256": "6ef96811961b56eb61f7bd2d8767eb9688303dc8f97c1c3e8ce584c63b54a522"
+        },
+        "results/figures/inductive_miner.png": {
+          "bytes": 163809,
+          "sha256": "7bd3652f5e2f77f1de601a7db046d0dd746fa39422da467247586ff519fee0a6"
+        }
+      },
+      "algorithm": "Inductive Miner (IM)",
+      "parameters": {
+        "noise_threshold": 0.0,
+        "multi_processing": false,
+        "disable_fallthroughs": false,
+        "activity_key": "concept:name",
+        "timestamp_key": "time:timestamp",
+        "case_id_key": "case:concept:name"
+      },
+      "discovery_seconds": 22.915
+    },
+    "heuristics_miner": {
+      "places": 49,
+      "transitions": 94,
+      "visible_transitions": 24,
+      "silent_transitions": 70,
+      "arcs": 220,
+      "activity_labels": [
+        "A_Accepted",
+        "A_Cancelled",
+        "A_Complete",
+        "A_Concept",
+        "A_Create Application",
+        "A_Denied",
+        "A_Incomplete",
+        "A_Pending",
+        "A_Submitted",
+        "A_Validating",
+        "O_Accepted",
+        "O_Cancelled",
+        "O_Create Offer",
+        "O_Created",
+        "O_Refused",
+        "O_Returned",
+        "O_Sent (mail and online)",
+        "O_Sent (online only)",
+        "W_Assess potential fraud",
+        "W_Call after offers",
+        "W_Call incomplete files",
+        "W_Complete application",
+        "W_Handle leads",
+        "W_Validate application"
+      ],
+      "initial_tokens": 1,
+      "final_tokens": 1,
+      "pnml_round_trip_verified": true,
+      "artifacts": {
+        "results/models/heuristics_miner.pnml": {
+          "bytes": 45450,
+          "sha256": "d1cbbe639ab8d8501dde1fd78fd3d18a0e2243fef29a60fde0fd1190e1cd73e6"
+        },
+        "results/figures/heuristics_miner.gv": {
+          "bytes": 38637,
+          "sha256": "12b56a471d3e9a7a577d5864b255044076d33541c10b3a78aa8e4711d8d76c49"
+        },
+        "results/figures/heuristics_miner.pdf": {
+          "bytes": 55613,
+          "sha256": "81e4154c3669812fd65f53b3f09634296b78c7112e9d3746c20509b2a6ad573f"
+        },
+        "results/figures/heuristics_miner.svg": {
+          "bytes": 117829,
+          "sha256": "5971a466294e8dcfe7510eb747c5ead77431fb8a836f0efc8d6d5ba4e68f50da"
+        },
+        "results/figures/heuristics_miner.png": {
+          "bytes": 392187,
+          "sha256": "c66d9df5d05cb38448d1a294a9cb6acf042feed58f53ab42f24387b2fad253fa"
+        }
+      },
+      "algorithm": "Heuristics Miner (CLASSIC)",
+      "parameters": {
+        "dependency_thresh": 0.5,
+        "and_measure_thresh": 0.65,
+        "loop_length_two_thresh": 0.5,
+        "min_act_count": 1,
+        "min_dfg_occurrences": 1,
+        "dfg_pre_cleaning_noise_thresh": 0.05,
+        "pm4py:param:activity_key": "concept:name",
+        "pm4py:param:timestamp_key": "time:timestamp",
+        "pm4py:param:case_id_key": "case:concept:name"
+      },
+      "discovery_seconds": 3.24
+    }
+  },
+  "quality_evaluation": "Not performed in task 1; fitness, precision, generalization, simplicity and replayable-case coverage remain to be evaluated.",
+  "total_seconds": 233.829
+}

@@ -51,7 +51,15 @@ Das Setup registriert den Kernel **BPIC17 (.venv)** ausschließlich innerhalb vo
 Aus dem Repository-Hauptordner:
 
 ```powershell
-.\.venv\Scripts\python.exe -m jupyterlab notebooks/01_getting_started.ipynb
+.\scripts\start_jupyter.ps1
+```
+
+Oeffne den ausgegebenen `http://localhost:...`-Link im Browser. Das Startskript verwendet den gesamten Projektordner als Jupyter-Wurzel und oeffnet das Einstiegsnotebook. Es verzichtet auf die automatische HTML-Weiterleitungsseite. Das Terminal muss waehrend der Arbeit laufen; weitere Befehle gehoeren in ein zweites Terminal. Zum Beenden `Strg+C` druecken und die Rueckfrage bestaetigen. Eine Aktivierung der Umgebung ist nicht notwendig.
+
+Alternativ direkt mit Python:
+
+```powershell
+.\.venv\Scripts\python.exe -m jupyterlab --no-browser --ServerApp.root_dir=. --ServerApp.default_url=/lab/tree/notebooks/01_getting_started.ipynb
 ```
 
 Wähle den Kernel **BPIC17 (.venv)** und führe die Zellen der Reihe nach aus. Das Notebook zeigt Case-Attribute und die Events eines einzelnen Antrags. Der erste vollständige Import kann etwas Zeit und Arbeitsspeicher benötigen.

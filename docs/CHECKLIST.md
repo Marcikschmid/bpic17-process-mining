@@ -2,9 +2,9 @@
 
 ## Repository und Setup
 - [x] Öffentliches GitHub-Repository erstellen und lokalen Ordner verbinden.
-- [ ] Ersten Commit einschließlich aller ursprünglichen Kursdateien hochladen.
-- [ ] LaTeX-Projekt kompilieren.
-- [ ] BPIC-17 beschaffen und die Herkunft dokumentieren.
+- [x] Ersten Commit einschließlich aller ursprünglichen Kursdateien hochladen.
+- [x] LaTeX-Projekt kompilieren und die PDF-Vorschau prüfen.
+- [x] BPIC-17 beschaffen, Prüfsummen verifizieren und die Herkunft dokumentieren.
 - [ ] Python-Umgebung und verwendete Paketversionen dokumentieren.
 
 ## Einführung und technische Grundlagen

@@ -11,14 +11,16 @@ GitHub: https://github.com/Marcikschmid/bpic17-process-mining
 - `notebooks/`: explorative Untersuchungen.
 - `data/raw/`: heruntergeladener Originaldatensatz; lokal vorhanden, über das Download-Skript reproduzierbar.
 - `data/processed/`: aus dem Originaldatensatz erzeugte Arbeitsdaten.
-- `results/figures/`, `results/tables/`, `results/models/`: erzeugte Ergebnisse für den Bericht.
-- `report/`: LaTeX-Bericht auf Basis der bereitgestellten TUM-Vorlage.
+- `results/figures/`, `results/tables/`, `results/models/`: durch die Analyse erzeugte Ergebnisse.
+- `report/`: eigenständiges LaTeX-Projekt mit Berichtstexten und ausgewählten Abbildungen/Tabellen für die Abgabe.
 - `docs/`: Aufgabencheckliste, Arbeitsnotizen und Protokoll der KI-Nutzung.
 - `scripts/download_data.py`: Download und Integritätsprüfung der Originaldaten.
 - `scripts/setup.ps1`: lokale Python-Umgebung und Graphviz reproduzieren.
 - `scripts/inspect_log.py`: vollständigen Log laden und eine Vorschau des ersten Falls exportieren.
 
 Große Datensätze, virtuelle Umgebungen und LaTeX-Hilfsdateien werden nicht in Git gespeichert. Die Datenbeschaffung wird in `data/README.md` dokumentiert. Die vorhandenen Kursunterlagen sind dagegen vollständig enthalten.
+
+Die Codebasis ist in `docs/CODEBASE.md` erklärt. Der Berichtsbereich besitzt eine eigene Anleitung in `report/README.md`. Die Analyse liest aus `data/` und schreibt nach `results/`; für die Abgabe ausgewählte Ergebnisse werden bei Bedarf manuell nach `report/figures/` oder `report/tables/` kopiert. Der Bericht wird unabhängig von Python und Jupyter kompiliert.
 
 ## Arbeitsablauf
 
@@ -87,7 +89,7 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 Set-Location ..
 ```
 
-Alternativ erledigt `.\scripts\build_report.ps1` den Build einschließlich des lokalen Perl-Suchpfads.
+Alternativ erledigt `.\report\build.ps1` den Build einschließlich des lokalen Perl-Suchpfads. Alle Berichtstexte, Abgabe-Abbildungen, Tabellen und die Build-Konfiguration liegen unter `report/`; die Python-Skripte gehören zum getrennten Analysebereich.
 
 Auf diesem Windows-Rechner ist Perl über Git for Windows verfügbar. Falls Latexmk meldet, dass Perl fehlt, ergänze vor dem Build für die aktuelle PowerShell-Sitzung:
 

@@ -1,0 +1,44 @@
+# Python and local environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# Raw and intermediate datasets; keep folder placeholders
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# LaTeX build output
+report/build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Operating system and temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+tmp/
+*.tmp

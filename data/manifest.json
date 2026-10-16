@@ -11,7 +11,7 @@
     "name": "4TU General Terms of Use",
     "url": "https://doi.org/10.4121/resource:terms_of_use"
   },
-  "verified_at_utc": "2026-10-16T14:32:51.826629+00:00",
+  "verified_at_utc": "2026-10-16T14:43:15.546032+00:00",
   "files": [
     {
       "path": "data/raw/BPI Challenge 2017.xes.gz",
@@ -20,7 +20,7 @@
       "bytes": 29658747,
       "publisher_md5": "10b37a2f78e870d78406198403ff13d2",
       "sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
-      "downloaded_this_run": true
+      "downloaded_this_run": false
     },
     {
       "path": "data/raw/DATA.xml",
@@ -29,7 +29,7 @@
       "bytes": 7581,
       "publisher_md5": "9ae65867975e56c45feb7fe056b1bb49",
       "sha256": "f56bbabf3f16aa1b12f6e6a0bc423e41d2bf7f8f4222581de64996aeddd68c2e",
-      "downloaded_this_run": true
+      "downloaded_this_run": false
     }
   ]
 }

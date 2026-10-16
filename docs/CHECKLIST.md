@@ -5,7 +5,9 @@
 - [x] Ersten Commit einschließlich aller ursprünglichen Kursdateien hochladen.
 - [x] LaTeX-Projekt kompilieren und die PDF-Vorschau prüfen.
 - [x] BPIC-17 beschaffen, Prüfsummen verifizieren und die Herkunft dokumentieren.
-- [ ] Python-Umgebung und verwendete Paketversionen dokumentieren.
+- [x] Python-Umgebung und verwendete Paketversionen dokumentieren und prüfen.
+- [x] Graphviz-Rendering und lokalen Jupyter-Kernel prüfen; Kernel-Codeausführung erfolgreich.
+- [x] Vollständigen Event Log laden und Vorschau eines Falls speichern.
 
 ## Einführung und technische Grundlagen
 - [ ] Anwendungsbereich, Entstehung und Prozess des Logs anhand externer Quellen beschreiben.

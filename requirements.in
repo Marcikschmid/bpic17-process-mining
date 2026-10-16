@@ -1,0 +1,7 @@
+# Direct dependencies; requirements.txt records the installed versions.
+pm4py
+pandas
+matplotlib
+scikit-learn
+jupyterlab
+ipykernel

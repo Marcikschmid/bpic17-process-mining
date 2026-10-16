@@ -1,6 +1,6 @@
 # Adapted from the course template: locate all TUM classes and packages.
 # Use the native separator so the project also builds on Windows.
 my $path_separator = ($^O =~ /MSWin32|msys|cygwin/) ? ';' : ':';
-$ENV{'TEXINPUTS'} = './tum//' . $path_separator . ($ENV{'TEXINPUTS'} // '');
+$ENV{'TEXINPUTS'} = '.' . $path_separator . './tum//' . $path_separator . ($ENV{'TEXINPUTS'} // '');
 $pdf_mode = 1;
 $out_dir = 'build';

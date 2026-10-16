@@ -9,11 +9,12 @@ GitHub: https://github.com/Marcikschmid/bpic17-process-mining
 - `1 Introduction/`, `2 Process Mining/`, `Allgemeines/`, `index.html`: unveränderte Kursunterlagen inklusive Aufgabenstellung und Originalvorlage.
 - `src/`: Python-Code für Analyse, Discovery, Qualitätsmetriken und Decision Mining.
 - `notebooks/`: explorative Untersuchungen.
-- `data/raw/`: Originaldatensatz, nach dem Repository-Setup zu beschaffen.
+- `data/raw/`: heruntergeladener Originaldatensatz; lokal vorhanden, über das Download-Skript reproduzierbar.
 - `data/processed/`: aus dem Originaldatensatz erzeugte Arbeitsdaten.
 - `results/figures/`, `results/tables/`, `results/models/`: erzeugte Ergebnisse für den Bericht.
 - `report/`: LaTeX-Bericht auf Basis der bereitgestellten TUM-Vorlage.
 - `docs/`: Aufgabencheckliste, Arbeitsnotizen und Protokoll der KI-Nutzung.
+- `scripts/download_data.py`: Download und Integritätsprüfung der Originaldaten.
 
 Große Datensätze, virtuelle Umgebungen und LaTeX-Hilfsdateien werden nicht in Git gespeichert. Die Datenbeschaffung wird in `data/README.md` dokumentiert. Die vorhandenen Kursunterlagen sind dagegen vollständig enthalten.
 

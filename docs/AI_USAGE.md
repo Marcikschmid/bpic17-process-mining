@@ -6,6 +6,7 @@ Dieses Arbeitsprotokoll dient als Grundlage für die spätere, eigene Nutzungser
 |---|---|---|---|
 | 2026-10-16 | OpenAI Codex | Aufgabenstellung erklären und Arbeitsschritte besprechen | Offen |
 | 2026-10-16 | OpenAI Codex | Lokale Repository-Struktur, README, Checkliste und LaTeX-Gerüst aus der Kursvorlage vorbereiten | Offen |
+| 2026-10-16 | OpenAI Codex | Öffentliches GitHub-Repository einrichten; LaTeX kompilieren und Vorschau prüfen; BPIC-17 über die öffentliche Metadaten-API beschaffen; Download-Skript und Prüfsummenmanifest erstellen | Offen |
 
 Für weitere Schritte die tatsächlich verwendeten Modelle, Prompts beziehungsweise Tätigkeiten und die eigene Prüfung ergänzen. Bisher wurden keine Analyseergebnisse berechnet und keine wissenschaftlichen Berichtstexte verfasst.
 

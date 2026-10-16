@@ -43,3 +43,7 @@ Thumbs.db
 desktop.ini
 tmp/
 *.tmp
+
+# Downloaded third-party literature stays local; track source catalogues only
+literature/bpic2017/*.pdf
+literature/code/

@@ -14,6 +14,7 @@ GitHub: https://github.com/Marcikschmid/bpic17-process-mining
 - `results/figures/`, `results/tables/`, `results/models/`: durch die Analyse erzeugte Ergebnisse.
 - `report/`: eigenständiges LaTeX-Projekt mit Berichtstexten und ausgewählten Abbildungen/Tabellen für die Abgabe.
 - `docs/`: Aufgabencheckliste, Arbeitsnotizen und Protokoll der KI-Nutzung.
+- `literature/`: separate Sammlung veröffentlichter BPIC-17-Analysen mit Quellenübersicht; heruntergeladene Originale bleiben lokal.
 - `scripts/download_data.py`: Download und Integritätsprüfung der Originaldaten.
 - `scripts/setup.ps1`: lokale Python-Umgebung und Graphviz reproduzieren.
 - `scripts/inspect_log.py`: vollständigen Log laden und eine Vorschau des ersten Falls exportieren.

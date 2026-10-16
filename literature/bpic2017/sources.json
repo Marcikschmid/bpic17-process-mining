@@ -1,0 +1,51 @@
+{
+  "source_index": "https://ais.win.tue.nl/bpi/2017/challenge.html",
+  "download_date": "2026-10-16",
+  "reports": [
+    {
+      "title": "STAIRWAY TO VALUE: Mining the loan application process",
+      "category": "Academic winner",
+      "year": 2017,
+      "source_url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_academic.pdf",
+      "path": "literature/bpic2017/01_academic_winner_stairway_to_value.pdf",
+      "bytes": 2429260,
+      "sha256": "e0bdfbb6aeb55febda6ca3280310dd8f0741c7fc8240e54415a6e5307b3b90c5"
+    },
+    {
+      "title": "Process mining on the loan application process of a Dutch Financial Institute",
+      "category": "Professional winner",
+      "year": 2017,
+      "source_url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_professional.pdf",
+      "path": "literature/bpic2017/02_professional_winner_kpmg.pdf",
+      "bytes": 954802,
+      "sha256": "9f5652d8b75df46d8de316bc5fbe3c15c419d72e709f14aa10574df82371a530"
+    },
+    {
+      "title": "BPIC 2017: Density Analysis of the Interaction With Clients",
+      "category": "Student winner",
+      "year": 2017,
+      "source_url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_student.pdf",
+      "path": "literature/bpic2017/03_student_winner_density_analysis.pdf",
+      "bytes": 2989483,
+      "sha256": "e8123cd736a50a72bc4a64722287bb628912dbd590a6b6af83fc2fb05a6e69c1"
+    },
+    {
+      "title": "Mining Event Log Data to Improve a Loan Application Process",
+      "category": "Professional submission",
+      "year": 2017,
+      "source_url": "https://ais.win.tue.nl/bpi/2017/bpi2017_paper_3.pdf",
+      "path": "literature/bpic2017/04_berger_loan_application_process.pdf",
+      "bytes": 4060917,
+      "sha256": "f4f3e0dfa23f2c5009e53277a7094440d20ac5c22404479ab4c6394d50890f4d"
+    },
+    {
+      "title": "Analysis of Loan Process Using Various Process Mining Techniques: The BPIC 2017",
+      "category": "Academic submission",
+      "year": 2017,
+      "source_url": "https://ais.win.tue.nl/bpi/2017/bpi2017_paper_31.pdf",
+      "path": "literature/bpic2017/05_ryu_various_process_mining_techniques.pdf",
+      "bytes": 2503302,
+      "sha256": "6b39a58beb9f041d199b98ddd418d4478091d046e5a1f69a203d2e4b80d3fef6"
+    }
+  ]
+}

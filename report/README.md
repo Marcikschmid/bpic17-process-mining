@@ -34,4 +34,8 @@ Erst wenn ein Ergebnis für die Abgabe ausgewählt wurde, wird die passende Abbi
 
 Dadurch lässt sich die Analyse erneut ausführen, ohne den Berichtsstand zu verändern. Umgekehrt lässt sich der Bericht ohne Datenimport kompilieren. Für eine separate LaTeX-Umgebung kann der gesamte Ordner `report/` übernommen werden.
 
-Der Bericht enthält aktuell die Gliederung und Kommentare als Arbeitsgerüst. Fachliche Ergebnisse und selbst geschriebene Texte werden erst im weiteren Verlauf ergänzt.
+Der Hauptteil enthält weiterhin die Gliederung und Kommentare als Arbeitsgerüst. Der Anhang enthält die beiden entdeckten Petri-Netze (Inductive Miner und Heuristics Miner) sowie faktische Tabellen zur gemeinsamen Eingabe, zu den Parametern und zu den Modellgrößen. Die ausgewählten PDFs liegen unter `figures/`, die Tabellenkopie unter `tables/discovery_setup.tex`. Literaturangaben werden mit BibTeX erzeugt.
+
+Hauptteil und Parametertabellen verwenden A4. Die beiden vollständigen Modelltafeln stehen auf größeren A3-Seiten im Anhang, damit die Aktivitätsbeschriftungen lesbar bleiben; die eingebundenen PDFs sind Vektorgrafiken. `latexmkrc` führt BibTeX im Berichtsordner aus, um ungültige MSYS-Suchpfade zwischen Git-for-Windows-Perl und nativem MiKTeX zu vermeiden.
+
+Die wissenschaftliche Interpretation und die eigenen Berichtstexte sind noch zu schreiben. Die Baseline-Modelle sind noch nicht mit Qualitätsmetriken bewertet und noch kein finales BPMN-Modell.

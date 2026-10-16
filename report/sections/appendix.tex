@@ -1,1 +1,30 @@
-% TODO: Include discovered models and supporting material.
+% Factual appendix assets only. Author-written interpretation belongs in 04_process_model.tex.
+\input{tables/discovery_setup}
+
+\clearpage
+% Larger appendix plates for legible complete models; the main report stays A4.
+\newgeometry{layoutwidth=297mm,layoutheight=420mm,margin=20mm,headheight=15pt,headsep=8mm,footskip=12mm}
+\setlength{\paperwidth}{297mm}
+\setlength{\paperheight}{420mm}
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
+% newgeometry restores the preamble's twocolumn option; reset it explicitly.
+\onecolumn
+\subsection{Inductive Miner (IM)}
+\label{app:inductive}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.90\textheight,keepaspectratio]{figures/inductive_miner.pdf}
+  \caption{Inductive Miner (IM) baseline~\cite{leemans2013constructive}: Petri net, completion projection, noise threshold 0.0.}
+  \label{fig:inductive-baseline}
+\end{figure}
+
+\clearpage
+\subsection{Heuristics Miner (CLASSIC)}
+\label{app:heuristics}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.90\textheight,keepaspectratio]{figures/heuristics_miner.pdf}
+  \caption{Heuristics Miner (CLASSIC) baseline~\cite{pm4pyHeuristicsClassic}: Petri net, completion projection, dependency threshold 0.5.}
+  \label{fig:heuristics-baseline}
+\end{figure}

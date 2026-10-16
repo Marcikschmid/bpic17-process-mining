@@ -67,7 +67,7 @@ Alternativ direkt mit Python:
 
 Wähle den Kernel **BPIC17 (.venv)** und führe die Zellen der Reihe nach aus. Das Notebook zeigt Case-Attribute und die Events eines einzelnen Antrags. Der erste vollständige Import kann etwas Zeit und Arbeitsspeicher benötigen.
 
-Der unveränderte Log wird mit dem expliziten PM4Py-Importer `iterparse` als `EventLog` geladen. Bisher werden keine Lifecycle-Zustände oder Aktivitäten gefiltert. `results/tables/import_summary.json` dokumentiert den Import und `results/tables/first_case.csv` enthält den ersten Fall in der gespeicherten Event-Reihenfolge. Die vollständige Analyse aus Abschnitt 3.2 folgt anschließend.
+Der unveränderte Log wird mit dem expliziten PM4Py-Importer `iterparse` als `EventLog` geladen. Das Einstiegsnotebook und der Importcheck filtern keine Lifecycle-Zustände oder Aktivitäten. `results/tables/import_summary.json` dokumentiert den Import und `results/tables/first_case.csv` enthält den ersten Fall in der gespeicherten Event-Reihenfolge. Die vollständige Analyse aus Abschnitt 3.2 folgt anschließend.
 
 Der erste Import wurde erfolgreich geprüft: **31.509 Cases**, **1.202.267 Events** und **26 unterschiedliche Aktivitätsnamen**. Die notwendigen Case-IDs, Aktivitätsnamen und Event-Zeitstempel sind im Importcheck vollständig vorhanden. Der erste vollständige Import dauerte auf diesem Rechner ungefähr zweieinhalb Minuten.
 
@@ -77,6 +77,16 @@ Die Umgebung lässt sich jederzeit prüfen:
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/check_setup.py
 ```
+
+## Zwei Discovery-Verfahren (Abschnitt 3.3, Aufgabe 1)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_models.py
+```
+
+Inductive Miner (IM, Noise Threshold 0.0) und Heuristics Miner (CLASSIC) verwenden dieselbe Completion-Projektion aller Fälle. Nur `complete`-Events gehen in die Discovery ein; der ursprüngliche Log bleibt unverändert. Parameter, Ausschlüsse und Grenzen sind in `docs/DISCOVERY.md` dokumentiert. Die Modelle liegen als PNML unter `results/models/`, die Abbildungen als PDF, SVG und PNG unter `results/figures/`; das Manifest steht unter `results/tables/discovery_manifest.json`.
+
+Das Skript verändert `report/` nicht. Ausgewählte PDF-Kopien liegen separat unter `report/figures/` und sind im Anhang eingebunden. Fitness, Precision, Generalization, Simplicity und Case-Replay-Abdeckung sind anschließend zu berechnen.
 
 ## LaTeX
 

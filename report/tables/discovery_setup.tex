@@ -1,0 +1,61 @@
+% Selected factual snapshot from results/tables/discovery_manifest.json.
+% No automatic dependency on the analysis project.
+\begin{table}[h!]
+\centering
+\caption{Discovery input and reproducibility settings.}
+\label{tab:discovery-input}
+\begin{tabular}{@{}lp{0.64\textwidth}@{}}
+\toprule
+Dataset & BPI Challenge 2017~\cite{vanDongen2017BPIC} \\
+Original input & 31,509 cases; 1,202,267 events; 26 activity labels \\
+Common discovery input & 31,509 cases; 475,306 events; 24 activity labels \\
+Event projection & \texttt{lifecycle:transition = complete} \\
+Excluded events & 726,961 non-completion events \\
+Absent activity labels & \texttt{W\_Personal Loan collection}; \texttt{W\_Shortened completion}\textvisiblespace \\
+Case selection & All original cases; no sampling \\
+Event order & Original XES order within each trace \\
+Activity attribute & \texttt{concept:name}; unchanged labels \\
+Versions & Python 3.12.10; PM4Py 2.7.23.11; Graphviz 16.1.0 \\
+Random seed & Not applicable: no stochastic discovery step or sampling \\
+Model format & PNML; Petri nets with initial and final markings \\
+Graphical notation & Circles: places; labelled rectangles: visible transitions; black rectangles: silent transitions; dot: initial token; double circle: final place \\
+Quality evaluation & Pending: fitness, precision, generalization, simplicity, case replay coverage \\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent\textbf{Tools:} PM4Py\footnote{\url{https://github.com/process-intelligence-solutions/pm4py}}; Graphviz\footnote{\url{https://graphviz.org/}}.
+
+\begin{table}[h!]
+\centering
+\caption{Explicit discovery parameters.}
+\label{tab:discovery-parameters}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Algorithm & Parameter & Value \\
+\midrule
+Inductive Miner (IM) & Noise threshold & 0.0 \\
+ & Multiprocessing & False \\
+ & Disable fallthroughs & False \\
+Heuristics Miner (CLASSIC) & Dependency threshold & 0.5 \\
+ & AND measure threshold & 0.65 \\
+ & Length-two loop threshold & 0.5 \\
+ & Minimum activity count & 1 \\
+ & Minimum DFG occurrences & 1 \\
+ & DFG pre-cleaning noise threshold & 0.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Structural model counts; quality metrics pending.}
+\label{tab:discovery-structure}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Model & Places & Transitions & Visible & Silent & Arcs \\
+\midrule
+Inductive Miner & 34 & 53 & 24 & 29 & 114 \\
+Heuristics Miner & 49 & 94 & 24 & 70 & 220 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -11,6 +11,7 @@ Dieses Arbeitsprotokoll dient als Grundlage für die spätere, eigene Nutzungser
 | 2026-10-16 | OpenAI Codex | Unterbrochenen Jupyter-Start untersuchen; Startskript mit explizitem Projektordner und manueller Browser-URL ergänzen | Offen |
 | 2026-10-16 | OpenAI Codex | Codebasis dokumentieren; LaTeX-Buildskript in den Berichtsordner verlagern; eigene Berichtsordner für ausgewählte Abbildungen und Tabellen anlegen | Offen |
 | 2026-10-16 | OpenAI Codex | Offizielle BPIC-17-Berichte und öffentlichen Beispielcode recherchieren und getrennt herunterladen; relevante PDF-Seiten lesen und Modellabbildungen prüfen; Quellenübersicht und Grenzen des Beispielcodes dokumentieren | Offen |
+| 2026-10-16 | OpenAI Codex | Gemeinsame Completion-Projektion und zwei PM4Py-Discovery-Verfahren implementieren und auf allen Fällen ausführen; Parameter, Versionen und Modellstruktur dokumentieren; PNML-Exporte erneut einlesen und prüfen; Modellabbildungen und faktische Tabellen in den LaTeX-Anhang einbinden und visuell prüfen | Offen |
 
 Für weitere Schritte die tatsächlich verwendeten Modelle, Prompts beziehungsweise Tätigkeiten und die eigene Prüfung ergänzen. Der technische Importcheck und die Vorschau eines Falls sind Vorarbeiten zur Analyse; wissenschaftliche Berichtstexte wurden nicht verfasst.
 

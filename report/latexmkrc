@@ -4,3 +4,7 @@ my $path_separator = ($^O =~ /MSWin32|msys|cygwin/) ? ';' : ':';
 $ENV{'TEXINPUTS'} = '.' . $path_separator . './tum//' . $path_separator . ($ENV{'TEXINPUTS'} // '');
 $pdf_mode = 1;
 $out_dir = 'build';
+
+# Keep BibTeX in the report directory. Git for Windows Perl otherwise passes
+# MSYS /c/... search paths to native MiKTeX after changing into build/.
+$bibtex_fudge = 0;

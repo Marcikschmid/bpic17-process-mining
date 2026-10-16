@@ -10,6 +10,7 @@ Dieses Arbeitsprotokoll dient als Grundlage für die spätere, eigene Nutzungser
 | 2026-10-16 | OpenAI Codex | Python-Umgebung und portables Graphviz einrichten; Setup-Prüfung, Import-Code und Einstiegsnotebook erstellen; BPIC-17-Prüfsummen erneut verifizieren; vollständigen Log importieren und Fallvorschau speichern; Paketprüfung, Rendering und Kernel-Codeausführung prüfen | Offen |
 | 2026-10-16 | OpenAI Codex | Unterbrochenen Jupyter-Start untersuchen; Startskript mit explizitem Projektordner und manueller Browser-URL ergänzen | Offen |
 | 2026-10-16 | OpenAI Codex | Codebasis dokumentieren; LaTeX-Buildskript in den Berichtsordner verlagern; eigene Berichtsordner für ausgewählte Abbildungen und Tabellen anlegen | Offen |
+| 2026-10-16 | OpenAI Codex | Offizielle BPIC-17-Berichte und öffentlichen Beispielcode recherchieren und getrennt herunterladen; relevante PDF-Seiten lesen und Modellabbildungen prüfen; Quellenübersicht und Grenzen des Beispielcodes dokumentieren | Offen |
 
 Für weitere Schritte die tatsächlich verwendeten Modelle, Prompts beziehungsweise Tätigkeiten und die eigene Prüfung ergänzen. Der technische Importcheck und die Vorschau eines Falls sind Vorarbeiten zur Analyse; wissenschaftliche Berichtstexte wurden nicht verfasst.
 

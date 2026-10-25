@@ -1,0 +1,585 @@
+{
+  "cases": 31509,
+  "events": 1202267,
+  "variants": 15930,
+  "activity_lifecycle_variants": 16692,
+  "distinct_activities": 26,
+  "case_attribute_count": 4,
+  "event_attribute_count": 15,
+  "case_length": {
+    "n": 31509,
+    "mean": 38.15630454790695,
+    "std_population": 16.715042807894445,
+    "std_sample": 16.715308056564382,
+    "min": 10,
+    "q25": 25.0,
+    "median": 35.0,
+    "q75": 47.0,
+    "p95": 70.0,
+    "max": 180
+  },
+  "case_duration": {
+    "seconds": {
+      "n": 31509,
+      "mean": 1892125.9230699483,
+      "std_population": 1137803.6352294595,
+      "std_sample": 1137821.6908757633,
+      "min": 201.062,
+      "q25": 978451.679,
+      "median": 1649180.668,
+      "q75": 2721230.946,
+      "p95": 3673816.9496,
+      "max": 24716658.654
+    },
+    "minutes": {
+      "n": 31509,
+      "mean": 31535.432051165804,
+      "std_population": 18963.39392049099,
+      "std_sample": 18963.69484792939,
+      "min": 3.3510333333333335,
+      "q25": 16307.527983333333,
+      "median": 27486.34446666667,
+      "q75": 45353.8491,
+      "p95": 61230.28249333333,
+      "max": 411944.3109
+    },
+    "days": {
+      "n": 31509,
+      "mean": 21.899605591087365,
+      "std_population": 13.169023555896523,
+      "std_sample": 13.169232533284298,
+      "min": 0.0023271064814814816,
+      "q25": 11.324672210648147,
+      "median": 19.087739212962962,
+      "q75": 31.495728541666665,
+      "p95": 42.52102950925926,
+      "max": 286.07243812499996
+    }
+  },
+  "categorical_event_attributes": [
+    "Accepted",
+    "Action",
+    "EventID",
+    "EventOrigin",
+    "OfferID",
+    "Selected",
+    "concept:name",
+    "lifecycle:transition",
+    "org:resource"
+  ],
+  "categorical_event_attribute_count": 9,
+  "categorical_event_attributes_excluding_event_offer_ids": [
+    "Accepted",
+    "Action",
+    "EventOrigin",
+    "Selected",
+    "concept:name",
+    "lifecycle:transition",
+    "org:resource"
+  ],
+  "case_attributes": {
+    "ApplicationType": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 31509,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 2,
+      "value_types": {
+        "string": 31509
+      }
+    },
+    "LoanGoal": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 31509,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 14,
+      "value_types": {
+        "string": 31509
+      }
+    },
+    "RequestedAmount": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 31509,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 701,
+      "value_types": {
+        "numeric": 31509
+      }
+    },
+    "concept:name": {
+      "classification": "categorical",
+      "identifier": true,
+      "present": 31509,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 31509,
+      "value_types": {
+        "string": 31509
+      }
+    }
+  },
+  "event_attributes": {
+    "Accepted": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 2,
+      "value_types": {
+        "boolean": 42995
+      }
+    },
+    "Action": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 5,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "CreditScore": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 520,
+      "value_types": {
+        "numeric": 42995
+      }
+    },
+    "EventID": {
+      "classification": "categorical",
+      "identifier": true,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 1202267,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "EventOrigin": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 3,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "FirstWithdrawalAmount": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 5930,
+      "value_types": {
+        "numeric": 42995
+      }
+    },
+    "MonthlyCost": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 5816,
+      "value_types": {
+        "numeric": 42995
+      }
+    },
+    "NumberOfTerms": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 147,
+      "value_types": {
+        "numeric": 42995
+      }
+    },
+    "OfferID": {
+      "classification": "categorical",
+      "identifier": true,
+      "present": 150854,
+      "absent": 1051413,
+      "null": 0,
+      "missing": 1051413,
+      "missing_percentage": 87.4525375810864,
+      "distinct_non_null": 42995,
+      "value_types": {
+        "string": 150854
+      }
+    },
+    "OfferedAmount": {
+      "classification": "numeric",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 663,
+      "value_types": {
+        "numeric": 42995
+      }
+    },
+    "Selected": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 42995,
+      "absent": 1159272,
+      "null": 0,
+      "missing": 1159272,
+      "missing_percentage": 96.42383929692822,
+      "distinct_non_null": 2,
+      "value_types": {
+        "boolean": 42995
+      }
+    },
+    "concept:name": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 26,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "lifecycle:transition": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 7,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "org:resource": {
+      "classification": "categorical",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 149,
+      "value_types": {
+        "string": 1202267
+      }
+    },
+    "time:timestamp": {
+      "classification": "timestamp",
+      "identifier": false,
+      "present": 1202267,
+      "absent": 0,
+      "null": 0,
+      "missing": 0,
+      "missing_percentage": 0.0,
+      "distinct_non_null": 1202209,
+      "value_types": {
+        "timestamp": 1202267
+      }
+    }
+  },
+  "activity_counts": {
+    "A_Accepted": 31509,
+    "A_Cancelled": 10431,
+    "A_Complete": 31362,
+    "A_Concept": 31509,
+    "A_Create Application": 31509,
+    "A_Denied": 3753,
+    "A_Incomplete": 23055,
+    "A_Pending": 17228,
+    "A_Submitted": 20423,
+    "A_Validating": 38816,
+    "O_Accepted": 17228,
+    "O_Cancelled": 20898,
+    "O_Create Offer": 42995,
+    "O_Created": 42995,
+    "O_Refused": 4695,
+    "O_Returned": 23305,
+    "O_Sent (mail and online)": 39707,
+    "O_Sent (online only)": 2026,
+    "W_Assess potential fraud": 3282,
+    "W_Call after offers": 191092,
+    "W_Call incomplete files": 168529,
+    "W_Complete application": 148900,
+    "W_Handle leads": 47264,
+    "W_Personal Loan collection": 22,
+    "W_Shortened completion ": 238,
+    "W_Validate application": 209496
+  },
+  "lifecycle_counts": {
+    "ate_abort": 85224,
+    "complete": 475306,
+    "resume": 127160,
+    "schedule": 149104,
+    "start": 128227,
+    "suspend": 215402,
+    "withdraw": 21844
+  },
+  "resource_count": 149,
+  "resource_event_counts": {
+    "User_1": 148404,
+    "User_10": 16365,
+    "User_100": 20651,
+    "User_101": 6067,
+    "User_102": 8155,
+    "User_103": 148,
+    "User_104": 3188,
+    "User_105": 1428,
+    "User_106": 1840,
+    "User_107": 2941,
+    "User_108": 753,
+    "User_109": 12330,
+    "User_11": 6037,
+    "User_110": 112,
+    "User_111": 77,
+    "User_112": 13949,
+    "User_113": 16151,
+    "User_114": 4584,
+    "User_115": 3705,
+    "User_116": 17423,
+    "User_117": 13003,
+    "User_118": 16005,
+    "User_119": 10803,
+    "User_12": 7020,
+    "User_120": 12726,
+    "User_121": 18726,
+    "User_122": 10088,
+    "User_123": 20909,
+    "User_124": 1514,
+    "User_125": 7344,
+    "User_126": 14534,
+    "User_127": 1960,
+    "User_128": 876,
+    "User_129": 2067,
+    "User_13": 4952,
+    "User_130": 1240,
+    "User_131": 7169,
+    "User_132": 3199,
+    "User_133": 11246,
+    "User_134": 5114,
+    "User_135": 247,
+    "User_136": 553,
+    "User_137": 1276,
+    "User_138": 1045,
+    "User_139": 125,
+    "User_14": 12896,
+    "User_140": 210,
+    "User_141": 432,
+    "User_142": 41,
+    "User_143": 585,
+    "User_144": 878,
+    "User_145": 10,
+    "User_146": 23,
+    "User_147": 2,
+    "User_148": 4,
+    "User_149": 2,
+    "User_15": 12529,
+    "User_16": 12150,
+    "User_17": 9334,
+    "User_18": 15432,
+    "User_19": 8993,
+    "User_2": 19134,
+    "User_20": 2118,
+    "User_21": 6938,
+    "User_22": 1788,
+    "User_23": 7471,
+    "User_24": 11177,
+    "User_25": 3307,
+    "User_26": 7600,
+    "User_27": 18806,
+    "User_28": 18412,
+    "User_29": 20860,
+    "User_3": 26342,
+    "User_30": 21272,
+    "User_31": 8841,
+    "User_32": 7118,
+    "User_33": 6181,
+    "User_34": 5230,
+    "User_35": 9418,
+    "User_36": 8792,
+    "User_37": 11857,
+    "User_38": 6669,
+    "User_39": 11205,
+    "User_4": 11377,
+    "User_40": 11674,
+    "User_41": 15481,
+    "User_42": 13045,
+    "User_43": 6363,
+    "User_44": 6155,
+    "User_45": 6104,
+    "User_46": 13325,
+    "User_47": 2848,
+    "User_48": 11221,
+    "User_49": 21134,
+    "User_5": 22900,
+    "User_50": 625,
+    "User_51": 9486,
+    "User_52": 8891,
+    "User_53": 9536,
+    "User_54": 7279,
+    "User_55": 2214,
+    "User_56": 6650,
+    "User_57": 6070,
+    "User_58": 5115,
+    "User_59": 1261,
+    "User_6": 441,
+    "User_60": 10353,
+    "User_61": 13168,
+    "User_62": 1866,
+    "User_63": 5337,
+    "User_64": 687,
+    "User_65": 3034,
+    "User_66": 4895,
+    "User_67": 8358,
+    "User_68": 17581,
+    "User_69": 3767,
+    "User_7": 5612,
+    "User_70": 5015,
+    "User_71": 9794,
+    "User_72": 1649,
+    "User_73": 1689,
+    "User_74": 2586,
+    "User_75": 15955,
+    "User_76": 1028,
+    "User_77": 3167,
+    "User_78": 5170,
+    "User_79": 2742,
+    "User_8": 854,
+    "User_80": 3539,
+    "User_81": 1925,
+    "User_82": 78,
+    "User_83": 12096,
+    "User_84": 2722,
+    "User_85": 4188,
+    "User_86": 1942,
+    "User_87": 22498,
+    "User_88": 1196,
+    "User_89": 285,
+    "User_9": 1228,
+    "User_90": 12485,
+    "User_91": 2372,
+    "User_92": 779,
+    "User_93": 8184,
+    "User_94": 1472,
+    "User_95": 9306,
+    "User_96": 2823,
+    "User_97": 1768,
+    "User_98": 1434,
+    "User_99": 14339
+  },
+  "events_without_resource": 0,
+  "case_start_month_counts_utc": {
+    "2016-01": 2194,
+    "2016-02": 2412,
+    "2016-03": 2454,
+    "2016-04": 2177,
+    "2016-05": 2068,
+    "2016-06": 3001,
+    "2016-07": 3039,
+    "2016-08": 3085,
+    "2016-09": 3042,
+    "2016-10": 2995,
+    "2016-11": 2676,
+    "2016-12": 2366
+  },
+  "first_event_utc": "2016-01-01T09:51:15.304000+00:00",
+  "last_event_utc": "2017-02-01T14:11:03.499000+00:00",
+  "variant_concentration": {
+    "top_1_case_percentage": 3.3514234028372845,
+    "top_5_case_percentage": 11.406264876701895,
+    "top_10_case_percentage": 15.328953632295535
+  },
+  "singleton_variants": 13907,
+  "quality_checks": {
+    "unique_case_ids": 31509,
+    "empty_cases": 0,
+    "events_missing_activity_or_timestamp": 0,
+    "cases_with_descending_timestamps": 0,
+    "descending_timestamp_pairs": 0
+  },
+  "definitions": {
+    "input": "Unchanged raw log; all lifecycle states retained",
+    "variant": "Exact concept:name sequence in original XES order; no trimming or sorting",
+    "alternative_variant": "Exact (concept:name, lifecycle:transition) sequence in original XES order",
+    "duration": "max(event timestamp) - min(event timestamp), elapsed UTC wall-clock time; not working time",
+    "standard_deviation": "Population SD, ddof=0, complete supplied log; sample SD ddof=1 also exported",
+    "quantiles": "Linear interpolation (Hyndman-Fan type 7)",
+    "attribute_names": "Union over all cases/events; scope kept separate; identifiers included",
+    "categorical": "Non-null observed types are strings/booleans; includes EventID and OfferID nominal identifiers",
+    "numeric": "Integer/float quantities, including NumberOfTerms and CreditScore; low cardinality does not make them categorical",
+    "missing": "Absent attribute or explicit null; blank strings are retained as actual values",
+    "resource_count": "Distinct non-null org:resource values, including system resource identifiers"
+  },
+  "input": {
+    "path": "data/raw/BPI Challenge 2017.xes.gz",
+    "sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+    "doi": "10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b"
+  },
+  "python": "3.12.10",
+  "pm4py": "2.7.23.11",
+  "created_utc": "2026-10-17T13:17:45.066361+00:00",
+  "implementation_sha256": {
+    "src/event_log.py": "c05e1915c73de5126c8e0a2f88d2fa23d5b43fdf8e3c71cf98d23d3ffb35ce4e",
+    "src/log_statistics.py": "b9e79f65a8703f00436c64c2a8017da66f984b0daba4e89338883607d4b9ad00",
+    "scripts/analyze_log.py": "2a5123bd84735ed21c5350c3e273f6bebd72aa2f7552663bd1c6cd47660004d9"
+  },
+  "seconds": 237.3,
+  "exports": {
+    "raw_case_statistics.csv": "70f95990c31f7ad760960d19e028e6cce3cbf2358571a36024a938863fe70482",
+    "raw_variants.csv": "77804cffabaeac6fbb4f6c62fe96a55d467c8c1597925bae2ac7eca2b99d6b55",
+    "raw_attribute_profile.csv": "f93ede8a2c831e7c226f4ef7c25f01efd910ad4cb049c9dcf9d581f67f0a2873",
+    "raw_activity_counts.csv": "ff85dd7856e9832660ab9c09c5d6e1bee115e0fc1c4d67f83c9f882c77ae0308",
+    "raw_lifecycle_counts.csv": "d9895cfabb4b1ba6d8d1054ec415178007f6edabffe3e08547c6040101fd30ff",
+    "raw_monthly_cases.csv": "8b65bef0a1513820be9e6fb9d77c3d68ef99aa137a08a8d38464599d2c3b733b"
+  }
+}

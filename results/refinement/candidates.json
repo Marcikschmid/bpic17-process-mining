@@ -1,0 +1,585 @@
+{
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "projection": {
+    "raw_cases": 31509,
+    "raw_events": 1202267,
+    "raw_distinct_activities": 26,
+    "raw_lifecycle_counts": {
+      "ate_abort": 85224,
+      "complete": 475306,
+      "resume": 127160,
+      "schedule": 149104,
+      "start": 128227,
+      "suspend": 215402,
+      "withdraw": 21844
+    },
+    "discovery_cases": 31509,
+    "discovery_events": 475306,
+    "discovery_distinct_activities": 24,
+    "discovery_activity_counts": {
+      "A_Accepted": 31509,
+      "A_Cancelled": 10431,
+      "A_Complete": 31362,
+      "A_Concept": 31509,
+      "A_Create Application": 31509,
+      "A_Denied": 3753,
+      "A_Incomplete": 23055,
+      "A_Pending": 17228,
+      "A_Submitted": 20423,
+      "A_Validating": 38816,
+      "O_Accepted": 17228,
+      "O_Cancelled": 20898,
+      "O_Create Offer": 42995,
+      "O_Created": 42995,
+      "O_Refused": 4695,
+      "O_Returned": 23305,
+      "O_Sent (mail and online)": 39707,
+      "O_Sent (online only)": 2026,
+      "W_Assess potential fraud": 282,
+      "W_Call after offers": 342,
+      "W_Call incomplete files": 2793,
+      "W_Complete application": 19104,
+      "W_Handle leads": 3493,
+      "W_Validate application": 15848
+    },
+    "activities_absent_after_projection": [
+      "W_Personal Loan collection",
+      "W_Shortened completion "
+    ],
+    "excluded_events": 726961,
+    "case_identifiers_and_order_preserved": true,
+    "event_order": "Original XES order within each trace; no timestamp sorting.",
+    "filter": {
+      "attribute": "lifecycle:transition",
+      "values": [
+        "complete"
+      ],
+      "level": "event"
+    },
+    "other_preprocessing": "None; no case, outcome, date, activity or frequency filtering; no sampling or label changes."
+  },
+  "target_band_percentage": [
+    78,
+    82
+  ],
+  "selection_rule": "Within target band: maximize exact prefix precision; tie: fewer nodes",
+  "candidate_rule": "IMf noise thresholds, full unchanged completion log; no case filtering",
+  "candidates": {
+    "imf_0.0000": {
+      "noise_threshold": 0,
+      "algorithm": "IM",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 31509,
+        "fitting_percentage": 100.0,
+        "variants": 5623,
+        "states": 484,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.2926135820916598,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 0,
+        "weighted_enabled": 4815812,
+        "weighted_escaping": 3406640
+      },
+      "size": {
+        "nodes": 87,
+        "arcs": 114
+      },
+      "cardoso": 47,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', *( ->( 'O_Create Offer', 'O_Created' ), tau ) ), X( tau, *( +( X( tau, 'W_Call after offers' ), X( 'A_Complete', 'A_Cancelled', 'W_Call incomplete files', ->( 'A_Denied', X( tau, *( 'O_Refused', tau ) ) ), ->( X( 'W_Validate application', 'O_Cancelled', 'A_Validating', 'O_Sent (mail and online)', 'O_Sent (online only)', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ) ), tau ) ) ), tau ) ) ) )",
+      "pnml_sha256": "71b336ed2af4fcb7857a4336e7f5b6f2805fb13d2c03a4a69ac4a26780e831b8",
+      "seconds": 27.284
+    },
+    "imf_0.0100": {
+      "noise_threshold": 0.01,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 30917,
+        "fitting_percentage": 98.12117172871243,
+        "variants": 5623,
+        "states": 276,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.31131418797315336,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 4924,
+        "weighted_enabled": 4492333,
+        "weighted_escaping": 3093806
+      },
+      "size": {
+        "nodes": 76,
+        "arcs": 100
+      },
+      "cardoso": 40,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', *( ->( 'O_Create Offer', 'O_Created' ), tau ) ), X( tau, *( 'O_Sent (online only)', tau ) ), *( X( 'W_Validate application', 'A_Validating', 'O_Returned', ->( 'O_Accepted', 'A_Pending' ), ->( X( 'A_Complete', 'A_Cancelled', 'W_Call incomplete files', 'O_Cancelled', 'O_Sent (mail and online)', 'A_Incomplete', ->( 'A_Denied', *( 'O_Refused', tau ) ) ), X( tau, 'W_Call after offers' ) ) ), tau ) ), tau ) ) ) )",
+      "pnml_sha256": "d7ca1d478eaeca85d007184409f24216ed159f0352376cc5f5b45f4b92b78300",
+      "seconds": 32.485
+    },
+    "imf_0.0300": {
+      "noise_threshold": 0.03,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 30743,
+        "fitting_percentage": 97.5689485543813,
+        "variants": 5623,
+        "states": 500,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.32929634764144367,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 5109,
+        "weighted_enabled": 4189512,
+        "weighted_escaping": 2809921
+      },
+      "size": {
+        "nodes": 89,
+        "arcs": 116
+      },
+      "cardoso": 49,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', *( ->( 'O_Create Offer', 'O_Created' ), tau ) ), X( tau, +( X( tau, *( 'O_Sent (mail and online)', tau ) ), X( tau, *( 'O_Sent (online only)', tau ) ) ) ), X( tau, 'A_Complete' ), X( tau, *( X( 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Cancelled', 'A_Validating', 'O_Returned', 'A_Incomplete', ->( 'O_Accepted', 'A_Pending' ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ), tau ) ) ), tau ) ) ) )",
+      "pnml_sha256": "1607793f741d860ceffeda1a2d77c96035dafafa224e0aae478179bbb44312fb",
+      "seconds": 26.085
+    },
+    "imf_0.0500": {
+      "noise_threshold": 0.05,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 29439,
+        "fitting_percentage": 93.43044844330191,
+        "variants": 5623,
+        "states": 40,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3860611350897898,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 8522,
+        "weighted_enabled": 3352052,
+        "weighted_escaping": 2057955
+      },
+      "size": {
+        "nodes": 86,
+        "arcs": 110
+      },
+      "cardoso": 46,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), X( tau, 'W_Handle leads' ), 'A_Concept', 'A_Accepted', *( ->( X( 'W_Complete application', *( ->( 'O_Create Offer', 'O_Created' ), tau ) ), X( tau, +( X( tau, *( 'O_Sent (mail and online)', tau ) ), X( tau, *( 'O_Sent (online only)', tau ) ) ) ), X( tau, 'A_Complete' ), X( tau, *( X( 'W_Validate application', 'W_Call incomplete files', 'A_Validating', 'O_Returned', 'A_Incomplete', ->( 'O_Accepted', 'A_Pending' ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ), tau ) ), X( tau, 'A_Cancelled' ), X( tau, *( 'O_Cancelled', tau ) ) ), tau ) )",
+      "pnml_sha256": "564cbde3566676aebac86e27dfc77ce1ec292b35a9b3a24574a2e959e22e5203",
+      "seconds": 12.015
+    },
+    "imf_0.1000": {
+      "noise_threshold": 0.1,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 27372,
+        "fitting_percentage": 86.87041797581644,
+        "variants": 5623,
+        "states": 25,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.40020241470617146,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 27736,
+        "weighted_enabled": 3041281,
+        "weighted_escaping": 1824153
+      },
+      "size": {
+        "nodes": 69,
+        "arcs": 88
+      },
+      "cardoso": 35,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), X( tau, 'W_Handle leads' ), 'A_Concept', 'A_Accepted', *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), X( tau, *( 'O_Sent (mail and online)', tau ) ), X( tau, 'A_Complete' ), X( tau, *( X( 'W_Validate application', 'W_Call incomplete files', 'A_Validating', 'O_Returned', 'A_Incomplete', ->( 'O_Accepted', 'A_Pending' ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ), tau ) ) ), tau ), X( tau, 'A_Cancelled' ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "4410f81daa2bc93704e9f47db3ce5818e9433426ca9b8b6b12d6b94954d2c05a",
+      "seconds": 10.52
+    },
+    "imf_0.1500": {
+      "noise_threshold": 0.15,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26257,
+        "fitting_percentage": 83.33174648513123,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3196221967828815,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 51558,
+        "weighted_enabled": 3792027,
+        "weighted_escaping": 2580011
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'O_Sent (online only)', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "4e6d2d15871c7b5456095a9d6f9d331035dcc20a7de8222ce5f6bdd57869a61d",
+      "seconds": 19.858
+    },
+    "imf_0.2000": {
+      "noise_threshold": 0.2,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 23189,
+        "fitting_percentage": 73.59484591703958,
+        "variants": 5623,
+        "states": 118,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3324251803718118,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 92667,
+        "weighted_enabled": 3276981,
+        "weighted_escaping": 2187630
+      },
+      "size": {
+        "nodes": 79,
+        "arcs": 102
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), *( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( 'A_Concept', +( 'A_Accepted', *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ) ), 'W_Handle leads' ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "26643f949e1c12136cb968efedb75ff9bccfa00a0ec2b8bad9869a22166ada52",
+      "seconds": 20.759
+    },
+    "imf_0.3000": {
+      "noise_threshold": 0.3,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 18957,
+        "fitting_percentage": 60.163762734456824,
+        "variants": 5623,
+        "states": 118,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.33372164979080843,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 101500,
+        "weighted_enabled": 3164086,
+        "weighted_escaping": 2108162
+      },
+      "size": {
+        "nodes": 79,
+        "arcs": 102
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), *( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( 'A_Concept', +( 'A_Accepted', *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', 'A_Incomplete', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( 'A_Validating', X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ) ), 'W_Handle leads' ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "e1d4c34757dec022eac96a68be598b5e79a8a98eda726b280dd7dabb5fec4a2d",
+      "seconds": 19.59
+    },
+    "imf_0.4000": {
+      "noise_threshold": 0.4,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 9524,
+        "fitting_percentage": 30.2262845536196,
+        "variants": 5623,
+        "states": 105,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.35691082103760263,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 232455,
+        "weighted_enabled": 1636137,
+        "weighted_escaping": 1052182
+      },
+      "size": {
+        "nodes": 65,
+        "arcs": 86
+      },
+      "cardoso": 35,
+      "tree": "->( 'A_Create Application', 'A_Submitted', *( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( 'A_Concept', +( 'A_Accepted', *( ->( X( 'W_Complete application', ->( 'O_Create Offer', *( 'O_Created', tau ) ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Cancelled', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', 'A_Incomplete', ->( 'A_Validating', *( 'O_Returned', tau ) ), ->( 'O_Accepted', 'A_Pending' ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ), tau ) ), tau ) ) ) ), 'W_Handle leads' ) )",
+      "pnml_sha256": "179dc500bba4d64a857d6248f7e23ebd78e50e1665173be522a372cedeb56dd2",
+      "seconds": 23.698
+    },
+    "imf_0.5000": {
+      "noise_threshold": 0.5,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 636,
+        "fitting_percentage": 2.0184709130724556,
+        "variants": 5623,
+        "states": 31,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.6002059626617897,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 252661,
+        "weighted_enabled": 468046,
+        "weighted_escaping": 187122
+      },
+      "size": {
+        "nodes": 52,
+        "arcs": 64
+      },
+      "cardoso": 31,
+      "tree": "->( 'A_Create Application', 'A_Submitted', X( tau, ->( X( tau, ->( X( tau, 'W_Handle leads' ), 'A_Concept', 'A_Accepted', X( tau, ->( 'O_Create Offer', *( 'O_Created', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'W_Complete application', 'A_Complete' ) ), +( *( 'W_Validate application', tau ), *( 'A_Validating', tau ), *( 'O_Returned', tau ), *( 'A_Incomplete', tau ) ), 'O_Accepted', 'A_Pending' ) ) )",
+      "pnml_sha256": "2e545f3b6d8d4d9b9017e67e9a34fc8e11c2a8945d190c1f9691960db0144b43",
+      "seconds": 4.426
+    },
+    "imf_0.6000": {
+      "noise_threshold": 0.6,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 636,
+        "fitting_percentage": 2.0184709130724556,
+        "variants": 5623,
+        "states": 31,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.6002983071709111,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 252661,
+        "weighted_enabled": 467974,
+        "weighted_escaping": 187050
+      },
+      "size": {
+        "nodes": 52,
+        "arcs": 64
+      },
+      "cardoso": 31,
+      "tree": "->( 'A_Create Application', 'A_Submitted', X( tau, ->( X( tau, 'W_Handle leads' ), 'A_Concept', X( tau, ->( 'A_Accepted', X( tau, ->( 'O_Create Offer', *( 'O_Created', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'W_Complete application', 'A_Complete' ) ), +( *( 'W_Validate application', tau ), *( 'A_Validating', tau ), *( 'O_Returned', tau ), *( 'A_Incomplete', tau ) ), 'O_Accepted', 'A_Pending' ) ) )",
+      "pnml_sha256": "af5bef0dcd5447a91c42ad1eb09b4105fbf3a253805573d463a5bad79d6cfe74",
+      "seconds": 6.695
+    },
+    "imf_0.7000": {
+      "noise_threshold": 0.7,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 2,
+        "fitting_percentage": 0.006347392808403948,
+        "variants": 5623,
+        "states": 31,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.5975344703172868,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 253703,
+        "weighted_enabled": 462862,
+        "weighted_escaping": 186286
+      },
+      "size": {
+        "nodes": 52,
+        "arcs": 64
+      },
+      "cardoso": 31,
+      "tree": "->( 'A_Create Application', 'A_Submitted', X( tau, ->( X( tau, 'W_Handle leads' ), 'A_Concept', X( tau, ->( 'A_Accepted', X( tau, ->( 'O_Create Offer', *( 'O_Created', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'W_Complete application', 'A_Complete' ) ), +( *( 'W_Validate application', tau ), *( 'A_Validating', tau ), *( 'O_Returned', tau ), *( 'A_Incomplete', tau ) ) ) ) )",
+      "pnml_sha256": "04d34ccc98da21ff240ec3ea8172ec387bbfecdb76ad04c30afbc5c266520432",
+      "seconds": 7.978
+    },
+    "imf_0.8000": {
+      "noise_threshold": 0.8,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 2,
+        "fitting_percentage": 0.006347392808403948,
+        "variants": 5623,
+        "states": 31,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.5975344703172868,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 253703,
+        "weighted_enabled": 462862,
+        "weighted_escaping": 186286
+      },
+      "size": {
+        "nodes": 52,
+        "arcs": 64
+      },
+      "cardoso": 31,
+      "tree": "->( 'A_Create Application', 'A_Submitted', X( tau, ->( X( tau, 'W_Handle leads' ), 'A_Concept', X( tau, ->( 'A_Accepted', X( tau, ->( 'O_Create Offer', *( 'O_Created', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'W_Complete application', 'A_Complete' ) ), +( *( 'W_Validate application', tau ), *( 'A_Validating', tau ), *( 'O_Returned', tau ), *( 'A_Incomplete', tau ) ) ) ) )",
+      "pnml_sha256": "72a1396e7ecfa6042bcbdf9077199aac3590a6adebce139855cc8913d93c4c4b",
+      "seconds": 5.738
+    },
+    "imf_0.1550": {
+      "noise_threshold": 0.155,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26257,
+        "fitting_percentage": 83.33174648513123,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3196221967828815,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 51558,
+        "weighted_enabled": 3792027,
+        "weighted_escaping": 2580011
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'O_Sent (online only)', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "c250630d16498b3869077cfdbe8415d2796306549fa8b483b6d542eb5dddab58",
+      "seconds": 24.589
+    },
+    "imf_0.1600": {
+      "noise_threshold": 0.16,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26043,
+        "fitting_percentage": 82.65257545463201,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3204995315434478,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 52766,
+        "weighted_enabled": 3774096,
+        "weighted_escaping": 2564500
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "52d949998520b9e0e3b619ea6b10ab2094bfdad07b77832ed16cc21723eb9756",
+      "seconds": 35.488
+    },
+    "imf_0.1650": {
+      "noise_threshold": 0.165,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26043,
+        "fitting_percentage": 82.65257545463201,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3204995315434478,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 52766,
+        "weighted_enabled": 3774096,
+        "weighted_escaping": 2564500
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "66aa323c0b9787617cfca1ee43b473fbe2073a70bd4a54fea46e97e4748611ac",
+      "seconds": 21.993
+    },
+    "imf_0.1700": {
+      "noise_threshold": 0.17,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26043,
+        "fitting_percentage": 82.65257545463201,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3204995315434478,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 52766,
+        "weighted_enabled": 3774096,
+        "weighted_escaping": 2564500
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "49dc772dbf505812dd5ce2d803fc17cd467e4a584626b75af8c24cd7648ff51c",
+      "seconds": 18.697
+    },
+    "imf_0.1800": {
+      "noise_threshold": 0.18,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 26043,
+        "fitting_percentage": 82.65257545463201,
+        "variants": 5623,
+        "states": 248,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3204995315434478,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 52766,
+        "weighted_enabled": 3774096,
+        "weighted_escaping": 2564500
+      },
+      "size": {
+        "nodes": 80,
+        "arcs": 104
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( tau, 'W_Handle leads' ), *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "43e06259789456a941c7fd07e11bfcac47626e1662b306009e33032611c70e9f",
+      "seconds": 21.032
+    },
+    "imf_0.1900": {
+      "noise_threshold": 0.19,
+      "algorithm": "IMf",
+      "coverage": {
+        "cases": 31509,
+        "fitting_cases": 23189,
+        "fitting_percentage": 73.59484591703958,
+        "variants": 5623,
+        "states": 118,
+        "sound": true
+      },
+      "exact_prefix_precision": {
+        "value": 0.3324251803718118,
+        "weighted_prefixes": 475306,
+        "excluded_weighted_prefixes": 92667,
+        "weighted_enabled": 3276981,
+        "weighted_escaping": 2187630
+      },
+      "size": {
+        "nodes": 79,
+        "arcs": 102
+      },
+      "cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), *( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( 'A_Concept', +( 'A_Accepted', *( ->( X( 'W_Complete application', ->( 'O_Create Offer', 'O_Created' ) ), *( X( 'A_Complete', 'W_Validate application', 'A_Cancelled', 'W_Call incomplete files', 'O_Sent (mail and online)', 'W_Call after offers', 'O_Sent (online only)', ->( 'A_Denied', *( 'O_Refused', tau ) ), ->( X( 'A_Validating', 'A_Incomplete' ), X( tau, *( 'O_Returned', tau ) ), X( tau, ->( 'O_Accepted', 'A_Pending' ) ) ) ), tau ) ), tau ) ) ) ), 'W_Handle leads' ), X( tau, *( 'O_Cancelled', tau ) ) )",
+      "pnml_sha256": "023052da1a74072ca0ef7899a86946da7b80bfe8afea42b5094788ac275593fc",
+      "seconds": 18.483
+    }
+  },
+  "updated_utc": "2026-10-18T17:32:29.059697+00:00",
+  "selected": null
+}

@@ -1,0 +1,5116 @@
+{
+  "status": "ok",
+  "created_utc": "2026-10-18T18:53:50.098082+00:00",
+  "seed": 20261018,
+  "implementation_sha256": {
+    "src/finite_alignment.py": "b32dca5ac65bcd59e82c2a96436cd406e091fb3bd09909f3db9be2b154987f47",
+    "src/decision_mining.py": "1b26b123234926ea6de61240efba8defe2635e13b30e31103ab46b44091c7d77",
+    "scripts/mine_decisions.py": "634d4c94fff10f755231b3ff58f47f82789ed4e4dcd31913f546d8a2fc6cb010"
+  },
+  "method": "de Leoni & van der Aalst (2013), Algorithm 1; CART replaces C4.5, explicit missingness",
+  "identity": {
+    "bpmn_sha256": "c501b67663fce61861ff5922308ed1908de367928e2a85d3e3b530f3c9da2d40",
+    "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+    "implementation_sha256": "b32dca5ac65bcd59e82c2a96436cd406e091fb3bd09909f3db9be2b154987f47",
+    "cost_profile": "sync=0,tau=1,visible/log=10000"
+  },
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "gateways": [
+    {
+      "id": "M01",
+      "bpmn_id": "id19bf1a6e-caff-48f0-9d8e-f3132e769117",
+      "kind": "merge",
+      "outgoing": [
+        "id7af1ee89-11f9-4435-ba2e-8fec9416e798"
+      ],
+      "incoming": [
+        "id19c196f8-2748-4287-b5e6-33c7e2a3dad3",
+        "idfb39994b-9922-4448-ade1-45c66075813b"
+      ],
+      "branches": {
+        "id7af1ee89-11f9-4435-ba2e-8fec9416e798": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M02",
+      "bpmn_id": "ida09380a2-a9cf-43fd-b129-514a4e832ac5",
+      "kind": "merge",
+      "outgoing": [
+        "id65a16b46-61a6-498f-9d3f-d3a315d23a83"
+      ],
+      "incoming": [
+        "id7af1ee89-11f9-4435-ba2e-8fec9416e798",
+        "id85545c15-94da-48a6-9ae3-d24291f6f874"
+      ],
+      "branches": {
+        "id65a16b46-61a6-498f-9d3f-d3a315d23a83": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D01",
+      "bpmn_id": "id782ce44a-4eda-4758-be2f-d4f16300c11b",
+      "kind": "split",
+      "outgoing": [
+        "id85545c15-94da-48a6-9ae3-d24291f6f874",
+        "idf3d0f918-ae53-4835-82a5-869370a65e8e"
+      ],
+      "incoming": [
+        "id5b507e20-fd44-433a-9c88-9904edf48553"
+      ],
+      "branches": {
+        "id85545c15-94da-48a6-9ae3-d24291f6f874": "B1",
+        "idf3d0f918-ae53-4835-82a5-869370a65e8e": "B2"
+      },
+      "status": "ok",
+      "observations": 38224,
+      "train": 26580,
+      "test": 11644,
+      "train_cases": 15018,
+      "test_cases": 6570,
+      "branch_counts": {
+        "id85545c15-94da-48a6-9ae3-d24291f6f874": 14501,
+        "idf3d0f918-ae53-4835-82a5-869370a65e8e": 23723
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.627275850223291,
+      "balanced_accuracy": 0.5135507595937067,
+      "macro_f1": 0.42411404545189335,
+      "majority_accuracy": 0.6210924081071797,
+      "confusion_matrix": [
+        [
+          194,
+          4218
+        ],
+        [
+          122,
+          7110
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 923.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 16031,
+          "distribution": [
+            0.39298858461730396,
+            0.607011415382696
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 923.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 2890,
+          "distribution": [
+            0.33114186851211075,
+            0.6688581314878893
+          ]
+        },
+        {
+          "node": 6,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 923.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 1985.5
+            }
+          ],
+          "samples": 1641,
+          "distribution": [
+            0.36319317489335773,
+            0.6368068251066423
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 923.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 1985.5
+            }
+          ],
+          "samples": 4822,
+          "distribution": [
+            0.3280796350062215,
+            0.6719203649937785
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id85545c15-94da-48a6-9ae3-d24291f6f874",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10375.0
+            },
+            {
+              "feature": "event_MonthlyCost",
+              "op": "<=",
+              "threshold": 314.5050048828125
+            }
+          ],
+          "samples": 597,
+          "distribution": [
+            0.6164154103852596,
+            0.38358458961474035
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id85545c15-94da-48a6-9ae3-d24291f6f874",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10375.0
+            },
+            {
+              "feature": "event_MonthlyCost",
+              "op": ">",
+              "threshold": 314.5050048828125
+            }
+          ],
+          "samples": 250,
+          "distribution": [
+            0.548,
+            0.452
+          ]
+        },
+        {
+          "node": 13,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10375.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 25606.724609375
+            }
+          ],
+          "samples": 261,
+          "distribution": [
+            0.4559386973180077,
+            0.5440613026819924
+          ]
+        },
+        {
+          "node": 14,
+          "class": "idf3d0f918-ae53-4835-82a5-869370a65e8e",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10375.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 25606.724609375
+            }
+          ],
+          "samples": 88,
+          "distribution": [
+            0.3409090909090909,
+            0.6590909090909091
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_MonthlyCost"
+      ],
+      "class_order": [
+        "id85545c15-94da-48a6-9ae3-d24291f6f874",
+        "idf3d0f918-ae53-4835-82a5-869370a65e8e"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 38224
+    },
+    {
+      "id": "D02",
+      "bpmn_id": "id35d88c5f-8dda-42f4-9dad-4aab26ad8133",
+      "kind": "split",
+      "outgoing": [
+        "id3350ff97-a509-412a-b465-026a86325999",
+        "id40d00598-9bc0-4127-86e5-be91499a4c8a"
+      ],
+      "incoming": [
+        "idf3d0f918-ae53-4835-82a5-869370a65e8e"
+      ],
+      "branches": {
+        "id3350ff97-a509-412a-b465-026a86325999": "B1",
+        "id40d00598-9bc0-4127-86e5-be91499a4c8a": "B2"
+      },
+      "status": "ok",
+      "observations": 23723,
+      "train": 16491,
+      "test": 7232,
+      "train_cases": 15018,
+      "test_cases": 6570,
+      "branch_counts": {
+        "id40d00598-9bc0-4127-86e5-be91499a4c8a": 21588,
+        "id3350ff97-a509-412a-b465-026a86325999": 2135
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "id3350ff97-a509-412a-b465-026a86325999"
+      ],
+      "accuracy": 0.9084623893805309,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.4760179684103753,
+      "majority_accuracy": 0.9084623893805309,
+      "confusion_matrix": [
+        [
+          0,
+          662
+        ],
+        [
+          0,
+          6570
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 597.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 20203.6552734375
+            }
+          ],
+          "samples": 5477,
+          "distribution": [
+            0.05568742012050393,
+            0.9443125798794961
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 597.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 20203.6552734375
+            }
+          ],
+          "samples": 465,
+          "distribution": [
+            0.11397849462365592,
+            0.886021505376344
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 597.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 3000.5
+            }
+          ],
+          "samples": 3180,
+          "distribution": [
+            0.07421383647798742,
+            0.9257861635220126
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 597.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 3000.5
+            }
+          ],
+          "samples": 6827,
+          "distribution": [
+            0.11293393877252088,
+            0.8870660612274791
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 28115.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 12250.0
+            }
+          ],
+          "samples": 144,
+          "distribution": [
+            0.2013888888888889,
+            0.7986111111111112
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 28115.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 12250.0
+            }
+          ],
+          "samples": 221,
+          "distribution": [
+            0.12217194570135746,
+            0.8778280542986425
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 28115.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 31750.0
+            }
+          ],
+          "samples": 51,
+          "distribution": [
+            0.23529411764705882,
+            0.7647058823529411
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id40d00598-9bc0-4127-86e5-be91499a4c8a",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 28115.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 31750.0
+            }
+          ],
+          "samples": 126,
+          "distribution": [
+            0.31746031746031744,
+            0.6825396825396826
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_LoanGoal=Remaining debt home",
+        "case_RequestedAmount",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id3350ff97-a509-412a-b465-026a86325999",
+        "id40d00598-9bc0-4127-86e5-be91499a4c8a"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 23723
+    },
+    {
+      "id": "D03",
+      "bpmn_id": "id0789d18d-d52d-4019-9234-ffb37b22bce8",
+      "kind": "split",
+      "outgoing": [
+        "id10143b41-b5c5-42f4-b8ff-b170045745f1",
+        "id4cd32815-98e5-45d7-8265-74f37ea0b944"
+      ],
+      "incoming": [
+        "id0edb50b7-0c9a-4f23-b324-2e56e078f348"
+      ],
+      "branches": {
+        "id10143b41-b5c5-42f4-b8ff-b170045745f1": "B1",
+        "id4cd32815-98e5-45d7-8265-74f37ea0b944": "B2"
+      },
+      "status": "ok",
+      "observations": 31509,
+      "train": 22056,
+      "test": 9453,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "id10143b41-b5c5-42f4-b8ff-b170045745f1": 20423,
+        "id4cd32815-98e5-45d7-8265-74f37ea0b944": 11086
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.8368771818470326,
+      "balanced_accuracy": 0.7667856915319398,
+      "macro_f1": 0.7922047963378271,
+      "majority_accuracy": 0.6506929017243204,
+      "confusion_matrix": [
+        [
+          6147,
+          4
+        ],
+        [
+          1538,
+          1764
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 2,
+          "class": "id4cd32815-98e5-45d7-8265-74f37ea0b944",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 4500.0
+            }
+          ],
+          "samples": 1624,
+          "distribution": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id10143b41-b5c5-42f4-b8ff-b170045745f1",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_LoanGoal=Unknown",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 17919,
+          "distribution": [
+            0.7962497907249289,
+            0.20375020927507115
+          ]
+        },
+        {
+          "node": 5,
+          "class": "id4cd32815-98e5-45d7-8265-74f37ea0b944",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_LoanGoal=Unknown",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 142,
+          "distribution": [
+            0.028169014084507043,
+            0.971830985915493
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id4cd32815-98e5-45d7-8265-74f37ea0b944",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 2371,
+          "distribution": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount"
+      ],
+      "class_order": [
+        "id10143b41-b5c5-42f4-b8ff-b170045745f1",
+        "id4cd32815-98e5-45d7-8265-74f37ea0b944"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 31509
+    },
+    {
+      "id": "M03",
+      "bpmn_id": "id54c56092-70e2-40b0-b9e0-661928faaeea",
+      "kind": "merge",
+      "outgoing": [
+        "id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27"
+      ],
+      "incoming": [
+        "id331fb08b-f884-483d-beca-74adc7bf11f8",
+        "id4cd32815-98e5-45d7-8265-74f37ea0b944"
+      ],
+      "branches": {
+        "id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D04",
+      "bpmn_id": "idf8f14b34-beb4-45d4-abd3-f85ce9d940db",
+      "kind": "split",
+      "outgoing": [
+        "id71c8f071-ef4f-47c6-b50d-6f05f51ca047",
+        "iddeaf1088-30a7-40c3-baa8-582239b30b8c"
+      ],
+      "incoming": [
+        "id4d4a46ad-05be-420f-a41d-513411fae30d"
+      ],
+      "branches": {
+        "id71c8f071-ef4f-47c6-b50d-6f05f51ca047": "B1",
+        "iddeaf1088-30a7-40c3-baa8-582239b30b8c": "B2"
+      },
+      "status": "ok",
+      "observations": 31509,
+      "train": 22056,
+      "test": 9453,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "iddeaf1088-30a7-40c3-baa8-582239b30b8c": 21588,
+        "id71c8f071-ef4f-47c6-b50d-6f05f51ca047": 9921
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.7882153813604147,
+      "balanced_accuracy": 0.8310952093598595,
+      "macro_f1": 0.7780293184320303,
+      "majority_accuracy": 0.6950174547762615,
+      "confusion_matrix": [
+        [
+          2713,
+          170
+        ],
+        [
+          1832,
+          4738
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id71c8f071-ef4f-47c6-b50d-6f05f51ca047",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 153.46499633789062
+            }
+          ],
+          "samples": 3105,
+          "distribution": [
+            0.7030595813204509,
+            0.2969404186795491
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id71c8f071-ef4f-47c6-b50d-6f05f51ca047",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 153.46499633789062
+            }
+          ],
+          "samples": 7610,
+          "distribution": [
+            0.5784494086727989,
+            0.4215505913272011
+          ]
+        },
+        {
+          "node": 6,
+          "class": "iddeaf1088-30a7-40c3-baa8-582239b30b8c",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 75.0
+            }
+          ],
+          "samples": 1501,
+          "distribution": [
+            0.2971352431712192,
+            0.7028647568287808
+          ]
+        },
+        {
+          "node": 7,
+          "class": "iddeaf1088-30a7-40c3-baa8-582239b30b8c",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 75.0
+            }
+          ],
+          "samples": 539,
+          "distribution": [
+            0.012987012987012988,
+            0.987012987012987
+          ]
+        },
+        {
+          "node": 8,
+          "class": "iddeaf1088-30a7-40c3-baa8-582239b30b8c",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            }
+          ],
+          "samples": 9301,
+          "distribution": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount"
+      ],
+      "class_order": [
+        "id71c8f071-ef4f-47c6-b50d-6f05f51ca047",
+        "iddeaf1088-30a7-40c3-baa8-582239b30b8c"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 31509
+    },
+    {
+      "id": "D05",
+      "bpmn_id": "id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f",
+      "kind": "split",
+      "outgoing": [
+        "id068aaac4-de81-42d5-a51c-809a4ba7fea7",
+        "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2"
+      ],
+      "incoming": [
+        "id6c709e0c-60c5-437e-9454-5d6b8a78662a"
+      ],
+      "branches": {
+        "id068aaac4-de81-42d5-a51c-809a4ba7fea7": "B1",
+        "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2": "B2"
+      },
+      "status": "ok",
+      "observations": 20423,
+      "train": 14272,
+      "test": 6151,
+      "train_cases": 14272,
+      "test_cases": 6151,
+      "branch_counts": {
+        "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2": 16930,
+        "id068aaac4-de81-42d5-a51c-809a4ba7fea7": 3493
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "id068aaac4-de81-42d5-a51c-809a4ba7fea7"
+      ],
+      "accuracy": 0.8288083238497805,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.45319583963018933,
+      "majority_accuracy": 0.8288083238497805,
+      "confusion_matrix": [
+        [
+          0,
+          1053
+        ],
+        [
+          0,
+          5098
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 9550.0
+            },
+            {
+              "feature": "case_LoanGoal=Home improvement",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 3129,
+          "distribution": [
+            0.23426014701182488,
+            0.7657398529881752
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 9550.0
+            },
+            {
+              "feature": "case_LoanGoal=Home improvement",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1065,
+          "distribution": [
+            0.16056338028169015,
+            0.8394366197183099
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 9550.0
+            },
+            {
+              "feature": "case_LoanGoal=Not speficied",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 6942,
+          "distribution": [
+            0.10544511668107173,
+            0.8945548833189283
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 9550.0
+            },
+            {
+              "feature": "case_LoanGoal=Not speficied",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 460,
+          "distribution": [
+            0.24565217391304348,
+            0.7543478260869565
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 31727.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 20950.0
+            }
+          ],
+          "samples": 1582,
+          "distribution": [
+            0.22945638432364096,
+            0.770543615676359
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 31727.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 20950.0
+            }
+          ],
+          "samples": 544,
+          "distribution": [
+            0.26838235294117646,
+            0.7316176470588235
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 31727.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 52750.0
+            }
+          ],
+          "samples": 410,
+          "distribution": [
+            0.3048780487804878,
+            0.6951219512195121
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 31727.0
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 52750.0
+            }
+          ],
+          "samples": 140,
+          "distribution": [
+            0.40714285714285714,
+            0.5928571428571429
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Not speficied",
+        "case_RequestedAmount"
+      ],
+      "class_order": [
+        "id068aaac4-de81-42d5-a51c-809a4ba7fea7",
+        "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 20423
+    },
+    {
+      "id": "M04",
+      "bpmn_id": "ide6471f38-3032-4da0-9b05-80acf819250a",
+      "kind": "merge",
+      "outgoing": [
+        "id331fb08b-f884-483d-beca-74adc7bf11f8"
+      ],
+      "incoming": [
+        "id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2",
+        "idfc614927-1734-4dd1-9669-85eacf53fb20"
+      ],
+      "branches": {
+        "id331fb08b-f884-483d-beca-74adc7bf11f8": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M05",
+      "bpmn_id": "id8f2618e2-098b-40d9-96e3-33a27610be20",
+      "kind": "merge",
+      "outgoing": [
+        "id3e7bce01-88ca-47ff-b252-d4f2a23d2b23"
+      ],
+      "incoming": [
+        "id613e7bae-b652-4111-ab5a-38026f5e53db",
+        "id6c6c2d21-a015-4000-a20f-6f4180784319"
+      ],
+      "branches": {
+        "id3e7bce01-88ca-47ff-b252-d4f2a23d2b23": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D06",
+      "bpmn_id": "id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a",
+      "kind": "split",
+      "outgoing": [
+        "id6c6c2d21-a015-4000-a20f-6f4180784319",
+        "id9771c7fe-f774-492a-876a-01c63045a27a"
+      ],
+      "incoming": [
+        "idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a"
+      ],
+      "branches": {
+        "id6c6c2d21-a015-4000-a20f-6f4180784319": "B1",
+        "id9771c7fe-f774-492a-876a-01c63045a27a": "B2"
+      },
+      "status": "ok",
+      "observations": 36857,
+      "train": 25808,
+      "test": 11049,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "id9771c7fe-f774-492a-876a-01c63045a27a": 31509,
+        "id6c6c2d21-a015-4000-a20f-6f4180784319": 5348
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "id6c6c2d21-a015-4000-a20f-6f4180784319"
+      ],
+      "accuracy": 0.8555525386912842,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.4610769681006731,
+      "majority_accuracy": 0.8555525386912842,
+      "confusion_matrix": [
+        [
+          0,
+          1596
+        ],
+        [
+          0,
+          9453
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 9650.0
+            }
+          ],
+          "samples": 4252,
+          "distribution": [
+            0.16956726246472248,
+            0.8304327375352775
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 9650.0
+            }
+          ],
+          "samples": 9810,
+          "distribution": [
+            0.2676860346585117,
+            0.7323139653414883
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 225.0
+            }
+          ],
+          "samples": 1657,
+          "distribution": [
+            0.09293904646952324,
+            0.9070609535304768
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 225.0
+            }
+          ],
+          "samples": 550,
+          "distribution": [
+            0.023636363636363636,
+            0.9763636363636363
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 853.5
+            }
+          ],
+          "samples": 2786,
+          "distribution": [
+            0.03158650394831299,
+            0.968413496051687
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 853.5
+            }
+          ],
+          "samples": 6441,
+          "distribution": [
+            0.020493712156497437,
+            0.9795062878435026
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 168.0
+            }
+          ],
+          "samples": 239,
+          "distribution": [
+            0.04184100418410042,
+            0.9581589958158996
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id9771c7fe-f774-492a-876a-01c63045a27a",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 168.0
+            }
+          ],
+          "samples": 73,
+          "distribution": [
+            0.1095890410958904,
+            0.8904109589041096
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_NumberOfTerms",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id6c6c2d21-a015-4000-a20f-6f4180784319",
+        "id9771c7fe-f774-492a-876a-01c63045a27a"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 36857
+    },
+    {
+      "id": "D07",
+      "bpmn_id": "idc21646eb-857d-4791-95c2-d4d5faa902ca",
+      "kind": "split",
+      "outgoing": [
+        "idd552b006-8a2d-4d58-b0b1-798cfc39d331",
+        "idd66397b5-e8c2-455d-b360-94150c58c753"
+      ],
+      "incoming": [
+        "ida8b66073-d30d-4410-b14e-413fb0eff051"
+      ],
+      "branches": {
+        "idd552b006-8a2d-4d58-b0b1-798cfc39d331": "B1",
+        "idd66397b5-e8c2-455d-b360-94150c58c753": "B2"
+      },
+      "status": "ok",
+      "observations": 21588,
+      "train": 15018,
+      "test": 6570,
+      "train_cases": 15018,
+      "test_cases": 6570,
+      "branch_counts": {
+        "idd552b006-8a2d-4d58-b0b1-798cfc39d331": 17873,
+        "idd66397b5-e8c2-455d-b360-94150c58c753": 3715
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.8767123287671232,
+      "balanced_accuracy": 0.9039965868198736,
+      "macro_f1": 0.8241483269886138,
+      "majority_accuracy": 0.8255707762557077,
+      "confusion_matrix": [
+        [
+          4676,
+          748
+        ],
+        [
+          62,
+          1084
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "idd552b006-8a2d-4d58-b0b1-798cfc39d331",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 104.5
+            }
+          ],
+          "samples": 622,
+          "distribution": [
+            0.9372990353697749,
+            0.06270096463022508
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idd552b006-8a2d-4d58-b0b1-798cfc39d331",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 104.5
+            }
+          ],
+          "samples": 965,
+          "distribution": [
+            0.883937823834197,
+            0.11606217616580311
+          ]
+        },
+        {
+          "node": 6,
+          "class": "idd66397b5-e8c2-455d-b360-94150c58c753",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 13450.0
+            }
+          ],
+          "samples": 1921,
+          "distribution": [
+            0.321186881832379,
+            0.678813118167621
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idd66397b5-e8c2-455d-b360-94150c58c753",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 296.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 13450.0
+            }
+          ],
+          "samples": 2209,
+          "distribution": [
+            0.49569941149841557,
+            0.5043005885015844
+          ]
+        },
+        {
+          "node": 8,
+          "class": "idd552b006-8a2d-4d58-b0b1-798cfc39d331",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 296.0
+            }
+          ],
+          "samples": 9301,
+          "distribution": [
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=New credit",
+        "event_CreditScore",
+        "event_NumberOfTerms",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "idd552b006-8a2d-4d58-b0b1-798cfc39d331",
+        "idd66397b5-e8c2-455d-b360-94150c58c753"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 21588
+    },
+    {
+      "id": "D08",
+      "bpmn_id": "idd0ed2a80-2617-4ccd-93aa-f44c75fd2874",
+      "kind": "split",
+      "outgoing": [
+        "id360d6325-2791-4a0b-8417-5bee0216729b",
+        "id447d3840-38d3-4246-93b2-474c1f9e423c"
+      ],
+      "incoming": [
+        "id237786a1-8ff5-4e4d-8b81-114ba40c4d91"
+      ],
+      "branches": {
+        "id360d6325-2791-4a0b-8417-5bee0216729b": "B1",
+        "id447d3840-38d3-4246-93b2-474c1f9e423c": "B2"
+      },
+      "status": "ok",
+      "observations": 22413,
+      "train": 15582,
+      "test": 6831,
+      "train_cases": 10091,
+      "test_cases": 4451,
+      "branch_counts": {
+        "id360d6325-2791-4a0b-8417-5bee0216729b": 14542,
+        "id447d3840-38d3-4246-93b2-474c1f9e423c": 7871
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.658907919777485,
+      "balanced_accuracy": 0.5199859251721358,
+      "macro_f1": 0.45047685876727406,
+      "majority_accuracy": 0.6515883472405212,
+      "confusion_matrix": [
+        [
+          4354,
+          97
+        ],
+        [
+          2233,
+          147
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id360d6325-2791-4a0b-8417-5bee0216729b",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 854.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 7080,
+          "distribution": [
+            0.613135593220339,
+            0.386864406779661
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id360d6325-2791-4a0b-8417-5bee0216729b",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 854.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1099,
+          "distribution": [
+            0.7261146496815286,
+            0.27388535031847133
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id360d6325-2791-4a0b-8417-5bee0216729b",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 854.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 21800.0
+            }
+          ],
+          "samples": 4867,
+          "distribution": [
+            0.7119375385247586,
+            0.28806246147524145
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id360d6325-2791-4a0b-8417-5bee0216729b",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 854.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 21800.0
+            }
+          ],
+          "samples": 1660,
+          "distribution": [
+            0.6596385542168675,
+            0.34036144578313254
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id447d3840-38d3-4246-93b2-474c1f9e423c",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 5800.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 114.5
+            }
+          ],
+          "samples": 181,
+          "distribution": [
+            0.46408839779005523,
+            0.5359116022099447
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id447d3840-38d3-4246-93b2-474c1f9e423c",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 5800.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 114.5
+            }
+          ],
+          "samples": 395,
+          "distribution": [
+            0.37721518987341773,
+            0.6227848101265823
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id447d3840-38d3-4246-93b2-474c1f9e423c",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 5800.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 723.5
+            }
+          ],
+          "samples": 124,
+          "distribution": [
+            0.47580645161290325,
+            0.5241935483870968
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id360d6325-2791-4a0b-8417-5bee0216729b",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 5800.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 723.5
+            }
+          ],
+          "samples": 176,
+          "distribution": [
+            0.5681818181818182,
+            0.4318181818181818
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "case_RequestedAmount",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_NumberOfTerms"
+      ],
+      "class_order": [
+        "id360d6325-2791-4a0b-8417-5bee0216729b",
+        "id447d3840-38d3-4246-93b2-474c1f9e423c"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 22413
+    },
+    {
+      "id": "M06",
+      "bpmn_id": "idc46ae074-9245-4515-9156-0fdd37c34db5",
+      "kind": "merge",
+      "outgoing": [
+        "idff7e281e-3e26-4288-b632-747802ae13f0"
+      ],
+      "incoming": [
+        "id360d6325-2791-4a0b-8417-5bee0216729b",
+        "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed"
+      ],
+      "branches": {
+        "idff7e281e-3e26-4288-b632-747802ae13f0": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M07",
+      "bpmn_id": "id2fc20c41-2ae5-45ee-a215-01c107ec502c",
+      "kind": "merge",
+      "outgoing": [
+        "id03f9a4df-107c-4b29-81e9-c93e46bc2fcc"
+      ],
+      "incoming": [
+        "id447d3840-38d3-4246-93b2-474c1f9e423c",
+        "idc235cea4-7ae4-4108-b903-721cd26e3b77"
+      ],
+      "branches": {
+        "id03f9a4df-107c-4b29-81e9-c93e46bc2fcc": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D09",
+      "bpmn_id": "id95bed327-ff98-49c8-a9e8-00ff997affac",
+      "kind": "split",
+      "outgoing": [
+        "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed",
+        "idc235cea4-7ae4-4108-b903-721cd26e3b77"
+      ],
+      "incoming": [
+        "idb397a410-21ee-4df7-ada5-133aa7d0d82f"
+      ],
+      "branches": {
+        "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed": "B1",
+        "idc235cea4-7ae4-4108-b903-721cd26e3b77": "B2"
+      },
+      "status": "ok",
+      "observations": 21588,
+      "train": 15018,
+      "test": 6570,
+      "train_cases": 15018,
+      "test_cases": 6570,
+      "branch_counts": {
+        "idc235cea4-7ae4-4108-b903-721cd26e3b77": 14542,
+        "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed": 7046
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.6855403348554033,
+      "balanced_accuracy": 0.5772859501324739,
+      "macro_f1": 0.575059482067722,
+      "majority_accuracy": 0.6774733637747337,
+      "confusion_matrix": [
+        [
+          577,
+          1542
+        ],
+        [
+          524,
+          3927
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1457,
+          "distribution": [
+            0.5525051475634866,
+            0.4474948524365134
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_LoanGoal=Existing loan takeover",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 130,
+          "distribution": [
+            0.3769230769230769,
+            0.6230769230769231
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 7750.0
+            }
+          ],
+          "samples": 1048,
+          "distribution": [
+            0.5229007633587787,
+            0.4770992366412214
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 7750.0
+            }
+          ],
+          "samples": 3083,
+          "distribution": [
+            0.3713915017839766,
+            0.6286084982160234
+          ]
+        },
+        {
+          "node": 10,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 1.5
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1689,
+          "distribution": [
+            0.43161634103019536,
+            0.5683836589698046
+          ]
+        },
+        {
+          "node": 11,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 1.5
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 133,
+          "distribution": [
+            0.045112781954887216,
+            0.9548872180451128
+          ]
+        },
+        {
+          "node": 13,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 1.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 123.5
+            }
+          ],
+          "samples": 6983,
+          "distribution": [
+            0.2054990691679794,
+            0.7945009308320207
+          ]
+        },
+        {
+          "node": 14,
+          "class": "idc235cea4-7ae4-4108-b903-721cd26e3b77",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 1.5
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 123.5
+            }
+          ],
+          "samples": 495,
+          "distribution": [
+            0.42424242424242425,
+            0.5757575757575758
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Remaining debt home",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_NumberOfTerms",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id63f237d3-2d6f-4a65-b2be-6527ee04d0ed",
+        "idc235cea4-7ae4-4108-b903-721cd26e3b77"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 21588
+    },
+    {
+      "id": "M08",
+      "bpmn_id": "ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f",
+      "kind": "merge",
+      "outgoing": [
+        "ida07f038f-c596-449e-8f7e-c54dabffea65"
+      ],
+      "incoming": [
+        "id179366a7-14d0-444e-b057-1e6f117aec46",
+        "ida97c9e47-273e-4650-ba6e-43f6048f1731"
+      ],
+      "branches": {
+        "ida07f038f-c596-449e-8f7e-c54dabffea65": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D10",
+      "bpmn_id": "id14b0c82c-b72e-46fa-bca2-950ac087be7b",
+      "kind": "split",
+      "outgoing": [
+        "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+        "idfc72d848-65f2-4080-9ea2-ff6dff9ede53"
+      ],
+      "incoming": [
+        "ida07f038f-c596-449e-8f7e-c54dabffea65"
+      ],
+      "branches": {
+        "idaf433558-0e3a-48ca-997e-4a9d73e97655": "B1",
+        "idfc72d848-65f2-4080-9ea2-ff6dff9ede53": "B2"
+      },
+      "status": "ok",
+      "observations": 31509,
+      "train": 22056,
+      "test": 9453,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "idaf433558-0e3a-48ca-997e-4a9d73e97655": 16738,
+        "idfc72d848-65f2-4080-9ea2-ff6dff9ede53": 14771
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.7716068972812864,
+      "balanced_accuracy": 0.7717520404873031,
+      "macro_f1": 0.7708367624775985,
+      "majority_accuracy": 0.5387707606050989,
+      "confusion_matrix": [
+        [
+          3921,
+          1172
+        ],
+        [
+          987,
+          3373
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "idfc72d848-65f2-4080-9ea2-ff6dff9ede53",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 154.96499633789062
+            }
+          ],
+          "samples": 3106,
+          "distribution": [
+            0.15872504829362524,
+            0.8412749517063748
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idfc72d848-65f2-4080-9ea2-ff6dff9ede53",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 154.96499633789062
+            }
+          ],
+          "samples": 7610,
+          "distribution": [
+            0.27766097240473064,
+            0.7223390275952694
+          ]
+        },
+        {
+          "node": 6,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 375.0
+            }
+          ],
+          "samples": 1505,
+          "distribution": [
+            0.6073089700996678,
+            0.3926910299003322
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 593.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 375.0
+            }
+          ],
+          "samples": 535,
+          "distribution": [
+            0.8878504672897196,
+            0.11214953271028037
+          ]
+        },
+        {
+          "node": 10,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 60.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 5050.0
+            }
+          ],
+          "samples": 798,
+          "distribution": [
+            0.8984962406015038,
+            0.10150375939849623
+          ]
+        },
+        {
+          "node": 11,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 60.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 5050.0
+            }
+          ],
+          "samples": 2975,
+          "distribution": [
+            0.8416806722689075,
+            0.15831932773109245
+          ]
+        },
+        {
+          "node": 13,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 60.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 5240,
+          "distribution": [
+            0.7938931297709924,
+            0.20610687022900764
+          ]
+        },
+        {
+          "node": 14,
+          "class": "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 593.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 60.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 287,
+          "distribution": [
+            0.9372822299651568,
+            0.0627177700348432
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_NumberOfTerms",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "idaf433558-0e3a-48ca-997e-4a9d73e97655",
+        "idfc72d848-65f2-4080-9ea2-ff6dff9ede53"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 31509
+    },
+    {
+      "id": "M09",
+      "bpmn_id": "id3d8918fc-adce-42c6-8a92-3e2895ae45e8",
+      "kind": "merge",
+      "outgoing": [
+        "id6d6610fe-9bd3-44b5-9a39-6550ada81d30"
+      ],
+      "incoming": [
+        "id18232190-1ae6-4772-8298-75f7c928e3d8",
+        "idaf433558-0e3a-48ca-997e-4a9d73e97655"
+      ],
+      "branches": {
+        "id6d6610fe-9bd3-44b5-9a39-6550ada81d30": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M10",
+      "bpmn_id": "ida1a5f10b-e85a-49fb-a685-1473f5d692f3",
+      "kind": "merge",
+      "outgoing": [
+        "id39630801-145c-4434-9239-25b1eef71ca5"
+      ],
+      "incoming": [
+        "id3e7bce01-88ca-47ff-b252-d4f2a23d2b23",
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4"
+      ],
+      "branches": {
+        "id39630801-145c-4434-9239-25b1eef71ca5": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M11",
+      "bpmn_id": "id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03",
+      "kind": "merge",
+      "outgoing": [
+        "idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a"
+      ],
+      "incoming": [
+        "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99",
+        "id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac"
+      ],
+      "branches": {
+        "idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M12",
+      "bpmn_id": "id363e41bb-ceaa-4fb9-ac78-6dab3ac743df",
+      "kind": "merge",
+      "outgoing": [
+        "ida2b7fbac-4b40-4cca-a1c9-19f543ebe481"
+      ],
+      "incoming": [
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1",
+        "idfc72d848-65f2-4080-9ea2-ff6dff9ede53"
+      ],
+      "branches": {
+        "ida2b7fbac-4b40-4cca-a1c9-19f543ebe481": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D11",
+      "bpmn_id": "idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee",
+      "kind": "split",
+      "outgoing": [
+        "id18232190-1ae6-4772-8298-75f7c928e3d8",
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1"
+      ],
+      "incoming": [
+        "id96482520-a509-40f1-9d34-2768218a1923"
+      ],
+      "branches": {
+        "id18232190-1ae6-4772-8298-75f7c928e3d8": "B1",
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1": "B2"
+      },
+      "status": "ok",
+      "observations": 18934,
+      "train": 13351,
+      "test": 5583,
+      "train_cases": 10411,
+      "test_cases": 4360,
+      "branch_counts": {
+        "id18232190-1ae6-4772-8298-75f7c928e3d8": 14771,
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1": 4163
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1"
+      ],
+      "accuracy": 0.7809421457997492,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.4384994468470281,
+      "majority_accuracy": 0.7809421457997492,
+      "confusion_matrix": [
+        [
+          4360,
+          0
+        ],
+        [
+          1223,
+          0
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 6150.0
+            },
+            {
+              "feature": "case_LoanGoal=Not speficied",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 2056,
+          "distribution": [
+            0.8433852140077821,
+            0.1566147859922179
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 6150.0
+            },
+            {
+              "feature": "case_LoanGoal=Not speficied",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 168,
+          "distribution": [
+            0.6369047619047619,
+            0.3630952380952381
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 6150.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": "<=",
+              "threshold": 56.5
+            }
+          ],
+          "samples": 2341,
+          "distribution": [
+            0.7915420760358821,
+            0.20845792396411789
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 6150.0
+            },
+            {
+              "feature": "event_NumberOfTerms",
+              "op": ">",
+              "threshold": 56.5
+            }
+          ],
+          "samples": 8064,
+          "distribution": [
+            0.75,
+            0.25
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 2200.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 7700.0
+            }
+          ],
+          "samples": 58,
+          "distribution": [
+            0.9827586206896551,
+            0.017241379310344827
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 2200.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 7700.0
+            }
+          ],
+          "samples": 603,
+          "distribution": [
+            0.9286898839137645,
+            0.07131011608623548
+          ]
+        },
+        {
+          "node": 12,
+          "class": "id18232190-1ae6-4772-8298-75f7c928e3d8",
+          "predicates": [
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 2200.0
+            }
+          ],
+          "samples": 61,
+          "distribution": [
+            0.8524590163934426,
+            0.14754098360655737
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Not speficied",
+        "event_FirstWithdrawalAmount",
+        "event_NumberOfTerms",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id18232190-1ae6-4772-8298-75f7c928e3d8",
+        "idb691e8ff-3eae-408e-9087-409d58cd71c1"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 18934
+    },
+    {
+      "id": "D12",
+      "bpmn_id": "idced2f46a-4a6e-4c03-9761-2eb069353381",
+      "kind": "split",
+      "outgoing": [
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4",
+        "idbd3f247b-8708-4f01-9222-efe169f69a4d"
+      ],
+      "incoming": [
+        "ide27dd9dc-f4d7-4f3d-9101-366fd10d1642"
+      ],
+      "branches": {
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4": "B1",
+        "idbd3f247b-8708-4f01-9222-efe169f69a4d": "B2"
+      },
+      "status": "ok",
+      "observations": 41428,
+      "train": 29010,
+      "test": 12418,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "idbd3f247b-8708-4f01-9222-efe169f69a4d": 36857,
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4": 4571
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4"
+      ],
+      "accuracy": 0.8897568046384281,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.4708313802360762,
+      "majority_accuracy": 0.8897568046384281,
+      "confusion_matrix": [
+        [
+          0,
+          1369
+        ],
+        [
+          0,
+          11049
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 20.824999809265137
+            }
+          ],
+          "samples": 4973,
+          "distribution": [
+            0.20832495475568066,
+            0.7916750452443193
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 20.824999809265137
+            }
+          ],
+          "samples": 11837,
+          "distribution": [
+            0.1442088366984878,
+            0.8557911633015122
+          ]
+        },
+        {
+          "node": 6,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 1508.0
+            }
+          ],
+          "samples": 1820,
+          "distribution": [
+            0.02967032967032967,
+            0.9703296703296703
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 1508.0
+            }
+          ],
+          "samples": 442,
+          "distribution": [
+            0.0022624434389140274,
+            0.997737556561086
+          ]
+        },
+        {
+          "node": 10,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 2650.0
+            }
+          ],
+          "samples": 89,
+          "distribution": [
+            0.02247191011235955,
+            0.9775280898876404
+          ]
+        },
+        {
+          "node": 11,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 2650.0
+            }
+          ],
+          "samples": 249,
+          "distribution": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "node": 13,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 9266,
+          "distribution": [
+            0.04068638031513058,
+            0.9593136196848694
+          ]
+        },
+        {
+          "node": 14,
+          "class": "idbd3f247b-8708-4f01-9222-efe169f69a4d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 594.5
+            },
+            {
+              "feature": "case_ApplicationType=New credit",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 334,
+          "distribution": [
+            0.0748502994011976,
+            0.9251497005988024
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Remaining debt home",
+        "case_RequestedAmount",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount"
+      ],
+      "class_order": [
+        "ida26187de-c606-4c47-8ac3-0a1eb3da37a4",
+        "idbd3f247b-8708-4f01-9222-efe169f69a4d"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 41428
+    },
+    {
+      "id": "M13",
+      "bpmn_id": "idcd914d40-ed9e-4a10-8900-ce0938fc7417",
+      "kind": "merge",
+      "outgoing": [
+        "idbaf5596e-e764-4ef2-992f-b04179bb7a35"
+      ],
+      "incoming": [
+        "id426723fe-967c-48d8-a578-df3ee995796c",
+        "idbd3f247b-8708-4f01-9222-efe169f69a4d"
+      ],
+      "branches": {
+        "idbaf5596e-e764-4ef2-992f-b04179bb7a35": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M14",
+      "bpmn_id": "idcd2e93a6-b2c5-4334-bc97-cb940044373b",
+      "kind": "merge",
+      "outgoing": [
+        "idd19a2e7d-7c35-40ae-8310-cb455cc5046e"
+      ],
+      "incoming": [
+        "ida8851c68-f666-4100-a923-2ebb6e0d9ad3",
+        "idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41"
+      ],
+      "branches": {
+        "idd19a2e7d-7c35-40ae-8310-cb455cc5046e": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D13",
+      "bpmn_id": "idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352",
+      "kind": "split",
+      "outgoing": [
+        "id426723fe-967c-48d8-a578-df3ee995796c",
+        "idca9784d9-ae58-4eb4-938c-81e4ec634e1d"
+      ],
+      "incoming": [
+        "idaa455839-2e00-4e95-8e00-946ff61b88dc"
+      ],
+      "branches": {
+        "id426723fe-967c-48d8-a578-df3ee995796c": "B1",
+        "idca9784d9-ae58-4eb4-938c-81e4ec634e1d": "B2"
+      },
+      "status": "ok",
+      "observations": 39988,
+      "train": 28008,
+      "test": 11980,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "idca9784d9-ae58-4eb4-938c-81e4ec634e1d": 36857,
+        "id426723fe-967c-48d8-a578-df3ee995796c": 3131
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [
+        "id426723fe-967c-48d8-a578-df3ee995796c"
+      ],
+      "accuracy": 0.9222871452420701,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.47978635633331884,
+      "majority_accuracy": 0.9222871452420701,
+      "confusion_matrix": [
+        [
+          0,
+          931
+        ],
+        [
+          0,
+          11049
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 605.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 0.32499998807907104
+            }
+          ],
+          "samples": 4637,
+          "distribution": [
+            0.15548846236791028,
+            0.8445115376320897
+          ]
+        },
+        {
+          "node": 4,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 605.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 0.32499998807907104
+            }
+          ],
+          "samples": 11272,
+          "distribution": [
+            0.09829666430092264,
+            0.9017033356990773
+          ]
+        },
+        {
+          "node": 6,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 605.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 13550.0
+            }
+          ],
+          "samples": 530,
+          "distribution": [
+            0.022641509433962263,
+            0.9773584905660377
+          ]
+        },
+        {
+          "node": 7,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 605.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 13550.0
+            }
+          ],
+          "samples": 1694,
+          "distribution": [
+            0.0029515938606847697,
+            0.9970484061393152
+          ]
+        },
+        {
+          "node": 10,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 605.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 9692.884765625
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 5848,
+          "distribution": [
+            0.027701778385772913,
+            0.9722982216142271
+          ]
+        },
+        {
+          "node": 11,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 605.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 9692.884765625
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 206,
+          "distribution": [
+            0.06796116504854369,
+            0.9320388349514563
+          ]
+        },
+        {
+          "node": 13,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 605.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 9692.884765625
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 14100.0
+            }
+          ],
+          "samples": 1317,
+          "distribution": [
+            0.06378132118451026,
+            0.9362186788154897
+          ]
+        },
+        {
+          "node": 14,
+          "class": "idca9784d9-ae58-4eb4-938c-81e4ec634e1d",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 605.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 9692.884765625
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 14100.0
+            }
+          ],
+          "samples": 2504,
+          "distribution": [
+            0.037539936102236424,
+            0.9624600638977636
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "case_RequestedAmount",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id426723fe-967c-48d8-a578-df3ee995796c",
+        "idca9784d9-ae58-4eb4-938c-81e4ec634e1d"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 39988
+    },
+    {
+      "id": "D14",
+      "bpmn_id": "idb053226b-4e2c-4161-ab84-6b7dbac6321e",
+      "kind": "split",
+      "outgoing": [
+        "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+        "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99"
+      ],
+      "incoming": [
+        "idca9784d9-ae58-4eb4-938c-81e4ec634e1d"
+      ],
+      "branches": {
+        "id035131b1-13d9-46ee-8c54-0e6ebaf15243": "B1",
+        "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99": "B2"
+      },
+      "status": "ok",
+      "observations": 36857,
+      "train": 25808,
+      "test": 11049,
+      "train_cases": 22056,
+      "test_cases": 9453,
+      "branch_counts": {
+        "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99": 17913,
+        "id035131b1-13d9-46ee-8c54-0e6ebaf15243": 18944
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.5420400036202371,
+      "balanced_accuracy": 0.5444415867665837,
+      "macro_f1": 0.5347721339626027,
+      "majority_accuracy": 0.5089148339216218,
+      "confusion_matrix": [
+        [
+          2304,
+          3319
+        ],
+        [
+          1741,
+          3685
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Debt restructuring",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 10650.0
+            }
+          ],
+          "samples": 565,
+          "distribution": [
+            0.8088495575221238,
+            0.1911504424778761
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 10650.0
+            }
+          ],
+          "samples": 1360,
+          "distribution": [
+            0.7419117647058824,
+            0.2580882352941177
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 12250.0
+            }
+          ],
+          "samples": 113,
+          "distribution": [
+            0.5221238938053098,
+            0.4778761061946903
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 12250.0
+            }
+          ],
+          "samples": 446,
+          "distribution": [
+            0.679372197309417,
+            0.32062780269058294
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10801.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 194.0
+            }
+          ],
+          "samples": 6904,
+          "distribution": [
+            0.5286790266512167,
+            0.4713209733487833
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10801.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 194.0
+            }
+          ],
+          "samples": 9865,
+          "distribution": [
+            0.4927521540800811,
+            0.5072478459199189
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10801.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": "<=",
+              "threshold": 10972.5
+            }
+          ],
+          "samples": 140,
+          "distribution": [
+            0.1357142857142857,
+            0.8642857142857143
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99",
+          "predicates": [
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 4500.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10801.5
+            },
+            {
+              "feature": "case_RequestedAmount",
+              "op": ">",
+              "threshold": 10972.5
+            }
+          ],
+          "samples": 6415,
+          "distribution": [
+            0.46188620420888543,
+            0.5381137957911146
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_RequestedAmount",
+        "event_FirstWithdrawalAmount",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id035131b1-13d9-46ee-8c54-0e6ebaf15243",
+        "id2b5182ea-a01d-4749-b7d7-6ef1427f7c99"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 36857
+    },
+    {
+      "id": "D15",
+      "bpmn_id": "id572e3304-ce9f-45e5-8a30-845e06bfc342",
+      "kind": "split",
+      "outgoing": [
+        "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+        "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc"
+      ],
+      "incoming": [
+        "id919ceaf2-bd04-43ec-8890-7234ee2fee7f"
+      ],
+      "branches": {
+        "id4fa62d88-b6a9-4f99-a17d-04553f044c61": "B1",
+        "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc": "B2"
+      },
+      "status": "ok",
+      "observations": 21588,
+      "train": 15018,
+      "test": 6570,
+      "train_cases": 15018,
+      "test_cases": 6570,
+      "branch_counts": {
+        "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc": 10809,
+        "id4fa62d88-b6a9-4f99-a17d-04553f044c61": 10779
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.6182648401826484,
+      "balanced_accuracy": 0.6192520202593139,
+      "macro_f1": 0.6160589060308556,
+      "majority_accuracy": 0.4940639269406393,
+      "confusion_matrix": [
+        [
+          2280,
+          966
+        ],
+        [
+          1542,
+          1782
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 26050.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 5424,
+          "distribution": [
+            0.5801991150442478,
+            0.4198008849557522
+          ]
+        },
+        {
+          "node": 4,
+          "class": "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 26050.0
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1184,
+          "distribution": [
+            0.42736486486486486,
+            0.5726351351351351
+          ]
+        },
+        {
+          "node": 6,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 26050.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 730.5
+            }
+          ],
+          "samples": 1398,
+          "distribution": [
+            0.7067238912732475,
+            0.2932761087267525
+          ]
+        },
+        {
+          "node": 7,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 26050.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 730.5
+            }
+          ],
+          "samples": 455,
+          "distribution": [
+            0.6241758241758242,
+            0.3758241758241758
+          ]
+        },
+        {
+          "node": 10,
+          "class": "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 25050.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 5157,
+          "distribution": [
+            0.33856893542757416,
+            0.6614310645724258
+          ]
+        },
+        {
+          "node": 11,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 25050.0
+            },
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 138,
+          "distribution": [
+            0.6666666666666666,
+            0.3333333333333333
+          ]
+        },
+        {
+          "node": 13,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 25050.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 2836.0
+            }
+          ],
+          "samples": 447,
+          "distribution": [
+            0.680089485458613,
+            0.319910514541387
+          ]
+        },
+        {
+          "node": 14,
+          "class": "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+          "predicates": [
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 852.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 25050.0
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 2836.0
+            }
+          ],
+          "samples": 815,
+          "distribution": [
+            0.5717791411042945,
+            0.42822085889570555
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+        "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 21588
+    },
+    {
+      "id": "M15",
+      "bpmn_id": "id80953825-e59d-4799-94c2-3b95db6cfb70",
+      "kind": "merge",
+      "outgoing": [
+        "iddb384444-6ff5-45ff-a091-724225144066"
+      ],
+      "incoming": [
+        "id8b34501a-21f6-48b6-9377-61bd6f4f4bcc",
+        "ide116f459-ea55-4431-a6f1-a9dd4a55c656"
+      ],
+      "branches": {
+        "iddb384444-6ff5-45ff-a091-724225144066": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "M16",
+      "bpmn_id": "id8c4e2f3f-e3c3-4e7e-b86a-366467733106",
+      "kind": "merge",
+      "outgoing": [
+        "idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4"
+      ],
+      "incoming": [
+        "id4fa62d88-b6a9-4f99-a17d-04553f044c61",
+        "idc7214cd8-4402-487c-9f50-149cfc9a9bcc"
+      ],
+      "branches": {
+        "idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4": "B1"
+      },
+      "status": "merge_no_choice",
+      "reason": "One outgoing flow; pass-through, no classification target."
+    },
+    {
+      "id": "D16",
+      "bpmn_id": "id4b85896c-4ff5-4d35-86fc-485da3f0ab92",
+      "kind": "split",
+      "outgoing": [
+        "idc7214cd8-4402-487c-9f50-149cfc9a9bcc",
+        "ide116f459-ea55-4431-a6f1-a9dd4a55c656"
+      ],
+      "incoming": [
+        "iddc132194-7e86-4fc1-a047-5287657ce051"
+      ],
+      "branches": {
+        "idc7214cd8-4402-487c-9f50-149cfc9a9bcc": "B1",
+        "ide116f459-ea55-4431-a6f1-a9dd4a55c656": "B2"
+      },
+      "status": "ok",
+      "observations": 15682,
+      "train": 11020,
+      "test": 4662,
+      "train_cases": 7533,
+      "test_cases": 3246,
+      "branch_counts": {
+        "ide116f459-ea55-4431-a6f1-a9dd4a55c656": 10779,
+        "idc7214cd8-4402-487c-9f50-149cfc9a9bcc": 4903
+      },
+      "unobserved_branches": [],
+      "never_predicted_branches": [],
+      "accuracy": 0.6984126984126984,
+      "balanced_accuracy": 0.5190586588969998,
+      "macro_f1": 0.4648223801674809,
+      "majority_accuracy": 0.6962676962676962,
+      "confusion_matrix": [
+        [
+          88,
+          1328
+        ],
+        [
+          78,
+          3168
+        ]
+      ],
+      "features": [
+        "case_ApplicationType=Limit raise",
+        "case_ApplicationType=New credit",
+        "case_LoanGoal=Boat",
+        "case_LoanGoal=Business goal",
+        "case_LoanGoal=Car",
+        "case_LoanGoal=Caravan / Camper",
+        "case_LoanGoal=Existing loan takeover",
+        "case_LoanGoal=Extra spending limit",
+        "case_LoanGoal=Home improvement",
+        "case_LoanGoal=Motorcycle",
+        "case_LoanGoal=Not speficied",
+        "case_LoanGoal=Other, see explanation",
+        "case_LoanGoal=Remaining debt home",
+        "case_LoanGoal=Tax payments",
+        "case_LoanGoal=Unknown",
+        "case_RequestedAmount",
+        "case_RequestedAmount_known",
+        "event_CreditScore",
+        "event_CreditScore_known",
+        "event_FirstWithdrawalAmount",
+        "event_FirstWithdrawalAmount_known",
+        "event_MonthlyCost",
+        "event_MonthlyCost_known",
+        "event_NumberOfTerms",
+        "event_NumberOfTerms_known",
+        "event_OfferedAmount",
+        "event_OfferedAmount_known"
+      ],
+      "leaves": [
+        {
+          "node": 3,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 882.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": "<=",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 6381,
+          "distribution": [
+            0.3280050148879486,
+            0.6719949851120514
+          ]
+        },
+        {
+          "node": 4,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 882.5
+            },
+            {
+              "feature": "case_ApplicationType=Limit raise",
+              "op": ">",
+              "threshold": 0.5
+            }
+          ],
+          "samples": 1253,
+          "distribution": [
+            0.26975259377494015,
+            0.7302474062250599
+          ]
+        },
+        {
+          "node": 6,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 882.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 25800.0
+            }
+          ],
+          "samples": 1926,
+          "distribution": [
+            0.2466251298026999,
+            0.7533748701973001
+          ]
+        },
+        {
+          "node": 7,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": "<=",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 882.5
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 25800.0
+            }
+          ],
+          "samples": 822,
+          "distribution": [
+            0.30656934306569344,
+            0.6934306569343066
+          ]
+        },
+        {
+          "node": 10,
+          "class": "idc7214cd8-4402-487c-9f50-149cfc9a9bcc",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10125.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": "<=",
+              "threshold": 720.0
+            }
+          ],
+          "samples": 167,
+          "distribution": [
+            0.6287425149700598,
+            0.3712574850299401
+          ]
+        },
+        {
+          "node": 11,
+          "class": "idc7214cd8-4402-487c-9f50-149cfc9a9bcc",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": "<=",
+              "threshold": 10125.0
+            },
+            {
+              "feature": "event_CreditScore",
+              "op": ">",
+              "threshold": 720.0
+            }
+          ],
+          "samples": 279,
+          "distribution": [
+            0.5125448028673835,
+            0.4874551971326165
+          ]
+        },
+        {
+          "node": 13,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10125.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": "<=",
+              "threshold": 26000.0
+            }
+          ],
+          "samples": 132,
+          "distribution": [
+            0.4696969696969697,
+            0.5303030303030303
+          ]
+        },
+        {
+          "node": 14,
+          "class": "ide116f459-ea55-4431-a6f1-a9dd4a55c656",
+          "predicates": [
+            {
+              "feature": "case_LoanGoal=Remaining debt home",
+              "op": ">",
+              "threshold": 0.5
+            },
+            {
+              "feature": "event_FirstWithdrawalAmount",
+              "op": ">",
+              "threshold": 10125.0
+            },
+            {
+              "feature": "event_OfferedAmount",
+              "op": ">",
+              "threshold": 26000.0
+            }
+          ],
+          "samples": 60,
+          "distribution": [
+            0.31666666666666665,
+            0.6833333333333333
+          ]
+        }
+      ],
+      "depth": 3,
+      "used_features": [
+        "case_ApplicationType=Limit raise",
+        "case_LoanGoal=Remaining debt home",
+        "event_CreditScore",
+        "event_FirstWithdrawalAmount",
+        "event_OfferedAmount"
+      ],
+      "class_order": [
+        "idc7214cd8-4402-487c-9f50-149cfc9a9bcc",
+        "ide116f459-ea55-4431-a6f1-a9dd4a55c656"
+      ],
+      "parameters": {
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 3,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 50,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "random_state": 20261018,
+        "splitter": "best"
+      },
+      "rule_check_rows": 15682
+    }
+  ],
+  "cases": 31509,
+  "variants": 5623,
+  "observations": 453820,
+  "exact_structural_fitting_cases": 25350,
+  "alignment_cost_sum": 171390028,
+  "flow_net_states": 1357,
+  "bpmn_language_equivalence": {
+    "equivalent": true,
+    "counterexample": null,
+    "pairs": 57
+  },
+  "reference_checks": [
+    {
+      "variant_index": 0,
+      "cost": 38
+    },
+    {
+      "variant_index": 1,
+      "cost": 10036
+    },
+    {
+      "variant_index": 2,
+      "cost": 10046
+    },
+    {
+      "variant_index": 3,
+      "cost": 56
+    },
+    {
+      "variant_index": 104,
+      "cost": 30048
+    },
+    {
+      "variant_index": 170,
+      "cost": 44
+    },
+    {
+      "variant_index": 191,
+      "cost": 50
+    },
+    {
+      "variant_index": 2031,
+      "cost": 120096
+    },
+    {
+      "variant_index": 2074,
+      "cost": 120090
+    },
+    {
+      "variant_index": 2166,
+      "cost": 40046
+    },
+    {
+      "variant_index": 2545,
+      "cost": 20026
+    },
+    {
+      "variant_index": 2590,
+      "cost": 100088
+    },
+    {
+      "variant_index": 3273,
+      "cost": 30050
+    },
+    {
+      "variant_index": 3745,
+      "cost": 10040
+    },
+    {
+      "variant_index": 3892,
+      "cost": 10052
+    },
+    {
+      "variant_index": 3893,
+      "cost": 48
+    },
+    {
+      "variant_index": 3945,
+      "cost": 30048
+    },
+    {
+      "variant_index": 4121,
+      "cost": 20036
+    },
+    {
+      "variant_index": 4326,
+      "cost": 40040
+    },
+    {
+      "variant_index": 4328,
+      "cost": 120082
+    },
+    {
+      "variant_index": 4709,
+      "cost": 40
+    },
+    {
+      "variant_index": 4825,
+      "cost": 54
+    },
+    {
+      "variant_index": 4868,
+      "cost": 64
+    },
+    {
+      "variant_index": 4905,
+      "cost": 48
+    }
+  ],
+  "training_cases": 22056,
+  "testing_cases": 9453,
+  "write_operations": {
+    "O_Create Offer": {
+      "CreditScore": {
+        "present": 42995,
+        "events": 42995,
+        "percentage": 100.0,
+        "write_operation_at_95_percent": true
+      },
+      "FirstWithdrawalAmount": {
+        "present": 42995,
+        "events": 42995,
+        "percentage": 100.0,
+        "write_operation_at_95_percent": true
+      },
+      "MonthlyCost": {
+        "present": 42995,
+        "events": 42995,
+        "percentage": 100.0,
+        "write_operation_at_95_percent": true
+      },
+      "NumberOfTerms": {
+        "present": 42995,
+        "events": 42995,
+        "percentage": 100.0,
+        "write_operation_at_95_percent": true
+      },
+      "OfferedAmount": {
+        "present": 42995,
+        "events": 42995,
+        "percentage": 100.0,
+        "write_operation_at_95_percent": true
+      }
+    }
+  },
+  "write_threshold_percentage": 95,
+  "guarded_replay": {
+    "train": {
+      "cases": 22056,
+      "structural_fitting_cases": 17753,
+      "guarded_fitting_cases": 2314
+    },
+    "test": {
+      "cases": 9453,
+      "structural_fitting_cases": 7597,
+      "guarded_fitting_cases": 963
+    }
+  },
+  "case_fields": [
+    "ApplicationType",
+    "LoanGoal",
+    "RequestedAmount"
+  ],
+  "event_fields": [
+    "CreditScore",
+    "FirstWithdrawalAmount",
+    "MonthlyCost",
+    "NumberOfTerms",
+    "OfferedAmount"
+  ],
+  "excluded": [
+    "case/Event/Offer IDs",
+    "Accepted",
+    "Selected",
+    "activity label",
+    "resource",
+    "Action",
+    "EventOrigin",
+    "timestamps"
+  ],
+  "limitations": [
+    "One deterministic optimal alignment; choices/parallel data order may be ambiguous.",
+    "Control-flow discovered using full log: held-out metrics assess guards conditional on this fixed model.",
+    "Last synchronized offer values may belong to different offers; no object-centric correlation.",
+    "Guards are statistical associations, not validated bank policy or executable automation.",
+    "Train-only tree can assign false to minority/unobserved branches; these are reported explicitly."
+  ]
+}

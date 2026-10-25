@@ -1,0 +1,36 @@
+% Factual statistics; source raw_log_statistics.json; SHA256 887992c3041d7cdf044af448af6e89a7bd94490e040037beaf0332daf6806931
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Raw XES attribute profile: union of names; categorical includes strings and booleans; missing = absent or null.}
+\label{tab:raw-attributes}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Attribute & Type & Distinct & Missing (\%) \\
+\midrule
+\multicolumn{4}{l}{\textbf{Case attributes}} \\
+ApplicationType & categorical & 2 & 0.00 \\
+LoanGoal & categorical & 14 & 0.00 \\
+RequestedAmount & numeric & 701 & 0.00 \\
+concept:name & nominal ID & 31,509 & 0.00 \\
+\midrule
+\multicolumn{4}{l}{\textbf{Event attributes}} \\
+Accepted & categorical & 2 & 96.42 \\
+Action & categorical & 5 & 0.00 \\
+CreditScore & numeric & 520 & 96.42 \\
+EventID & nominal ID & 1,202,267 & 0.00 \\
+EventOrigin & categorical & 3 & 0.00 \\
+FirstWithdrawalAmount & numeric & 5,930 & 96.42 \\
+MonthlyCost & numeric & 5,816 & 96.42 \\
+NumberOfTerms & numeric & 147 & 96.42 \\
+OfferID & nominal ID & 42,995 & 87.45 \\
+OfferedAmount & numeric & 663 & 96.42 \\
+Selected & categorical & 2 & 96.42 \\
+concept:name & categorical & 26 & 0.00 \\
+lifecycle:transition & categorical & 7 & 0.00 \\
+org:resource & categorical & 149 & 0.00 \\
+time:timestamp & timestamp & 1,202,209 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}

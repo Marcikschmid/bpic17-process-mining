@@ -1,0 +1,12 @@
+{
+  "source_sha256": "ca987fb6ca246444ddc1fcad938c472267aa8f43fd9de1438494ca229eff19a2",
+  "panels": 13,
+  "panel_height": 820,
+  "panel_step": 544,
+  "panel_overlap": 276,
+  "max_shape_height": 255.9024,
+  "splits_with_visible_rules": 16,
+  "original_leaf_paths": 117,
+  "compact_rule_paths": 44,
+  "display_implementation_sha256": "d51a7270f426f8e7ebf7a0ac3a484661ebd01fef2ebec8378794518eed74c7ba"
+}

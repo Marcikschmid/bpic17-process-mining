@@ -1,0 +1,1856 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.signavio.com/bpmn20" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="https://www.omg.org/spec/DMN/20191111/FEEL/">
+  <bpmn:process id="idf1133f0a-681f-4683-8bf1-eb61d7158e5e" isClosed="false" isExecutable="false" processType="None">
+    <bpmn:exclusiveGateway id="id0789d18d-d52d-4019-9234-ffb37b22bce8" gatewayDirection="Diverging" name="D03">
+      <bpmn:documentation>D03 | learned decision block
+n=31509; test n=9453
+Accuracy 0.837; majority 0.651
+Macro-F1 0.792; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Unknown, c.RequestedAmount
+Rules and support: decision_blocks.pdf / D03
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id0edb50b7-0c9a-4f23-b324-2e56e078f348</bpmn:incoming>
+      <bpmn:outgoing>id10143b41-b5c5-42f4-b8ff-b170045745f1</bpmn:outgoing>
+      <bpmn:outgoing>id4cd32815-98e5-45d7-8265-74f37ea0b944</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" gatewayDirection="Diverging" name="D16">
+      <bpmn:documentation>D16 | learned decision block
+n=15682; test n=4662
+Accuracy 0.698; majority 0.696
+Macro-F1 0.465; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, e.CreditScore, e.FirstWithdrawal, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D16
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>iddc132194-7e86-4fc1-a047-5287657ce051</bpmn:incoming>
+      <bpmn:outgoing>ide116f459-ea55-4431-a6f1-a9dd4a55c656</bpmn:outgoing>
+      <bpmn:outgoing>idc7214cd8-4402-487c-9f50-149cfc9a9bcc</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" gatewayDirection="Diverging" name="D05">
+      <bpmn:documentation>D05 | learned decision block
+n=20423; test n=6151
+Accuracy 0.829; majority 0.829
+Macro-F1 0.453; depth 3
+Inputs: c.LoanGoal=Existing loan takeover, c.LoanGoal=Home improvement, c.LoanGoal=Not speficied, c.RequestedAmount
+Rules and support: decision_blocks.pdf / D05
+Warning: unpredicted B1
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id6c709e0c-60c5-437e-9454-5d6b8a78662a</bpmn:incoming>
+      <bpmn:outgoing>id068aaac4-de81-42d5-a51c-809a4ba7fea7</bpmn:outgoing>
+      <bpmn:outgoing>id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id80953825-e59d-4799-94c2-3b95db6cfb70" gatewayDirection="Converging" name="M15">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>ide116f459-ea55-4431-a6f1-a9dd4a55c656</bpmn:incoming>
+      <bpmn:incoming>id8b34501a-21f6-48b6-9377-61bd6f4f4bcc</bpmn:incoming>
+      <bpmn:outgoing>iddb384444-6ff5-45ff-a091-724225144066</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id80d9ba7c-f464-4073-8084-31509651eee1" name="W_Complete application">
+      <bpmn:incoming>id035131b1-13d9-46ee-8c54-0e6ebaf15243</bpmn:incoming>
+      <bpmn:outgoing>id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03" gatewayDirection="Converging" name="M11">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac</bpmn:incoming>
+      <bpmn:incoming>id2b5182ea-a01d-4749-b7d7-6ef1427f7c99</bpmn:incoming>
+      <bpmn:outgoing>idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id54c56092-70e2-40b0-b9e0-661928faaeea" gatewayDirection="Converging" name="M03">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id331fb08b-f884-483d-beca-74adc7bf11f8</bpmn:incoming>
+      <bpmn:incoming>id4cd32815-98e5-45d7-8265-74f37ea0b944</bpmn:incoming>
+      <bpmn:outgoing>id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id35d88c5f-8dda-42f4-9dad-4aab26ad8133" gatewayDirection="Diverging" name="D02">
+      <bpmn:documentation>D02 | learned decision block
+n=23723; test n=7232
+Accuracy 0.908; majority 0.908
+Macro-F1 0.476; depth 3
+Inputs: c.LoanGoal=Remaining debt home, c.RequestedAmount, e.CreditScore, e.FirstWithdrawal, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D02
+Warning: unpredicted B1
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>idf3d0f918-ae53-4835-82a5-869370a65e8e</bpmn:incoming>
+      <bpmn:outgoing>id3350ff97-a509-412a-b465-026a86325999</bpmn:outgoing>
+      <bpmn:outgoing>id40d00598-9bc0-4127-86e5-be91499a4c8a</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id8f2618e2-098b-40d9-96e3-33a27610be20" gatewayDirection="Converging" name="M05">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id613e7bae-b652-4111-ab5a-38026f5e53db</bpmn:incoming>
+      <bpmn:incoming>id6c6c2d21-a015-4000-a20f-6f4180784319</bpmn:incoming>
+      <bpmn:outgoing>id3e7bce01-88ca-47ff-b252-d4f2a23d2b23</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="ide0e43598-9855-450f-bb1e-9ccb2425467c" name="W_Call incomplete files">
+      <bpmn:incoming>id3350ff97-a509-412a-b465-026a86325999</bpmn:incoming>
+      <bpmn:outgoing>idfb39994b-9922-4448-ade1-45c66075813b</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="id49d543eb-30d8-453b-84eb-594e4882daf3" name="O_Sent (mail and online)">
+      <bpmn:incoming>idbaf5596e-e764-4ef2-992f-b04179bb7a35</bpmn:incoming>
+      <bpmn:outgoing>idaa455839-2e00-4e95-8e00-946ff61b88dc</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id14b0c82c-b72e-46fa-bca2-950ac087be7b" gatewayDirection="Diverging" name="D10">
+      <bpmn:documentation>D10 | learned decision block
+n=31509; test n=9453
+Accuracy 0.772; majority 0.539
+Macro-F1 0.771; depth 3
+Inputs: c.AppType=Limit raise, e.CreditScore, e.FirstWithdrawal, e.NumberOfTerms, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D10
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>ida07f038f-c596-449e-8f7e-c54dabffea65</bpmn:incoming>
+      <bpmn:outgoing>idfc72d848-65f2-4080-9ea2-ff6dff9ede53</bpmn:outgoing>
+      <bpmn:outgoing>idaf433558-0e3a-48ca-997e-4a9d73e97655</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="idcd2e93a6-b2c5-4334-bc97-cb940044373b" gatewayDirection="Converging" name="M14">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>ida8851c68-f666-4100-a923-2ebb6e0d9ad3</bpmn:incoming>
+      <bpmn:incoming>idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41</bpmn:incoming>
+      <bpmn:outgoing>idd19a2e7d-7c35-40ae-8310-cb455cc5046e</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id4cb6bb84-b1c7-48c0-82a3-a4f4cd83010e" name="A_Create Application">
+      <bpmn:incoming>idc59a44ca-6c22-4a9b-9dbe-8fb25b7c15e3</bpmn:incoming>
+      <bpmn:outgoing>id0edb50b7-0c9a-4f23-b324-2e56e078f348</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="idcd914d40-ed9e-4a10-8900-ce0938fc7417" gatewayDirection="Converging" name="M13">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>idbd3f247b-8708-4f01-9222-efe169f69a4d</bpmn:incoming>
+      <bpmn:incoming>id426723fe-967c-48d8-a578-df3ee995796c</bpmn:incoming>
+      <bpmn:outgoing>idbaf5596e-e764-4ef2-992f-b04179bb7a35</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id9a98ee01-ab72-45fe-a017-232962c9318c" name="O_Refused">
+      <bpmn:incoming>id79ecaf51-b52e-4680-b0b9-2de513097197</bpmn:incoming>
+      <bpmn:outgoing>idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="id0a46b7ef-7d47-4261-9503-6eb761cc7117" gatewayDirection="Converging" name="">
+      <bpmn:incoming>iddb384444-6ff5-45ff-a091-724225144066</bpmn:incoming>
+      <bpmn:incoming>id99506231-44a3-4232-94d2-e1c3411d477e</bpmn:incoming>
+      <bpmn:incoming>idd19a2e7d-7c35-40ae-8310-cb455cc5046e</bpmn:incoming>
+      <bpmn:outgoing>ida97c9e47-273e-4650-ba6e-43f6048f1731</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" gatewayDirection="Diverging" name="D13">
+      <bpmn:documentation>D13 | learned decision block
+n=39988; test n=11980
+Accuracy 0.922; majority 0.922
+Macro-F1 0.480; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, c.RequestedAmount, e.CreditScore, e.FirstWithdrawal, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D13
+Warning: unpredicted B1
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>idaa455839-2e00-4e95-8e00-946ff61b88dc</bpmn:incoming>
+      <bpmn:outgoing>idca9784d9-ae58-4eb4-938c-81e4ec634e1d</bpmn:outgoing>
+      <bpmn:outgoing>id426723fe-967c-48d8-a578-df3ee995796c</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="idf2698a08-b14f-4603-b615-f3b9291cbc18" name="A_Cancelled">
+      <bpmn:incoming>id71c8f071-ef4f-47c6-b50d-6f05f51ca047</bpmn:incoming>
+      <bpmn:outgoing>id179366a7-14d0-444e-b057-1e6f117aec46</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id2fc20c41-2ae5-45ee-a215-01c107ec502c" gatewayDirection="Converging" name="M07">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>idc235cea4-7ae4-4108-b903-721cd26e3b77</bpmn:incoming>
+      <bpmn:incoming>id447d3840-38d3-4246-93b2-474c1f9e423c</bpmn:incoming>
+      <bpmn:outgoing>id03f9a4df-107c-4b29-81e9-c93e46bc2fcc</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id3fda0c1c-69ae-4962-8724-be8558b1a750" name="A_Concept">
+      <bpmn:incoming>id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27</bpmn:incoming>
+      <bpmn:outgoing>id88e35109-da60-4a6d-b532-3458a6b04362</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="idced2f46a-4a6e-4c03-9761-2eb069353381" gatewayDirection="Diverging" name="D12">
+      <bpmn:documentation>D12 | learned decision block
+n=41428; test n=12418
+Accuracy 0.890; majority 0.890
+Macro-F1 0.471; depth 3
+Inputs: c.AppType=Limit raise, c.AppType=New credit, c.LoanGoal=Remaining debt home, c.RequestedAmount, e.CreditScore, e.FirstWithdrawal
+Rules and support: decision_blocks.pdf / D12
+Warning: unpredicted B1
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>ide27dd9dc-f4d7-4f3d-9101-366fd10d1642</bpmn:incoming>
+      <bpmn:outgoing>idbd3f247b-8708-4f01-9222-efe169f69a4d</bpmn:outgoing>
+      <bpmn:outgoing>ida26187de-c606-4c47-8ac3-0a1eb3da37a4</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="iddaaa6a4a-32b5-4691-a96e-7aa953e4cb38" name="A_Accepted">
+      <bpmn:incoming>id88e35109-da60-4a6d-b532-3458a6b04362</bpmn:incoming>
+      <bpmn:outgoing>id8c0c482e-63f8-4519-a199-d51c8c536aeb</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" gatewayDirection="Diverging" name="D06">
+      <bpmn:documentation>D06 | learned decision block
+n=36857; test n=11049
+Accuracy 0.856; majority 0.856
+Macro-F1 0.461; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, e.CreditScore, e.FirstWithdrawal, e.NumberOfTerms, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D06
+Warning: unpredicted B1
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a</bpmn:incoming>
+      <bpmn:outgoing>id9771c7fe-f774-492a-876a-01c63045a27a</bpmn:outgoing>
+      <bpmn:outgoing>id6c6c2d21-a015-4000-a20f-6f4180784319</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ida09380a2-a9cf-43fd-b129-514a4e832ac5" gatewayDirection="Converging" name="M02">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id7af1ee89-11f9-4435-ba2e-8fec9416e798</bpmn:incoming>
+      <bpmn:incoming>id85545c15-94da-48a6-9ae3-d24291f6f874</bpmn:incoming>
+      <bpmn:outgoing>id65a16b46-61a6-498f-9d3f-d3a315d23a83</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" gatewayDirection="Diverging" name="D04">
+      <bpmn:documentation>D04 | learned decision block
+n=31509; test n=9453
+Accuracy 0.788; majority 0.695
+Macro-F1 0.778; depth 3
+Inputs: c.AppType=Limit raise, e.CreditScore, e.FirstWithdrawal
+Rules and support: decision_blocks.pdf / D04
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id4d4a46ad-05be-420f-a41d-513411fae30d</bpmn:incoming>
+      <bpmn:outgoing>id71c8f071-ef4f-47c6-b50d-6f05f51ca047</bpmn:outgoing>
+      <bpmn:outgoing>iddeaf1088-30a7-40c3-baa8-582239b30b8c</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="id42659513-953a-46a2-8ba3-9fbfaa86c0dc" name="end">
+      <bpmn:incoming>id6d6610fe-9bd3-44b5-9a39-6550ada81d30</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="id48b57c73-fd4d-4e07-ab8d-d6d438f3450f" name="A_Validating">
+      <bpmn:incoming>id65a16b46-61a6-498f-9d3f-d3a315d23a83</bpmn:incoming>
+      <bpmn:outgoing>id5b507e20-fd44-433a-9c88-9904edf48553</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="id22bc6d60-47c1-4fbb-8a67-f4ca69fbf3c4" name="O_Created">
+      <bpmn:incoming>id04fe84f9-9909-4de9-a747-bb7d199b3bd0</bpmn:incoming>
+      <bpmn:outgoing>ide27dd9dc-f4d7-4f3d-9101-366fd10d1642</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="idc5edbb87-77e1-4c1f-a41b-df1d4c37beff" name="W_Validate application">
+      <bpmn:incoming>idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4</bpmn:incoming>
+      <bpmn:outgoing>iddc132194-7e86-4fc1-a047-5287657ce051</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:startEvent id="id1d079624-e9b1-41bb-96f6-f9c64b09ff0f" isInterrupting="true" name="start" parallelMultiple="false">
+      <bpmn:outgoing>idc59a44ca-6c22-4a9b-9dbe-8fb25b7c15e3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5" gatewayDirection="Diverging" name="">
+      <bpmn:incoming>id8c0c482e-63f8-4519-a199-d51c8c536aeb</bpmn:incoming>
+      <bpmn:outgoing>id3ebe522c-7cd2-4a60-866b-4bb889de1924</bpmn:outgoing>
+      <bpmn:outgoing>id613e7bae-b652-4111-ab5a-38026f5e53db</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="id919c702c-f4d8-4160-bc12-ec143f5750bf" name="A_Submitted">
+      <bpmn:incoming>id10143b41-b5c5-42f4-b8ff-b170045745f1</bpmn:incoming>
+      <bpmn:outgoing>id6c709e0c-60c5-437e-9454-5d6b8a78662a</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id572e3304-ce9f-45e5-8a30-845e06bfc342" gatewayDirection="Diverging" name="D15">
+      <bpmn:documentation>D15 | learned decision block
+n=21588; test n=6570
+Accuracy 0.618; majority 0.494
+Macro-F1 0.616; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, e.CreditScore, e.FirstWithdrawal, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D15
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id919ceaf2-bd04-43ec-8890-7234ee2fee7f</bpmn:incoming>
+      <bpmn:outgoing>id4fa62d88-b6a9-4f99-a17d-04553f044c61</bpmn:outgoing>
+      <bpmn:outgoing>id8b34501a-21f6-48b6-9377-61bd6f4f4bcc</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id00fe0e36-ccc1-4968-b256-ba4773db56f9" name="W_Handle leads">
+      <bpmn:incoming>id068aaac4-de81-42d5-a51c-809a4ba7fea7</bpmn:incoming>
+      <bpmn:outgoing>idfc614927-1734-4dd1-9669-85eacf53fb20</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="ida1a5f10b-e85a-49fb-a685-1473f5d692f3" gatewayDirection="Converging" name="M10">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id3e7bce01-88ca-47ff-b252-d4f2a23d2b23</bpmn:incoming>
+      <bpmn:incoming>ida26187de-c606-4c47-8ac3-0a1eb3da37a4</bpmn:incoming>
+      <bpmn:outgoing>id39630801-145c-4434-9239-25b1eef71ca5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id782ce44a-4eda-4758-be2f-d4f16300c11b" gatewayDirection="Diverging" name="D01">
+      <bpmn:documentation>D01 | learned decision block
+n=38224; test n=11644
+Accuracy 0.627; majority 0.621
+Macro-F1 0.424; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, e.CreditScore, e.FirstWithdrawal, e.MonthlyCost
+Rules and support: decision_blocks.pdf / D01
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id5b507e20-fd44-433a-9c88-9904edf48553</bpmn:incoming>
+      <bpmn:outgoing>idf3d0f918-ae53-4835-82a5-869370a65e8e</bpmn:outgoing>
+      <bpmn:outgoing>id85545c15-94da-48a6-9ae3-d24291f6f874</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id3d8918fc-adce-42c6-8a92-3e2895ae45e8" gatewayDirection="Converging" name="M09">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id18232190-1ae6-4772-8298-75f7c928e3d8</bpmn:incoming>
+      <bpmn:incoming>idaf433558-0e3a-48ca-997e-4a9d73e97655</bpmn:incoming>
+      <bpmn:outgoing>id6d6610fe-9bd3-44b5-9a39-6550ada81d30</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" gatewayDirection="Diverging" name="D08">
+      <bpmn:documentation>D08 | learned decision block
+n=22413; test n=6831
+Accuracy 0.659; majority 0.652
+Macro-F1 0.450; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Remaining debt home, c.RequestedAmount, e.CreditScore, e.FirstWithdrawal, e.NumberOfTerms
+Rules and support: decision_blocks.pdf / D08
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id237786a1-8ff5-4e4d-8b81-114ba40c4d91</bpmn:incoming>
+      <bpmn:outgoing>id360d6325-2791-4a0b-8417-5bee0216729b</bpmn:outgoing>
+      <bpmn:outgoing>id447d3840-38d3-4246-93b2-474c1f9e423c</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id29f8bc62-bd19-49e2-888f-4aeb0422767a" name="A_Incomplete">
+      <bpmn:incoming>id03f9a4df-107c-4b29-81e9-c93e46bc2fcc</bpmn:incoming>
+      <bpmn:outgoing>id237786a1-8ff5-4e4d-8b81-114ba40c4d91</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="idc46ae074-9245-4515-9156-0fdd37c34db5" gatewayDirection="Converging" name="M06">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id360d6325-2791-4a0b-8417-5bee0216729b</bpmn:incoming>
+      <bpmn:incoming>id63f237d3-2d6f-4a65-b2be-6527ee04d0ed</bpmn:incoming>
+      <bpmn:outgoing>idff7e281e-3e26-4288-b632-747802ae13f0</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f" gatewayDirection="Converging" name="M08">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id179366a7-14d0-444e-b057-1e6f117aec46</bpmn:incoming>
+      <bpmn:incoming>ida97c9e47-273e-4650-ba6e-43f6048f1731</bpmn:incoming>
+      <bpmn:outgoing>ida07f038f-c596-449e-8f7e-c54dabffea65</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="idb6ca1669-7e57-44ab-889b-cf40df513d14" name="A_Pending">
+      <bpmn:incoming>id2d7463ad-e53d-4a25-8316-ed66009f9d1b</bpmn:incoming>
+      <bpmn:outgoing>ida8851c68-f666-4100-a923-2ebb6e0d9ad3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="id5757bbdd-053e-4b66-a391-f17ffc2b1fba" name="A_Denied">
+      <bpmn:incoming>idd66397b5-e8c2-455d-b360-94150c58c753</bpmn:incoming>
+      <bpmn:outgoing>id79ecaf51-b52e-4680-b0b9-2de513097197</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="id43110f50-23a5-4d27-aa5a-0c585c8bb7b5" name="O_Returned">
+      <bpmn:incoming>id1b363a80-86d4-4a00-ac4b-8adce5769145</bpmn:incoming>
+      <bpmn:outgoing>id99506231-44a3-4232-94d2-e1c3411d477e</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df" gatewayDirection="Converging" name="M12">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>idfc72d848-65f2-4080-9ea2-ff6dff9ede53</bpmn:incoming>
+      <bpmn:incoming>idb691e8ff-3eae-408e-9087-409d58cd71c1</bpmn:incoming>
+      <bpmn:outgoing>ida2b7fbac-4b40-4cca-a1c9-19f543ebe481</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="id32a97ea0-083e-43fb-a7ba-f700fc5ecbc6" name="O_Cancelled">
+      <bpmn:incoming>ida2b7fbac-4b40-4cca-a1c9-19f543ebe481</bpmn:incoming>
+      <bpmn:outgoing>id96482520-a509-40f1-9d34-2768218a1923</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" gatewayDirection="Diverging" name="D11">
+      <bpmn:documentation>D11 | learned decision block
+n=18934; test n=5583
+Accuracy 0.781; majority 0.781
+Macro-F1 0.438; depth 3
+Inputs: c.AppType=Limit raise, c.LoanGoal=Not speficied, e.FirstWithdrawal, e.NumberOfTerms, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D11
+Warning: unpredicted B2
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>id96482520-a509-40f1-9d34-2768218a1923</bpmn:incoming>
+      <bpmn:outgoing>id18232190-1ae6-4772-8298-75f7c928e3d8</bpmn:outgoing>
+      <bpmn:outgoing>idb691e8ff-3eae-408e-9087-409d58cd71c1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="ida4ee6126-f58a-4f2a-ba83-c727645c7b26" name="O_Accepted">
+      <bpmn:incoming>idd552b006-8a2d-4d58-b0b1-798cfc39d331</bpmn:incoming>
+      <bpmn:outgoing>id2d7463ad-e53d-4a25-8316-ed66009f9d1b</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id8c4e2f3f-e3c3-4e7e-b86a-366467733106" gatewayDirection="Converging" name="M16">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>id4fa62d88-b6a9-4f99-a17d-04553f044c61</bpmn:incoming>
+      <bpmn:incoming>idc7214cd8-4402-487c-9f50-149cfc9a9bcc</bpmn:incoming>
+      <bpmn:outgoing>idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="idfe8de9c7-a353-439d-a7ab-bed36b766d31" name="A_Complete">
+      <bpmn:incoming>id3ebe522c-7cd2-4a60-866b-4bb889de1924</bpmn:incoming>
+      <bpmn:outgoing>id68f726d5-8bc8-4561-8fe0-8c73ce191632</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="idda14e9ed-e31f-4919-8ea9-471798c5a39c" gatewayDirection="Converging" name="">
+      <bpmn:incoming>id68f726d5-8bc8-4561-8fe0-8c73ce191632</bpmn:incoming>
+      <bpmn:incoming>id9771c7fe-f774-492a-876a-01c63045a27a</bpmn:incoming>
+      <bpmn:outgoing>id4d4a46ad-05be-420f-a41d-513411fae30d</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="idbcdbee2f-8f63-4b94-8574-140cef06e533" gatewayDirection="Diverging" name="">
+      <bpmn:incoming>iddeaf1088-30a7-40c3-baa8-582239b30b8c</bpmn:incoming>
+      <bpmn:outgoing>id919ceaf2-bd04-43ec-8890-7234ee2fee7f</bpmn:outgoing>
+      <bpmn:outgoing>id1b363a80-86d4-4a00-ac4b-8adce5769145</bpmn:outgoing>
+      <bpmn:outgoing>id924d81a5-a3ab-484b-b5b1-d21750a256b3</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="id6ead2ceb-a799-45c4-ac4c-5b182a3e072a" name="O_Create Offer">
+      <bpmn:incoming>id39630801-145c-4434-9239-25b1eef71ca5</bpmn:incoming>
+      <bpmn:outgoing>id04fe84f9-9909-4de9-a747-bb7d199b3bd0</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="id19bf1a6e-caff-48f0-9d8e-f3132e769117" gatewayDirection="Converging" name="M01">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>idfb39994b-9922-4448-ade1-45c66075813b</bpmn:incoming>
+      <bpmn:incoming>id19c196f8-2748-4287-b5e6-33c7e2a3dad3</bpmn:incoming>
+      <bpmn:outgoing>id7af1ee89-11f9-4435-ba2e-8fec9416e798</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="id95bed327-ff98-49c8-a9e8-00ff997affac" gatewayDirection="Diverging" name="D09">
+      <bpmn:documentation>D09 | learned decision block
+n=21588; test n=6570
+Accuracy 0.686; majority 0.677
+Macro-F1 0.575; depth 3
+Inputs: c.AppType=New credit, c.LoanGoal=Existing loan takeover, c.LoanGoal=Remaining debt home, e.CreditScore, e.FirstWithdrawal, e.NumberOfTerms, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D09
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>idb397a410-21ee-4df7-ada5-133aa7d0d82f</bpmn:incoming>
+      <bpmn:outgoing>idc235cea4-7ae4-4108-b903-721cd26e3b77</bpmn:outgoing>
+      <bpmn:outgoing>id63f237d3-2d6f-4a65-b2be-6527ee04d0ed</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="idc21646eb-857d-4791-95c2-d4d5faa902ca" gatewayDirection="Diverging" name="D07">
+      <bpmn:documentation>D07 | learned decision block
+n=21588; test n=6570
+Accuracy 0.877; majority 0.826
+Macro-F1 0.824; depth 3
+Inputs: c.AppType=New credit, e.CreditScore, e.NumberOfTerms, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D07
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>ida8b66073-d30d-4410-b14e-413fb0eff051</bpmn:incoming>
+      <bpmn:outgoing>idd552b006-8a2d-4d58-b0b1-798cfc39d331</bpmn:outgoing>
+      <bpmn:outgoing>idd66397b5-e8c2-455d-b360-94150c58c753</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="idb053226b-4e2c-4161-ab84-6b7dbac6321e" gatewayDirection="Diverging" name="D14">
+      <bpmn:documentation>D14 | learned decision block
+n=36857; test n=11049
+Accuracy 0.542; majority 0.509
+Macro-F1 0.535; depth 3
+Inputs: c.AppType=Limit raise, c.RequestedAmount, e.FirstWithdrawal, e.OfferedAmount
+Rules and support: decision_blocks.pdf / D14
+Statistical guards; original structural quality does not measure guarded execution.</bpmn:documentation>
+      <bpmn:incoming>idca9784d9-ae58-4eb4-938c-81e4ec634e1d</bpmn:incoming>
+      <bpmn:outgoing>id035131b1-13d9-46ee-8c54-0e6ebaf15243</bpmn:outgoing>
+      <bpmn:outgoing>id2b5182ea-a01d-4749-b7d7-6ef1427f7c99</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:parallelGateway id="idf451bff7-e7fa-4006-b9a4-dccdcbb92465" gatewayDirection="Converging" name="">
+      <bpmn:incoming>id40d00598-9bc0-4127-86e5-be91499a4c8a</bpmn:incoming>
+      <bpmn:incoming>idff7e281e-3e26-4288-b632-747802ae13f0</bpmn:incoming>
+      <bpmn:outgoing>ida8b66073-d30d-4410-b14e-413fb0eff051</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="ide6471f38-3032-4da0-9b05-80acf819250a" gatewayDirection="Converging" name="M04">
+      <bpmn:documentation>XOR merge; one outgoing flow; no branch choice or classifier.</bpmn:documentation>
+      <bpmn:incoming>idfc614927-1734-4dd1-9669-85eacf53fb20</bpmn:incoming>
+      <bpmn:incoming>id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2</bpmn:incoming>
+      <bpmn:outgoing>id331fb08b-f884-483d-beca-74adc7bf11f8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:parallelGateway id="idf2f3b16b-cad8-4d23-9774-fe4ed698627d" gatewayDirection="Diverging" name="">
+      <bpmn:incoming>id924d81a5-a3ab-484b-b5b1-d21750a256b3</bpmn:incoming>
+      <bpmn:outgoing>id19c196f8-2748-4287-b5e6-33c7e2a3dad3</bpmn:outgoing>
+      <bpmn:outgoing>idb397a410-21ee-4df7-ada5-133aa7d0d82f</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="id6c709e0c-60c5-437e-9454-5d6b8a78662a" name="" sourceRef="id919c702c-f4d8-4160-bc12-ec143f5750bf" targetRef="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" />
+    <bpmn:sequenceFlow id="idfc614927-1734-4dd1-9669-85eacf53fb20" name="" sourceRef="id00fe0e36-ccc1-4968-b256-ba4773db56f9" targetRef="ide6471f38-3032-4da0-9b05-80acf819250a" />
+    <bpmn:sequenceFlow id="id5b507e20-fd44-433a-9c88-9904edf48553" name="" sourceRef="id48b57c73-fd4d-4e07-ab8d-d6d438f3450f" targetRef="id782ce44a-4eda-4758-be2f-d4f16300c11b" />
+    <bpmn:sequenceFlow id="id65a16b46-61a6-498f-9d3f-d3a315d23a83" name="" sourceRef="ida09380a2-a9cf-43fd-b129-514a4e832ac5" targetRef="id48b57c73-fd4d-4e07-ab8d-d6d438f3450f" />
+    <bpmn:sequenceFlow id="id331fb08b-f884-483d-beca-74adc7bf11f8" name="" sourceRef="ide6471f38-3032-4da0-9b05-80acf819250a" targetRef="id54c56092-70e2-40b0-b9e0-661928faaeea" />
+    <bpmn:sequenceFlow id="id068aaac4-de81-42d5-a51c-809a4ba7fea7" name="B1" sourceRef="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" targetRef="id00fe0e36-ccc1-4968-b256-ba4773db56f9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id7af1ee89-11f9-4435-ba2e-8fec9416e798" name="" sourceRef="id19bf1a6e-caff-48f0-9d8e-f3132e769117" targetRef="ida09380a2-a9cf-43fd-b129-514a4e832ac5" />
+    <bpmn:sequenceFlow id="idf3d0f918-ae53-4835-82a5-869370a65e8e" name="B2" sourceRef="id782ce44a-4eda-4758-be2f-d4f16300c11b" targetRef="id35d88c5f-8dda-42f4-9dad-4aab26ad8133">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 923.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 923.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 923.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 1985.5000610351562) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 923.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 1985.5000610351562) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10375.00048828125 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 25606.7255859375) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10375.00048828125 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 25606.7255859375)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id19c196f8-2748-4287-b5e6-33c7e2a3dad3" name="" sourceRef="idf2f3b16b-cad8-4d23-9774-fe4ed698627d" targetRef="id19bf1a6e-caff-48f0-9d8e-f3132e769117" />
+    <bpmn:sequenceFlow id="idfb39994b-9922-4448-ade1-45c66075813b" name="" sourceRef="ide0e43598-9855-450f-bb1e-9ccb2425467c" targetRef="id19bf1a6e-caff-48f0-9d8e-f3132e769117" />
+    <bpmn:sequenceFlow id="id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27" name="" sourceRef="id54c56092-70e2-40b0-b9e0-661928faaeea" targetRef="id3fda0c1c-69ae-4962-8724-be8558b1a750" />
+    <bpmn:sequenceFlow id="id40d00598-9bc0-4127-86e5-be91499a4c8a" name="B2" sourceRef="id35d88c5f-8dda-42f4-9dad-4aab26ad8133" targetRef="idf451bff7-e7fa-4006-b9a4-dccdcbb92465">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 597.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 20203.6552734375) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 597.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 20203.6552734375) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 597.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 3000.5001220703125) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 597.50003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 3000.5001220703125) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 28115.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 12250.00048828125) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 28115.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 12250.00048828125) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 28115.0009765625 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 31750.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 28115.0009765625 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 31750.0009765625)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id3350ff97-a509-412a-b465-026a86325999" name="B1" sourceRef="id35d88c5f-8dda-42f4-9dad-4aab26ad8133" targetRef="ide0e43598-9855-450f-bb1e-9ccb2425467c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id88e35109-da60-4a6d-b532-3458a6b04362" name="" sourceRef="id3fda0c1c-69ae-4962-8724-be8558b1a750" targetRef="iddaaa6a4a-32b5-4691-a96e-7aa953e4cb38" />
+    <bpmn:sequenceFlow id="idb397a410-21ee-4df7-ada5-133aa7d0d82f" name="" sourceRef="idf2f3b16b-cad8-4d23-9774-fe4ed698627d" targetRef="id95bed327-ff98-49c8-a9e8-00ff997affac" />
+    <bpmn:sequenceFlow id="ida26187de-c606-4c47-8ac3-0a1eb3da37a4" name="B1" sourceRef="idced2f46a-4a6e-4c03-9761-2eb069353381" targetRef="ida1a5f10b-e85a-49fb-a685-1473f5d692f3">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id03f9a4df-107c-4b29-81e9-c93e46bc2fcc" name="" sourceRef="id2fc20c41-2ae5-45ee-a215-01c107ec502c" targetRef="id29f8bc62-bd19-49e2-888f-4aeb0422767a" />
+    <bpmn:sequenceFlow id="id68f726d5-8bc8-4561-8fe0-8c73ce191632" name="" sourceRef="idfe8de9c7-a353-439d-a7ab-bed36b766d31" targetRef="idda14e9ed-e31f-4919-8ea9-471798c5a39c" />
+    <bpmn:sequenceFlow id="id8c0c482e-63f8-4519-a199-d51c8c536aeb" name="" sourceRef="iddaaa6a4a-32b5-4691-a96e-7aa953e4cb38" targetRef="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5" />
+    <bpmn:sequenceFlow id="id3ebe522c-7cd2-4a60-866b-4bb889de1924" name="" sourceRef="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5" targetRef="idfe8de9c7-a353-439d-a7ab-bed36b766d31" />
+    <bpmn:sequenceFlow id="id237786a1-8ff5-4e4d-8b81-114ba40c4d91" name="" sourceRef="id29f8bc62-bd19-49e2-888f-4aeb0422767a" targetRef="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" />
+    <bpmn:sequenceFlow id="idc235cea4-7ae4-4108-b903-721cd26e3b77" name="B2" sourceRef="id95bed327-ff98-49c8-a9e8-00ff997affac" targetRef="id2fc20c41-2ae5-45ee-a215-01c107ec502c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if case_LoanGoal = "Existing loan takeover" then 1 else 0) &gt;= 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 7750.000244140625) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 1.5000000596046448 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 1.5000000596046448 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 1.5000000596046448 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 123.50000381469727) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 1.5000000596046448 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 123.50000381469727)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id360d6325-2791-4a0b-8417-5bee0216729b" name="B1" sourceRef="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" targetRef="idc46ae074-9245-4515-9156-0fdd37c34db5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 854.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 854.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 854.50003051757812 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 21800.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 854.50003051757812 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 21800.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 5800.000244140625 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 723.50003051757812)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ide27dd9dc-f4d7-4f3d-9101-366fd10d1642" name="" sourceRef="id22bc6d60-47c1-4fbb-8a67-f4ca69fbf3c4" targetRef="idced2f46a-4a6e-4c03-9761-2eb069353381" />
+    <bpmn:sequenceFlow id="idff7e281e-3e26-4288-b632-747802ae13f0" name="" sourceRef="idc46ae074-9245-4515-9156-0fdd37c34db5" targetRef="idf451bff7-e7fa-4006-b9a4-dccdcbb92465" />
+    <bpmn:sequenceFlow id="id39630801-145c-4434-9239-25b1eef71ca5" name="" sourceRef="ida1a5f10b-e85a-49fb-a685-1473f5d692f3" targetRef="id6ead2ceb-a799-45c4-ac4c-5b182a3e072a" />
+    <bpmn:sequenceFlow id="id04fe84f9-9909-4de9-a747-bb7d199b3bd0" name="" sourceRef="id6ead2ceb-a799-45c4-ac4c-5b182a3e072a" targetRef="id22bc6d60-47c1-4fbb-8a67-f4ca69fbf3c4" />
+    <bpmn:sequenceFlow id="ida8851c68-f666-4100-a923-2ebb6e0d9ad3" name="" sourceRef="idb6ca1669-7e57-44ab-889b-cf40df513d14" targetRef="idcd2e93a6-b2c5-4334-bc97-cb940044373b" />
+    <bpmn:sequenceFlow id="id3e7bce01-88ca-47ff-b252-d4f2a23d2b23" name="" sourceRef="id8f2618e2-098b-40d9-96e3-33a27610be20" targetRef="ida1a5f10b-e85a-49fb-a685-1473f5d692f3" />
+    <bpmn:sequenceFlow id="ida8b66073-d30d-4410-b14e-413fb0eff051" name="" sourceRef="idf451bff7-e7fa-4006-b9a4-dccdcbb92465" targetRef="idc21646eb-857d-4791-95c2-d4d5faa902ca" />
+    <bpmn:sequenceFlow id="idd552b006-8a2d-4d58-b0b1-798cfc39d331" name="B1" sourceRef="idc21646eb-857d-4791-95c2-d4d5faa902ca" targetRef="ida4ee6126-f58a-4f2a-ba83-c727645c7b26">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 104.50000381469727) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 104.50000381469727) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id2d7463ad-e53d-4a25-8316-ed66009f9d1b" name="" sourceRef="ida4ee6126-f58a-4f2a-ba83-c727645c7b26" targetRef="idb6ca1669-7e57-44ab-889b-cf40df513d14" />
+    <bpmn:sequenceFlow id="idbaf5596e-e764-4ef2-992f-b04179bb7a35" name="" sourceRef="idcd914d40-ed9e-4a10-8900-ce0938fc7417" targetRef="id49d543eb-30d8-453b-84eb-594e4882daf3" />
+    <bpmn:sequenceFlow id="idaa455839-2e00-4e95-8e00-946ff61b88dc" name="" sourceRef="id49d543eb-30d8-453b-84eb-594e4882daf3" targetRef="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" />
+    <bpmn:sequenceFlow id="id63f237d3-2d6f-4a65-b2be-6527ee04d0ed" name="B1" sourceRef="id95bed327-ff98-49c8-a9e8-00ff997affac" targetRef="idc46ae074-9245-4515-9156-0fdd37c34db5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if case_LoanGoal = "Existing loan takeover" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 7750.000244140625)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41" name="" sourceRef="id9a98ee01-ab72-45fe-a017-232962c9318c" targetRef="idcd2e93a6-b2c5-4334-bc97-cb940044373b" />
+    <bpmn:sequenceFlow id="idbd3f247b-8708-4f01-9222-efe169f69a4d" name="B2" sourceRef="idced2f46a-4a6e-4c03-9761-2eb069353381" targetRef="idcd914d40-ed9e-4a10-8900-ce0938fc7417">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 594.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 20.824999809265137) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 594.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 20.824999809265137) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 594.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 1508.0000610351562) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 594.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 1508.0000610351562) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 594.50003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 2650.0001220703125) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 594.50003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 2650.0001220703125) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 594.50003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 594.50003051757812 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="idd66397b5-e8c2-455d-b360-94150c58c753" name="B2" sourceRef="idc21646eb-857d-4791-95c2-d4d5faa902ca" targetRef="id5757bbdd-053e-4b66-a391-f17ffc2b1fba">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 13450.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "New credit" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 13450.00048828125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id426723fe-967c-48d8-a578-df3ee995796c" name="B1" sourceRef="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" targetRef="idcd914d40-ed9e-4a10-8900-ce0938fc7417">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id2b5182ea-a01d-4749-b7d7-6ef1427f7c99" name="B2" sourceRef="idb053226b-4e2c-4161-ab84-6b7dbac6321e" targetRef="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10801.50048828125 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 194.00000762939453) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10801.50048828125 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 10972.50048828125) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10801.50048828125 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 10972.50048828125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="idaf433558-0e3a-48ca-997e-4a9d73e97655" name="B1" sourceRef="id14b0c82c-b72e-46fa-bca2-950ac087be7b" targetRef="id3d8918fc-adce-42c6-8a92-3e2895ae45e8">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 375.00001525878906) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 375.00001525878906) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 60.500001907348633 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 5050.000244140625) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 60.500001907348633 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 5050.000244140625) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 60.500001907348633 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 593.00003051757812 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 60.500001907348633 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id79ecaf51-b52e-4680-b0b9-2de513097197" name="" sourceRef="id5757bbdd-053e-4b66-a391-f17ffc2b1fba" targetRef="id9a98ee01-ab72-45fe-a017-232962c9318c" />
+    <bpmn:sequenceFlow id="idd19a2e7d-7c35-40ae-8310-cb455cc5046e" name="" sourceRef="idcd2e93a6-b2c5-4334-bc97-cb940044373b" targetRef="id0a46b7ef-7d47-4261-9503-6eb761cc7117" />
+    <bpmn:sequenceFlow id="id0edb50b7-0c9a-4f23-b324-2e56e078f348" name="" sourceRef="id4cb6bb84-b1c7-48c0-82a3-a4f4cd83010e" targetRef="id0789d18d-d52d-4019-9234-ffb37b22bce8" />
+    <bpmn:sequenceFlow id="idca9784d9-ae58-4eb4-938c-81e4ec634e1d" name="B2" sourceRef="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" targetRef="idb053226b-4e2c-4161-ab84-6b7dbac6321e">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 605.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 0.32500000298023224) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 605.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 0.32500000298023224) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 605.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 13550.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 605.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 13550.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 605.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 9692.88525390625 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 605.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 9692.88525390625 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 605.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 9692.88525390625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 14100.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 605.00003051757812 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 9692.88525390625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 14100.00048828125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac" name="" sourceRef="id80d9ba7c-f464-4073-8084-31509651eee1" targetRef="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03" />
+    <bpmn:sequenceFlow id="id6c6c2d21-a015-4000-a20f-6f4180784319" name="B1" sourceRef="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" targetRef="id8f2618e2-098b-40d9-96e3-33a27610be20">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ida97c9e47-273e-4650-ba6e-43f6048f1731" name="" sourceRef="id0a46b7ef-7d47-4261-9503-6eb761cc7117" targetRef="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f" />
+    <bpmn:sequenceFlow id="idc59a44ca-6c22-4a9b-9dbe-8fb25b7c15e3" name="" sourceRef="id1d079624-e9b1-41bb-96f6-f9c64b09ff0f" targetRef="id4cb6bb84-b1c7-48c0-82a3-a4f4cd83010e" />
+    <bpmn:sequenceFlow id="idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a" name="" sourceRef="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03" targetRef="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" />
+    <bpmn:sequenceFlow id="id035131b1-13d9-46ee-8c54-0e6ebaf15243" name="B1" sourceRef="idb053226b-4e2c-4161-ab84-6b7dbac6321e" targetRef="id80d9ba7c-f464-4073-8084-31509651eee1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 4500.000244140625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 10650.00048828125) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 4500.000244140625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 10650.00048828125) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 4500.000244140625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 12250.00048828125) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 4500.000244140625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 12250.00048828125) or ((if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10801.50048828125 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 194.00000762939453)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ida07f038f-c596-449e-8f7e-c54dabffea65" name="" sourceRef="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f" targetRef="id14b0c82c-b72e-46fa-bca2-950ac087be7b" />
+    <bpmn:sequenceFlow id="ida2b7fbac-4b40-4cca-a1c9-19f543ebe481" name="" sourceRef="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df" targetRef="id32a97ea0-083e-43fb-a7ba-f700fc5ecbc6" />
+    <bpmn:sequenceFlow id="id613e7bae-b652-4111-ab5a-38026f5e53db" name="" sourceRef="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5" targetRef="id8f2618e2-098b-40d9-96e3-33a27610be20" />
+    <bpmn:sequenceFlow id="id8b34501a-21f6-48b6-9377-61bd6f4f4bcc" name="B2" sourceRef="id572e3304-ce9f-45e5-8a30-845e06bfc342" targetRef="id80953825-e59d-4799-94c2-3b95db6cfb70">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 26050.0009765625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 25050.0009765625 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id9771c7fe-f774-492a-876a-01c63045a27a" name="B2" sourceRef="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" targetRef="idda14e9ed-e31f-4919-8ea9-471798c5a39c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 9650.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 9650.00048828125) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 225.00000762939453) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 225.00000762939453) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 853.50003051757812) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 853.50003051757812) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 168.00000762939453) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 168.00000762939453)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id96482520-a509-40f1-9d34-2768218a1923" name="" sourceRef="id32a97ea0-083e-43fb-a7ba-f700fc5ecbc6" targetRef="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" />
+    <bpmn:sequenceFlow id="idb691e8ff-3eae-408e-9087-409d58cd71c1" name="B2" sourceRef="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" targetRef="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="idfc72d848-65f2-4080-9ea2-ff6dff9ede53" name="B2" sourceRef="id14b0c82c-b72e-46fa-bca2-950ac087be7b" targetRef="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 154.96500396728516) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 593.00003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 154.96500396728516)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id18232190-1ae6-4772-8298-75f7c928e3d8" name="B1" sourceRef="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" targetRef="id3d8918fc-adce-42c6-8a92-3e2895ae45e8">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 6150.000244140625 and (if case_LoanGoal = "Not speficied" then 1 else 0) &lt; 0.50000002980232239) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 6150.000244140625 and (if case_LoanGoal = "Not speficied" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 6150.000244140625 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 56.500001907348633) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 6150.000244140625 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 56.500001907348633) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 2200.0001220703125 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 7700.000244140625) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 2200.0001220703125 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 7700.000244140625) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 2200.0001220703125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="iddeaf1088-30a7-40c3-baa8-582239b30b8c" name="B2" sourceRef="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" targetRef="idbcdbee2f-8f63-4b94-8574-140cef06e533">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 75.000003814697266) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 75.000003814697266) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 296.00001525878906)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id6d6610fe-9bd3-44b5-9a39-6550ada81d30" name="" sourceRef="id3d8918fc-adce-42c6-8a92-3e2895ae45e8" targetRef="id42659513-953a-46a2-8ba3-9fbfaa86c0dc" />
+    <bpmn:sequenceFlow id="id179366a7-14d0-444e-b057-1e6f117aec46" name="" sourceRef="idf2698a08-b14f-4603-b615-f3b9291cbc18" targetRef="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f" />
+    <bpmn:sequenceFlow id="id4cd32815-98e5-45d7-8265-74f37ea0b944" name="B2" sourceRef="id0789d18d-d52d-4019-9234-ffb37b22bce8" targetRef="id54c56092-70e2-40b0-b9e0-661928faaeea">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 4500.000244140625) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if case_LoanGoal = "Unknown" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id4d4a46ad-05be-420f-a41d-513411fae30d" name="" sourceRef="idda14e9ed-e31f-4919-8ea9-471798c5a39c" targetRef="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" />
+    <bpmn:sequenceFlow id="id71c8f071-ef4f-47c6-b50d-6f05f51ca047" name="B1" sourceRef="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" targetRef="idf2698a08-b14f-4603-b615-f3b9291cbc18">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 153.46500396728516) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 296.00001525878906 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 153.46500396728516)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id919ceaf2-bd04-43ec-8890-7234ee2fee7f" name="" sourceRef="idbcdbee2f-8f63-4b94-8574-140cef06e533" targetRef="id572e3304-ce9f-45e5-8a30-845e06bfc342" />
+    <bpmn:sequenceFlow id="idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4" name="" sourceRef="id8c4e2f3f-e3c3-4e7e-b86a-366467733106" targetRef="idc5edbb87-77e1-4c1f-a41b-df1d4c37beff" />
+    <bpmn:sequenceFlow id="idc7214cd8-4402-487c-9f50-149cfc9a9bcc" name="B1" sourceRef="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" targetRef="id8c4e2f3f-e3c3-4e7e-b86a-366467733106">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10125.00048828125 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 720.00003051757812) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10125.00048828125 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 720.00003051757812)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="iddc132194-7e86-4fc1-a047-5287657ce051" name="" sourceRef="idc5edbb87-77e1-4c1f-a41b-df1d4c37beff" targetRef="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" />
+    <bpmn:sequenceFlow id="id4fa62d88-b6a9-4f99-a17d-04553f044c61" name="B1" sourceRef="id572e3304-ce9f-45e5-8a30-845e06bfc342" targetRef="id8c4e2f3f-e3c3-4e7e-b86a-366467733106">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if event_CreditScore = null then -1 else event_CreditScore) &lt; 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 26050.0009765625 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 26050.0009765625 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 730.50003051757812) or ((if event_CreditScore = null then -1 else event_CreditScore) &lt; 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 26050.0009765625 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 730.50003051757812) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 25050.0009765625 and (if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 25050.0009765625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 2836.0001220703125) or ((if event_CreditScore = null then -1 else event_CreditScore) &gt;= 852.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 25050.0009765625 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 2836.0001220703125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id85545c15-94da-48a6-9ae3-d24291f6f874" name="B1" sourceRef="id782ce44a-4eda-4758-be2f-d4f16300c11b" targetRef="ida09380a2-a9cf-43fd-b129-514a4e832ac5">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10375.00048828125 and (if event_MonthlyCost = null then -1 else event_MonthlyCost) &lt; 314.50502014160156) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 10375.00048828125 and (if event_MonthlyCost = null then -1 else event_MonthlyCost) &gt;= 314.50502014160156)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ide116f459-ea55-4431-a6f1-a9dd4a55c656" name="B2" sourceRef="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" targetRef="id80953825-e59d-4799-94c2-3b95db6cfb70">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 882.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 882.50003051757812 and (if case_ApplicationType = "Limit raise" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 882.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 25800.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &lt; 0.50000002980232239 and (if event_CreditScore = null then -1 else event_CreditScore) &gt;= 882.50003051757812 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 25800.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10125.00048828125 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &lt; 26000.0009765625) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 10125.00048828125 and (if event_OfferedAmount = null then -1 else event_OfferedAmount) &gt;= 26000.0009765625)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id447d3840-38d3-4246-93b2-474c1f9e423c" name="B2" sourceRef="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" targetRef="id2fc20c41-2ae5-45ee-a215-01c107ec502c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 5800.000244140625 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &lt; 114.50000381469727) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &lt; 5800.000244140625 and (if event_NumberOfTerms = null then -1 else event_NumberOfTerms) &gt;= 114.50000381469727) or ((if case_LoanGoal = "Remaining debt home" then 1 else 0) &gt;= 0.50000002980232239 and (if event_FirstWithdrawalAmount = null then -1 else event_FirstWithdrawalAmount) &gt;= 5800.000244140625 and (if event_CreditScore = null then -1 else event_CreditScore) &lt; 723.50003051757812)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="iddb384444-6ff5-45ff-a091-724225144066" name="" sourceRef="id80953825-e59d-4799-94c2-3b95db6cfb70" targetRef="id0a46b7ef-7d47-4261-9503-6eb761cc7117" />
+    <bpmn:sequenceFlow id="id99506231-44a3-4232-94d2-e1c3411d477e" name="" sourceRef="id43110f50-23a5-4d27-aa5a-0c585c8bb7b5" targetRef="id0a46b7ef-7d47-4261-9503-6eb761cc7117" />
+    <bpmn:sequenceFlow id="id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2" name="B2" sourceRef="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" targetRef="ide6471f38-3032-4da0-9b05-80acf819250a">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 9550.00048828125 and (if case_LoanGoal = "Home improvement" then 1 else 0) &lt; 0.50000002980232239) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 9550.00048828125 and (if case_LoanGoal = "Home improvement" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 9550.00048828125 and (if case_LoanGoal = "Not speficied" then 1 else 0) &lt; 0.50000002980232239) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 9550.00048828125 and (if case_LoanGoal = "Not speficied" then 1 else 0) &gt;= 0.50000002980232239) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 31727.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 20950.0009765625) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 31727.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 20950.0009765625) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 31727.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &lt; 52750.001953125) or ((if case_LoanGoal = "Existing loan takeover" then 1 else 0) &gt;= 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 31727.0009765625 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 52750.001953125)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id1b363a80-86d4-4a00-ac4b-8adce5769145" name="" sourceRef="idbcdbee2f-8f63-4b94-8574-140cef06e533" targetRef="id43110f50-23a5-4d27-aa5a-0c585c8bb7b5" />
+    <bpmn:sequenceFlow id="id10143b41-b5c5-42f4-b8ff-b170045745f1" name="B1" sourceRef="id0789d18d-d52d-4019-9234-ffb37b22bce8" targetRef="id919c702c-f4d8-4160-bc12-ec143f5750bf">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="https://www.omg.org/spec/DMN/20191111/FEEL/">((if case_ApplicationType = "Limit raise" then 1 else 0) &lt; 0.50000002980232239 and (if case_RequestedAmount = null then -1 else case_RequestedAmount) &gt;= 4500.000244140625 and (if case_LoanGoal = "Unknown" then 1 else 0) &lt; 0.50000002980232239)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="id924d81a5-a3ab-484b-b5b1-d21750a256b3" name="" sourceRef="idbcdbee2f-8f63-4b94-8574-140cef06e533" targetRef="idf2f3b16b-cad8-4d23-9774-fe4ed698627d" />
+    <bpmn:textAnnotation id="note_D01">
+      <bpmn:text>D01 | learned XOR rules
+Test accuracy: 0.627
+
+B1: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &lt;= 10375
+
+B2: LoanGoal != "Remaining debt home"
+B2: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &gt; 10375
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D01" sourceRef="id782ce44a-4eda-4758-be2f-d4f16300c11b" targetRef="note_D01" />
+    <bpmn:textAnnotation id="note_D02">
+      <bpmn:text>D02 | learned XOR rules
+Test accuracy: 0.908
+
+B1: FALSE (never predicted)
+
+B2: TRUE
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D02" sourceRef="id35d88c5f-8dda-42f4-9dad-4aab26ad8133" targetRef="note_D02" />
+    <bpmn:textAnnotation id="note_D03">
+      <bpmn:text>D03 | learned XOR rules
+Test accuracy: 0.837
+
+B1: ApplicationType != "Limit raise" AND RequestedAmount &gt; 4500 AND
+    LoanGoal != "Unknown"
+
+B2: ApplicationType != "Limit raise" AND RequestedAmount &lt;= 4500
+B2: ApplicationType != "Limit raise" AND RequestedAmount &gt; 4500 AND
+    LoanGoal = "Unknown"
+B2: ApplicationType = "Limit raise"
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D03" sourceRef="id0789d18d-d52d-4019-9234-ffb37b22bce8" targetRef="note_D03" />
+    <bpmn:textAnnotation id="note_D04">
+      <bpmn:text>D04 | learned XOR rules
+Test accuracy: 0.788
+
+B1: last.CreditScore &lt;= 296 AND ApplicationType != "Limit raise"
+
+B2: last.CreditScore &lt;= 296 AND ApplicationType = "Limit raise"
+B2: last.CreditScore &gt; 296
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D04" sourceRef="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" targetRef="note_D04" />
+    <bpmn:textAnnotation id="note_D05">
+      <bpmn:text>D05 | learned XOR rules
+Test accuracy: 0.829
+
+B1: FALSE (never predicted)
+
+B2: TRUE
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D05" sourceRef="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" targetRef="note_D05" />
+    <bpmn:textAnnotation id="note_D06">
+      <bpmn:text>D06 | learned XOR rules
+Test accuracy: 0.856
+
+B1: FALSE (never predicted)
+
+B2: TRUE
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D06" sourceRef="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" targetRef="note_D06" />
+    <bpmn:textAnnotation id="note_D07">
+      <bpmn:text>D07 | learned XOR rules
+Test accuracy: 0.877
+
+B1: last.CreditScore &lt;= 296 AND ApplicationType != "New credit"
+B1: last.CreditScore &gt; 296
+
+B2: last.CreditScore &lt;= 296 AND ApplicationType = "New credit"
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D07" sourceRef="idc21646eb-857d-4791-95c2-d4d5faa902ca" targetRef="note_D07" />
+    <bpmn:textAnnotation id="note_D08">
+      <bpmn:text>D08 | learned XOR rules
+Test accuracy: 0.659
+
+B1: LoanGoal != "Remaining debt home"
+B1: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &gt; 5800 AND last.CreditScore &gt; 723.5
+
+B2: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &lt;= 5800
+B2: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &gt; 5800 AND last.CreditScore &lt;= 723.5
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D08" sourceRef="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" targetRef="note_D08" />
+    <bpmn:textAnnotation id="note_D09">
+      <bpmn:text>D09 | learned XOR rules
+Test accuracy: 0.686
+
+B1: last.CreditScore &lt;= 593 AND ApplicationType != "New credit" AND
+    LoanGoal != "Existing loan takeover"
+B1: last.CreditScore &lt;= 593 AND ApplicationType = "New credit" AND
+    last.OfferedAmount &lt;= 7750
+
+B2: last.CreditScore &lt;= 593 AND ApplicationType != "New credit" AND
+    LoanGoal = "Existing loan takeover"
+B2: last.CreditScore &lt;= 593 AND ApplicationType = "New credit" AND
+    last.OfferedAmount &gt; 7750
+B2: last.CreditScore &gt; 593
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D09" sourceRef="id95bed327-ff98-49c8-a9e8-00ff997affac" targetRef="note_D09" />
+    <bpmn:textAnnotation id="note_D10">
+      <bpmn:text>D10 | learned XOR rules
+Test accuracy: 0.772
+
+B1: last.CreditScore &lt;= 593 AND ApplicationType = "Limit raise"
+B1: last.CreditScore &gt; 593
+
+B2: last.CreditScore &lt;= 593 AND ApplicationType != "Limit raise"
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D10" sourceRef="id14b0c82c-b72e-46fa-bca2-950ac087be7b" targetRef="note_D10" />
+    <bpmn:textAnnotation id="note_D11">
+      <bpmn:text>D11 | learned XOR rules
+Test accuracy: 0.781
+
+B1: TRUE
+
+B2: FALSE (never predicted)
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D11" sourceRef="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" targetRef="note_D11" />
+    <bpmn:textAnnotation id="note_D12">
+      <bpmn:text>D12 | learned XOR rules
+Test accuracy: 0.890
+
+B1: FALSE (never predicted)
+
+B2: TRUE
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D12" sourceRef="idced2f46a-4a6e-4c03-9761-2eb069353381" targetRef="note_D12" />
+    <bpmn:textAnnotation id="note_D13">
+      <bpmn:text>D13 | learned XOR rules
+Test accuracy: 0.922
+
+B1: FALSE (never predicted)
+
+B2: TRUE
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D13" sourceRef="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" targetRef="note_D13" />
+    <bpmn:textAnnotation id="note_D14">
+      <bpmn:text>D14 | learned XOR rules
+Test accuracy: 0.542
+
+B1: RequestedAmount &lt;= 4500
+B1: RequestedAmount &gt; 4500 AND last.FirstWithdrawalAmount &lt;= 10801.5
+    AND last.FirstWithdrawalAmount &lt;= 194
+
+B2: RequestedAmount &gt; 4500 AND last.FirstWithdrawalAmount &lt;= 10801.5
+    AND last.FirstWithdrawalAmount &gt; 194
+B2: RequestedAmount &gt; 4500 AND last.FirstWithdrawalAmount &gt; 10801.5
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D14" sourceRef="idb053226b-4e2c-4161-ab84-6b7dbac6321e" targetRef="note_D14" />
+    <bpmn:textAnnotation id="note_D15">
+      <bpmn:text>D15 | learned XOR rules
+Test accuracy: 0.618
+
+B1: last.CreditScore &lt;= 852.5 AND last.OfferedAmount &lt;= 26050 AND
+    ApplicationType != "Limit raise"
+B1: last.CreditScore &lt;= 852.5 AND last.OfferedAmount &gt; 26050
+B1: last.CreditScore &gt; 852.5 AND last.OfferedAmount &lt;= 25050 AND
+    LoanGoal = "Remaining debt home"
+B1: last.CreditScore &gt; 852.5 AND last.OfferedAmount &gt; 25050
+
+B2: last.CreditScore &lt;= 852.5 AND last.OfferedAmount &lt;= 26050 AND
+    ApplicationType = "Limit raise"
+B2: last.CreditScore &gt; 852.5 AND last.OfferedAmount &lt;= 25050 AND
+    LoanGoal != "Remaining debt home"
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D15" sourceRef="id572e3304-ce9f-45e5-8a30-845e06bfc342" targetRef="note_D15" />
+    <bpmn:textAnnotation id="note_D16">
+      <bpmn:text>D16 | learned XOR rules
+Test accuracy: 0.698
+
+B1: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &lt;= 10125
+
+B2: LoanGoal != "Remaining debt home"
+B2: LoanGoal = "Remaining debt home" AND last.FirstWithdrawalAmount
+    &gt; 10125
+
+last. = last synchronized offer value
+Learned associations; not bank policy.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_D16" sourceRef="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" targetRef="note_D16" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="id310945e3-c0a4-4857-9ef0-0c569edbd6d7" name="diagram">
+    <bpmndi:BPMNPlane bpmnElement="idf1133f0a-681f-4683-8bf1-eb61d7158e5e" id="id59096096-96f8-48a3-b8e6-fb26c57fd427">
+      <bpmndi:BPMNShape bpmnElement="id0789d18d-d52d-4019-9234-ffb37b22bce8" id="id0789d18d-d52d-4019-9234-ffb37b22bce8_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1146.51" y="205.6" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id4b85896c-4ff5-4d35-86fc-485da3f0ab92" id="id4b85896c-4ff5-4d35-86fc-485da3f0ab92_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1093.51" y="4452.300000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f" id="id3afda2e4-c9cb-46a4-b8ac-0a3a28a6777f_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1229.51" y="522.5000000000006" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id80953825-e59d-4799-94c2-3b95db6cfb70" id="id80953825-e59d-4799-94c2-3b95db6cfb70_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1091.26" y="4712.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id80d9ba7c-f464-4073-8084-31509651eee1" id="id80d9ba7c-f464-4073-8084-31509651eee1_gui">
+        <omgdc:Bounds height="36.0" width="170.7912" x="812.8743999999999" y="2741.4" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03" id="id062a9ad2-e6ad-4ad4-8b79-9ecc979ddd03_gui">
+        <omgdc:Bounds height="91.8" width="98.58239999999999" x="980.0088" y="2826.4" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id54c56092-70e2-40b0-b9e0-661928faaeea" id="id54c56092-70e2-40b0-b9e0-661928faaeea_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1136.26" y="926.6" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id35d88c5f-8dda-42f4-9dad-4aab26ad8133" id="id35d88c5f-8dda-42f4-9dad-4aab26ad8133_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1508.51" y="4951.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id8f2618e2-098b-40d9-96e3-33a27610be20" id="id8f2618e2-098b-40d9-96e3-33a27610be20_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1062.26" y="1336.7999999999997" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ide0e43598-9855-450f-bb1e-9ccb2425467c" id="ide0e43598-9855-450f-bb1e-9ccb2425467c_gui">
+        <omgdc:Bounds height="36.0" width="164.7864" x="1372.9068" y="5137.3" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id49d543eb-30d8-453b-84eb-594e4882daf3" id="id49d543eb-30d8-453b-84eb-594e4882daf3_gui">
+        <omgdc:Bounds height="36.0" width="173.7864" x="809.3768" y="2192.6000000000004" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id14b0c82c-b72e-46fa-bca2-950ac087be7b" id="id14b0c82c-b72e-46fa-bca2-950ac087be7b_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="881.48" y="6030.320000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idcd2e93a6-b2c5-4334-bc97-cb940044373b" id="idcd2e93a6-b2c5-4334-bc97-cb940044373b_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1398.26" y="5617.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id4cb6bb84-b1c7-48c0-82a3-a4f4cd83010e" id="id4cb6bb84-b1c7-48c0-82a3-a4f4cd83010e_gui">
+        <omgdc:Bounds height="36.0" width="149.04" x="1119.78" y="67.0" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idcd914d40-ed9e-4a10-8900-ce0938fc7417" id="idcd914d40-ed9e-4a10-8900-ce0938fc7417_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="906.23" y="2039.2999999999997" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id9a98ee01-ab72-45fe-a017-232962c9318c" id="id9a98ee01-ab72-45fe-a017-232962c9318c_gui">
+        <omgdc:Bounds height="36.0" width="92.0376" x="1402.2812" y="5532.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id0a46b7ef-7d47-4261-9503-6eb761cc7117" id="id0a46b7ef-7d47-4261-9503-6eb761cc7117_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1263.6894399999999" y="5757.900000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352" id="idb1ac6f4b-1d1e-4357-aa77-dda3f4fee352_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="945.48" y="2302.7000000000003" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idf2698a08-b14f-4603-b615-f3b9291cbc18" id="idf2698a08-b14f-4603-b615-f3b9291cbc18_gui">
+        <omgdc:Bounds height="36.0" width="99.54" x="1087.53" y="3562.1000000000004" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id2fc20c41-2ae5-45ee-a215-01c107ec502c" id="id2fc20c41-2ae5-45ee-a215-01c107ec502c_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1737.26" y="4265.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id3fda0c1c-69ae-4962-8724-be8558b1a750" id="id3fda0c1c-69ae-4962-8724-be8558b1a750_gui">
+        <omgdc:Bounds height="36.0" width="89.7912" x="1141.4044" y="1067.4000000000005" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idced2f46a-4a6e-4c03-9761-2eb069353381" id="idced2f46a-4a6e-4c03-9761-2eb069353381_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="908.48" y="1861.0000000000005" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="iddaaa6a4a-32b5-4691-a96e-7aa953e4cb38" id="iddaaa6a4a-32b5-4691-a96e-7aa953e4cb38_gui">
+        <omgdc:Bounds height="36.0" width="95.78880000000001" x="1138.4056" y="1152.4000000000005" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a" id="id7ac87e8c-bf5a-479d-b8cc-3fcfb603959a_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1066.51" y="2992.3" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ida09380a2-a9cf-43fd-b129-514a4e832ac5" id="ida09380a2-a9cf-43fd-b129-514a4e832ac5_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1439.26" y="4265.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idf8f14b34-beb4-45d4-abd3-f85ce9d940db" id="idf8f14b34-beb4-45d4-abd3-f85ce9d940db_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1138.51" y="3302.2000000000003" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id42659513-953a-46a2-8ba3-9fbfaa86c0dc" id="id42659513-953a-46a2-8ba3-9fbfaa86c0dc_gui">
+        <omgdc:Bounds height="25.99992" width="25.99992" x="905.27004" y="6785.80004" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id48b57c73-fd4d-4e07-ab8d-d6d438f3450f" id="id48b57c73-fd4d-4e07-ab8d-d6d438f3450f_gui">
+        <omgdc:Bounds height="36.0" width="98.04239999999999" x="1439.2788" y="4480.200000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id22bc6d60-47c1-4fbb-8a67-f4ca69fbf3c4" id="id22bc6d60-47c1-4fbb-8a67-f4ca69fbf3c4_gui">
+        <omgdc:Bounds height="36.0" width="89.7912" x="966.4043999999999" y="1750.9000000000005" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idc5edbb87-77e1-4c1f-a41b-df1d4c37beff" id="idc5edbb87-77e1-4c1f-a41b-df1d4c37beff_gui">
+        <omgdc:Bounds height="36.0" width="160.2864" x="1115.1568" y="4293.0" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id1d079624-e9b1-41bb-96f6-f9c64b09ff0f" id="id1d079624-e9b1-41bb-96f6-f9c64b09ff0f_gui">
+        <omgdc:Bounds height="18.0" width="18.0" x="1185.3" y="0.0" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5" id="id10bc2f8a-3a51-4f7d-8170-6f4e552a2ed5_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1158.6894399999999" y="1237.4000000000003" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id919c702c-f4d8-4160-bc12-ec143f5750bf" id="id919c702c-f4d8-4160-bc12-ec143f5750bf_gui">
+        <omgdc:Bounds height="36.0" width="101.0376" x="1221.7812" y="412.40000000000055" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id572e3304-ce9f-45e5-8a30-845e06bfc342" id="id572e3304-ce9f-45e5-8a30-845e06bfc342_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1073.51" y="3704.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id00fe0e36-ccc1-4968-b256-ba4773db56f9" id="id00fe0e36-ccc1-4968-b256-ba4773db56f9_gui">
+        <omgdc:Bounds height="36.0" width="122.78880000000001" x="1215.9056" y="700.8000000000002" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ida1a5f10b-e85a-49fb-a685-1473f5d692f3" id="ida1a5f10b-e85a-49fb-a685-1473f5d692f3_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="970.26" y="1512.6" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id782ce44a-4eda-4758-be2f-d4f16300c11b" id="id782ce44a-4eda-4758-be2f-d4f16300c11b_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1508.51" y="4712.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id3d8918fc-adce-42c6-8a92-3e2895ae45e8" id="id3d8918fc-adce-42c6-8a92-3e2895ae45e8_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="868.23" y="6645.000000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874" id="idd0ed2a80-2617-4ccd-93aa-f44c75fd2874_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1680.51" y="4712.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id29f8bc62-bd19-49e2-888f-4aeb0422767a" id="id29f8bc62-bd19-49e2-888f-4aeb0422767a_gui">
+        <omgdc:Bounds height="36.0" width="106.2864" x="1647.1568" y="4480.200000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idc46ae074-9245-4515-9156-0fdd37c34db5" id="idc46ae074-9245-4515-9156-0fdd37c34db5_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1678.26" y="4951.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f" id="ide0b13b0f-9f38-4a80-b3f3-2ef2f2e60e3f_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="879.23" y="5857.35" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idb6ca1669-7e57-44ab-889b-cf40df513d14" id="idb6ca1669-7e57-44ab-889b-cf40df513d14_gui">
+        <omgdc:Bounds height="36.0" width="89.04239999999999" x="1526.7788" y="5532.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id5757bbdd-053e-4b66-a391-f17ffc2b1fba" id="id5757bbdd-053e-4b66-a391-f17ffc2b1fba_gui">
+        <omgdc:Bounds height="36.0" width="82.28880000000001" x="1408.1556" y="5447.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id43110f50-23a5-4d27-aa5a-0c585c8bb7b5" id="id43110f50-23a5-4d27-aa5a-0c585c8bb7b5_gui">
+        <omgdc:Bounds height="36.0" width="97.2864" x="1267.6568" y="3902.0" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df" id="id363e41bb-ceaa-4fb9-ac78-6dab3ac743df_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="940.23" y="6215.8" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id32a97ea0-083e-43fb-a7ba-f700fc5ecbc6" id="id32a97ea0-083e-43fb-a7ba-f700fc5ecbc6_gui">
+        <omgdc:Bounds height="36.0" width="101.7864" x="936.3768" y="6356.6" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee" id="idb5dae932-3b45-451a-8d0a-78e7ff8ac1ee_gui">
+        <omgdc:Bounds height="91.8" width="94.08239999999999" x="940.2288" y="6466.650000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ida4ee6126-f58a-4f2a-ba83-c727645c7b26" id="ida4ee6126-f58a-4f2a-ba83-c727645c7b26_gui">
+        <omgdc:Bounds height="36.0" width="98.04239999999999" x="1522.2788" y="5447.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id8c4e2f3f-e3c3-4e7e-b86a-366467733106" id="id8c4e2f3f-e3c3-4e7e-b86a-366467733106_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1071.26" y="4036.9" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idfe8de9c7-a353-439d-a7ab-bed36b766d31" id="idfe8de9c7-a353-439d-a7ab-bed36b766d31_gui">
+        <omgdc:Bounds height="36.0" width="98.04239999999999" x="1162.2788" y="1452.6000000000004" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idda14e9ed-e31f-4919-8ea9-471798c5a39c" id="idda14e9ed-e31f-4919-8ea9-471798c5a39c_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1158.6894399999999" y="3170.6000000000004" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idbcdbee2f-8f63-4b94-8574-140cef06e533" id="idbcdbee2f-8f63-4b94-8574-140cef06e533_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1211.6894399999999" y="3487.7000000000003" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id6ead2ceb-a799-45c4-ac4c-5b182a3e072a" id="id6ead2ceb-a799-45c4-ac4c-5b182a3e072a_gui">
+        <omgdc:Bounds height="36.0" width="116.7912" x="961.9043999999999" y="1653.4000000000005" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id19bf1a6e-caff-48f0-9d8e-f3132e769117" id="id19bf1a6e-caff-48f0-9d8e-f3132e769117_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1406.26" y="4036.9" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="id95bed327-ff98-49c8-a9e8-00ff997affac" id="id95bed327-ff98-49c8-a9e8-00ff997affac_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1739.51" y="4036.9" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idc21646eb-857d-4791-95c2-d4d5faa902ca" id="idc21646eb-857d-4791-95c2-d4d5faa902ca_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="1523.51" y="5261.700000000001" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idb053226b-4e2c-4161-ab84-6b7dbac6321e" id="idb053226b-4e2c-4161-ab84-6b7dbac6321e_gui">
+        <omgdc:Bounds height="91.8" width="95.58" x="945.48" y="2534.6" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idf451bff7-e7fa-4006-b9a4-dccdcbb92465" id="idf451bff7-e7fa-4006-b9a4-dccdcbb92465_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1569.6894399999999" y="5130.1" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ide6471f38-3032-4da0-9b05-80acf819250a" id="ide6471f38-3032-4da0-9b05-80acf819250a_gui">
+        <omgdc:Bounds height="91.8" width="100.08" x="1227.26" y="785.7999999999998" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="idf2f3b16b-cad8-4d23-9774-fe4ed698627d" id="idf2f3b16b-cad8-4d23-9774-fe4ed698627d_gui">
+        <omgdc:Bounds height="50.4" width="55.22112" x="1428.6894399999999" y="3724.8" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="id6c709e0c-60c5-437e-9454-5d6b8a78662a" id="id6c709e0c-60c5-437e-9454-5d6b8a78662a_gui">
+        <omgdi:waypoint x="1272.9" y="448.90000000000055" />
+        <omgdi:waypoint x="1273.5" y="464.90000000000055" />
+        <omgdi:waypoint x="1274.4" y="489.5" />
+        <omgdi:waypoint x="1275.2" y="512.1000000000004" />
+        <omgdi:waypoint x="1275.7" y="523.4000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idfc614927-1734-4dd1-9669-85eacf53fb20" id="idfc614927-1734-4dd1-9669-85eacf53fb20_gui">
+        <omgdi:waypoint x="1277.3" y="737.1000000000004" />
+        <omgdi:waypoint x="1277.3" y="747.1999999999998" />
+        <omgdi:waypoint x="1277.3" y="760.6000000000004" />
+        <omgdi:waypoint x="1277.3" y="774.0" />
+        <omgdi:waypoint x="1277.3" y="785.3000000000002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id5b507e20-fd44-433a-9c88-9904edf48553" id="id5b507e20-fd44-433a-9c88-9904edf48553_gui">
+        <omgdi:waypoint x="1492.8" y="4516.6" />
+        <omgdi:waypoint x="1503.1" y="4555.700000000001" />
+        <omgdi:waypoint x="1528.5" y="4652.0" />
+        <omgdi:waypoint x="1543.8" y="4710.4" />
+        <omgdi:waypoint x="1546.8" y="4721.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id65a16b46-61a6-498f-9d3f-d3a315d23a83" id="id65a16b46-61a6-498f-9d3f-d3a315d23a83_gui">
+        <omgdi:waypoint x="1489.0" y="4357.3" />
+        <omgdi:waypoint x="1488.8" y="4392.1" />
+        <omgdi:waypoint x="1488.6" y="4439.200000000001" />
+        <omgdi:waypoint x="1488.4" y="4468.8" />
+        <omgdi:waypoint x="1488.4" y="4480.1" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id331fb08b-f884-483d-beca-74adc7bf11f8" id="id331fb08b-f884-483d-beca-74adc7bf11f8_gui">
+        <omgdi:waypoint x="1258.6" y="861.1000000000004" />
+        <omgdi:waypoint x="1244.9" y="882.1000000000004" />
+        <omgdi:waypoint x="1226.1" y="910.8000000000002" />
+        <omgdi:waypoint x="1211.1" y="933.6999999999998" />
+        <omgdi:waypoint x="1204.9" y="943.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id068aaac4-de81-42d5-a51c-809a4ba7fea7" id="id068aaac4-de81-42d5-a51c-809a4ba7fea7_gui">
+        <omgdi:waypoint x="1277.3" y="614.6999999999998" />
+        <omgdi:waypoint x="1277.3" y="638.9000000000005" />
+        <omgdi:waypoint x="1277.3" y="668.0" />
+        <omgdi:waypoint x="1277.3" y="689.1000000000004" />
+        <omgdi:waypoint x="1277.3" y="700.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id7af1ee89-11f9-4435-ba2e-8fec9416e798" id="id7af1ee89-11f9-4435-ba2e-8fec9416e798_gui">
+        <omgdi:waypoint x="1462.1" y="4124.0" />
+        <omgdi:waypoint x="1467.6" y="4161.5" />
+        <omgdi:waypoint x="1475.8" y="4217.700000000001" />
+        <omgdi:waypoint x="1481.8" y="4258.5" />
+        <omgdi:waypoint x="1483.4" y="4269.8" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idf3d0f918-ae53-4835-82a5-869370a65e8e" id="idf3d0f918-ae53-4835-82a5-869370a65e8e_gui">
+        <omgdi:waypoint x="1556.3" y="4805.0" />
+        <omgdi:waypoint x="1556.3" y="4843.5" />
+        <omgdi:waypoint x="1556.3" y="4898.8" />
+        <omgdi:waypoint x="1556.3" y="4940.1" />
+        <omgdi:waypoint x="1556.3" y="4951.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id19c196f8-2748-4287-b5e6-33c7e2a3dad3" id="id19c196f8-2748-4287-b5e6-33c7e2a3dad3_gui">
+        <omgdi:waypoint x="1456.3" y="3775.9" />
+        <omgdi:waypoint x="1456.3" y="3828.4" />
+        <omgdi:waypoint x="1456.3" y="3951.9" />
+        <omgdi:waypoint x="1456.3" y="4024.9" />
+        <omgdi:waypoint x="1456.3" y="4036.2000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idfb39994b-9922-4448-ade1-45c66075813b" id="idfb39994b-9922-4448-ade1-45c66075813b_gui">
+        <omgdi:waypoint x="1448.1" y="5137.0" />
+        <omgdi:waypoint x="1431.1" y="5096.5" />
+        <omgdi:waypoint x="1390.3" y="4998.6" />
+        <omgdi:waypoint x="1390.3" y="4998.6" />
+        <omgdi:waypoint x="1390.3" y="4310.0" />
+        <omgdi:waypoint x="1390.3" y="4310.0" />
+        <omgdi:waypoint x="1390.3" y="4310.0" />
+        <omgdi:waypoint x="1390.3" y="4310.0" />
+        <omgdi:waypoint x="1423.3" y="4196.9" />
+        <omgdi:waypoint x="1442.6" y="4130.6" />
+        <omgdi:waypoint x="1445.8" y="4119.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27" id="id3f29a3b9-0de9-4ec1-a87e-ad1adedaca27_gui">
+        <omgdi:waypoint x="1186.3" y="1018.9000000000005" />
+        <omgdi:waypoint x="1186.3" y="1031.4000000000005" />
+        <omgdi:waypoint x="1186.3" y="1044.6000000000004" />
+        <omgdi:waypoint x="1186.3" y="1055.8000000000002" />
+        <omgdi:waypoint x="1186.3" y="1067.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id40d00598-9bc0-4127-86e5-be91499a4c8a" id="id40d00598-9bc0-4127-86e5-be91499a4c8a_gui">
+        <omgdi:waypoint x="1565.8" y="5034.8" />
+        <omgdi:waypoint x="1572.9" y="5061.700000000001" />
+        <omgdi:waypoint x="1582.5" y="5098.1" />
+        <omgdi:waypoint x="1589.2" y="5123.700000000001" />
+        <omgdi:waypoint x="1592.1" y="5134.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id3350ff97-a509-412a-b465-026a86325999" id="id3350ff97-a509-412a-b465-026a86325999_gui">
+        <omgdi:waypoint x="1538.2" y="5026.5" />
+        <omgdi:waypoint x="1519.7" y="5055.0" />
+        <omgdi:waypoint x="1491.2" y="5099.0" />
+        <omgdi:waypoint x="1472.8" y="5127.200000000001" />
+        <omgdi:waypoint x="1466.6" y="5136.9" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id88e35109-da60-4a6d-b532-3458a6b04362" id="id88e35109-da60-4a6d-b532-3458a6b04362_gui">
+        <omgdi:waypoint x="1186.3" y="1103.6000000000004" />
+        <omgdi:waypoint x="1186.3" y="1114.3000000000002" />
+        <omgdi:waypoint x="1186.3" y="1128.4000000000005" />
+        <omgdi:waypoint x="1186.3" y="1140.8000000000002" />
+        <omgdi:waypoint x="1186.3" y="1151.9000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idb397a410-21ee-4df7-ada5-133aa7d0d82f" id="idb397a410-21ee-4df7-ada5-133aa7d0d82f_gui">
+        <omgdi:waypoint x="1469.2" y="3764.0" />
+        <omgdi:waypoint x="1517.3" y="3811.9" />
+        <omgdi:waypoint x="1685.7" y="3980.2000000000003" />
+        <omgdi:waypoint x="1756.0" y="4050.5" />
+        <omgdi:waypoint x="1764.1" y="4058.6000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida26187de-c606-4c47-8ac3-0a1eb3da37a4" id="ida26187de-c606-4c47-8ac3-0a1eb3da37a4_gui">
+        <omgdi:waypoint x="954.09" y="1862.6000000000004" />
+        <omgdi:waypoint x="952.37" y="1828.6000000000004" />
+        <omgdi:waypoint x="950.27" y="1786.9000000000005" />
+        <omgdi:waypoint x="950.27" y="1786.9000000000005" />
+        <omgdi:waypoint x="950.27" y="1786.9000000000005" />
+        <omgdi:waypoint x="946.27" y="1689.4000000000005" />
+        <omgdi:waypoint x="946.27" y="1689.4000000000005" />
+        <omgdi:waypoint x="946.27" y="1689.4000000000005" />
+        <omgdi:waypoint x="946.27" y="1653.4000000000005" />
+        <omgdi:waypoint x="946.27" y="1653.4000000000005" />
+        <omgdi:waypoint x="946.27" y="1653.4000000000005" />
+        <omgdi:waypoint x="971.54" y="1621.3000000000002" />
+        <omgdi:waypoint x="992.54" y="1594.6999999999998" />
+        <omgdi:waypoint x="999.46" y="1585.9000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id03f9a4df-107c-4b29-81e9-c93e46bc2fcc" id="id03f9a4df-107c-4b29-81e9-c93e46bc2fcc_gui">
+        <omgdi:waypoint x="1772.3" y="4343.8" />
+        <omgdi:waypoint x="1755.7" y="4379.3" />
+        <omgdi:waypoint x="1729.0" y="4436.1" />
+        <omgdi:waypoint x="1713.2" y="4469.700000000001" />
+        <omgdi:waypoint x="1708.5" y="4479.700000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id68f726d5-8bc8-4561-8fe0-8c73ce191632" id="id68f726d5-8bc8-4561-8fe0-8c73ce191632_gui">
+        <omgdi:waypoint x="1211.3" y="1489.0" />
+        <omgdi:waypoint x="1211.3" y="1529.8000000000002" />
+        <omgdi:waypoint x="1211.3" y="1628.4000000000005" />
+        <omgdi:waypoint x="1211.3" y="1628.4000000000005" />
+        <omgdi:waypoint x="1211.3" y="1628.4000000000005" />
+        <omgdi:waypoint x="1211.3" y="1628.4000000000005" />
+        <omgdi:waypoint x="1211.3" y="3039.2000000000003" />
+        <omgdi:waypoint x="1211.3" y="3039.2000000000003" />
+        <omgdi:waypoint x="1198.9" y="3116.4" />
+        <omgdi:waypoint x="1191.5" y="3162.0" />
+        <omgdi:waypoint x="1189.7" y="3173.2000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id8c0c482e-63f8-4519-a199-d51c8c536aeb" id="id8c0c482e-63f8-4519-a199-d51c8c536aeb_gui">
+        <omgdi:waypoint x="1186.3" y="1188.8000000000002" />
+        <omgdi:waypoint x="1186.3" y="1199.1999999999998" />
+        <omgdi:waypoint x="1186.3" y="1212.9000000000005" />
+        <omgdi:waypoint x="1186.3" y="1225.5" />
+        <omgdi:waypoint x="1186.3" y="1236.8000000000002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id3ebe522c-7cd2-4a60-866b-4bb889de1924" id="id3ebe522c-7cd2-4a60-866b-4bb889de1924_gui">
+        <omgdi:waypoint x="1188.9" y="1285.6000000000004" />
+        <omgdi:waypoint x="1193.5" y="1323.1000000000004" />
+        <omgdi:waypoint x="1202.7" y="1399.3000000000002" />
+        <omgdi:waypoint x="1207.8" y="1440.9000000000005" />
+        <omgdi:waypoint x="1209.2" y="1452.1999999999998" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id237786a1-8ff5-4e4d-8b81-114ba40c4d91" id="id237786a1-8ff5-4e4d-8b81-114ba40c4d91_gui">
+        <omgdi:waypoint x="1702.2" y="4516.6" />
+        <omgdi:waypoint x="1706.3" y="4554.700000000001" />
+        <omgdi:waypoint x="1716.3" y="4646.8" />
+        <omgdi:waypoint x="1722.6" y="4705.5" />
+        <omgdi:waypoint x="1723.8" y="4716.8" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idc235cea4-7ae4-4108-b903-721cd26e3b77" id="idc235cea4-7ae4-4108-b903-721cd26e3b77_gui">
+        <omgdi:waypoint x="1787.3" y="4129.3" />
+        <omgdi:waypoint x="1787.3" y="4164.9" />
+        <omgdi:waypoint x="1787.3" y="4214.8" />
+        <omgdi:waypoint x="1787.3" y="4253.1" />
+        <omgdi:waypoint x="1787.3" y="4264.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id360d6325-2791-4a0b-8417-5bee0216729b" id="id360d6325-2791-4a0b-8417-5bee0216729b_gui">
+        <omgdi:waypoint x="1728.3" y="4805.0" />
+        <omgdi:waypoint x="1728.3" y="4843.5" />
+        <omgdi:waypoint x="1728.3" y="4898.8" />
+        <omgdi:waypoint x="1728.3" y="4940.1" />
+        <omgdi:waypoint x="1728.3" y="4951.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ide27dd9dc-f4d7-4f3d-9101-366fd10d1642" id="ide27dd9dc-f4d7-4f3d-9101-366fd10d1642_gui">
+        <omgdi:waypoint x="1004.2" y="1787.4000000000005" />
+        <omgdi:waypoint x="996.55" y="1806.3000000000002" />
+        <omgdi:waypoint x="984.09" y="1837.1000000000004" />
+        <omgdi:waypoint x="973.79" y="1862.5" />
+        <omgdi:waypoint x="969.53" y="1873.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idff7e281e-3e26-4288-b632-747802ae13f0" id="idff7e281e-3e26-4288-b632-747802ae13f0_gui">
+        <omgdi:waypoint x="1706.6" y="5024.4" />
+        <omgdi:waypoint x="1681.3" y="5054.4" />
+        <omgdi:waypoint x="1639.8" y="5103.700000000001" />
+        <omgdi:waypoint x="1615.9" y="5132.200000000001" />
+        <omgdi:waypoint x="1608.8" y="5140.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id39630801-145c-4434-9239-25b1eef71ca5" id="id39630801-145c-4434-9239-25b1eef71ca5_gui">
+        <omgdi:waypoint x="1020.3" y="1604.9000000000005" />
+        <omgdi:waypoint x="1020.3" y="1617.4000000000005" />
+        <omgdi:waypoint x="1020.3" y="1630.6000000000004" />
+        <omgdi:waypoint x="1020.3" y="1641.8000000000002" />
+        <omgdi:waypoint x="1020.3" y="1653.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id04fe84f9-9909-4de9-a747-bb7d199b3bd0" id="id04fe84f9-9909-4de9-a747-bb7d199b3bd0_gui">
+        <omgdi:waypoint x="1018.7" y="1689.5" />
+        <omgdi:waypoint x="1017.4" y="1703.4000000000005" />
+        <omgdi:waypoint x="1015.5" y="1723.3000000000002" />
+        <omgdi:waypoint x="1013.9" y="1739.6000000000004" />
+        <omgdi:waypoint x="1012.9" y="1750.6999999999998" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida8851c68-f666-4100-a923-2ebb6e0d9ad3" id="ida8851c68-f666-4100-a923-2ebb6e0d9ad3_gui">
+        <omgdi:waypoint x="1552.1" y="5568.5" />
+        <omgdi:waypoint x="1533.2" y="5585.4" />
+        <omgdi:waypoint x="1504.2" y="5611.6" />
+        <omgdi:waypoint x="1481.6" y="5632.0" />
+        <omgdi:waypoint x="1473.3" y="5639.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id3e7bce01-88ca-47ff-b252-d4f2a23d2b23" id="id3e7bce01-88ca-47ff-b252-d4f2a23d2b23_gui">
+        <omgdi:waypoint x="1096.0" y="1414.4000000000005" />
+        <omgdi:waypoint x="1081.0" y="1442.8000000000002" />
+        <omgdi:waypoint x="1058.4" y="1485.4000000000005" />
+        <omgdi:waypoint x="1041.9" y="1516.6999999999998" />
+        <omgdi:waypoint x="1036.5" y="1526.8000000000002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida8b66073-d30d-4410-b14e-413fb0eff051" id="ida8b66073-d30d-4410-b14e-413fb0eff051_gui">
+        <omgdi:waypoint x="1593.6" y="5177.5" />
+        <omgdi:waypoint x="1590.1" y="5198.0" />
+        <omgdi:waypoint x="1584.6" y="5229.700000000001" />
+        <omgdi:waypoint x="1579.9" y="5256.6" />
+        <omgdi:waypoint x="1578.0" y="5267.8" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idd552b006-8a2d-4d58-b0b1-798cfc39d331" id="idd552b006-8a2d-4d58-b0b1-798cfc39d331_gui">
+        <omgdi:waypoint x="1571.3" y="5354.0" />
+        <omgdi:waypoint x="1571.3" y="5380.3" />
+        <omgdi:waypoint x="1571.3" y="5412.6" />
+        <omgdi:waypoint x="1571.3" y="5435.4" />
+        <omgdi:waypoint x="1571.3" y="5446.700000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id2d7463ad-e53d-4a25-8316-ed66009f9d1b" id="id2d7463ad-e53d-4a25-8316-ed66009f9d1b_gui">
+        <omgdi:waypoint x="1571.3" y="5483.3" />
+        <omgdi:waypoint x="1571.3" y="5494.1" />
+        <omgdi:waypoint x="1571.3" y="5508.1" />
+        <omgdi:waypoint x="1571.3" y="5520.5" />
+        <omgdi:waypoint x="1571.3" y="5531.700000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idbaf5596e-e764-4ef2-992f-b04179bb7a35" id="idbaf5596e-e764-4ef2-992f-b04179bb7a35_gui">
+        <omgdi:waypoint x="940.97" y="2117.7" />
+        <omgdi:waypoint x="931.29" y="2137.6000000000004" />
+        <omgdi:waypoint x="918.9" y="2163.1000000000004" />
+        <omgdi:waypoint x="909.62" y="2182.2" />
+        <omgdi:waypoint x="904.69" y="2192.3" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idaa455839-2e00-4e95-8e00-946ff61b88dc" id="idaa455839-2e00-4e95-8e00-946ff61b88dc_gui">
+        <omgdi:waypoint x="908.75" y="2229.1000000000004" />
+        <omgdi:waypoint x="923.54" y="2249.8" />
+        <omgdi:waypoint x="948.55" y="2284.9000000000005" />
+        <omgdi:waypoint x="967.54" y="2311.5" />
+        <omgdi:waypoint x="973.98" y="2320.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id63f237d3-2d6f-4a65-b2be-6527ee04d0ed" id="id63f237d3-2d6f-4a65-b2be-6527ee04d0ed_gui">
+        <omgdi:waypoint x="1802.1" y="4114.8" />
+        <omgdi:waypoint x="1831.6" y="4176.700000000001" />
+        <omgdi:waypoint x="1895.3" y="4310.0" />
+        <omgdi:waypoint x="1895.3" y="4310.0" />
+        <omgdi:waypoint x="1895.3" y="4310.0" />
+        <omgdi:waypoint x="1895.3" y="4310.0" />
+        <omgdi:waypoint x="1895.3" y="4759.6" />
+        <omgdi:waypoint x="1895.3" y="4759.6" />
+        <omgdi:waypoint x="1801.3" y="4893.0" />
+        <omgdi:waypoint x="1754.3" y="4959.700000000001" />
+        <omgdi:waypoint x="1747.8" y="4969.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41" id="idae8ce9fa-5d1a-469d-bc84-fdb7c21e2f41_gui">
+        <omgdi:waypoint x="1448.3" y="5568.5" />
+        <omgdi:waypoint x="1448.3" y="5578.6" />
+        <omgdi:waypoint x="1448.3" y="5591.9" />
+        <omgdi:waypoint x="1448.3" y="5605.4" />
+        <omgdi:waypoint x="1448.3" y="5616.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idbd3f247b-8708-4f01-9222-efe169f69a4d" id="idbd3f247b-8708-4f01-9222-efe169f69a4d_gui">
+        <omgdi:waypoint x="956.27" y="1953.3000000000002" />
+        <omgdi:waypoint x="956.27" y="1975.8000000000002" />
+        <omgdi:waypoint x="956.27" y="2003.3000000000002" />
+        <omgdi:waypoint x="956.27" y="2027.1999999999998" />
+        <omgdi:waypoint x="956.27" y="2038.6000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idd66397b5-e8c2-455d-b360-94150c58c753" id="idd66397b5-e8c2-455d-b360-94150c58c753_gui">
+        <omgdi:waypoint x="1551.1" y="5334.3" />
+        <omgdi:waypoint x="1528.5" y="5363.1" />
+        <omgdi:waypoint x="1492.1" y="5409.5" />
+        <omgdi:waypoint x="1469.5" y="5438.4" />
+        <omgdi:waypoint x="1462.6" y="5447.1" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id426723fe-967c-48d8-a578-df3ee995796c" id="id426723fe-967c-48d8-a578-df3ee995796c_gui">
+        <omgdi:waypoint x="995.45" y="2304.3" />
+        <omgdi:waypoint x="997.17" y="2270.3" />
+        <omgdi:waypoint x="999.27" y="2228.6000000000004" />
+        <omgdi:waypoint x="999.27" y="2228.6000000000004" />
+        <omgdi:waypoint x="999.27" y="2228.6000000000004" />
+        <omgdi:waypoint x="999.27" y="2192.6000000000004" />
+        <omgdi:waypoint x="999.27" y="2192.6000000000004" />
+        <omgdi:waypoint x="999.27" y="2192.6000000000004" />
+        <omgdi:waypoint x="985.78" y="2159.2" />
+        <omgdi:waypoint x="973.91" y="2129.9000000000005" />
+        <omgdi:waypoint x="969.64" y="2119.3" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id2b5182ea-a01d-4749-b7d7-6ef1427f7c99" id="id2b5182ea-a01d-4749-b7d7-6ef1427f7c99_gui">
+        <omgdi:waypoint x="998.31" y="2622.1000000000004" />
+        <omgdi:waypoint x="1004.7" y="2673.7" />
+        <omgdi:waypoint x="1015.8" y="2762.8" />
+        <omgdi:waypoint x="1022.8" y="2819.3" />
+        <omgdi:waypoint x="1024.2" y="2830.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idaf433558-0e3a-48ca-997e-4a9d73e97655" id="idaf433558-0e3a-48ca-997e-4a9d73e97655_gui">
+        <omgdi:waypoint x="921.4" y="6115.24" />
+        <omgdi:waypoint x="910.27" y="6168.9800000000005" />
+        <omgdi:waypoint x="891.27" y="6260.7" />
+        <omgdi:waypoint x="891.27" y="6260.7" />
+        <omgdi:waypoint x="891.27" y="6260.7" />
+        <omgdi:waypoint x="891.27" y="6260.7" />
+        <omgdi:waypoint x="891.27" y="6513.55" />
+        <omgdi:waypoint x="891.27" y="6513.55" />
+        <omgdi:waypoint x="902.54" y="6587.13" />
+        <omgdi:waypoint x="910.51" y="6639.24" />
+        <omgdi:waypoint x="912.21" y="6650.320000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id79ecaf51-b52e-4680-b0b9-2de513097197" id="id79ecaf51-b52e-4680-b0b9-2de513097197_gui">
+        <omgdi:waypoint x="1449.1" y="5483.3" />
+        <omgdi:waypoint x="1448.9" y="5494.1" />
+        <omgdi:waypoint x="1448.8" y="5508.1" />
+        <omgdi:waypoint x="1448.6" y="5520.5" />
+        <omgdi:waypoint x="1448.5" y="5531.700000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idd19a2e7d-7c35-40ae-8310-cb455cc5046e" id="idd19a2e7d-7c35-40ae-8310-cb455cc5046e_gui">
+        <omgdi:waypoint x="1421.3" y="5684.4" />
+        <omgdi:waypoint x="1391.3" y="5706.9" />
+        <omgdi:waypoint x="1343.5" y="5742.8" />
+        <omgdi:waypoint x="1315.0" y="5764.3" />
+        <omgdi:waypoint x="1306.1" y="5771.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id0edb50b7-0c9a-4f23-b324-2e56e078f348" id="id0edb50b7-0c9a-4f23-b324-2e56e078f348_gui">
+        <omgdi:waypoint x="1194.3" y="103.30000000000018" />
+        <omgdi:waypoint x="1194.3" y="124.60000000000036" />
+        <omgdi:waypoint x="1194.3" y="161.80000000000018" />
+        <omgdi:waypoint x="1194.3" y="193.5" />
+        <omgdi:waypoint x="1194.3" y="204.90000000000055" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idca9784d9-ae58-4eb4-938c-81e4ec634e1d" id="idca9784d9-ae58-4eb4-938c-81e4ec634e1d_gui">
+        <omgdi:waypoint x="993.27" y="2395.0" />
+        <omgdi:waypoint x="993.27" y="2431.7" />
+        <omgdi:waypoint x="993.27" y="2483.5" />
+        <omgdi:waypoint x="993.27" y="2522.9000000000005" />
+        <omgdi:waypoint x="993.27" y="2534.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac" id="id7bd52ebd-5f46-4a7f-82c3-3337624fe4ac_gui">
+        <omgdi:waypoint x="918.74" y="2777.7000000000003" />
+        <omgdi:waypoint x="939.25" y="2795.1000000000004" />
+        <omgdi:waypoint x="971.17" y="2822.1000000000004" />
+        <omgdi:waypoint x="995.45" y="2842.7000000000003" />
+        <omgdi:waypoint x="1004.0" y="2849.9" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id6c6c2d21-a015-4000-a20f-6f4180784319" id="id6c6c2d21-a015-4000-a20f-6f4180784319_gui">
+        <omgdi:waypoint x="1117.6" y="2995.0" />
+        <omgdi:waypoint x="1121.5" y="2946.4" />
+        <omgdi:waypoint x="1127.3" y="2873.3" />
+        <omgdi:waypoint x="1127.3" y="2873.3" />
+        <omgdi:waypoint x="1127.3" y="1557.5" />
+        <omgdi:waypoint x="1127.3" y="1557.5" />
+        <omgdi:waypoint x="1127.3" y="1557.5" />
+        <omgdi:waypoint x="1127.3" y="1557.5" />
+        <omgdi:waypoint x="1121.3" y="1488.1000000000004" />
+        <omgdi:waypoint x="1116.9" y="1437.0" />
+        <omgdi:waypoint x="1115.9" y="1425.8000000000002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida97c9e47-273e-4650-ba6e-43f6048f1731" id="ida97c9e47-273e-4650-ba6e-43f6048f1731_gui">
+        <omgdi:waypoint x="1271.3" y="5790.7" />
+        <omgdi:waypoint x="1215.4" y="5808.900000000001" />
+        <omgdi:waypoint x="1056.6" y="5860.72" />
+        <omgdi:waypoint x="976.55" y="5886.82" />
+        <omgdi:waypoint x="965.8" y="5890.33" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idc59a44ca-6c22-4a9b-9dbe-8fb25b7c15e3" id="idc59a44ca-6c22-4a9b-9dbe-8fb25b7c15e3_gui">
+        <omgdi:waypoint x="1194.3" y="18.5" />
+        <omgdi:waypoint x="1194.3" y="27.400000000000546" />
+        <omgdi:waypoint x="1194.3" y="42.0" />
+        <omgdi:waypoint x="1194.3" y="55.19999999999982" />
+        <omgdi:waypoint x="1194.3" y="66.69999999999982" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a" id="idcf278ae6-9ac8-4df3-a32f-60bb5fc5b41a_gui">
+        <omgdi:waypoint x="1045.1" y="2903.7000000000003" />
+        <omgdi:waypoint x="1058.7" y="2929.9" />
+        <omgdi:waypoint x="1078.4" y="2968.0" />
+        <omgdi:waypoint x="1093.3" y="2996.7000000000003" />
+        <omgdi:waypoint x="1098.6" y="3006.9" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id035131b1-13d9-46ee-8c54-0e6ebaf15243" id="id035131b1-13d9-46ee-8c54-0e6ebaf15243_gui">
+        <omgdi:waypoint x="977.15" y="2611.5" />
+        <omgdi:waypoint x="959.18" y="2645.0" />
+        <omgdi:waypoint x="930.34" y="2698.7" />
+        <omgdi:waypoint x="912.96" y="2731.0" />
+        <omgdi:waypoint x="907.54" y="2741.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida07f038f-c596-449e-8f7e-c54dabffea65" id="ida07f038f-c596-449e-8f7e-c54dabffea65_gui">
+        <omgdi:waypoint x="929.27" y="5949.62" />
+        <omgdi:waypoint x="929.27" y="5970.68" />
+        <omgdi:waypoint x="929.27" y="5995.9400000000005" />
+        <omgdi:waypoint x="929.27" y="6018.27" />
+        <omgdi:waypoint x="929.27" y="6029.64" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ida2b7fbac-4b40-4cca-a1c9-19f543ebe481" id="ida2b7fbac-4b40-4cca-a1c9-19f543ebe481_gui">
+        <omgdi:waypoint x="989.07" y="6307.17" />
+        <omgdi:waypoint x="988.72" y="6319.96" />
+        <omgdi:waypoint x="988.35" y="6333.56" />
+        <omgdi:waypoint x="988.04" y="6345.110000000001" />
+        <omgdi:waypoint x="987.74" y="6356.27" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id613e7bae-b652-4111-ab5a-38026f5e53db" id="id613e7bae-b652-4111-ab5a-38026f5e53db_gui">
+        <omgdi:waypoint x="1176.6" y="1279.0" />
+        <omgdi:waypoint x="1166.4" y="1295.3000000000002" />
+        <omgdi:waypoint x="1150.0" y="1321.5" />
+        <omgdi:waypoint x="1136.3" y="1343.4000000000005" />
+        <omgdi:waypoint x="1130.2" y="1353.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id8b34501a-21f6-48b6-9377-61bd6f4f4bcc" id="id8b34501a-21f6-48b6-9377-61bd6f4f4bcc_gui">
+        <omgdi:waypoint x="1108.3" y="3783.9" />
+        <omgdi:waypoint x="1075.4" y="3867.6000000000004" />
+        <omgdi:waypoint x="991.27" y="4081.8" />
+        <omgdi:waypoint x="991.27" y="4081.8" />
+        <omgdi:waypoint x="991.27" y="4081.8" />
+        <omgdi:waypoint x="991.27" y="4081.8" />
+        <omgdi:waypoint x="991.27" y="4499.200000000001" />
+        <omgdi:waypoint x="991.27" y="4499.200000000001" />
+        <omgdi:waypoint x="1076.5" y="4646.0" />
+        <omgdi:waypoint x="1118.4" y="4718.3" />
+        <omgdi:waypoint x="1124.1" y="4728.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id9771c7fe-f774-492a-876a-01c63045a27a" id="id9771c7fe-f774-492a-876a-01c63045a27a_gui">
+        <omgdi:waypoint x="1128.8" y="3070.6000000000004" />
+        <omgdi:waypoint x="1141.9" y="3098.9" />
+        <omgdi:waypoint x="1160.9" y="3140.0" />
+        <omgdi:waypoint x="1173.4" y="3167.0" />
+        <omgdi:waypoint x="1178.2" y="3177.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id96482520-a509-40f1-9d34-2768218a1923" id="id96482520-a509-40f1-9d34-2768218a1923_gui">
+        <omgdi:waypoint x="987.27" y="6393.09" />
+        <omgdi:waypoint x="987.27" y="6408.7300000000005" />
+        <omgdi:waypoint x="987.27" y="6432.52" />
+        <omgdi:waypoint x="987.27" y="6454.7" />
+        <omgdi:waypoint x="987.27" y="6466.09" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idb691e8ff-3eae-408e-9087-409d58cd71c1" id="idb691e8ff-3eae-408e-9087-409d58cd71c1_gui">
+        <omgdi:waypoint x="1003.8" y="6482.150000000001" />
+        <omgdi:waypoint x="1023.7" y="6446.92" />
+        <omgdi:waypoint x="1054.3" y="6392.6" />
+        <omgdi:waypoint x="1054.3" y="6392.6" />
+        <omgdi:waypoint x="1054.3" y="6392.6" />
+        <omgdi:waypoint x="1054.3" y="6356.6" />
+        <omgdi:waypoint x="1054.3" y="6356.6" />
+        <omgdi:waypoint x="1054.3" y="6356.6" />
+        <omgdi:waypoint x="1033.6" y="6326.22" />
+        <omgdi:waypoint x="1015.7" y="6300.02" />
+        <omgdi:waypoint x="1009.3" y="6290.62" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idfc72d848-65f2-4080-9ea2-ff6dff9ede53" id="idfc72d848-65f2-4080-9ea2-ff6dff9ede53_gui">
+        <omgdi:waypoint x="940.74" y="6111.74" />
+        <omgdi:waypoint x="950.47" y="6140.99" />
+        <omgdi:waypoint x="964.49" y="6183.16" />
+        <omgdi:waypoint x="975.13" y="6215.17" />
+        <omgdi:waypoint x="978.74" y="6226.030000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id18232190-1ae6-4772-8298-75f7c928e3d8" id="id18232190-1ae6-4772-8298-75f7c928e3d8_gui">
+        <omgdi:waypoint x="974.45" y="6546.31" />
+        <omgdi:waypoint x="963.47" y="6574.37" />
+        <omgdi:waypoint x="947.56" y="6615.04" />
+        <omgdi:waypoint x="935.47" y="6645.9400000000005" />
+        <omgdi:waypoint x="931.37" y="6656.42" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="iddeaf1088-30a7-40c3-baa8-582239b30b8c" id="iddeaf1088-30a7-40c3-baa8-582239b30b8c_gui">
+        <omgdi:waypoint x="1197.5" y="3383.6000000000004" />
+        <omgdi:waypoint x="1207.1" y="3413.0" />
+        <omgdi:waypoint x="1220.7" y="3454.7000000000003" />
+        <omgdi:waypoint x="1229.7" y="3482.5" />
+        <omgdi:waypoint x="1233.2" y="3493.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id6d6610fe-9bd3-44b5-9a39-6550ada81d30" id="id6d6610fe-9bd3-44b5-9a39-6550ada81d30_gui">
+        <omgdi:waypoint x="918.27" y="6737.426" />
+        <omgdi:waypoint x="918.27" y="6749.997" />
+        <omgdi:waypoint x="918.27" y="6763.138" />
+        <omgdi:waypoint x="918.27" y="6773.938" />
+        <omgdi:waypoint x="918.27" y="6785.367" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id179366a7-14d0-444e-b057-1e6f117aec46" id="id179366a7-14d0-444e-b057-1e6f117aec46_gui">
+        <omgdi:waypoint x="1103.3" y="3598.4" />
+        <omgdi:waypoint x="1081.5" y="3609.6000000000004" />
+        <omgdi:waypoint x="1057.3" y="3622.1000000000004" />
+        <omgdi:waypoint x="1057.3" y="3622.1000000000004" />
+        <omgdi:waypoint x="1057.3" y="3622.1000000000004" />
+        <omgdi:waypoint x="910.27" y="3919.0" />
+        <omgdi:waypoint x="910.27" y="3919.0" />
+        <omgdi:waypoint x="910.27" y="3919.0" />
+        <omgdi:waypoint x="910.27" y="3919.0" />
+        <omgdi:waypoint x="910.27" y="5784.1" />
+        <omgdi:waypoint x="910.27" y="5784.1" />
+        <omgdi:waypoint x="915.95" y="5819.47" />
+        <omgdi:waypoint x="921.1" y="5851.4800000000005" />
+        <omgdi:waypoint x="922.89" y="5862.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id4cd32815-98e5-45d7-8265-74f37ea0b944" id="id4cd32815-98e5-45d7-8265-74f37ea0b944_gui">
+        <omgdi:waypoint x="1188.2" y="292.1999999999998" />
+        <omgdi:waypoint x="1180.3" y="344.3000000000002" />
+        <omgdi:waypoint x="1167.3" y="429.40000000000055" />
+        <omgdi:waypoint x="1167.3" y="429.40000000000055" />
+        <omgdi:waypoint x="1167.3" y="429.40000000000055" />
+        <omgdi:waypoint x="1167.3" y="429.40000000000055" />
+        <omgdi:waypoint x="1167.3" y="832.6999999999998" />
+        <omgdi:waypoint x="1167.3" y="832.6999999999998" />
+        <omgdi:waypoint x="1173.8" y="880.5" />
+        <omgdi:waypoint x="1179.2" y="920.0" />
+        <omgdi:waypoint x="1180.8" y="931.4000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id4d4a46ad-05be-420f-a41d-513411fae30d" id="id4d4a46ad-05be-420f-a41d-513411fae30d_gui">
+        <omgdi:waypoint x="1186.3" y="3221.6000000000004" />
+        <omgdi:waypoint x="1186.3" y="3240.2000000000003" />
+        <omgdi:waypoint x="1186.3" y="3266.5" />
+        <omgdi:waypoint x="1186.3" y="3290.2000000000003" />
+        <omgdi:waypoint x="1186.3" y="3301.6000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id71c8f071-ef4f-47c6-b50d-6f05f51ca047" id="id71c8f071-ef4f-47c6-b50d-6f05f51ca047_gui">
+        <omgdi:waypoint x="1178.2" y="3386.8" />
+        <omgdi:waypoint x="1168.4" y="3432.7000000000003" />
+        <omgdi:waypoint x="1152.1" y="3509.3" />
+        <omgdi:waypoint x="1143.3" y="3550.6000000000004" />
+        <omgdi:waypoint x="1141.0" y="3561.7000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id919ceaf2-bd04-43ec-8890-7234ee2fee7f" id="id919ceaf2-bd04-43ec-8890-7234ee2fee7f_gui">
+        <omgdi:waypoint x="1231.6" y="3531.7000000000003" />
+        <omgdi:waypoint x="1221.1" y="3556.4" />
+        <omgdi:waypoint x="1203.3" y="3598.1000000000004" />
+        <omgdi:waypoint x="1203.3" y="3598.1000000000004" />
+        <omgdi:waypoint x="1203.3" y="3598.1000000000004" />
+        <omgdi:waypoint x="1167.2" y="3664.4" />
+        <omgdi:waypoint x="1142.9" y="3709.2000000000003" />
+        <omgdi:waypoint x="1137.5" y="3719.2000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4" id="idd4d30c38-3c81-4b6f-8ea9-c09b31729ec4_gui">
+        <omgdi:waypoint x="1132.7" y="4118.6" />
+        <omgdi:waypoint x="1147.3" y="4163.4" />
+        <omgdi:waypoint x="1172.5" y="4240.200000000001" />
+        <omgdi:waypoint x="1186.0" y="4281.6" />
+        <omgdi:waypoint x="1189.6" y="4292.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="idc7214cd8-4402-487c-9f50-149cfc9a9bcc" id="idc7214cd8-4402-487c-9f50-149cfc9a9bcc_gui">
+        <omgdi:waypoint x="1128.3" y="4464.3" />
+        <omgdi:waypoint x="1111.9" y="4422.8" />
+        <omgdi:waypoint x="1085.8" y="4356.9" />
+        <omgdi:waypoint x="1085.8" y="4356.9" />
+        <omgdi:waypoint x="1085.8" y="4356.9" />
+        <omgdi:waypoint x="1085.8" y="4265.1" />
+        <omgdi:waypoint x="1085.8" y="4265.1" />
+        <omgdi:waypoint x="1085.8" y="4265.1" />
+        <omgdi:waypoint x="1101.1" y="4187.0" />
+        <omgdi:waypoint x="1111.6" y="4133.3" />
+        <omgdi:waypoint x="1113.7" y="4122.200000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="iddc132194-7e86-4fc1-a047-5287657ce051" id="iddc132194-7e86-4fc1-a047-5287657ce051_gui">
+        <omgdi:waypoint x="1190.2" y="4329.4" />
+        <omgdi:waypoint x="1182.2" y="4356.9" />
+        <omgdi:waypoint x="1166.3" y="4411.4" />
+        <omgdi:waypoint x="1154.8" y="4450.8" />
+        <omgdi:waypoint x="1151.6" y="4461.700000000001" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id4fa62d88-b6a9-4f99-a17d-04553f044c61" id="id4fa62d88-b6a9-4f99-a17d-04553f044c61_gui">
+        <omgdi:waypoint x="1121.3" y="3796.3" />
+        <omgdi:waypoint x="1121.3" y="3855.8" />
+        <omgdi:waypoint x="1121.3" y="3960.3" />
+        <omgdi:waypoint x="1121.3" y="4025.0" />
+        <omgdi:waypoint x="1121.3" y="4036.2000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id85545c15-94da-48a6-9ae3-d24291f6f874" id="id85545c15-94da-48a6-9ae3-d24291f6f874_gui">
+        <omgdi:waypoint x="1555.9" y="4712.700000000001" />
+        <omgdi:waypoint x="1555.1" y="4617.9" />
+        <omgdi:waypoint x="1553.3" y="4405.9" />
+        <omgdi:waypoint x="1553.3" y="4405.9" />
+        <omgdi:waypoint x="1553.3" y="4405.9" />
+        <omgdi:waypoint x="1532.6" y="4375.5" />
+        <omgdi:waypoint x="1514.7" y="4349.3" />
+        <omgdi:waypoint x="1508.3" y="4339.9" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="ide116f459-ea55-4431-a6f1-a9dd4a55c656" id="ide116f459-ea55-4431-a6f1-a9dd4a55c656_gui">
+        <omgdi:waypoint x="1141.3" y="4544.5" />
+        <omgdi:waypoint x="1141.3" y="4588.0" />
+        <omgdi:waypoint x="1141.3" y="4653.9" />
+        <omgdi:waypoint x="1141.3" y="4700.9" />
+        <omgdi:waypoint x="1141.3" y="4712.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id447d3840-38d3-4246-93b2-474c1f9e423c" id="id447d3840-38d3-4246-93b2-474c1f9e423c_gui">
+        <omgdi:waypoint x="1737.3" y="4721.0" />
+        <omgdi:waypoint x="1749.3" y="4671.8" />
+        <omgdi:waypoint x="1769.3" y="4590.5" />
+        <omgdi:waypoint x="1769.3" y="4590.5" />
+        <omgdi:waypoint x="1769.3" y="4590.5" />
+        <omgdi:waypoint x="1778.5" y="4447.5" />
+        <omgdi:waypoint x="1783.8" y="4366.4" />
+        <omgdi:waypoint x="1784.5" y="4354.9" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="iddb384444-6ff5-45ff-a091-724225144066" id="iddb384444-6ff5-45ff-a091-724225144066_gui">
+        <omgdi:waypoint x="1146.7" y="4800.1" />
+        <omgdi:waypoint x="1155.9" y="4867.8" />
+        <omgdi:waypoint x="1173.3" y="4996.6" />
+        <omgdi:waypoint x="1173.3" y="4996.6" />
+        <omgdi:waypoint x="1173.3" y="4996.6" />
+        <omgdi:waypoint x="1173.3" y="4996.6" />
+        <omgdi:waypoint x="1173.3" y="5664.0" />
+        <omgdi:waypoint x="1173.3" y="5664.0" />
+        <omgdi:waypoint x="1237.0" y="5727.8" />
+        <omgdi:waypoint x="1270.7" y="5761.6" />
+        <omgdi:waypoint x="1278.6" y="5769.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id99506231-44a3-4232-94d2-e1c3411d477e" id="id99506231-44a3-4232-94d2-e1c3411d477e_gui">
+        <omgdi:waypoint x="1316.7" y="3938.2000000000003" />
+        <omgdi:waypoint x="1318.4" y="4003.7000000000003" />
+        <omgdi:waypoint x="1324.3" y="4233.3" />
+        <omgdi:waypoint x="1324.3" y="4233.3" />
+        <omgdi:waypoint x="1324.3" y="4233.3" />
+        <omgdi:waypoint x="1324.3" y="4233.3" />
+        <omgdi:waypoint x="1324.3" y="5664.0" />
+        <omgdi:waypoint x="1324.3" y="5664.0" />
+        <omgdi:waypoint x="1309.5" y="5716.700000000001" />
+        <omgdi:waypoint x="1299.8" y="5751.700000000001" />
+        <omgdi:waypoint x="1296.8" y="5762.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2" id="id0ab0eaa7-2e92-43ac-9a40-7f15849d81a2_gui">
+        <omgdi:waypoint x="1294.4" y="598.5" />
+        <omgdi:waypoint x="1317.0" y="637.1999999999998" />
+        <omgdi:waypoint x="1354.3" y="700.8000000000002" />
+        <omgdi:waypoint x="1354.3" y="700.8000000000002" />
+        <omgdi:waypoint x="1354.3" y="700.8000000000002" />
+        <omgdi:waypoint x="1354.3" y="736.8000000000002" />
+        <omgdi:waypoint x="1354.3" y="736.8000000000002" />
+        <omgdi:waypoint x="1354.3" y="736.8000000000002" />
+        <omgdi:waypoint x="1327.7" y="769.1999999999998" />
+        <omgdi:waypoint x="1305.7" y="796.0" />
+        <omgdi:waypoint x="1298.5" y="804.8000000000002" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id1b363a80-86d4-4a00-ac4b-8adce5769145" id="id1b363a80-86d4-4a00-ac4b-8adce5769145_gui">
+        <omgdi:waypoint x="1243.2" y="3534.8" />
+        <omgdi:waypoint x="1256.1" y="3602.1000000000004" />
+        <omgdi:waypoint x="1296.2" y="3813.4" />
+        <omgdi:waypoint x="1310.9" y="3890.5" />
+        <omgdi:waypoint x="1313.0" y="3901.6000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id10143b41-b5c5-42f4-b8ff-b170045745f1" id="id10143b41-b5c5-42f4-b8ff-b170045745f1_gui">
+        <omgdi:waypoint x="1208.2" y="284.10000000000036" />
+        <omgdi:waypoint x="1223.0" y="317.5" />
+        <omgdi:waypoint x="1246.0" y="369.6999999999998" />
+        <omgdi:waypoint x="1260.0" y="401.60000000000036" />
+        <omgdi:waypoint x="1264.6" y="412.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="id924d81a5-a3ab-484b-b5b1-d21750a256b3" id="id924d81a5-a3ab-484b-b5b1-d21750a256b3_gui">
+        <omgdi:waypoint x="1255.9" y="3523.1000000000004" />
+        <omgdi:waypoint x="1280.8" y="3537.1000000000004" />
+        <omgdi:waypoint x="1325.3" y="3562.1000000000004" />
+        <omgdi:waypoint x="1325.3" y="3562.1000000000004" />
+        <omgdi:waypoint x="1325.3" y="3562.1000000000004" />
+        <omgdi:waypoint x="1403.9" y="3674.2000000000003" />
+        <omgdi:waypoint x="1439.3" y="3724.8" />
+        <omgdi:waypoint x="1445.8" y="3734.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D01" bpmnElement="note_D01">
+        <omgdc:Bounds x="447.0" y="4666.2744" width="414.54" height="184.6512" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D01" bpmnElement="assoc_D01">
+        <omgdi:waypoint x="1531.0" y="4736.6" />
+        <omgdi:waypoint x="1486.7" y="4697.700000000001" />
+        <omgdi:waypoint x="1399.3" y="4621.3" />
+        <omgdi:waypoint x="1399.3" y="4621.3" />
+        <omgdi:waypoint x="1399.3" y="4621.3" />
+        <omgdi:waypoint x="1091.3" y="4621.3" />
+        <omgdi:waypoint x="1091.3" y="4621.3" />
+        <omgdi:waypoint x="1091.3" y="4621.3" />
+        <omgdi:waypoint x="974.64" y="4657.9" />
+        <omgdi:waypoint x="861.89" y="4693.4" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D02" bpmnElement="note_D02">
+        <omgdc:Bounds x="635.5" y="4926.6512" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D02" bpmnElement="assoc_D02">
+        <omgdi:waypoint x="1507.8" y="4997.6" />
+        <omgdi:waypoint x="1430.3" y="4997.6" />
+        <omgdi:waypoint x="1286.9" y="4997.6" />
+        <omgdi:waypoint x="1286.9" y="4997.6" />
+        <omgdi:waypoint x="1286.9" y="4997.6" />
+        <omgdi:waypoint x="1017.6" y="4997.6" />
+        <omgdi:waypoint x="1017.6" y="4997.6" />
+        <omgdi:waypoint x="1017.6" y="4997.6" />
+        <omgdi:waypoint x="935.03" y="4997.6" />
+        <omgdi:waypoint x="861.32" y="4997.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D03" bpmnElement="note_D03">
+        <omgdc:Bounds x="1305.9056" y="152.05" width="410.7888" height="198.9" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D03" bpmnElement="assoc_D03">
+        <omgdi:waypoint x="1242.8" y="251.5" />
+        <omgdi:waypoint x="1270.6" y="251.5" />
+        <omgdi:waypoint x="1299.9" y="251.5" />
+        <omgdi:waypoint x="1299.9" y="251.5" />
+        <omgdi:waypoint x="1299.9" y="251.5" />
+        <omgdi:waypoint x="1302.0" y="251.5" />
+        <omgdi:waypoint x="1305.6" y="251.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D04" bpmnElement="note_D04">
+        <omgdc:Bounds x="707.6232" y="3270.0232000000005" width="367.2936" height="156.1536" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D04" bpmnElement="assoc_D04">
+        <omgdi:waypoint x="1138.0" y="3348.1000000000004" />
+        <omgdi:waypoint x="1113.1" y="3348.1000000000004" />
+        <omgdi:waypoint x="1087.9" y="3348.1000000000004" />
+        <omgdi:waypoint x="1087.9" y="3348.1000000000004" />
+        <omgdi:waypoint x="1087.9" y="3348.1000000000004" />
+        <omgdi:waypoint x="1082.9" y="3348.1000000000004" />
+        <omgdi:waypoint x="1075.1" y="3348.1000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D05" bpmnElement="note_D05">
+        <omgdc:Bounds x="892.53" y="497.45120000000054" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D05" bpmnElement="assoc_D05">
+        <omgdi:waypoint x="1229.0" y="568.4000000000005" />
+        <omgdi:waypoint x="1207.4" y="568.4000000000005" />
+        <omgdi:waypoint x="1186.6" y="568.4000000000005" />
+        <omgdi:waypoint x="1186.6" y="568.4000000000005" />
+        <omgdi:waypoint x="1186.6" y="568.4000000000005" />
+        <omgdi:waypoint x="1145.2" y="568.4000000000005" />
+        <omgdi:waypoint x="1118.3" y="568.4000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D06" bpmnElement="note_D06">
+        <omgdc:Bounds x="777.5" y="2967.2512" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D06" bpmnElement="assoc_D06">
+        <omgdi:waypoint x="1066.1" y="3038.2000000000003" />
+        <omgdi:waypoint x="1051.7" y="3038.2000000000003" />
+        <omgdi:waypoint x="1039.6" y="3038.2000000000003" />
+        <omgdi:waypoint x="1039.6" y="3038.2000000000003" />
+        <omgdi:waypoint x="1039.6" y="3038.2000000000003" />
+        <omgdi:waypoint x="1021.5" y="3038.2000000000003" />
+        <omgdi:waypoint x="1003.1" y="3038.2000000000003" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D07" bpmnElement="note_D07">
+        <omgdc:Bounds x="491.5" y="5229.5232000000005" width="369.54" height="156.1536" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D07" bpmnElement="assoc_D07">
+        <omgdi:waypoint x="1523.0" y="5307.6" />
+        <omgdi:waypoint x="1438.6" y="5307.6" />
+        <omgdi:waypoint x="1272.9" y="5307.6" />
+        <omgdi:waypoint x="1272.9" y="5307.6" />
+        <omgdi:waypoint x="1272.9" y="5307.6" />
+        <omgdi:waypoint x="974.6" y="5307.6" />
+        <omgdi:waypoint x="974.6" y="5307.6" />
+        <omgdi:waypoint x="974.6" y="5307.6" />
+        <omgdi:waypoint x="922.24" y="5307.6" />
+        <omgdi:waypoint x="861.39" y="5307.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D08" bpmnElement="note_D08">
+        <omgdc:Bounds x="0.0" y="4652.0256" width="414.54" height="213.1488" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D08" bpmnElement="assoc_D08">
+        <omgdi:waypoint x="1705.8" y="4733.8" />
+        <omgdi:waypoint x="1670.1" y="4694.200000000001" />
+        <omgdi:waypoint x="1604.3" y="4621.3" />
+        <omgdi:waypoint x="1604.3" y="4621.3" />
+        <omgdi:waypoint x="1604.3" y="4621.3" />
+        <omgdi:waypoint x="447.27" y="4621.3" />
+        <omgdi:waypoint x="447.27" y="4621.3" />
+        <omgdi:waypoint x="447.27" y="4621.3" />
+        <omgdi:waypoint x="425.13" y="4634.0" />
+        <omgdi:waypoint x="394.3" y="4651.6" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D09" bpmnElement="note_D09">
+        <omgdc:Bounds x="462.8732" y="3961.9732000000004" width="398.7936" height="241.6536" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D09" bpmnElement="assoc_D09">
+        <omgdi:waypoint x="1757.2" y="4065.3" />
+        <omgdi:waypoint x="1684.7" y="4023.3" />
+        <omgdi:waypoint x="1506.3" y="3920.0" />
+        <omgdi:waypoint x="1506.3" y="3920.0" />
+        <omgdi:waypoint x="1506.3" y="3920.0" />
+        <omgdi:waypoint x="1071.3" y="3920.0" />
+        <omgdi:waypoint x="1071.3" y="3920.0" />
+        <omgdi:waypoint x="1071.3" y="3920.0" />
+        <omgdi:waypoint x="965.8" y="3961.9" />
+        <omgdi:waypoint x="861.98" y="4003.3" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D10" bpmnElement="note_D10">
+        <omgdc:Bounds x="450.6232" y="5998.1432" width="367.2936" height="156.1536" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D10" bpmnElement="assoc_D10">
+        <omgdi:waypoint x="880.97" y="6076.22" />
+        <omgdi:waypoint x="856.1" y="6076.22" />
+        <omgdi:waypoint x="830.94" y="6076.22" />
+        <omgdi:waypoint x="830.94" y="6076.22" />
+        <omgdi:waypoint x="830.94" y="6076.22" />
+        <omgdi:waypoint x="825.89" y="6076.22" />
+        <omgdi:waypoint x="818.08" y="6076.22" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D11" bpmnElement="note_D11">
+        <omgdc:Bounds x="616.5" y="6441.6012" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D11" bpmnElement="assoc_D11">
+        <omgdi:waypoint x="939.74" y="6512.55" />
+        <omgdi:waypoint x="919.85" y="6512.55" />
+        <omgdi:waypoint x="901.27" y="6512.55" />
+        <omgdi:waypoint x="901.27" y="6512.55" />
+        <omgdi:waypoint x="901.27" y="6512.55" />
+        <omgdi:waypoint x="867.68" y="6512.55" />
+        <omgdi:waypoint x="842.48" y="6512.55" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D12" bpmnElement="note_D12">
+        <omgdc:Bounds x="619.5" y="1835.9512000000004" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D12" bpmnElement="assoc_D12">
+        <omgdi:waypoint x="908.14" y="1906.9000000000005" />
+        <omgdi:waypoint x="893.69" y="1906.9000000000005" />
+        <omgdi:waypoint x="881.6" y="1906.9000000000005" />
+        <omgdi:waypoint x="881.6" y="1906.9000000000005" />
+        <omgdi:waypoint x="881.6" y="1906.9000000000005" />
+        <omgdi:waypoint x="863.52" y="1906.9000000000005" />
+        <omgdi:waypoint x="845.14" y="1906.9000000000005" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D13" bpmnElement="note_D13">
+        <omgdc:Bounds x="656.5" y="2277.6512000000002" width="225.54" height="141.8976" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D13" bpmnElement="assoc_D13">
+        <omgdi:waypoint x="945.14" y="2348.6000000000004" />
+        <omgdi:waypoint x="930.69" y="2348.6000000000004" />
+        <omgdi:waypoint x="918.6" y="2348.6000000000004" />
+        <omgdi:waypoint x="918.6" y="2348.6000000000004" />
+        <omgdi:waypoint x="918.6" y="2348.6000000000004" />
+        <omgdi:waypoint x="900.52" y="2348.6000000000004" />
+        <omgdi:waypoint x="882.14" y="2348.6000000000004" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D14" bpmnElement="note_D14">
+        <omgdc:Bounds x="456.7512" y="2481.05" width="425.0376" height="198.9" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D14" bpmnElement="assoc_D14">
+        <omgdi:waypoint x="944.96" y="2580.5" />
+        <omgdi:waypoint x="916.2" y="2580.5" />
+        <omgdi:waypoint x="885.27" y="2580.5" />
+        <omgdi:waypoint x="885.27" y="2580.5" />
+        <omgdi:waypoint x="885.27" y="2580.5" />
+        <omgdi:waypoint x="884.16" y="2580.5" />
+        <omgdi:waypoint x="882.15" y="2580.5" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D15" bpmnElement="note_D15">
+        <omgdc:Bounds x="465.3744" y="3622.0488" width="395.7912" height="255.9024" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D15" bpmnElement="assoc_D15">
+        <omgdi:waypoint x="1073.0" y="3750.0" />
+        <omgdi:waypoint x="1028.2" y="3750.0" />
+        <omgdi:waypoint x="968.6" y="3750.0" />
+        <omgdi:waypoint x="968.6" y="3750.0" />
+        <omgdi:waypoint x="968.6" y="3750.0" />
+        <omgdi:waypoint x="906.33" y="3750.0" />
+        <omgdi:waypoint x="861.33" y="3750.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape_note_D16" bpmnElement="note_D16">
+        <omgdc:Bounds x="447.0" y="4405.874400000001" width="414.54" height="184.6512" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_note_D16" bpmnElement="assoc_D16">
+        <omgdi:waypoint x="1093.0" y="4498.200000000001" />
+        <omgdi:waypoint x="1045.2" y="4498.200000000001" />
+        <omgdi:waypoint x="978.94" y="4498.200000000001" />
+        <omgdi:waypoint x="978.94" y="4498.200000000001" />
+        <omgdi:waypoint x="978.94" y="4498.200000000001" />
+        <omgdi:waypoint x="909.86" y="4498.200000000001" />
+        <omgdi:waypoint x="861.82" y="4498.200000000001" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

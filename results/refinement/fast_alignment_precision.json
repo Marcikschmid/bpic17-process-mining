@@ -1,0 +1,21 @@
+{
+  "precision": 0.5976739688393717,
+  "prefixes": 27816,
+  "weighted_unfit_prefixes": 40338,
+  "weighted_enabled": 1411589,
+  "weighted_escaping": 567919,
+  "method": "PM4Py Align-ET formula; exact weighted finite-state prefix solver",
+  "complete_model_states": 187,
+  "silent_move_cost": 1,
+  "sync_move_cost": 0,
+  "reference_crosscheck": {
+    "status": "ok",
+    "model_sha256": "6f782b41bb492e152d09782aee7535ea3c70a3674521f8b0e373cf1666cd9d15",
+    "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+    "all_prefixes_computed": 27816,
+    "pm4py_reference_prefixes_checked": 191,
+    "reference_selection": "first 32, longest 32, 128 fixed-seed random; scores use ALL prefixes",
+    "reference_seed": 20261018,
+    "implementation_sha256": "3c34afc45e5d49034d5057c02b8e1e387e99debed16dcaa5755ad69da1246cde"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "model": "inductive_miner",
+  "job": "token",
+  "model_sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca",
+  "pm4py_version": "2.7.23.11",
+  "parameters": {
+    "pm4py:param:activity_key": "concept:name",
+    "show_progress_bar": false,
+    "multiprocessing": false,
+    "cleaning_token_flood": false
+  },
+  "created_utc": "2026-10-17T10:44:45.920098+00:00",
+  "implementation_sha256": {
+    "scripts/evaluate_models.py": "1580cbb798b2dcc58cbf4ff376e86a48709a66a4624b25898841521c1142aece",
+    "src/simplicity.py": "7e63ca88f0164b3a22f19486a9da1830ace934bc0dce6b0fc3bc594738318061",
+    "src/discovery.py": "0ed96ff7b0d83958e0371a91f980cf321ab5616ca43b9428e186dbefa587ef68"
+  },
+  "cases": 31509,
+  "events": 475306,
+  "variants": 5623,
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "status": "ok",
+  "fitness": {
+    "perc_fit_traces": 100.0,
+    "average_trace_fitness": 1.0,
+    "log_fitness": 1.0,
+    "percentage_of_fitting_traces": 100.0
+  },
+  "generalization": 0.9756702764431168,
+  "evaluated_cases": 31509,
+  "fitting_cases": 31509,
+  "seconds": 9.34
+}

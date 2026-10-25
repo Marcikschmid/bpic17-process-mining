@@ -1,0 +1,22 @@
+{
+  "package": "bpmn-js",
+  "version": "18.31.0",
+  "source": "https://registry.npmjs.org/bpmn-js/-/bpmn-js-18.31.0.tgz",
+  "integrity": "sha512-tGc6spNXC81858FXhk0NI9+CjfsPYDmKWSyiq0u2Rhk9J8l+DJtzZK1CYj4fqcek026PQDEwwUQwsr2Opfec/w==",
+  "license": "SEE LICENSE IN LICENSE",
+  "artifacts_sha256": {
+    "LICENSE": "5788cf8bd61481776cee1c943595525499a1355c045e9244f92e6c8092c06770",
+    "dist/assets/bpmn-font/css/bpmn-codes.css": "00293dc5f1c4e54b6a2becfcd13040a4845d8d46c0988105b91332d9b07f2cac",
+    "dist/assets/bpmn-font/css/bpmn-embedded.css": "57156c34a85b34c117167308fc7968f52d2beb809359d042c277982cd7bad10b",
+    "dist/assets/bpmn-js.css": "a1add5dca479c779a54adda507f26796f4d61a5ae15f6cc14a1b017ff65b4015",
+    "dist/assets/bpmn-font/css/bpmn.css": "fc426b4a5586e4b99149fa3232afc03302cb1d44cb307b7bae7e6c62e59d8016",
+    "dist/assets/diagram-js.css": "73f990dcd6cd2ed696aa63a3c73822a97f0ea69a221d76ebe6cf24b01111df21",
+    "dist/assets/bpmn-font/font/bpmn.eot": "3c6a141e80cda5dfc973e1fffc97359af45bb0bee5f9649e0326adc115cca48d",
+    "dist/bpmn-modeler.production.min.js": "b42c96412e37fb83cf8c20bd23bde173ef3bb28c250593a4ed4b85160b9bf8cc",
+    "package.json": "a83e0e90375f5b6b62162f00f35787c0986a41fe8fc2a299bab47a1846bea526",
+    "dist/assets/bpmn-font/font/bpmn.svg": "7ceeb3c3934d47d9c42a2848372533c367c9d651af7a8ccf23f39727f2c897f7",
+    "dist/assets/bpmn-font/font/bpmn.ttf": "dc0ed1bbe9a4ec02aefc12d63948caa3896f61928c676bf3724ad13b3ed4a8be",
+    "dist/assets/bpmn-font/font/bpmn.woff": "47230fa23929798dd5ec8b4a59bf23f96024804572b36c7db4888af6723d7e76",
+    "dist/assets/bpmn-font/font/bpmn.woff2": "3cb77a7fa2461bb23b2e1af4cc70133fe1e3377ca73ff827394439b6b9335848"
+  }
+}

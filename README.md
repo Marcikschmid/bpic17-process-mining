@@ -4,6 +4,14 @@ Gemeinsames Repository für Assignment I: Python-Analyse, Prozessmodelle und LaT
 
 GitHub: https://github.com/Marcikschmid/bpic17-process-mining
 
+## Arbeitsordner prüfen
+
+Öffne in VS Code den Repository-Hauptordner mit `.git`, `src/`, `report/` und dieser README. `git rev-parse --show-toplevel` zeigt den richtigen Arbeitsordner an. Nach einem Verschieben des Projekts muss der projektlokale Jupyter-Kernel neu registriert werden:
+
+```powershell
+.\.venv\Scripts\python.exe -m ipykernel install --prefix .venv --name bpic17 --display-name "BPIC17 (.venv)"
+```
+
 ## Struktur
 
 - `1 Introduction/`, `2 Process Mining/`, `Allgemeines/`, `index.html`: unveränderte Kursunterlagen inklusive Aufgabenstellung und Originalvorlage.
@@ -118,7 +126,59 @@ Set-Location ..
 
 Die Ausgabe liegt unter `report/build/main.pdf`. Der ganze Ordner `report/` kann auch als LaTeX-Projekt verwendet werden; die TUM-Dateien und `latexmkrc` müssen dabei mitgenommen werden.
 
+## Rohdatenstatistik (Assignment 3.2)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/analyze_log.py
+.\.venv\Scripts\python.exe scripts/render_log_statistics.py
+.\.venv\Scripts\python.exe scripts/verify_log_statistics.py
+```
+
+Ergebnisse: [`results/tables/raw_log_statistics.md`](results/tables/raw_log_statistics.md).
+Die vollständige Rohdatei enthält 31.509 Fälle, 1.202.267 Events und 15.930
+Aktivitätsvarianten. Alle Pflichtstatistiken, Attributklassifikation und zusätzliche
+Häufigkeits-/Verteilungsanalysen sind in [`docs/STATISTICS.md`](docs/STATISTICS.md)
+erläutert. Ein unabhängiger XML-Audit hat alle Fälle und Events überprüft.
+Ausgewählte statische Tabellen und Abbildungen sind im getrennten LaTeX-Bericht.
+
+## Verfeinertes BPMN (Assignment 3.3.3)
+
+Das ausgewählte Modell erreicht **25.350/31.509 vollständig replaybare Fälle
+(80,4532 %)**. Definitionen, Iterationen, Qualitätswerte und der Vergleich mit
+veröffentlichten Originalberichten: [`docs/REFINEMENT.md`](docs/REFINEMENT.md).
+
+Die lokale Software bpmn-js zeigt das BPMN an und unterstützt Bearbeitung sowie
+BPMN-/SVG-Export. Einmalig bei fehlenden lokalen Bibliotheken:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/setup_bpmn_viewer.py
+.\.venv\Scripts\python.exe -m http.server 8787 --bind 127.0.0.1
+```
+
+Öffnen: <http://127.0.0.1:8787/results/refinement/index.html>.
+Ergebnisse: [`results/refinement/refinement_summary.md`](results/refinement/refinement_summary.md).
+Die Original-Baselines bleiben erhalten; ausgewählte Kopien stehen im Bericht.
+
 ## Abgabe
+
+Die Qualitätsbewertung der beiden Discovery-Baselines (Aufgabe 3.3.2) ist unter
+[`docs/EVALUATION.md`](docs/EVALUATION.md) beschrieben. Start:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/evaluate_models.py
+.\.venv\Scripts\python.exe scripts/audit_dead_transitions.py
+.\.venv\Scripts\python.exe scripts/render_evaluation.py
+.\.venv\Scripts\python.exe scripts/verify_evaluation.py
+```
+
+Ergebnisse: `results/tables/quality_metrics.csv` und die Vergleichsgrafiken unter
+`results/figures/`. Die vollständige Rohdatenanalyse aus Abschnitt 3.2 ist getrennt unter
+[`docs/STATISTICS.md`](docs/STATISTICS.md) dokumentiert.
+
+`verify_evaluation.py` prüft standardmäßig auch vollständige Alignment-Fitness.
+Für einen dokumentierten unvollständigen Zusatzlauf erlaubt
+`--allow-incomplete-alignment` die Prüfung aller tatsächlich berichteten Werte;
+die Lücke bleibt im Audit ausdrücklich sichtbar.
 
 Der Bericht ist auf Englisch und umfasst höchstens fünf Seiten ohne Literatur und Anhang. Code und Parameter müssen nachvollziehbar sein; bei Zufallsverfahren sind Seeds festzuhalten. Bibliotheken und Werkzeuge werden entsprechend der Aufgabenstellung referenziert. Die KI-Nutzung wird unter `docs/AI_USAGE.md` protokolliert und später im Bericht deklariert. Ganze Berichtssätze oder Absätze sollen laut Aufgabenstellung nicht von GenAI erzeugt werden.
 
@@ -132,3 +192,11 @@ git push
 ```
 
 Die Lizenzangaben in den übernommenen TUM-Dateien gelten für diese Dateien. Dieses Repository vergibt keine zusätzliche Lizenz für die Kursunterlagen.
+## Decision Mining (3.3.4)
+
+Alle 16 XOR-Splits haben erklärbare Entscheidungsbäume und geprüfte Bedingungen;
+16 XOR-Merges sind separat gekennzeichnet. [Methode und Grenzen](docs/DECISION_MINING.md).
+Bei laufendem lokalen Server: [Ergebnisse und Bäume](http://127.0.0.1:8787/results/decision_mining/index.html)
+und [BPMN mit Bedingungen](http://127.0.0.1:8787/results/decision_mining/viewer.html).
+Die experimentellen harten Guards erreichen 10,19 % vollständige Testfallabdeckung;
+die 80,45 % des bisherigen Modells beziehen sich auf dessen Struktur ohne Guards.

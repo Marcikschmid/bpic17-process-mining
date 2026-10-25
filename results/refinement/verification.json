@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "all_cases_replayed": 31509,
+  "exact_fitting_cases": 25350,
+  "bpmn_full_language_equivalence": {
+    "equivalent": true,
+    "counterexample": null,
+    "pairs": 46
+  },
+  "pm4py_marking_graph_states": 187,
+  "pm4py_optimal_alignment_variants_checked": 20,
+  "pm4py_prefix_reference_checks": 191,
+  "all_artifact_hashes_verified": true,
+  "metrics_sha256": "6e2dbf09f0630f4d55ffc61b9f2041114d15cd54740dc0000adfef2b0271ac6f",
+  "verifier_sha256": "96c3e59f2fb875a155488614f5e8ac39b69f91d8ac8bc61504eda020ea37ac4a"
+}

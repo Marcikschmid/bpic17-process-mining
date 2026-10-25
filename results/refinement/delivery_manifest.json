@@ -1,0 +1,14 @@
+{
+  "source_sha256": "6e2dbf09f0630f4d55ffc61b9f2041114d15cd54740dc0000adfef2b0271ac6f",
+  "artifacts": {
+    "bpmn_roundtrip.pnml": "dfc9978d07ab424b6811d92a7477764e0279eba93cd19951ee3991f9c8a74caa",
+    "case_replay.csv": "f9708f66aa0dcd6bfc88f8949550f640ab0adf94ccbf77218fa3e22576575e68",
+    "final_bpmn.pdf": "753b9d2de99cd6e689509f65ba59396a5e5dab7744393c633beed5e6a57a19c3",
+    "final_bpmn.png": "623032975b26210d79e6e08a8bd37d2c170962373f6b68a4496a97812295fdce",
+    "final_bpmn.svg": "48653ffd8ad57d8264317a3fc8a294d781ac6bb4fc4eaab34feb4db22da2fa98",
+    "final_model.bpmn": "c501b67663fce61861ff5922308ed1908de367928e2a85d3e3b530f3c9da2d40",
+    "final_model.pnml": "6f782b41bb492e152d09782aee7535ea3c70a3674521f8b0e373cf1666cd9d15",
+    "final_model.ptml": "998f2efedb402b06a1eb0943dc2315e5ceadff7904053f52529f8431385105df",
+    "index.html": "7b1f844b6916069bd5cd0c0f9706207f32d0f99709137a26f61db7e866f2a75c"
+  }
+}

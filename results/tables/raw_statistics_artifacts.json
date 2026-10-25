@@ -1,0 +1,15 @@
+{
+  "source_sha256": "887992c3041d7cdf044af448af6e89a7bd94490e040037beaf0332daf6806931",
+  "renderer_sha256": "e8ae3a99e0fc8a69a35b3937da73204e4e20a5571ccb3f440382859bb7cd8d27",
+  "artifacts": {
+    "results/figures/raw_log_overview.pdf": "27a5dddafc0fe83f0884c8c9042f274a85efbb999cb98191421e1fb09aff78f8",
+    "results/figures/raw_log_overview.svg": "cf7241eb8d55bac31f97e02f841fb5c2bfdf8fad643a19fafa51132c5cda57a4",
+    "results/figures/raw_log_overview.png": "37d0612f8613eefc044c07e351afe46faec0573ad79eb5fa5db2be2ec1bfc201",
+    "results/figures/raw_activity_frequencies.pdf": "b85bf8e1cb043a6d79f0df7ed1f73454b4c8ed9c01cfbdb07a4614e898f6ef93",
+    "results/figures/raw_activity_frequencies.svg": "d0bfdde88ea9ad83b38c6853d5f04ec7d86c6e93efd0eb14fec0a44a3caa1b5c",
+    "results/figures/raw_activity_frequencies.png": "3456954ecdf7c78ef73785d0c512206e0dd61d01967f700e3ebf49a1cb84769f",
+    "results/tables/raw_log_statistics.tex": "e97988dddc43fa3a8fba003bfc5629194fc81290c54a4084c079fc33c59c7b28",
+    "results/tables/raw_attribute_profile.tex": "9690140f45256608b6f028363d000bd86d4b0bf495e8ec2e626c8c7e54ccc881",
+    "results/tables/raw_log_statistics.md": "55777aadfe1b55e2371029c8c3a9ca0d6d61f5cba20ba46c3a9285c99ae9a3ae"
+  }
+}

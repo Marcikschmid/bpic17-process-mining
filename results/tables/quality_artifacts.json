@@ -1,0 +1,18 @@
+{
+  "source": "results/tables/quality_metrics.json",
+  "source_sha256": "316fda16a0f0877b7f1fb342541cb1ced289ddd6c0280a9320852b2a572bff1b",
+  "additional_sources": {
+    "results/tables/dead_transition_audit.json": "b5fdf629b415cf7ac3b4ac4f2e459195e0f68ce4517471c8f26876e10509be62"
+  },
+  "artifacts": {
+    "results/tables/quality_metrics.csv": "1a4da09e06460f8e601d44dde19dfd3bca876b1e70cb2ccc54ff711e070864ca",
+    "results/tables/quality_metrics.tex": "7aab79a19a2816ea74db83c80497018a7f1ae1bdcaa0d8fb854b6eb76ce44aaf",
+    "results/tables/quality_metrics.md": "3cb66df7fcedb6d7cd063df2364be9beca5fa8ec8498355ff632e242d5a15dad",
+    "results/figures/quality_comparison.pdf": "5ba664770a2d6ebbed499fd3b72b95a2b7e40039fe6174b0c806738f0e044ecf",
+    "results/figures/quality_comparison.svg": "4d052f11d60cadb9fa0bc948d12151fc65ab6cae896fa31cc6d5c9b9ab90cc11",
+    "results/figures/quality_comparison.png": "c573faa49c446a473353fc0c7a29c6c527dca2e8ac41ba477cc0e72dc06bd84a",
+    "results/figures/simplicity_comparison.pdf": "4ef26f6dc0ad15a7dcd33fde1f50ab0c1e830f9c624caf1420abbcbd40061a37",
+    "results/figures/simplicity_comparison.svg": "86c1c00c0f529ee8566f99cada116ad3a4e02aae4fed7bd310be5bc4f319ac8e",
+    "results/figures/simplicity_comparison.png": "9522623a574d34a7ef4fe8671b46aca4ef8279db60b56ddc06592c26301da27f"
+  }
+}

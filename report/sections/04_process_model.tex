@@ -1,8 +1,29 @@
-% TODO: Compare at least two discovery algorithms and all required metrics.
+% TODO: Write your own comparison of the two discovery algorithms and metrics.
 % Baseline models and factual parameter tables: Appendix \ref{app:discovery}.
 % TODO: Write your own interpretation and preprocessing rationale using docs/DISCOVERY.md.
-% Define and implement at least two literature-based simplicity metrics.
+% Metric definitions and checks: docs/EVALUATION.md; source code: src/simplicity.py.
+% The selected factual table is copied separately after the evaluation run.
+\input{tables/quality_metrics}
+% Selected factual results for Assignment 3.3.3; author-written interpretation pending.
+\input{tables/refined_quality}
+% TODO: Explain frequency-focused discovery, all-case evaluation and target 78--82 percent.
+% Compare the 40 candidates and the chosen model using docs/REFINEMENT.md.
+% TODO: Discuss omitted activity labels, denied-case undercoverage and simulation limits.
+% External comparisons: \cite{rodrigues2017stairway,povalyaeva2017density,blevi2017kpmg}.
+% IMf method: \cite{leemans2014infrequent}; software: bpmn-js 18.31.0 (bpmn.io).
+% TODO: Explain the HM unboundedness and the documented PM4Py Cyclomatic defect.
+% Additional factual evidence: >=12 certified dead HM transitions, including
+% O_Refused and O_Sent (mail and online); results/tables/dead_transition_audit.json.
+% Certified HM replay ceiling: 411/31,509 cases (1.3044%); not an observed fraction.
+% Literature for your definitions: \cite{carmona2018conformance,lassen2009complexity,pedro2015simplification}.
 % Explain iterative refinements and report the final model's quality metrics.
 % Check approximately 80 percent case replay coverage separately from fitness.
 % Include the final BPMN and visualize decision blocks at every XOR.
 % Follow the specified paper for alignment-based decision mining.
+% Factual audit results for Assignment 3.3.4; author-written interpretation pending.
+\input{tables/guarded_coverage}
+% TODO: Explain Algorithm 1 of de Leoni/van der Aalst, with CART instead of C4.5.
+% Parameters, missingness, exclusion of retrospective flags: docs/DECISION_MINING.md.
+% Discuss 16 XOR splits vs 16 merges, case-wise split, alignment ambiguity,
+% minority branches and the difference between structural and guarded coverage.
+% Per-gateway factual results and all decision blocks are in the appendix.

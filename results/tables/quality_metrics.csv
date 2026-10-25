@@ -1,0 +1,35 @@
+model,metric,value,status,direction,reason
+inductive_miner,token_fitness,1.0,ok,higher,
+heuristics_miner,token_fitness,0.8333817154416963,ok,higher,
+inductive_miner,token_mean,1.0,ok,higher,
+heuristics_miner,token_mean,0.8239641607194917,ok,higher,
+inductive_miner,token_fit_pct,100.0,ok,higher,
+heuristics_miner,token_fit_pct,0.0,ok,higher,
+inductive_miner,alignment_fitness,0.9997701892912418,ok,higher,
+heuristics_miner,alignment_fitness,,incomplete,higher,Missing alignments; no subset average reported.
+inductive_miner,alignment_mean,1.0,ok,higher,
+heuristics_miner,alignment_mean,,incomplete,higher,Missing alignments; no subset average reported.
+inductive_miner,alignment_fit_pct,100.0,ok,higher,
+heuristics_miner,alignment_fit_pct,,incomplete,higher,Missing alignments; no subset average reported.
+inductive_miner,replay_bound_pct,100.0,ok,higher,"Certificate-based upper bound, not a measured fitting fraction."
+heuristics_miner,replay_bound_pct,1.3043892221270112,ok,higher,"Certificate-based upper bound, not a measured fitting fraction."
+inductive_miner,token_precision,0.2926135820916598,ok,higher,
+heuristics_miner,token_precision,0.9978404204491161,ok,higher,
+inductive_miner,alignment_precision,0.2926135820916598,ok,higher,
+heuristics_miner,alignment_precision,0.9975260764910404,ok,higher,
+inductive_miner,unfit_prefix_pct,0.0,ok,lower,
+heuristics_miner,unfit_prefix_pct,84.34869996867937,ok,lower,
+inductive_miner,generalization,0.9756702764431168,ok,higher,
+heuristics_miner,generalization,0.8610685792655115,ok,higher,
+inductive_miner,simplicity,0.6170212765957447,ok,higher,
+heuristics_miner,simplicity,0.48148148148148145,ok,higher,
+inductive_miner,nodes,87,ok,lower,
+heuristics_miner,nodes,143,ok,lower,
+inductive_miner,arcs,114,ok,lower,
+heuristics_miner,arcs,220,ok,lower,
+inductive_miner,cardoso,47,ok,lower,
+heuristics_miner,cardoso,108,ok,lower,
+inductive_miner,cyclomatic,1552,ok,lower,
+heuristics_miner,cyclomatic,,unbounded,lower,
+inductive_miner,cyclomatic_pm4py,2397,ok,lower,
+heuristics_miner,cyclomatic_pm4py,,not_applicable,lower,

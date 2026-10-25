@@ -1,0 +1,45 @@
+% Factual output; source results/tables/quality_metrics.json
+% Source SHA256: 316fda16a0f0877b7f1fb342541cb1ced289ddd6c0280a9320852b2a572bff1b
+% Additional source results/tables/dead_transition_audit.json; SHA256 b5fdf629b415cf7ac3b4ac4f2e459195e0f68ce4517471c8f26876e10509be62
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+Metric & IM & HM \\
+\midrule
+Token replay fitness & 1.0000 & 0.8334 \\
+Token mean trace fitness & 1.0000 & 0.8240 \\
+Token fitting cases (\%) & 100.00 & 0.00 \\
+Alignment fitness & 0.9998 & -- \\
+Alignment mean trace fitness & 1.0000 & -- \\
+Alignment fitting cases (\%) & 100.00 & -- \\
+Replay upper bound (\%) & 100.00 & 1.30 \\
+Token precision & 0.2926 & 0.9978 \\
+Alignment precision & 0.2926 & 0.9975 \\
+Unfit Align-ET prefixes (\%) & 0.00 & 84.35 \\
+Token generalization & 0.9757 & 0.8611 \\
+Arc-degree simplicity & 0.6170 & 0.4815 \\
+\midrule
+Nodes (own) & 87 & 143 \\
+Arcs (own) & 114 & 220 \\
+Extended Cardoso (own) & 47 & 108 \\
+Extended Cyclomatic (own) & 1552 & -- \\
+PM4Py Cyclomatic$^*$ & 2397 & -- \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{\linewidth}\scriptsize
+$--$: unavailable; HM Cyclomatic: unbounded state space.\\
+$^*$PM4Py 2.7.23.11: edge-name targets; own ECyM: marking targets.\\
+Complexity: smaller values; quality scores and coverage: larger values.\\
+Unfit-prefix share: smaller values; weighted nonempty prefixes.\\
+Replay upper bound: unreachable-activity certificates.\\
+Metric context~\cite{carmona2018conformance}; size~\cite{pedro2015simplification}; ECaM/ECyM~\cite{lassen2009complexity}.
+\end{minipage}
+\caption{Baseline metrics: 31,509 cases, 475,306 completed events.}
+\label{tab:baseline-quality}
+\end{table}
+% Author: explain the metric definitions, model limitations, and the PM4Py Cyclomatic discrepancy.
+% Definitions 13/15: Lassen and van der Aalst (2009), doi:10.1016/j.infsof.2008.08.005.
+% Size: de San Pedro et al. (2015), doi:10.1007/978-3-319-23063-4_30.

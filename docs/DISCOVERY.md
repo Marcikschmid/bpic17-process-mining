@@ -10,12 +10,41 @@ Aus dem Repository-Hauptordner:
 
 Das Skript lädt die verifizierte Originaldatei, bereitet eine gemeinsame Eingabe auf und führt **zwei unterschiedliche Algorithmen** aus. Kein einzelner Trace wird als Trainingsbeispiel ausgewählt: Alle Fälle gehen in die Discovery ein.
 
+Nur den Inductive Miner erneut starten:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_models.py --algorithm inductive
+```
+
+Dieser einzelne Lauf schreibt nach `results/runs/inductive/`: die Grafik nach `figures/inductive_miner.png` (auch SVG und PDF), das Modell nach `models/inductive_miner.pnml` und das Manifest nach `tables/discovery_manifest.json`. Der Ordner enthält jeweils den letzten einzelnen IM-Lauf und bleibt lokal. `--algorithm heuristics` startet entsprechend nur Heuristics Miner. Ohne Option werden beide Baselines wie bisher unter `results/` erzeugt. Ein abweichender Ausgabeordner kann mit `--output-dir results/runs/mein_lauf` gewählt werden.
+
+Nur den Heuristics Miner starten:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_models.py --algorithm heuristics
+```
+
+Dieser Lauf schreibt nach `results/runs/heuristics/`; die Grafik liegt dort unter `figures/heuristics_miner.png` (auch SVG und PDF), das Petri-Netz unter `models/heuristics_miner.pnml` und das Laufprotokoll unter `tables/discovery_manifest.json`.
+
 - `results/models/inductive_miner.pnml` und `heuristics_miner.pnml`: vollständige Petri-Netze mit Anfangs- und Endmarkierung; später für die Qualitätsbewertung wieder einlesbar.
 - `results/figures/inductive_miner.pdf` und `heuristics_miner.pdf`: vollständige Vektorgrafiken zum Zoomen; zusätzlich SVG, PNG und Graphviz-Quellen.
 - `results/tables/discovery_manifest.json`: tatsächliche Fall-/Eventzahlen, ausgeschlossene Lifecycle-Zustände, Aktivitätsnamen, Parameter, Versionen, Laufzeiten, Modellgrößen und Prüfsummen.
 - `report/figures/`: bewusst ausgewählte PDF-Kopien für den LaTeX-Anhang. Eine erneute Discovery verändert diesen Ordner nicht.
 
 Die Darstellung verkleinert ausschließlich Places und stille Transitionen und verwendet die unveränderten Aktivitätslabels. Keine Knoten oder Kanten werden zur Vereinfachung der Abbildung entfernt. Der Anhang verwendet für die vollständigen Modelle größere A3-Tafeln; Hauptteil und Parametertabellen bleiben A4.
+
+## Warum Petri-Netze statt BPMN?
+
+Discovery bezeichnet die Methode zum Entdecken eines Modells aus einem Event Log. Petri-Netze und BPMN sind unterschiedliche Modellierungssprachen. Die Ausgabe hängt vom Algorithmus und der aufgerufenen Funktion ab.
+
+| Verfahren | Interne Modellform | Ausgabe in unserem Code |
+|---|---|---|
+| Inductive Miner | Process Tree | Umwandlung in ein Petri-Netz mit Anfangs- und Endmarkierung |
+| Heuristics Miner CLASSIC | Heuristics Net | Umwandlung in ein Petri-Netz mit Anfangs- und Endmarkierung |
+
+PM4Py bietet für Inductive Miner auch `discover_bpmn_inductive()` als BPMN-Ausgabe. Unsere zwei Baselines verwenden dieselbe Modellform für die spätere Qualitätsbewertung. Das finale Modell soll gemäß Assignment in BPMN 2.0 vorliegen; die Entdeckungsmodelle im Anhang können Petri-Netze sein. Ein Wechsel der Darstellung allein ist noch keine Modellverfeinerung.
+
+Quelle: [Offizielle PM4Py-API: Discovery](https://processintelligence.solutions/app/pm4py/api/api/pm4py.discovery.html). Die hier verwendeten lokalen Implementierungen stehen in `pm4py/discovery.py` und `pm4py/algo/discovery/heuristics/variants/classic.py` der gepinnten Installation.
 
 ## Gemeinsame Datenaufbereitung
 
@@ -48,13 +77,31 @@ Keine stochastische Suche und kein Sampling; kein algorithmischer Random Seed. P
 
 ## Prüfung und nächste Aufgabe
 
+Der zusätzliche Vergleich unter `results/tables/discovery_comparison_audit.json` bestätigt die gleiche Eingabe, alle Artefakt-Prüfsummen und die aus PNML unabhängig gezählten Modellgrößen. Beide Modelle enthalten dieselben 24 sichtbaren Aktivitäten; IM besitzt 29 stille Transitionen und 114 Kanten, HM 70 stille Transitionen und 220 Kanten.
+
+Eine gezielte Ausführungsprüfung mit PM4Pys Petri-Netz-Semantik zeigt einen Verhaltensunterschied: Der erste Originalfall `Application_652823628` mit 14 Completion-Events erreicht im IM-Modell die Endmarkierung. Im HM-Modell blockiert er beim dritten sichtbaren Event `A_Concept`, nach `A_Create Application` und `A_Submitted`. Fall-ID und die gesamte Completion-Sequenz wurden direkt gegen die komprimierte Original-XES geprüft. Zusätzliche Präfixprüfungen wurden unabhängig per XML-basierter Zustandsraumsuche und anschließend mit PM4Py gegengeprüft; stille Übergänge werden dabei berücksichtigt.
+
+Dies ist eine konkrete Gegenprobe für die aktuelle HM-Baseline, keine Messung der Gesamt-Fitness oder des Anteils replaybarer Fälle und keine allgemeine Aussage über Heuristics Miner. Ein erfolgreicher Datei-Export garantiert keine hohe Modellqualität. Die Modelle und Parameter bleiben für den anschließenden systematischen Vergleich unverändert.
+
 Das Skript liest jedes exportierte PNML erneut ein und vergleicht Knoten, Aktivitätslabels, gewichtete Kanten sowie Anfangs- und Endmarkierungen. Die Tests unter `tests/` schützen vor Fallverlust, veränderter Reihenfolge und fehlerhaften Pflichtfeldern:
 
 ```powershell
+.\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe scripts/check_setup.py
 ```
 
-Knoten- und Kantenzahlen sind **noch keine Simplicity-Metriken**. Fitness, Precision, Generalization, Simplicity und der Anteil vollständig replaybarer Cases sind für diese Baselines noch nicht berechnet. Die Modelle sind noch keine Auswahl des finalen Simulationsmodells. Das später geforderte finale BPMN-2.0-Modell und Decision Mining folgen in weiteren Aufgaben.
+Diese drei Prüfungen wurden am 2026-10-17 erfolgreich ausgeführt: keine Paketkonflikte, drei bestandene Tests sowie erfolgreiche Import-, Graphviz-, PNG-, Notebook-Format- und Kernel-Registrierungsprüfungen. Die Unit-Tests prüfen die gemeinsame Datenaufbereitung; sie sind kein vollständiger Korrektheitsbeweis für PM4Py oder die gesamte Anwendung.
+
+Für einen vollständigen neuen Discovery-Lauf mit beiden Verfahren und eigener Ergebnisablage:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_models.py --output-dir results/runs/review
+```
+
+Aufgabe 3.3.1 ist erfüllt: zwei unterschiedliche Verfahren wurden angewendet und beide Modelle sind im LaTeX-Anhang eingebunden. Die Umsetzung von 3.3.2 ist in `docs/EVALUATION.md` beschrieben; die zusätzliche optimale HM-Alignment-Fitness ist noch offen. Rohdatenstatistik: `docs/STATISTICS.md`; finales Strukturmodell: `docs/REFINEMENT.md`; Decision Mining und seine Grenzen: `docs/DECISION_MINING.md`.
+
+Die ursprüngliche Discovery-Tabelle enthält lediglich Strukturzahlen. Die separate Qualitätsbewertung ergänzt literaturbasierte Komplexitätsmaße und PM4Py-Qualitätsmetriken (`docs/EVALUATION.md`). Die Discovery-Baselines, das verfeinerte Strukturmodell und das experimentelle Modell mit gelernten Guards bleiben getrennt; die Guards sind noch keine validierten Regeln für eine realistische Simulation.
 
 ## Primärquellen
 

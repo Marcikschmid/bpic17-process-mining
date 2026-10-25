@@ -1,0 +1,46 @@
+{
+  "model": "heuristics_miner",
+  "job": "alignment",
+  "model_sha256": "d1cbbe639ab8d8501dde1fd78fd3d18a0e2243fef29a60fde0fd1190e1cd73e6",
+  "pm4py_version": "2.7.23.11",
+  "parameters": {
+    "pm4py:param:activity_key": "concept:name",
+    "show_progress_bar": false,
+    "multiprocessing": false,
+    "cleaning_token_flood": false,
+    "max_align_time_trace": 60,
+    "max_align_time": 1200
+  },
+  "created_utc": "2026-10-17T10:59:04.281288+00:00",
+  "implementation_sha256": {
+    "scripts/evaluate_models.py": "2679be586d9f7163fb8dc507df5ca8c623c24e2f8fb5d33a9eb39fe38eceb7da",
+    "src/simplicity.py": "7e63ca88f0164b3a22f19486a9da1830ace934bc0dce6b0fc3bc594738318061",
+    "src/discovery.py": "0ed96ff7b0d83958e0371a91f980cf321ab5616ca43b9428e186dbefa587ef68",
+    "src/quality.py": "57e0f90e1cf0ff22dce2610d133eff75a011a2b01a98c6897902b3efc078f679"
+  },
+  "cases": 31509,
+  "events": 475306,
+  "variants": 5623,
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "variant": "VERSION_STATE_EQUATION_A_STAR",
+  "evaluated_cases": 21501,
+  "status": "incomplete",
+  "fitness": null,
+  "reason": "Missing alignments; no subset average reported.",
+  "seconds": 1300.651,
+  "additional_attempts": [
+    {
+      "started_utc": "2026-10-17T11:28:52.7002730Z",
+      "reason": "No complete result returned within the supplementary computation budget.",
+      "alignment_workers": 8,
+      "process_elapsed_seconds": 3974.9999001,
+      "ended_utc": "2026-10-17T12:35:07.7001731Z",
+      "status": "stopped_after_supplementary_budget",
+      "nominal_budget_seconds": 3600,
+      "results_returned": false,
+      "max_align_time_trace": 120,
+      "numeric_threads": 2
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "metrics_sha256": "6e2dbf09f0630f4d55ffc61b9f2041114d15cd54740dc0000adfef2b0271ac6f",
+  "baseline_quality_sha256": "316fda16a0f0877b7f1fb342541cb1ced289ddd6c0280a9320852b2a572bff1b",
+  "artifacts": {
+    "iteration_metrics.csv": "c520d6ae86088e1b97cede5d14c390f8b53db45b73ebfc43f01bac7025dc0017",
+    "literature_comparison.json": "5b4b29d75f8ed7abf79102d54223deb804a379550a96cd6549372b42812a73e3",
+    "literature_comparison.tex": "b0cbdaa3e6ff4d290a55ec3543ef7a00bada62400b88ebc9d79b97231beb2920",
+    "refined_quality.tex": "e692345c958f1e30025e928ede722776a0179403e2136a46c2126837f5a2db35",
+    "refinement_summary.md": "b173c38491598a3f886f51c29060cef5ed42e09300e1026eb046c0d32fc97398",
+    "refinement_tradeoff.pdf": "91f3943bab03bd2aa44b33a35a36ad2c6f447048f17b578f5144ed9ec3c33d41",
+    "refinement_tradeoff.png": "d977f0773f3628f32a88c7eb5ec907e26b1bb2c3fde68905e825bd9fa6208f89",
+    "refinement_tradeoff.svg": "f93adb9dffed121ef5d1795bac063ad0b608484f0e81526d942d1ec21968ed84"
+  }
+}

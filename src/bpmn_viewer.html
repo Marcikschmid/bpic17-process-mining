@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BPIC-17 | Verfeinertes BPMN-Modell</title>
+<link rel="stylesheet" href="/.tools/bpmn-js/dist/assets/diagram-js.css">
+<link rel="stylesheet" href="/.tools/bpmn-js/dist/assets/bpmn-js.css">
+<link rel="stylesheet" href="/.tools/bpmn-js/dist/assets/bpmn-font/css/bpmn.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:#172b42;font:14px system-ui,sans-serif}
+header{background:#123551;color:white;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+h1{font-size:21px;font-weight:650;margin:0 0 4px}header p{margin:0;color:#c7dce9;font-size:13px}
+.badge{border:1px solid #6e97b2;border-radius:20px;padding:7px 12px;white-space:nowrap;font-size:12px}
+nav{padding:12px 24px;background:white;border-bottom:1px solid #d9e1e8;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+button,.file{font:inherit;cursor:pointer;border:1px solid #c9d4df;background:white;color:#173b58;border-radius:5px;padding:7px 12px}
+button:hover,.file:hover{background:#eaf2f9}.file input{display:none}#state{margin-left:auto;color:#536777;font-size:12px}
+main{display:grid;grid-template-columns:minmax(0,1fr) 235px;height:calc(100vh - 140px);min-height:450px}
+#canvas{background:white;position:relative}aside{padding:23px 19px;border-left:1px solid #d9e1e8;overflow:auto}
+aside h2{font-size:13px;font-weight:600;margin:0 0 16px;text-transform:uppercase;letter-spacing:.06em}
+.metric{padding:0 0 17px;margin:0 0 17px;border-bottom:1px solid #d9e1e8}.metric strong{display:block;font-size:27px;margin:4px 0;color:#155f87}
+.metric span,aside p{font-size:12px;line-height:1.6;color:#526676}aside a{color:#155f87}#error{display:none;color:#a01f1f;background:#fff0f0;padding:20px}
+@media(max-width:760px){main{grid-template-columns:1fr;height:calc(100vh - 180px)}aside{display:none}header{padding:14px}.badge{display:none}nav{padding:10px}}
+</style>
+<header><div><h1>BPIC-17 · Verfeinertes Prozessmodell</h1><p>Assignment 3.3.3 · BPMN 2.0 · alle Fälle der Completion-Projektion</p></div><span class="badge">bpmn-js · lokal</span></header>
+<nav><a class="file" href="../decision_mining/viewer.html">BPMN mit XOR-Regeln</a><button id="fit">Einpassen</button><button id="in" aria-label="Vergrößern">+</button><button id="out" aria-label="Verkleinern">−</button><button id="xml">BPMN speichern</button><button id="svg">SVG speichern</button><label class="file">Modell öffnen<input id="open" type="file" accept=".bpmn,.xml"></label><span id="state">Modell wird geladen …</span></nav>
+<div id="error" role="alert"></div>
+<main><div id="canvas"></div><aside id="metrics"><h2>Geprüftes Originalmodell</h2><div class="metric">Vollständig replaybare Fälle<strong id="coverage"></strong><span id="cases"></span></div><div class="metric">PM4Py Align-ET-Präzision<strong id="precision"></strong><span>Ausgeschlossene Präfixe im Prüfbericht ausgewiesen.</span></div><div class="metric">Token-Generalization<strong id="generalization"></strong><span>Häufigkeitsmaß auf dem vollständigen Log.</span></div><p id="source"></p><p>Aufgaben, XOR-Entscheidungen und parallele Pfade sind im Modell sichtbar. Mausrad/Trackpad zum Navigieren; Elemente können lokal bearbeitet werden.</p><p><a href="./refinement_summary.md" target="_blank">Ergebnisse und Grenzen</a></p></aside></main>
+<script src="/.tools/bpmn-js/dist/bpmn-modeler.production.min.js"></script>
+<script>
+const info=MODEL_DATA;
+const modeler=new BpmnJS({container:'#canvas'});let loaded=false;
+const status=document.getElementById('state');
+function changed(message){document.getElementById('metrics').style.visibility='hidden';status.textContent=message;}
+modeler.on('commandStack.changed',()=>{if(loaded)changed('Bearbeitet · Kennzahlen müssen neu geprüft werden');});
+document.getElementById('coverage').textContent=info.coverage.fitting_percentage.toFixed(2)+' %';
+document.getElementById('cases').textContent=info.coverage.fitting_cases.toLocaleString('de-DE')+' von '+info.coverage.cases.toLocaleString('de-DE')+' Fällen';
+document.getElementById('precision').textContent=info.metrics.alignment_precision.precision.toFixed(4);
+document.getElementById('generalization').textContent=info.metrics.generalization.toFixed(4);
+document.getElementById('source').textContent='Modell: '+info.selected+' · Eingabe: 31.509 Fälle, 475.306 Events.';
+function download(text,name,type){const blob=new Blob([text],{type});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+document.getElementById('fit').onclick=()=>modeler.get('canvas').zoom('fit-viewport');
+document.getElementById('in').onclick=()=>{const c=modeler.get('canvas');c.zoom(c.zoom()*1.25);};
+document.getElementById('out').onclick=()=>{const c=modeler.get('canvas');c.zoom(c.zoom()/1.25);};
+document.getElementById('xml').onclick=async()=>download((await modeler.saveXML({format:true})).xml,'bpic17-refined.bpmn','application/xml');
+document.getElementById('svg').onclick=async()=>download((await modeler.saveSVG()).svg,'bpic17-refined.svg','image/svg+xml');
+document.getElementById('open').onchange=async(e)=>{const f=e.target.files[0];if(!f)return;loaded=false;await modeler.importXML(await f.text());modeler.get('canvas').zoom('fit-viewport');loaded=true;changed('Geöffnet: '+f.name+' · Kennzahlen müssen neu geprüft werden');};
+fetch('./final_model.bpmn').then(r=>{if(!r.ok)throw Error('BPMN-Datei fehlt');return r.text();}).then(async xml=>{const result=await modeler.importXML(xml);modeler.get('canvas').zoom('fit-viewport');loaded=true;status.textContent=result.warnings.length?'Geladen · '+result.warnings.length+' Hinweise':'Geprüftes Originalmodell geladen';window.bpmnReady=true;window.bpmnWarnings=result.warnings.map(x=>x.message);}).catch(error=>{const e=document.getElementById('error');e.style.display='block';e.textContent=error.message;status.textContent='Modell konnte nicht geladen werden';});
+</script>
+</html>

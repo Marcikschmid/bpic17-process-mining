@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "independent_reader": "stdlib gzip + ElementTree; no PM4Py or src.log_statistics reuse",
+  "all_raw_cases_checked": 31509,
+  "all_raw_events_checked": 1202267,
+  "variants_checked": 15930,
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "summary_sha256": "887992c3041d7cdf044af448af6e89a7bd94490e040037beaf0332daf6806931",
+  "case_rows_checked": true,
+  "variant_weights_checked": true,
+  "attribute_profiles_checked": true,
+  "moments_and_units_checked": true,
+  "verifier_sha256": "b2b2f4bad394a7b6610ca34b7306897b4b2e1c3b18d8ba3ae39966889989b9f5"
+}

@@ -1,0 +1,24 @@
+{
+  "inductive_miner": {
+    "complete_state_space_crosschecked": true,
+    "states": 484,
+    "sound": true,
+    "dead_transition_certificates_verified": 0
+  },
+  "heuristics_miner": {
+    "unboundedness_witness_verified_with_pm4py": true,
+    "pump_repetitions_checked": 2,
+    "dead_transition_certificates_verified": 12
+  },
+  "reported_numeric_scores_and_artifact_hashes_verified": true,
+  "all_alignment_fitness_values_available": false,
+  "incomplete_metrics": [
+    {
+      "model": "heuristics_miner",
+      "metric": "alignment_fitness",
+      "evaluated_cases": 21501,
+      "total_cases": 31509
+    }
+  ],
+  "quality_metrics_sha256": "316fda16a0f0877b7f1fb342541cb1ced289ddd6c0280a9320852b2a572bff1b"
+}

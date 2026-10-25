@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "report_pages": 41,
+  "report_sha256": "f1312fb01c9f21f80780e1533ea2bf7368e55861873521c9b1aa23bcf7615652",
+  "bpmn_shapes_fully_visible_in_panels": 77,
+  "overlapping_panels": 13,
+  "browser_import_warnings": 0,
+  "visible_xor_rules": 16,
+  "original_leaf_paths_verified": 117,
+  "compact_rule_paths": 44,
+  "existing_scientific_tests_passed": 42,
+  "visual_review": [
+    "BPMN panels 1 and 13",
+    "browser decision D03 with rules in annotation"
+  ],
+  "scientific_interpretation": "author pending"
+}

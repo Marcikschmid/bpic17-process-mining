@@ -1,0 +1,56 @@
+{
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "own_mean_case_days": 21.899605591087365,
+  "own_multiple_offer_cases": 8559,
+  "own_multiple_offer_percentage": 27.163667523564694,
+  "external_results": [
+    {
+      "title": "Stairway to Value",
+      "authors": "Rodrigues et al.",
+      "year": 2017,
+      "pages": [
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_academic.pdf",
+      "reported_fitness": 0.9728,
+      "reported_precision": 0.9872,
+      "model_versions": 19,
+      "removed_cases": 100,
+      "remaining_cases": 31409,
+      "comparable_exact_case_replay_percentage": null,
+      "scope": "Filtered cases; activity clustering used in model development; ProM replay and Align-ET; no direct numerical ranking against our completion projection"
+    },
+    {
+      "title": "BPIC 2017: Density Analysis of the Interaction With Clients",
+      "authors": "Povalyaeva et al.",
+      "year": 2017,
+      "pages": [
+        3,
+        4
+      ],
+      "url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_student.pdf",
+      "raw_cases": 31509,
+      "raw_events": 1202267,
+      "bpmn_software": "Celonis",
+      "reported_comparable_quality_metrics": null,
+      "scope": "BPMN structure as domain reference; application/offer perspectives; no matched quantitative conformance result used here"
+    },
+    {
+      "title": "Process mining on the loan application process of a Dutch Financial Institute",
+      "authors": "Blevi, Delporte, Robbrecht",
+      "year": 2017,
+      "pages": [
+        2,
+        3
+      ],
+      "url": "https://ais.win.tue.nl/bpi/2017/bpi2017_winner_professional.pdf",
+      "reported_mean_case_days_approx": 22,
+      "reported_multiple_offer_percentage_approx": 27,
+      "scope": "Approximate performance/frequency results; agreement checks, not model-quality scores"
+    }
+  ]
+}

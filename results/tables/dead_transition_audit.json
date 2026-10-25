@@ -1,0 +1,91 @@
+{
+  "method": "Nonnegative place subinvariants; exact rational verification of all inequalities",
+  "scipy": "1.18.1",
+  "models": {
+    "inductive_miner": {
+      "model_sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca",
+      "certified_dead_count_lower_bound": 0,
+      "complete_dead_transition_enumeration": false,
+      "activity_labels": [],
+      "certificates": {},
+      "unreachable_activity_labels": [],
+      "case_replay_upper_bound": {
+        "cases": 31509,
+        "provably_unfit_cases": 0,
+        "maximum_fitting_cases": 31509,
+        "maximum_fitting_percentage": 100.0,
+        "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d"
+      }
+    },
+    "heuristics_miner": {
+      "model_sha256": "d1cbbe639ab8d8501dde1fd78fd3d18a0e2243fef29a60fde0fd1190e1cd73e6",
+      "certified_dead_count_lower_bound": 12,
+      "complete_dead_transition_enumeration": false,
+      "activity_labels": [
+        "O_Refused",
+        "O_Sent (mail and online)"
+      ],
+      "certificates": {
+        "O_Refused": {
+          "intplace_O_Refused": "1"
+        },
+        "O_Sent (mail and online)": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        },
+        "hid_1": {
+          "intplace_A_Create Application": "1",
+          "intplace_A_Submitted": "1",
+          "source0": "1"
+        },
+        "hid_132": {
+          "intplace_O_Refused": "1"
+        },
+        "hid_133": {
+          "intplace_O_Refused": "1"
+        },
+        "hid_134": {
+          "intplace_O_Refused": "1"
+        },
+        "hid_45": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        },
+        "hid_8": {
+          "intplace_O_Refused": "1"
+        },
+        "hid_83": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        },
+        "hid_84": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        },
+        "hid_85": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        },
+        "hid_87": {
+          "intplace_O_Sent (mail and online)": "1",
+          "splace_in_O_Sent (mail and online)_O_Sent (mail and online)": "1"
+        }
+      },
+      "unreachable_activity_labels": [
+        "O_Refused",
+        "O_Sent (mail and online)"
+      ],
+      "case_replay_upper_bound": {
+        "cases": 31509,
+        "provably_unfit_cases": 31098,
+        "maximum_fitting_cases": 411,
+        "maximum_fitting_percentage": 1.3043892221270112,
+        "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d"
+      }
+    }
+  },
+  "implementation_sha256": {
+    "src/validation.py": "5c0900dc2daeed4b522f5241af76913cc6e612e38c0ef8cfb5f4028c1339eee9",
+    "scripts/audit_dead_transitions.py": "abf728f3236ff28ad01dd0df18182f7f5ee2e66358a6709007b07504a27632fd"
+  }
+}

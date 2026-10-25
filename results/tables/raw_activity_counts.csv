@@ -1,0 +1,27 @@
+activity,count
+A_Accepted,31509
+A_Cancelled,10431
+A_Complete,31362
+A_Concept,31509
+A_Create Application,31509
+A_Denied,3753
+A_Incomplete,23055
+A_Pending,17228
+A_Submitted,20423
+A_Validating,38816
+O_Accepted,17228
+O_Cancelled,20898
+O_Create Offer,42995
+O_Created,42995
+O_Refused,4695
+O_Returned,23305
+O_Sent (mail and online),39707
+O_Sent (online only),2026
+W_Assess potential fraud,3282
+W_Call after offers,191092
+W_Call incomplete files,168529
+W_Complete application,148900
+W_Handle leads,47264
+W_Personal Loan collection,22
+W_Shortened completion ,238
+W_Validate application,209496

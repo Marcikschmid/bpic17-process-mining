@@ -1,8 +1,9 @@
-"""Run both discovery baselines and export auditable PNML and vector figures.
+"""Run selected discovery baselines and export auditable PNML and vector figures.
 
 This command only writes results/. Selected report assets are copied separately.
 """
 
+import argparse
 import hashlib
 import json
 import os
@@ -36,10 +37,11 @@ def sha256(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def export_model(name, model):
+def export_model(name, model, output_dir=None):
     net, initial, final = model
-    models = ROOT / "results" / "models"
-    figures = ROOT / "results" / "figures"
+    output_dir = Path(output_dir) if output_dir is not None else ROOT / "results"
+    models = output_dir / "models"
+    figures = output_dir / "figures"
     models.mkdir(parents=True, exist_ok=True)
     figures.mkdir(parents=True, exist_ok=True)
     pnml = models / f"{name}.pnml"
@@ -92,6 +94,18 @@ def export_model(name, model):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--algorithm", choices=("both", "inductive", "heuristics"), default="both")
+    parser.add_argument("--output-dir", type=Path, help="Output directory within results/.")
+    args = parser.parse_args()
+    output = args.output_dir or (
+        ROOT / "results" if args.algorithm == "both" else ROOT / "results" / "runs" / args.algorithm
+    )
+    if not output.is_absolute():
+        output = ROOT / output
+    output = output.resolve()
+    if not output.is_relative_to((ROOT / "results").resolve()):
+        parser.error("--output-dir must be within the project's results/ directory.")
     dot = configure_runtime()
     if not dot:
         raise RuntimeError("Graphviz not found; run scripts/setup_graphviz.py first.")
@@ -109,6 +123,7 @@ def main():
     print(f"Discovery input: {len(log):,} cases, {preprocessing['discovery_events']:,} completed events.", flush=True)
     manifest = {
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "requested_algorithm": args.algorithm,
         "input": {"path": DEFAULT_LOG.relative_to(ROOT).as_posix(), "sha256": input_hash},
         "versions": {"python": platform.python_version(), "pm4py": version("pm4py"),
                      "graphviz_python": version("graphviz"),
@@ -127,19 +142,21 @@ def main():
         ("inductive_miner", "Inductive Miner (IM)", INDUCTIVE_PARAMETERS, discover_inductive),
         ("heuristics_miner", "Heuristics Miner (CLASSIC)", HEURISTICS_PARAMETERS, discover_heuristics),
     ):
+        if args.algorithm != "both" and not name.startswith(args.algorithm):
+            continue
         print(f"Running {algorithm}...", flush=True)
         before = perf_counter()
         model = discover(log)
         seconds = perf_counter() - before
-        result = export_model(name, model)
+        result = export_model(name, model, output_dir=output)
         result.update({"algorithm": algorithm, "parameters": parameters, "discovery_seconds": round(seconds, 3)})
         manifest["models"][name] = result
         print(f"Exported {name}: {result['places']} places, {result['transitions']} transitions, {result['arcs']} arcs ({seconds:.2f}s discovery).", flush=True)
     manifest["total_seconds"] = round(perf_counter() - start, 3)
-    tables = ROOT / "results" / "tables"
+    tables = output / "tables"
     tables.mkdir(parents=True, exist_ok=True)
     (tables / "discovery_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
-    print("Complete. See results/tables/discovery_manifest.json. Report assets were not changed.", flush=True)
+    print(f"Complete. See {tables / 'discovery_manifest.json'}. Report assets were not changed.", flush=True)
 
 
 if __name__ == "__main__":

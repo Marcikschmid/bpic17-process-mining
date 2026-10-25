@@ -2,7 +2,65 @@
 \input{tables/discovery_setup}
 
 \clearpage
+\subsection{Raw Event Log Attribute Profile}
+\label{app:raw-statistics}
+\input{tables/raw_attribute_profile}
+
+\clearpage
+\subsection{Raw Event Log Distributions}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.84\textheight,keepaspectratio]{figures/raw_log_overview.pdf}
+  \caption{Raw log: case length, elapsed case duration, lifecycle frequencies and cumulative variant coverage; all 31,509 cases and 1,202,267 events.}
+  \label{fig:raw-log-overview}
+\end{figure}
+
+\clearpage
+\subsection{Raw Activity Frequencies}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.84\textheight,keepaspectratio]{figures/raw_activity_frequencies.pdf}
+  \caption{Event counts for all 26 raw activity labels and all lifecycle states; trailing space explicitly marked.}
+  \label{fig:raw-activity-frequencies}
+\end{figure}
+
+\clearpage
+\subsection{Model Refinement}
+\label{app:refinement}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{figures/refinement_tradeoff.pdf}
+  \caption{Forty refinement candidates: complete-case replay and exact prefix precision; all 31,509 cases; declared target band 78--82 percent.}
+  \label{fig:refinement-tradeoff}
+\end{figure}
+\input{tables/literature_comparison}
+% TODO: Write your own interpretation of the source comparison using docs/REFINEMENT.md.
+
+\clearpage
+\subsection{Baseline Quality Metrics}
+\label{app:quality}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{figures/quality_comparison.pdf}
+  \caption{Baseline quality metrics and fitting cases: completion projection, 31,509 cases, 475,306 events.}
+  \label{fig:baseline-quality}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{figures/simplicity_comparison.pdf}
+  \caption{Independent complexity measures: model size~\cite{pedro2015simplification}; Extended Cardoso and Extended Cyclomatic~\cite{lassen2009complexity}.}
+  \label{fig:baseline-simplicity}
+\end{figure}
+
+\clearpage
 % Larger appendix plates for legible complete models; the main report stays A4.
+\subsection{Held-out Decision Mining Results}
+\label{app:decisions}
+\input{tables/decision_metrics}
+% Interpret these facts yourself; see docs/DECISION_MINING.md.
+\clearpage
 \newgeometry{layoutwidth=297mm,layoutheight=420mm,margin=20mm,headheight=15pt,headsep=8mm,footskip=12mm}
 \setlength{\paperwidth}{297mm}
 \setlength{\paperheight}{420mm}
@@ -28,3 +86,21 @@
   \caption{Heuristics Miner (CLASSIC) baseline~\cite{pm4pyHeuristicsClassic}: Petri net, completion projection, dependency threshold 0.5.}
   \label{fig:heuristics-baseline}
 \end{figure}
+
+% Full refined BPMN in a large vector plate for readable task/gateway labels.
+\clearpage
+\newgeometry{layoutwidth=420mm,layoutheight=594mm,margin=20mm,headheight=15pt,headsep=8mm,footskip=12mm}
+\setlength{\paperwidth}{420mm}
+\setlength{\paperheight}{594mm}
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
+\onecolumn
+\subsection{Refined BPMN 2.0}
+\label{app:final-bpmn}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.91\textheight,keepaspectratio]{figures/final_bpmn.pdf}
+  \caption{Refined BPMN 2.0: 25,350 of 31,509 cases fully replayable (80.4532 percent); 21 tasks; IMf noise threshold 0.03; 60-percent frequent-variant discovery target.}
+  \label{fig:final-bpmn}
+\end{figure}
+\input{sections/decision_appendix}

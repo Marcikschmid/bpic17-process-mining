@@ -1,6 +1,8 @@
 * text=auto
 *.py text eol=lf
 *.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
 *.tex text eol=lf
 *.bib text eol=lf
 *.sty text eol=lf
@@ -13,3 +15,10 @@
 results/models/*.pnml -text whitespace=cr-at-eol
 results/figures/*.gv -text whitespace=cr-at-eol
 results/figures/*.svg -text whitespace=cr-at-eol
+# Checksummed generated artifacts must retain identical bytes on every platform.
+results/** -text whitespace=cr-at-eol
+report/tables/** -text whitespace=cr-at-eol
+report/sections/decision_appendix.tex -text whitespace=cr-at-eol
+src/*.html text eol=lf
+# Matplotlib emits intentional spaces in SVG path data; preserve checksums.
+results/**/*.svg -text -whitespace

@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "source_sha256": "ca987fb6ca246444ddc1fcad938c472267aa8f43fd9de1438494ca229eff19a2",
+  "xor_nodes": 32,
+  "xor_splits": 16,
+  "xor_merges": 16,
+  "rule_predictions_checked": 453820,
+  "flow_conditions_checked": 32,
+  "case_split_overlap": 0,
+  "guarded_replay_counts": {
+    "cases": 31509,
+    "structural": 25350,
+    "guarded": 3277
+  },
+  "reference_cost_checks": 24,
+  "raw_snapshot_rows_reconstructed": 453820,
+  "exported_guard_predicate_rows_checked": 453820
+}

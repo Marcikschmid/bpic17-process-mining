@@ -42,6 +42,9 @@ report/build/
 Thumbs.db
 desktop.ini
 tmp/
+results/runs/
+# Reproducible per-decision training rows; summaries, rules and audit stay tracked.
+results/decision_mining/observations/
 *.tmp
 
 # Downloaded third-party literature stays local; track source catalogues only

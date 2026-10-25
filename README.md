@@ -1,132 +1,134 @@
 # BPIC-17 Process Mining
 
-Gemeinsames Repository für Assignment I: Python-Analyse, Prozessmodelle und LaTeX-Bericht.
+[Public GitHub repository](https://github.com/Marcikschmid/bpic17-process-mining)
 
-GitHub: https://github.com/Marcikschmid/bpic17-process-mining
+Python implementation of Assignment I: event-log analysis, process discovery,
+conformance checking, model refinement and decision mining on the BPI Challenge
+2017 loan-application log. **Python 3.12.10** is the analysis language;
+**PM4Py 2.7.23.11** is the process-mining library. The LaTeX report is maintained
+separately in [`report/`](report/).
 
-## Arbeitsordner prüfen
+## Current status
 
-Öffne in VS Code den Repository-Hauptordner mit `.git`, `src/`, `report/` und dieser README. `git rev-parse --show-toplevel` zeigt den richtigen Arbeitsordner an. Nach einem Verschieben des Projekts muss der projektlokale Jupyter-Kernel neu registriert werden:
+| Assignment component | Available implementation and results |
+|---|---|
+| 3.2: log statistics | Full raw-log statistics and independent XML audit |
+| 3.3.1: process discovery | Inductive Miner and Heuristics Miner baselines |
+| 3.3.2: model quality | Four quality dimensions and independently implemented complexity measures; additional optimal HM alignment fitness remains incomplete |
+| 3.3.3: refinement | 40 candidates; selected BPMN structure replays 25,350/31,509 cases (80.45%) |
+| 3.3.4: decision mining | 16 XOR-split classifiers; rules visible directly in BPMN; separate test cases |
+| Report | Selected factual tables and figures; author-written interpretation still pending |
+| 3.4: advanced analysis | Not implemented |
 
-```powershell
-.\.venv\Scripts\python.exe -m ipykernel install --prefix .venv --name bpic17 --display-name "BPIC17 (.venv)"
-```
+**Structural coverage and guarded coverage are different.** The selected
+control-flow model reaches 80.45% whole-case replay without learned guards.
+Enforcing all learned guards yields 10.40% over all cases and **10.19% on the
+held-out test cases**. These statistical rules are not validated bank policy.
+See [refinement](docs/REFINEMENT.md), [decision mining](docs/DECISION_MINING.md)
+and the [assignment checklist](docs/CHECKLIST.md) for limitations and open work.
 
-## Struktur
+## Quick start on Windows
 
-- `1 Introduction/`, `2 Process Mining/`, `Allgemeines/`, `index.html`: unveränderte Kursunterlagen inklusive Aufgabenstellung und Originalvorlage.
-- `src/`: Python-Code für Analyse, Discovery, Qualitätsmetriken und Decision Mining.
-- `notebooks/`: explorative Untersuchungen.
-- `data/raw/`: heruntergeladener Originaldatensatz; lokal vorhanden, über das Download-Skript reproduzierbar.
-- `data/processed/`: aus dem Originaldatensatz erzeugte Arbeitsdaten.
-- `results/figures/`, `results/tables/`, `results/models/`: durch die Analyse erzeugte Ergebnisse.
-- `report/`: eigenständiges LaTeX-Projekt mit Berichtstexten und ausgewählten Abbildungen/Tabellen für die Abgabe.
-- `docs/`: Aufgabencheckliste, Arbeitsnotizen und Protokoll der KI-Nutzung.
-- `literature/`: separate Sammlung veröffentlichter BPIC-17-Analysen mit Quellenübersicht; heruntergeladene Originale bleiben lokal.
-- `scripts/download_data.py`: Download und Integritätsprüfung der Originaldaten.
-- `scripts/setup.ps1`: lokale Python-Umgebung und Graphviz reproduzieren.
-- `scripts/inspect_log.py`: vollständigen Log laden und eine Vorschau des ersten Falls exportieren.
+Prerequisites: Git and Python 3.12, available as `python`. The setup creates a
+local virtual environment, installs pinned dependencies, registers its notebook
+kernel and installs the checked portable Graphviz version. Full-log processing
+can require substantial memory; optimal alignments can run for a long time.
 
-Große Datensätze, virtuelle Umgebungen und LaTeX-Hilfsdateien werden nicht in Git gespeichert. Die Datenbeschaffung wird in `data/README.md` dokumentiert. Die vorhandenen Kursunterlagen sind dagegen vollständig enthalten.
-
-Die Codebasis ist in `docs/CODEBASE.md` erklärt. Der Berichtsbereich besitzt eine eigene Anleitung in `report/README.md`. Die Analyse liest aus `data/` und schreibt nach `results/`; für die Abgabe ausgewählte Ergebnisse werden bei Bedarf manuell nach `report/figures/` oder `report/tables/` kopiert. Der Bericht wird unabhängig von Python und Jupyter kompiliert.
-
-## Arbeitsablauf
-
-1. GitHub-Repository verbinden und den ersten Stand hochladen.
-2. BPIC-17 beschaffen und Quelle, Lizenz und Prüfsumme dokumentieren.
-3. Python-Umgebung einrichten und die tatsächlich verwendeten Paketversionen festhalten.
-4. Daten prüfen und einfache Event-Log-Statistiken berechnen.
-5. Discovery, Qualitätsbewertung und Modellverfeinerung durchführen.
-6. Decision Mining und gegebenenfalls die Advanced-Aufgabe bearbeiten.
-7. Eigene englische Berichtstexte parallel unter `report/sections/` schreiben.
-
-## Python-Umgebung
-
-Verwendet wird Python 3.12 in `.venv/`. Die direkten Abhängigkeiten stehen in `requirements.in`; `requirements.txt` hält die tatsächlich installierten Paketversionen fest. Enthalten sind PM4Py, pandas, matplotlib, scikit-learn, JupyterLab und ipykernel.
-
-Graphviz liegt als portable Windows-Version unter `.tools/graphviz/`. Python-Code aus `src/` ergänzt dessen Verzeichnis nur für den aktuellen Prozess zum Suchpfad. Das Skript `scripts/setup_graphviz.py` lädt das offizielle, auf https://graphviz.org/download/ verlinkte ZIP und prüft dessen veröffentlichte SHA-256-Prüfsumme. Quelle und Version stehen in `docs/graphviz_manifest.json`.
-
-Um die Umgebung auf Windows mit Python 3.12 nachzubauen:
+For a fresh checkout:
 
 ```powershell
+git clone https://github.com/Marcikschmid/bpic17-process-mining.git
+Set-Location bpic17-process-mining
 .\scripts\setup.ps1
 .\.venv\Scripts\python.exe scripts/download_data.py
-.\.venv\Scripts\python.exe scripts/inspect_log.py
 ```
 
-Das Setup registriert den Kernel **BPIC17 (.venv)** ausschließlich innerhalb von `.venv/`. Eine Aktivierung der virtuellen Umgebung oder eine globale Kernel-Installation ist nicht erforderlich. Die Paketliste wurde unter Windows mit Python 3.12 erstellt; unter anderen Betriebssystemen können zusätzliche Anpassungen erforderlich sein.
+For an existing checkout, start in the repository root containing `.git`, `src/`
+and `report/`. Check it with `git rev-parse --show-toplevel`.
 
-## Mit dem Notebook beginnen
+The pinned dependency set is in [`requirements.txt`](requirements.txt); direct
+dependencies are in [`requirements.in`](requirements.in). The setup is validated
+on Windows. Other platforms may need platform-specific dependency and Graphviz
+setup changes. PowerShell scripts are setup/build helpers; the analysis itself
+is Python. No database server is required: the input is a compressed XES log.
 
-Aus dem Repository-Hauptordner:
+### Explore the data in Jupyter
 
 ```powershell
 .\scripts\start_jupyter.ps1
 ```
 
-Oeffne den ausgegebenen `http://localhost:...`-Link im Browser. Das Startskript verwendet den gesamten Projektordner als Jupyter-Wurzel und oeffnet das Einstiegsnotebook. Es verzichtet auf die automatische HTML-Weiterleitungsseite. Das Terminal muss waehrend der Arbeit laufen; weitere Befehle gehoeren in ein zweites Terminal. Zum Beenden `Strg+C` druecken und die Rueckfrage bestaetigen. Eine Aktivierung der Umgebung ist nicht notwendig.
+Open the printed localhost URL, select **BPIC17 (.venv)** and run notebook cells
+from top to bottom. Keep the terminal running; use a second terminal for other
+commands. Stop Jupyter with `Ctrl+C`. Environment activation is optional because
+the commands use its Python executable directly.
 
-Alternativ direkt mit Python:
-
-```powershell
-.\.venv\Scripts\python.exe -m jupyterlab --no-browser --ServerApp.root_dir=. --ServerApp.default_url=/lab/tree/notebooks/01_getting_started.ipynb
-```
-
-Wähle den Kernel **BPIC17 (.venv)** und führe die Zellen der Reihe nach aus. Das Notebook zeigt Case-Attribute und die Events eines einzelnen Antrags. Der erste vollständige Import kann etwas Zeit und Arbeitsspeicher benötigen.
-
-Der unveränderte Log wird mit dem expliziten PM4Py-Importer `iterparse` als `EventLog` geladen. Das Einstiegsnotebook und der Importcheck filtern keine Lifecycle-Zustände oder Aktivitäten. `results/tables/import_summary.json` dokumentiert den Import und `results/tables/first_case.csv` enthält den ersten Fall in der gespeicherten Event-Reihenfolge. Die vollständige Analyse aus Abschnitt 3.2 folgt anschließend.
-
-Der erste Import wurde erfolgreich geprüft: **31.509 Cases**, **1.202.267 Events** und **26 unterschiedliche Aktivitätsnamen**. Die notwendigen Case-IDs, Aktivitätsnamen und Event-Zeitstempel sind im Importcheck vollständig vorhanden. Der erste vollständige Import dauerte auf diesem Rechner ungefähr zweieinhalb Minuten.
-
-Die Umgebung lässt sich jederzeit prüfen:
+After moving the project, register the project-local kernel again:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip check
-.\.venv\Scripts\python.exe scripts/check_setup.py
+.\.venv\Scripts\python.exe -m ipykernel install --prefix .venv --name bpic17 --display-name "BPIC17 (.venv)"
 ```
 
-## Zwei Discovery-Verfahren (Abschnitt 3.3, Aufgabe 1)
+### View the BPMN and its XOR decisions
+
+Install the local browser assets once, then start the server from the repository
+root and leave its terminal running:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/discover_models.py
+.\.venv\Scripts\python.exe scripts/setup_bpmn_viewer.py
+.\.venv\Scripts\python.exe -m http.server 8787 --bind 127.0.0.1
 ```
 
-Inductive Miner (IM, Noise Threshold 0.0) und Heuristics Miner (CLASSIC) verwenden dieselbe Completion-Projektion aller Fälle. Nur `complete`-Events gehen in die Discovery ein; der ursprüngliche Log bleibt unverändert. Parameter, Ausschlüsse und Grenzen sind in `docs/DISCOVERY.md` dokumentiert. Die Modelle liegen als PNML unter `results/models/`, die Abbildungen als PDF, SVG und PNG unter `results/figures/`; das Manifest steht unter `results/tables/discovery_manifest.json`.
+- [BPMN with visible XOR rules](http://127.0.0.1:8787/results/decision_mining/viewer.html)
+- [Decision trees and evaluation](http://127.0.0.1:8787/results/decision_mining/index.html)
+- [Original refined control-flow model](http://127.0.0.1:8787/results/refinement/index.html)
 
-Das Skript verändert `report/` nicht. Ausgewählte PDF-Kopien liegen separat unter `report/figures/` und sind im Anhang eingebunden. Fitness, Precision, Generalization, Simplicity und Case-Replay-Abdeckung sind anschließend zu berechnen.
+These localhost links work on your computer while its server is running.
+Use the gateway selector or zoom controls to inspect each decision. Static
+outputs are also available: [BPMN PDF](results/decision_mining/decision_bpmn.pdf),
+[BPMN XML](results/decision_mining/decision_model.bpmn) and
+[all decision blocks](results/decision_mining/decision_blocks.pdf).
 
-## LaTeX
+## Data and preprocessing
 
-Die Datei `Allgemeines/Assignment Template.imscc` ist ein ZIP-Archiv mit der originalen LaTeX-Vorlage. Ihre Klassen, Stile und Ressourcen liegen unter `report/`. Das Arbeitsdokument enthält zunächst nur die Gliederung und Kommentare; die ursprüngliche Vorlage bleibt im Archiv erhalten.
+Source: Boudewijn van Dongen, *BPI Challenge 2017*,
+[dataset DOI](https://doi.org/10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b).
+The download script verifies the original files against publisher metadata;
+[`data/manifest.json`](data/manifest.json) records their checksums and provenance.
+The original data and its terms are documented in [`data/README.md`](data/README.md).
 
-Mit einer lokalen TeX-Installation und Latexmk, aus dem Repository-Hauptordner:
+- Raw log: **31,509 cases**, **1,202,267 events**, **26 activity labels**.
+- Discovery/evaluation projection: completion events only, **475,306 events**,
+  **24 activity labels**, all 31,509 cases and their original event order retained.
+- The original compressed XES file stays unchanged. Raw statistics use all
+  lifecycle states; control-flow results use the documented completion projection.
 
-```powershell
-Set-Location report
-latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-Set-Location ..
-```
+Raw downloads, virtual environments, browser libraries, alignment checkpoints
+and bulky per-decision observations are excluded from Git. The repository tracks
+source code, manifests, selected models, summary tables and figures.
 
-Alternativ erledigt `.\report\build.ps1` den Build einschließlich des lokalen Perl-Suchpfads. Alle Berichtstexte, Abgabe-Abbildungen, Tabellen und die Build-Konfiguration liegen unter `report/`; die Python-Skripte gehören zum getrennten Analysebereich.
+## How Python and PM4Py are used
 
-Auf diesem Windows-Rechner ist Perl über Git for Windows verfügbar. Falls Latexmk meldet, dass Perl fehlt, ergänze vor dem Build für die aktuelle PowerShell-Sitzung:
+| Component | Main implementation |
+|---|---|
+| XES import | PM4Py `read_xes`, through [`src/event_log.py`](src/event_log.py) |
+| Discovery | PM4Py Inductive Miner and Heuristics Miner CLASSIC, in [`src/discovery.py`](src/discovery.py) |
+| Quality metrics | PM4Py token/alignment fitness, precision, generalization and arc-degree simplicity; [`scripts/evaluate_models.py`](scripts/evaluate_models.py) |
+| BPMN/PNML models | PM4Py process-tree conversion, import/export and Petri-net types |
+| Independent checks | Python implementations of complexity, exact replay and finite-state alignment/precision; compared with PM4Py references |
+| Decision rules | Alignment-derived input snapshots and scikit-learn CART; verified against PM4Py alignment costs |
+| Figures and viewer | Python/Matplotlib/Graphviz outputs; local bpmn-js interface |
 
-```powershell
-$env:PATH = 'C:\Program Files\Git\usr\bin;' + $env:PATH
-```
+The independently implemented simplicity measures satisfy the assignment's
+additional implementation requirement. PM4Py remains the core process-mining
+library; custom checks and optimizations are identified in the method documents.
 
-Bei einer frischen MiKTeX-Installation kann der erste Build zusätzliche LaTeX-Pakete benötigen. Der Paketinstaller lässt sich für den Build explizit aktivieren:
+## Reproduce analyses
 
-```powershell
-Set-Location report
-latexmk -pdf -pdflatex='pdflatex -enable-installer %O %S' -interaction=nonstopmode -halt-on-error main.tex
-Set-Location ..
-```
+Run commands from the repository root. Normal analysis/rendering writes to
+`results/` and ignored `tmp/`, without overwriting report sources.
 
-Die Ausgabe liegt unter `report/build/main.pdf`. Der ganze Ordner `report/` kann auch als LaTeX-Projekt verwendet werden; die TUM-Dateien und `latexmkrc` müssen dabei mitgenommen werden.
-
-## Rohdatenstatistik (Assignment 3.2)
+**Raw statistics (3.2):**
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/analyze_log.py
@@ -134,69 +136,86 @@ Die Ausgabe liegt unter `report/build/main.pdf`. Der ganze Ordner `report/` kann
 .\.venv\Scripts\python.exe scripts/verify_log_statistics.py
 ```
 
-Ergebnisse: [`results/tables/raw_log_statistics.md`](results/tables/raw_log_statistics.md).
-Die vollständige Rohdatei enthält 31.509 Fälle, 1.202.267 Events und 15.930
-Aktivitätsvarianten. Alle Pflichtstatistiken, Attributklassifikation und zusätzliche
-Häufigkeits-/Verteilungsanalysen sind in [`docs/STATISTICS.md`](docs/STATISTICS.md)
-erläutert. Ein unabhängiger XML-Audit hat alle Fälle und Events überprüft.
-Ausgewählte statische Tabellen und Abbildungen sind im getrennten LaTeX-Bericht.
-
-## Verfeinertes BPMN (Assignment 3.3.3)
-
-Das ausgewählte Modell erreicht **25.350/31.509 vollständig replaybare Fälle
-(80,4532 %)**. Definitionen, Iterationen, Qualitätswerte und der Vergleich mit
-veröffentlichten Originalberichten: [`docs/REFINEMENT.md`](docs/REFINEMENT.md).
-
-Die lokale Software bpmn-js zeigt das BPMN an und unterstützt Bearbeitung sowie
-BPMN-/SVG-Export. Einmalig bei fehlenden lokalen Bibliotheken:
+**Discovery (3.3.1):**
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/setup_bpmn_viewer.py
-.\.venv\Scripts\python.exe -m http.server 8787 --bind 127.0.0.1
+.\.venv\Scripts\python.exe scripts/discover_models.py
 ```
 
-Öffnen: <http://127.0.0.1:8787/results/refinement/index.html>.
-Ergebnisse: [`results/refinement/refinement_summary.md`](results/refinement/refinement_summary.md).
-Die Original-Baselines bleiben erhalten; ausgewählte Kopien stehen im Bericht.
+**Baseline quality (3.3.2):** full recomputation is described in
+[`docs/EVALUATION.md`](docs/EVALUATION.md). The optional optimal HM alignments
+are computationally expensive; completed variants are checkpointed and reused.
+No subset-average fitness is reported for the unfinished run. Existing results:
+[`quality_metrics.md`](results/tables/quality_metrics.md).
 
-## Abgabe
-
-Die Qualitätsbewertung der beiden Discovery-Baselines (Aufgabe 3.3.2) ist unter
-[`docs/EVALUATION.md`](docs/EVALUATION.md) beschrieben. Start:
+**Refinement (3.3.3):** the complete candidate sweep, parameters, data selection,
+export and verification commands are in [`docs/REFINEMENT.md`](docs/REFINEMENT.md).
+Prepare the full-log sequence cache before refinement or decision mining:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/evaluate_models.py
-.\.venv\Scripts\python.exe scripts/audit_dead_transitions.py
-.\.venv\Scripts\python.exe scripts/render_evaluation.py
-.\.venv\Scripts\python.exe scripts/verify_evaluation.py
+.\.venv\Scripts\python.exe scripts/evaluate_models.py --prepare
 ```
 
-Ergebnisse: `results/tables/quality_metrics.csv` und die Vergleichsgrafiken unter
-`results/figures/`. Die vollständige Rohdatenanalyse aus Abschnitt 3.2 ist getrennt unter
-[`docs/STATISTICS.md`](docs/STATISTICS.md) dokumentiert.
-
-`verify_evaluation.py` prüft standardmäßig auch vollständige Alignment-Fitness.
-Für einen dokumentierten unvollständigen Zusatzlauf erlaubt
-`--allow-incomplete-alignment` die Prüfung aller tatsächlich berichteten Werte;
-die Lücke bleibt im Audit ausdrücklich sichtbar.
-
-Der Bericht ist auf Englisch und umfasst höchstens fünf Seiten ohne Literatur und Anhang. Code und Parameter müssen nachvollziehbar sein; bei Zufallsverfahren sind Seeds festzuhalten. Bibliotheken und Werkzeuge werden entsprechend der Aufgabenstellung referenziert. Die KI-Nutzung wird unter `docs/AI_USAGE.md` protokolliert und später im Bericht deklariert. Ganze Berichtssätze oder Absätze sollen laut Aufgabenstellung nicht von GenAI erzeugt werden.
-
-## Git im Alltag
+**Decision mining (3.3.4):** starting from the committed refined BPMN and the
+prepared sequence cache:
 
 ```powershell
-git status
-git add <Dateien>
-git commit -m "Describe the completed change"
-git push
+.\.venv\Scripts\python.exe scripts/mine_decisions.py
+.\.venv\Scripts\python.exe scripts/render_decisions.py
+.\.venv\Scripts\python.exe scripts/verify_decisions.py
 ```
 
-Die Lizenzangaben in den übernommenen TUM-Dateien gelten für diese Dateien. Dieses Repository vergibt keine zusätzliche Lizenz für die Kursunterlagen.
-## Decision Mining (3.3.4)
+The case-wise train/test split uses seed **20261018**. All repetitions of a case
+stay in the same split. Parameters, feature availability, alignment ambiguity
+and export limitations are in [`docs/DECISION_MINING.md`](docs/DECISION_MINING.md).
 
-Alle 16 XOR-Splits haben erklärbare Entscheidungsbäume und geprüfte Bedingungen;
-16 XOR-Merges sind separat gekennzeichnet. [Methode und Grenzen](docs/DECISION_MINING.md).
-Bei laufendem lokalen Server: [Ergebnisse und Bäume](http://127.0.0.1:8787/results/decision_mining/index.html)
-und [BPMN mit Bedingungen](http://127.0.0.1:8787/results/decision_mining/viewer.html).
-Die experimentellen harten Guards erreichen 10,19 % vollständige Testfallabdeckung;
-die 80,45 % des bisherigen Modells beziehen sich auf dessen Struktur ohne Guards.
+## Validation
+
+```powershell
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe scripts/check_setup.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+The current suite contains 42 tests, covering preprocessing, metric calculations,
+case weighting, resumable alignments, model semantics and decision-input timing.
+Data-dependent audit scripts additionally verify complete-case coverage,
+checksums, exported rules and reference results. A full decision audit requires
+regenerating the ignored observation files with `mine_decisions.py` first.
+
+## Build the LaTeX report
+
+Install a TeX distribution with Latexmk and Perl, then run:
+
+```powershell
+.\report\build.ps1
+```
+
+Output: `report/build/main.pdf`. The build uses selected assets already under
+`report/`, so it does not require Python, the raw log or a rerun of the analyses.
+The build directory is ignored by Git. Report layout and asset selection are
+explained in [`report/README.md`](report/README.md).
+
+The report is in English with a maximum of five main pages, excluding references
+and appendix. Its scientific narrative and abstract remain the author's work.
+AI-assisted activity is recorded in [`docs/AI_USAGE.md`](docs/AI_USAGE.md).
+
+## Repository layout
+
+| Path | Purpose |
+|---|---|
+| `src/` | Reusable Python analysis, discovery, validation and decision-mining code |
+| `scripts/` | Python entry points and PowerShell setup/start helpers |
+| `tests/` | Automated tests on small examples and reference results |
+| `notebooks/` | Interactive data exploration |
+| `data/` | Data instructions, provenance and local raw/processed files |
+| `results/` | Generated models, tables, figures and audit records |
+| `report/` | Separate LaTeX project and deliberately selected result copies |
+| `docs/` | Method details, codebase guide, checklist and AI-use record |
+| `literature/` | Source catalogues; downloaded third-party material stays local |
+| `1 Introduction/`, `2 Process Mining/`, `Allgemeines/` | Original course materials |
+
+For module relationships, see [`docs/CODEBASE.md`](docs/CODEBASE.md).
+Existing licence notices in course materials and the TUM template remain in
+force; this repository does not assign a new licence to that material. Dataset
+terms and third-party software licences remain separate.

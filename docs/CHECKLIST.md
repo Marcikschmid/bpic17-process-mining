@@ -46,7 +46,7 @@
 ## Bericht und Reproduzierbarkeit
 - [ ] Englischer Bericht mit höchstens fünf Seiten ohne Literatur und Anhang.
 - [ ] Abstract in vier bis fünf selbst geschriebenen Sätzen.
-- [ ] Öffentlichen Repository-Link eintragen.
+- [x] Öffentlichen Repository-Link anklickbar im technischen LaTeX-Abschnitt eintragen.
 - [ ] Die bereits im Code dokumentierten Parameter und Random Seeds im Bericht erläutern.
 - [ ] Literatur, Tools, Packages und Datensatz korrekt referenzieren.
 - [ ] KI-Nutzung anhand des tatsächlichen Arbeitsprotokolls deklarieren.

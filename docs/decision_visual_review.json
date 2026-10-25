@@ -1,7 +1,7 @@
 {
   "status": "ok",
   "report_pages": 41,
-  "report_sha256": "f1312fb01c9f21f80780e1533ea2bf7368e55861873521c9b1aa23bcf7615652",
+  "report_sha256": "c7b9fd4a42628e6574598f01fe651073aca9eb83b3f4c479ff8f5473bbe1739c",
   "bpmn_shapes_fully_visible_in_panels": 77,
   "overlapping_panels": 13,
   "browser_import_warnings": 0,
@@ -11,7 +11,14 @@
   "existing_scientific_tests_passed": 42,
   "visual_review": [
     "BPMN panels 1 and 13",
-    "browser decision D03 with rules in annotation"
+    "browser decision D03 with rules in annotation",
+    "2026-10-25: main page 1, technical metadata and public repository footnote"
   ],
-  "scientific_interpretation": "author pending"
+  "scientific_interpretation": "author pending",
+  "public_repository_uri_checked": "https://github.com/Marcikschmid/bpic17-process-mining",
+  "technical_metadata_checked": {
+    "python": "3.12.10",
+    "pm4py": "2.7.23.11",
+    "dependency_check": "No broken requirements found"
+  }
 }

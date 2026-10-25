@@ -13,7 +13,7 @@ separately in [`report/`](report/).
 | Assignment component | Available implementation and results |
 |---|---|
 | 3.2: log statistics | Full raw-log statistics and independent XML audit |
-| 3.3.1: process discovery | Inductive Miner and Heuristics Miner baselines |
+| 3.3.1: process discovery | Inductive Miner and Heuristics Miner baselines; additional native Genetic experiment |
 | 3.3.2: model quality | Four quality dimensions and independently implemented complexity measures; additional optimal HM alignment fitness remains incomplete |
 | 3.3.3: refinement | 40 candidates; selected BPMN structure replays 25,350/31,509 cases (80.45%) |
 | 3.3.4: decision mining | 16 XOR-split classifiers; rules visible directly in BPMN; separate test cases |
@@ -26,6 +26,23 @@ Enforcing all learned guards yields 10.40% over all cases and **10.19% on the
 held-out test cases**. These statistical rules are not validated bank policy.
 See [refinement](docs/REFINEMENT.md), [decision mining](docs/DECISION_MINING.md)
 and the [assignment checklist](docs/CHECKLIST.md) for limitations and open work.
+
+## Parameters, design rationale and optimization
+
+- [Actual miner parameters, meanings and reasons](docs/MINER_PARAMETERS.md), including IM/IMf and HM settings.
+- [26 design decisions: alternatives, evidence and limitations](docs/DESIGN_DECISIONS.md).
+- [Printable parameter overview](results/parameters/miner_parameter_overview.pdf).
+- Third experiment: native PM4Py Genetic Miner, same full completion input,
+  explicit population/generation budget and seeds; `scripts/discover_genetic.py`.
+  [Completed comparison](results/genetic/comparison.md): 2/6 generations, token
+  fitness 0.7410, token precision 0.5970; certified unbounded, not selected.
+  [Model PDF](results/genetic/seed_20261025/figures/genetic_miner.pdf).
+  Export collision, correction and objective crosscheck are documented in D26.
+
+Recommendation: treat soundness and approximately 80% exact whole-case replay as
+conditions, then improve precision. An internally optimized Genetic fitness score
+is not a replacement for the four external quality dimensions. The current hard
+guards still fail the whole-case coverage target.
 
 ## Quick start on Windows
 
@@ -142,6 +159,20 @@ Run commands from the repository root. Normal analysis/rendering writes to
 .\.venv\Scripts\python.exe scripts/discover_models.py
 ```
 
+**Third exploratory algorithm (Genetic Miner):** after preparing the sequence
+cache with `scripts/evaluate_models.py --prepare`, run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_genetic.py
+.\.venv\Scripts\python.exe scripts/render_genetic_comparison.py
+.\.venv\Scripts\python.exe scripts/export_miner_overview.py
+```
+
+The native algorithm may stop early; fixed seeds and actual generations are
+recorded. These commands write under `results/` and companion `docs/` only.
+Report copies are selected explicitly by `scripts/select_miner_overview.py`
+and `scripts/select_genetic_report.py`.
+
 **Baseline quality (3.3.2):** full recomputation is described in
 [`docs/EVALUATION.md`](docs/EVALUATION.md). The optional optimal HM alignments
 are computationally expensive; completed variants are checkpointed and reused.
@@ -177,7 +208,7 @@ and export limitations are in [`docs/DECISION_MINING.md`](docs/DECISION_MINING.m
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-The current suite contains 42 tests, covering preprocessing, metric calculations,
+The current suite contains 45 tests, covering preprocessing, metric calculations,
 case weighting, resumable alignments, model semantics and decision-input timing.
 Data-dependent audit scripts additionally verify complete-case coverage,
 checksums, exported rules and reference results. A full decision audit requires

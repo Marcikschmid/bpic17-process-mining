@@ -1,0 +1,19 @@
+{
+  "selected": [
+    {
+      "source": "results/genetic/comparison.tex",
+      "selected": "report/tables/genetic_comparison.tex",
+      "sha256": "2bd29a8d5044563e04182c8541180fe4a4d25de6a22b3099d51d68e181cf7ea6"
+    },
+    {
+      "source": "results/genetic/comparison.pdf",
+      "selected": "report/figures/genetic_comparison.pdf",
+      "sha256": "298654f7a62255ea9ac918ec9d58925538ba4c08d8f3756afc38066281942f89"
+    },
+    {
+      "source": "results/genetic/seed_20261025/figures/genetic_miner.pdf",
+      "selected": "report/figures/genetic_miner.pdf",
+      "sha256": "9b0b00e0d04927c06cfe7a97ec33b0ca3ea511679f10a4b251962eabac246341"
+    }
+  ]
+}

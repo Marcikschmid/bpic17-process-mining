@@ -32,6 +32,8 @@ Dieses Arbeitsprotokoll dient als Grundlage für die spätere, eigene Nutzungser
 
 | 2026-10-25 | OpenAI Codex | Python 3.12.10 und PM4Py 2.7.23.11 anhand installierter Umgebung und tatsächlicher Aufrufe prüfen; Abhängigkeiten und Setup validieren; öffentliche README mit Einstieg, Daten, PM4Py-Verwendung, Reproduktion, Tests, Reporttrennung und offenen Punkten überarbeiten; klickbaren Repository-Link und faktische Python-/PM4Py-Angaben mit Tool-Fußnoten in LaTeX ergänzen; keine wissenschaftlichen Berichtssätze erzeugen | Offen |
 
+| 2026-10-25 | OpenAI Codex | Auf Nutzerwunsch vollständige Parameterübersicht und Begründungsprotokoll mit Alternativen, Evidenz, Trade-offs und offenen Grenzen erstellen; tatsächliche PM4Py-Implementierungen und Primärquellen prüfen; nativen Genetic Miner als dritten, vorab budgetierten Voll-Log-Versuch mit Python-/NumPy-/Hash-Seeds durchführen und vollständig auswerten; doppelte PNML-IDs unabhängig erkennen, Export korrigieren und interne Zielfunktion exakt reproduzieren; native Integrationstests ergänzen; Parameter-PDF, faktischen LaTeX-Anhang und Modellvergleich erzeugen; eigene wissenschaftliche Argumentation nicht als fertige Berichtssätze generieren | Offen |
+
 Für weitere Schritte die tatsächlich verwendeten Modelle, Prompts beziehungsweise Tätigkeiten und die eigene Prüfung ergänzen. Der technische Importcheck und die Vorschau eines Falls sind Vorarbeiten zur Analyse; wissenschaftliche Berichtstexte wurden nicht verfasst.
 
 Die Aufgabenstellung verlangt eine Nutzungserklärung. Für Schreibunterstützung erlaubt sie Verbesserungen von Präzision und Klarheit und untersagt das Generieren ganzer Sätze oder Absätze. Die Verantwortung für den Inhalt liegt beim Autor.

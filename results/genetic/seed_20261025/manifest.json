@@ -1,0 +1,280 @@
+{
+  "status": "ok",
+  "seed": 20261025,
+  "python_hash_seed": "20261025",
+  "started_utc": "2026-10-25T15:15:10.135486+00:00",
+  "pm4py": "2.7.23.11",
+  "parameters": {
+    "population_size": 10,
+    "elitism_rate": 0.1,
+    "crossover_rate": 1.0,
+    "mutation_rate": 0.01,
+    "generations": 6,
+    "elitism_min_sample": 2,
+    "activity_key": "concept:name",
+    "timestamp_key": "time:timestamp",
+    "case_id_key": "case:concept:name"
+  },
+  "method": "Unmodified PM4Py Genetic Miner CLASSIC; exploratory fixed evaluation budget",
+  "native_objective": "0.4 * average_trace_fitness + 0.6 * percentage_of_fitting_traces / 100",
+  "implementation_sha256": {
+    "src/genetic_miner.py": "570f00601d626bfbaa44993efe4d2046ed35f5133e6744bbd18cd10b7aa553fc",
+    "scripts/discover_genetic.py": "02d956bb1a767b1ed16797c7da3247fb391a4f13a610ddeb1dd98fe6a19dcb70"
+  },
+  "input": {
+    "identity": {
+      "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+      "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d"
+    },
+    "cases": 31509,
+    "events": 475306,
+    "activities": 24,
+    "native_timestamp_sort_preserves_all_case_sequences": true,
+    "csv_sha256": "c83472fe6a61ed375bf1fab715dd9511c3f23258ab724d9fe099b1f75e519c2c"
+  },
+  "discovery_seconds": 1460.533,
+  "model": {
+    "places": 37,
+    "transitions": 39,
+    "visible_transitions": 24,
+    "silent_transitions": 15,
+    "arcs": 87,
+    "activity_labels": [
+      "A_Accepted",
+      "A_Cancelled",
+      "A_Complete",
+      "A_Concept",
+      "A_Create Application",
+      "A_Denied",
+      "A_Incomplete",
+      "A_Pending",
+      "A_Submitted",
+      "A_Validating",
+      "O_Accepted",
+      "O_Cancelled",
+      "O_Create Offer",
+      "O_Created",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Call after offers",
+      "W_Call incomplete files",
+      "W_Complete application",
+      "W_Handle leads",
+      "W_Validate application"
+    ],
+    "initial_tokens": 1,
+    "final_tokens": 1,
+    "pnml_round_trip_verified": true,
+    "artifacts": {
+      "results/genetic/seed_20261025/models/genetic_miner.pnml": {
+        "bytes": 18980,
+        "sha256": "11c075cf59a413d436a8ef2d2622d6fcee75ec742791d434753d770d9fbfac45"
+      },
+      "results/genetic/seed_20261025/figures/genetic_miner.gv": {
+        "bytes": 18802,
+        "sha256": "51b2e3ed2a4a3fc933dec8dac6e86a1ae5bf5b562ea58638db60760433604329"
+      },
+      "results/genetic/seed_20261025/figures/genetic_miner.pdf": {
+        "bytes": 41769,
+        "sha256": "9b0b00e0d04927c06cfe7a97ec33b0ca3ea511679f10a4b251962eabac246341"
+      },
+      "results/genetic/seed_20261025/figures/genetic_miner.svg": {
+        "bytes": 49839,
+        "sha256": "ae564fd6d66df5f4e15d9a64aabd27b0457266788d9b7c3ccce03147979e68c5"
+      },
+      "results/genetic/seed_20261025/figures/genetic_miner.png": {
+        "bytes": 107229,
+        "sha256": "c6ca1ed8dc795b518ad04c2e1f0be02582e14d8125ec83ec28aeb21a1ff9934a"
+      }
+    }
+  },
+  "evaluated_generations": 2,
+  "native_best_objective": 0.30489724447042077,
+  "metrics": {
+    "cases": 31509,
+    "events": 475306,
+    "token_fitness": {
+      "perc_fit_traces": 0.0,
+      "average_trace_fitness": 0.7622431111760518,
+      "log_fitness": 0.7410038399930755,
+      "percentage_of_fitting_traces": 0.0
+    },
+    "token_fitting_cases": 0,
+    "generalization": 0.9828113047577256,
+    "arc_degree_simplicity": 0.7755102040816327,
+    "size": {
+      "nodes": 76,
+      "arcs": 87
+    },
+    "extended_cardoso": 43,
+    "token_precision": 0.5969738779651789,
+    "reachability": {
+      "status": "unbounded",
+      "states_seen": 20,
+      "state_pairs_seen": 20,
+      "seconds": 0.004,
+      "limits": {
+        "max_states": 30000,
+        "timeout_seconds": 90
+      },
+      "value": null,
+      "witness": {
+        "place_order": [
+          "p_2176283254832",
+          "p_2176283254880",
+          "p_2176283255120",
+          "p_2176283255168",
+          "p_2176283255216",
+          "p_2176283255312",
+          "p_2176283255408",
+          "p_2176283255552",
+          "p_2176283255648",
+          "p_2176283255696",
+          "p_2176283255744",
+          "p_2176283255936",
+          "p_2176283255984",
+          "p_2176283256032",
+          "p_2176283256128",
+          "p_2176283256224",
+          "p_2176283256320",
+          "p_2176283256416",
+          "p_2176283256512",
+          "p_2176283256608",
+          "p_2176283256896",
+          "p_2176283257136",
+          "p_2176283257232",
+          "p_2176283260256",
+          "p_2176283261120",
+          "p_2176283261216",
+          "p_2176283261360",
+          "p_2176283261600",
+          "p_2176283262032",
+          "p_2176283262080",
+          "p_2176283262224",
+          "p_2176283262272",
+          "p_2176283262368",
+          "p_2176283262464",
+          "p_2176283262800",
+          "p_2176283262848",
+          "p_2176283262896"
+        ],
+        "ancestor_marking": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "covering_marking": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "prefix": [
+          "t_2176283260544",
+          "t_2176283261840",
+          "t_2176283261792",
+          "t_2176283253968"
+        ],
+        "pump_sequence": [
+          "t_2176283261744",
+          "t_2176283261696",
+          "t_2176283261648",
+          "t_2176283260784",
+          "t_2176283261312",
+          "t_2176283252480"
+        ]
+      }
+    },
+    "exact_coverage": {
+      "status": "not_enumerated",
+      "reason": "unbounded"
+    },
+    "unboundedness_crosscheck": {
+      "unboundedness_witness_verified_with_pm4py": true,
+      "pump_repetitions_checked": 2
+    }
+  },
+  "total_seconds": 1491.867,
+  "export_correction": {
+    "cause": "Native Genetic converter assigned the same empty name to 15 silent transitions. PNML repeated IDs merged arc endpoints on import. Previous name-only signature failed to detect it.",
+    "source_graph": "audit/original_graph.gv",
+    "source_graph_sha256": "98a9208282d9821bf6b11de4e989e11bc4de3af3c0eb1081833f0f8a7f9a7c6c",
+    "method": "Lossless reconstruction from unique Graphviz object IDs, all 87 unit-weight arcs, 24 labels and initial/final marking symbols. Only identifiers changed.",
+    "script_sha256": "805652b7b782addd587b8a91a83ad333eedf68fb870d6e3d1a5f516cdc043509",
+    "corrected_exporter_sha256": "a121e6cc9a4c2d99bdf8d412a50b14d3aba6a56ecaefc41b741273dd6bdc2350",
+    "invalid_evaluation": "audit/INVALID_export_evaluation.json",
+    "invalid_scores_excluded": true,
+    "objective_after_reload": 0.30489724447042077,
+    "objective_difference": 0.0
+  }
+}

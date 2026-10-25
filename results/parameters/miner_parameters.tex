@@ -1,0 +1,78 @@
+% Factual configuration only; author-written rationale belongs in the main report.
+\clearpage
+\subsection{Shared Attribute Keys}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\hline
+Parameter & Value & Role \\
+\hline
+\texttt{activity\_key} & concept:name & Activity attribute \\
+\texttt{timestamp\_key} & time:timestamp & Timestamp attribute \\
+\texttt{case\_id\_key} & case:concept:name & Case identifier \\
+\hline
+\end{tabular}
+\caption{Actual configuration; PM4Py 2.7.23.11.}
+\end{table}
+\clearpage
+\subsection{Inductive Miner and Refinement}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\hline
+Parameter & Value & Role \\
+\hline
+\texttt{noise\_threshold} & 0.0 & Relative noise threshold \\
+\texttt{multi\_processing} & false & Parallel execution \\
+\texttt{disable\_fallthroughs} & false & Disable selected fall-throughs \\
+\texttt{final noise\_threshold} & 0.03 & Selected IMf noise \\
+\texttt{training\_coverage} & 0.6 & Frequent-variant training target \\
+\texttt{target coverage band} & [78, 82] & Exact whole-case target band (\%) \\
+\hline
+\end{tabular}
+\caption{Actual configuration; PM4Py 2.7.23.11.}
+\end{table}
+\clearpage
+\subsection{Heuristics Miner CLASSIC}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\hline
+Parameter & Value & Role \\
+\hline
+\texttt{variant} & CLASSIC & Algorithm variant \\
+\texttt{dependency\_thresh} & 0.5 & Dependency threshold \\
+\texttt{and\_measure\_thresh} & 0.65 & AND threshold \\
+\texttt{loop\_length\_two\_thresh} & 0.5 & Length-two loop threshold \\
+\texttt{min\_act\_count} & 1 & Minimum activity count \\
+\texttt{min\_dfg\_occurrences} & 1 & Minimum DFG edge count \\
+\texttt{dfg\_pre\_cleaning\_noise\_thresh} & 0.05 & Relative DFG pre-cleaning \\
+\hline
+\end{tabular}
+\caption{Actual configuration; PM4Py 2.7.23.11.}
+\end{table}
+\clearpage
+\subsection{Genetic Miner CLASSIC: Exploratory Trial}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\hline
+Parameter & Value & Role \\
+\hline
+\texttt{population\_size} & 10 & Population size \\
+\texttt{generations} & 6 & Maximum generations \\
+\texttt{elitism\_rate} & 0.1 & Elitism fraction \\
+\texttt{crossover\_rate} & 1.0 & Crossover probability \\
+\texttt{mutation\_rate} & 0.01 & Partition mutation probability \\
+\texttt{elitism\_min\_sample} & 2 & Parent tournament sample size \\
+\texttt{random / numpy seed} & 20261025 & Random seed \\
+\texttt{PYTHONHASHSEED} & 20261025 & Python hash seed \\
+\texttt{log\_csv} & evolution.csv & Generation log \\
+\hline
+\end{tabular}
+\caption{Actual configuration; PM4Py 2.7.23.11.}
+\end{table}

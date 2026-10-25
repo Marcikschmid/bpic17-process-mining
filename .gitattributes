@@ -22,3 +22,7 @@ report/sections/decision_appendix.tex -text whitespace=cr-at-eol
 src/*.html text eol=lf
 # Matplotlib emits intentional spaces in SVG path data; preserve checksums.
 results/**/*.svg -text -whitespace
+
+# Preserve the exact executed source bytes pinned by the historical Genetic audit.
+scripts/recover_genetic_export.py -text whitespace=cr-at-eol
+scripts/verify_genetic_trial.py -text whitespace=cr-at-eol

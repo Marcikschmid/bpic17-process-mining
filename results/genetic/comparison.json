@@ -1,0 +1,73 @@
+{
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "genetic_manifest_sha256": "fedc5f3222e8a6482bf79199bc23e230fd379944f0afd747a1767b91e94f13f0",
+  "rows": [
+    {
+      "model": "IM",
+      "training_cases": 31509,
+      "evaluation_cases": 31509,
+      "token_fitness": 1.0,
+      "token_fitting_percentage": 100.0,
+      "token_precision": 0.2926135820916598,
+      "generalization": 0.9756702764431168,
+      "simplicity": 0.6170212765957447,
+      "nodes": 87,
+      "cardoso": 47,
+      "exact_case_coverage": 100,
+      "sound": true,
+      "structure_status": "ok"
+    },
+    {
+      "model": "HM",
+      "training_cases": 31509,
+      "evaluation_cases": 31509,
+      "token_fitness": 0.8333817154416963,
+      "token_fitting_percentage": 0.0,
+      "token_precision": 0.9978404204491161,
+      "generalization": 0.8610685792655115,
+      "simplicity": 0.48148148148148145,
+      "nodes": 143,
+      "cardoso": 108,
+      "exact_case_coverage": null,
+      "sound": false,
+      "structure_status": "unbounded"
+    },
+    {
+      "model": "Genetic",
+      "training_cases": 31509,
+      "evaluation_cases": 31509,
+      "token_fitness": 0.7410038399930755,
+      "token_fitting_percentage": 0.0,
+      "token_precision": 0.5969738779651789,
+      "generalization": 0.9828113047577256,
+      "simplicity": 0.7755102040816327,
+      "nodes": 76,
+      "cardoso": 43,
+      "exact_case_coverage": null,
+      "sound": false,
+      "structure_status": "unbounded"
+    },
+    {
+      "model": "Refined IMf",
+      "training_cases": 18918,
+      "evaluation_cases": 31509,
+      "token_fitness": 0.9874756653243484,
+      "token_fitting_percentage": 81.62429781967057,
+      "token_precision": 0.5951685521879374,
+      "generalization": 0.9912109884248378,
+      "simplicity": 0.7007874015748031,
+      "nodes": 89,
+      "cardoso": 52,
+      "exact_case_coverage": 80.45320384652004,
+      "sound": true,
+      "structure_status": "ok"
+    }
+  ],
+  "notes": [
+    "Same full completion evaluation log, 31,509 cases; refined training set differs and is explicit.",
+    "Token-based scores do not establish soundness or exact case replay; see the explicit sound field.",
+    "A single small seeded Genetic run is exploratory; no globally best model is claimed.",
+    "Genetic net is provably unbounded (PM4Py witness crosscheck). Exact whole-case coverage is not enumerated; 0% token fitting is heuristic.",
+    "The original duplicate-ID export was corrected from its intact source graph; native objective reproduced exactly. Invalid initial scores are excluded."
+  ]
+}

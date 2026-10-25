@@ -39,6 +39,10 @@
 - [x] Harte Guards separat auf allen Fällen prüfen: 3.277/31.509 (10,40 %), im Test 963/9.453 (10,19 %); 80,45 % Strukturabdeckung nicht auf das Guard-Modell übertragen.
 - [ ] Die Eignung des guardangereicherten Modells als finale Simulationsbasis klären: schwache Regeln fachlich verbessern oder den Abdeckungsverlust und die Grenzen begründet diskutieren.
 
+- [x] Dritter Discovery-Versuch mit nativem Genetic Miner: gleicher vollständiger Completion-Log, Seeds, Budget, vier Qualitätsdimensionen und nachgeprüfter Unbeschränktheitsnachweis; keine unbelegte Gleichsetzung von Token-Replay und exakter Coverage.
+- [x] Tatsächliche Miner-Parameter einschließlich IM/IMf mit Bedeutung, Begründung und Grenzen als Markdown, PDF, JSON und faktische LaTeX-Tabellen bereitstellen.
+- [x] 26 Designentscheidungen mit Alternativen, Evidenz und offenen Grenzen im technischen Begleitprotokoll begründen; eigene Berichtsdiskussion bleibt offen.
+
 ## Advanced: eine Option auswählen
 - [ ] SAP Signavio: Abschnitt 3.3 wiederholen, Werkzeuge vergleichen und Simulation untersuchen.
 - [ ] ODER eine begründete Data-Science-Analyse: Hypothese, Methode, Ergebnis, Visualisierung und Interpretation für Prediction/Simulation/Optimierung.
@@ -47,8 +51,8 @@
 - [ ] Englischer Bericht mit höchstens fünf Seiten ohne Literatur und Anhang.
 - [ ] Abstract in vier bis fünf selbst geschriebenen Sätzen.
 - [x] Öffentlichen Repository-Link anklickbar im technischen LaTeX-Abschnitt eintragen.
-- [ ] Die bereits im Code dokumentierten Parameter und Random Seeds im Bericht erläutern.
+- [ ] Die faktischen Parametertabellen und Seeds sind im Anhang; zentrale Designentscheidungen im eigenen Bericht erläutern.
 - [ ] Literatur, Tools, Packages und Datensatz korrekt referenzieren.
 - [ ] KI-Nutzung anhand des tatsächlichen Arbeitsprotokolls deklarieren.
-- [ ] Bericht vollständig kompilieren und Abbildungen, Seitenumfang und Referenzen prüfen.
+- [x] Technischen Berichtsstand kompilieren und Abbildungen/Referenzen prüfen (47 Seiten einschließlich Anhang; eigene wissenschaftliche Texte noch offen).
 - [ ] Abschließende Reproduzierbarkeit prüfen und die aktuellen lokalen Änderungen committen und ins öffentliche Repository hochladen.

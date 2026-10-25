@@ -27,3 +27,14 @@
 % Discuss 16 XOR splits vs 16 merges, case-wise split, alignment ambiguity,
 % minority branches and the difference between structural and guarded coverage.
 % Per-gateway factual results and all decision blocks are in the appendix.
+
+% Design rationale map for your own discussion: docs/DESIGN_DECISIONS.md.
+% D01--D05: input projection, order, weighting and common Petri-net semantics.
+% D06--D11: IM/HM baseline defaults, Genetic budget/seeds and ordering check.
+% D12--D18: exact coverage vs fitness; precision under constraints; complexity
+% disagreements, frequent-variant training, rare-outcome bias and exclusions.
+% D19--D22: alignment ambiguity, availability/leakage, grouped split, CART
+% adaptation and the guard-coverage loss. D23--D25: execution/export/report choices.
+% No global-optimum, held-out-pipeline or simulation-validity claim is established.
+
+% D26: unique PNML IDs, lossless source-graph correction and independent native-objective replay.

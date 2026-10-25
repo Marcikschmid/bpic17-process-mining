@@ -1,0 +1,15 @@
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{lrrrrrrc}
+\hline
+Model & Train $n$ & Fitness & Precision & Gen. & Simp. & Exact (\%) & Sound \\
+\hline
+IM & 31,509 & 1.0000 & 0.2926 & 0.9757 & 0.6170 & 100.00 & True \\
+HM & 31,509 & 0.8334 & 0.9978 & 0.8611 & 0.4815 & -- & False \\
+Genetic & 31,509 & 0.7410 & 0.5970 & 0.9828 & 0.7755 & -- & False \\
+Refined IMf & 18,918 & 0.9875 & 0.5952 & 0.9912 & 0.7008 & 80.45 & True \\
+\hline
+\end{tabular}
+\caption{Full completion-log evaluation, 31,509 cases; token-based scores; exact case replay reported separately. Genetic Miner: native PM4Py CLASSIC, exploratory seeded budget~\cite{vdaalst2005genetic}. HM and Genetic: certified unbounded; exact coverage not enumerated (--).}
+\end{table}

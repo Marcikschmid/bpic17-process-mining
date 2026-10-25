@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "cases": 31509,
+  "events": 475306,
+  "artifact_hashes_checked": 12,
+  "source_graph_to_corrected_pnml": {
+    "nodes": 76,
+    "arcs": 87,
+    "labels_and_markings_equal": true
+  },
+  "native_objective_reproduced": 0.30489724447042077,
+  "unboundedness": {
+    "unboundedness_witness_verified_with_pm4py": true,
+    "pump_repetitions_checked": 2
+  },
+  "exact_case_coverage": "not enumerated; no exact 0% claim",
+  "manifest_sha256": "fedc5f3222e8a6482bf79199bc23e230fd379944f0afd747a1767b91e94f13f0",
+  "verifier_sha256": "be4a0a64c6ab342cf8b6f4152a3cf511ea2e7abde802950d78b9988e2d1c2467"
+}

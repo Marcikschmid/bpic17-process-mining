@@ -1,0 +1,17 @@
+{
+  "source_sha256": "fedc5f3222e8a6482bf79199bc23e230fd379944f0afd747a1767b91e94f13f0",
+  "artifacts": {
+    "audit/historical_exporter.py": "9824898b9e2215f69203891d166a94fbb42fdbb6cc418c9c7d6bedde91b5dc53",
+    "audit/historical_runner.py": "02d956bb1a767b1ed16797c7da3247fb391a4f13a610ddeb1dd98fe6a19dcb70",
+    "audit/INVALID_duplicate_ids.pnml": "9c4157a6e5893a1516a64cf0b60b714ca3967c861fe8d93193e0efbb9653c9bf",
+    "audit/INVALID_export_evaluation.json": "a2398784e4a8dbba7dc0c170e37af54d7734c52f1c6b296925089a2ac55850b6",
+    "audit/original_graph.gv": "98a9208282d9821bf6b11de4e989e11bc4de3af3c0eb1081833f0f8a7f9a7c6c",
+    "audit/README.md": "b258915dd0407c575d9e5f5f0028e85e4d204863ce149797ae3e2818036abef3",
+    "evolution.csv": "31b825628b7607767168c65a00c82e650513ab5ae2db7c34731773a8c24a6eb7",
+    "figures/genetic_miner.gv": "51b2e3ed2a4a3fc933dec8dac6e86a1ae5bf5b562ea58638db60760433604329",
+    "figures/genetic_miner.pdf": "9b0b00e0d04927c06cfe7a97ec33b0ca3ea511679f10a4b251962eabac246341",
+    "figures/genetic_miner.png": "c6ca1ed8dc795b518ad04c2e1f0be02582e14d8125ec83ec28aeb21a1ff9934a",
+    "figures/genetic_miner.svg": "ae564fd6d66df5f4e15d9a64aabd27b0457266788d9b7c3ccce03147979e68c5",
+    "models/genetic_miner.pnml": "11c075cf59a413d436a8ef2d2622d6fcee75ec742791d434753d770d9fbfac45"
+  }
+}

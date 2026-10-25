@@ -110,3 +110,22 @@ Die beiden Discovery-Abbildungen sind als ausgewählte Kopien in den Anhang eing
 - `scripts/select_decision_report.py`: geprüfte faktische Artefakte ausdrücklich nach `report/` übernehmen; von normaler Analyse und Rendering getrennt.
 - `tests/test_decision_mining.py`: Kostenvergleich mit PM4Py, Datenverfügbarkeit, Sprache und Guard-Replay.
 - Ablauf und Grenzen: `docs/DECISION_MINING.md`. Originalmodelle und bisherige Strukturkennzahlen bleiben getrennt; das experimentelle Guard-Modell erreicht im Test 10,19 % vollständige Fallabdeckung.
+
+
+## Zusätzlicher Genetic-Miner-Versuch und Parameterübersicht
+
+`src/genetic_miner.py` kapselt den nativen PM4Py-Algorithmus mit gespeicherten
+Parametern und Seeds. `scripts/discover_genetic.py` prüft den identischen Voll-Log-
+Input, startet den getrennten Hash-Seed-Prozess und nutzt den gemeinsamen Exporter
+in `scripts/discover_models.py`. Dieser vergibt in einer Modellkopie eindeutige
+Export-IDs, ohne das Verhalten oder sichtbare Aktivitätsnamen zu verändern.
+
+`render_genetic_comparison.py` vergleicht gespeicherte Messwerte; es trainiert
+keine Modelle. `export_miner_overview.py` liest die Konfiguration aus den beiden
+Discovery-Modulen und erzeugt Erklärungen unter `docs/` und Artefakte unter
+`results/parameters/`. Die beiden `select_*_report.py`-Schritte wählen ausdrücklich
+faktische Parameter-/Genetic-Artefakte für `report/` aus.
+
+Die einmalige historische Exportkorrektur ist in `recover_genetic_export.py`
+nachvollziehbar. `verify_genetic_trial.py` vergleicht unabhängig Graphkanten,
+Labels, Markierungen, Prüfsummen, native Zielfunktion und Unbeschränktheitsbeweis.

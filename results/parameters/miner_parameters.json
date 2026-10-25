@@ -1,0 +1,205 @@
+{
+  "pm4py": "2.7.23.11",
+  "groups": {
+    "common": [
+      {
+        "parameter": "activity_key",
+        "value": "concept:name",
+        "meaning": "Aktivitätslabel für alle Miner.",
+        "reason": "Originale Namen einschließlich Leerzeichen bleiben erhalten.",
+        "role": "Activity attribute"
+      },
+      {
+        "parameter": "timestamp_key",
+        "value": "time:timestamp",
+        "meaning": "Zeitstempelattribut; beim Genetic Miner auch für interne Sortierung verwendet.",
+        "reason": "Alle Fallsequenzen nach nativer Sortierung gegen dieselbe Completion-Projektion geprüft.",
+        "role": "Timestamp attribute"
+      },
+      {
+        "parameter": "case_id_key",
+        "value": "case:concept:name",
+        "meaning": "DataFrame-Schlüssel; im EventLog liegen IDs als Trace-Attribut concept:name vor.",
+        "reason": "Alle 31,509 Fall-IDs und Fallgewichte bleiben erhalten.",
+        "role": "Case identifier"
+      }
+    ],
+    "inductive": [
+      {
+        "parameter": "noise_threshold",
+        "value": 0.0,
+        "meaning": "Relative Rauschschwelle; 0 aktiviert IM, positive Werte IMf. Kein Anteil entfernter Fälle.",
+        "reason": "0 als Vergleichsbasis ohne zusätzlichen Rauschfilter; im finalen Modell 0.03 nach dokumentierter Kandidatensuche.",
+        "role": "Relative noise threshold"
+      },
+      {
+        "parameter": "multi_processing",
+        "value": false,
+        "meaning": "Parallele Ausführung des Miners. Kein fachlicher Filter.",
+        "reason": "False begrenzt Prozess-/Speicheraufwand und vereinfacht Fehlersuche. Kein Qualitätsoptimierungshebel.",
+        "role": "Parallel execution"
+      },
+      {
+        "parameter": "disable_fallthroughs",
+        "value": false,
+        "meaning": "False erlaubt zusätzliche Rückfallstrategien, wenn kein strukturierter Cut gefunden wird.",
+        "reason": "Standardstrategien bleiben verfügbar. True lässt hier weiterhin Empty-Trace-/Flower-Fallback zu; es garantiert keine höhere Präzision.",
+        "role": "Disable selected fall-throughs"
+      },
+      {
+        "parameter": "final noise_threshold",
+        "value": 0.03,
+        "meaning": "Rauschschwelle des gewählten IMf-Kandidaten, bei anderer Discovery-Trainingsmenge.",
+        "reason": "0.03 wurde in der Suche ausgewählt; kein Beweis einer generell optimalen 3-Prozent-Schwelle.",
+        "role": "Selected IMf noise"
+      },
+      {
+        "parameter": "training_coverage",
+        "value": 0.6,
+        "meaning": "Externer Frequenzfilter für das finale Modell; kein interner IM-Parameter.",
+        "reason": "Häufige Varianten als Discovery-Fokus. Tatsächlich 18,918 Fälle und 73 Varianten; Bewertung weiterhin auf allen 31,509 Fällen.",
+        "role": "Frequent-variant training target"
+      },
+      {
+        "parameter": "target coverage band",
+        "value": [
+          78,
+          82
+        ],
+        "meaning": "Eigenes Auswahlband für ungefähr 80 Prozent vollständig replaybare Fälle.",
+        "reason": "Operationalisierung der Aufgabenanforderung; keine Datenbereinigung und kein vom Datensatz vorgegebener Grenzwert.",
+        "role": "Exact whole-case target band (%)"
+      }
+    ],
+    "heuristics": [
+      {
+        "parameter": "variant",
+        "value": "CLASSIC",
+        "meaning": "Verwendete Heuristics-Miner-Variante; Ausgabe wird in ein Petri-Netz umgewandelt.",
+        "reason": "Festgelegte Vergleichsbasis. Ein exportiertes Workflow-Netz ist noch kein Soundness-Nachweis.",
+        "role": "Algorithm variant"
+      },
+      {
+        "parameter": "dependency_thresh",
+        "value": 0.5,
+        "meaning": "Mindest-Abhängigkeitsmaß für eine direkt folgende Relation.",
+        "reason": "0.5 ist die dokumentierte Baseline, nicht datenoptimiert. Höher ist strenger; seltene reale Pfade können entfallen.",
+        "role": "Dependency threshold"
+      },
+      {
+        "parameter": "and_measure_thresh",
+        "value": 0.65,
+        "meaning": "Schwelle für die Interpretation benachbarter Relationen als Parallelität.",
+        "reason": "0.65 als Bibliotheksstandard. Höhere Werte erschweren AND-Erkennung; keine globale Monotonie der Qualitätswerte.",
+        "role": "AND threshold"
+      },
+      {
+        "parameter": "loop_length_two_thresh",
+        "value": 0.5,
+        "meaning": "Schwelle zum Erkennen kurzer Schleifen wie A-B-A.",
+        "reason": "0.5 als Standard; kurze Wiederholungen sollen nicht durch reine Richtungsabhängigkeit verloren gehen.",
+        "role": "Length-two loop threshold"
+      },
+      {
+        "parameter": "min_act_count",
+        "value": 1,
+        "meaning": "Absolute Mindestanzahl beobachteter Events pro Aktivität.",
+        "reason": "1 vermeidet eine zusätzliche absolute Häufigkeitsselektion. Andere HM-Filter gelten trotzdem.",
+        "role": "Minimum activity count"
+      },
+      {
+        "parameter": "min_dfg_occurrences",
+        "value": 1,
+        "meaning": "Absolute Mindesthäufigkeit einer direkt folgenden Kante.",
+        "reason": "1 als permissive absolute Baseline; Dependency und relatives Pre-Cleaning können Kanten weiterhin entfernen.",
+        "role": "Minimum DFG edge count"
+      },
+      {
+        "parameter": "dfg_pre_cleaning_noise_thresh",
+        "value": 0.05,
+        "meaning": "Relative DFG-Bereinigung vor der Abhängigkeitsberechnung.",
+        "reason": "0.05 als expliziter Standard. Bezieht sich auf lokale Kantenhäufigkeiten, nicht auf fünf Prozent gelöschte Fälle.",
+        "role": "Relative DFG pre-cleaning"
+      }
+    ],
+    "genetic": [
+      {
+        "parameter": "population_size",
+        "value": 10,
+        "meaning": "Anzahl konkurrierender Modelle je Generation.",
+        "reason": "10 entspricht dem offiziellen kleinen Beispiel und hält den Voll-Log-Versuch bezahlbar; Default 500 wäre deutlich teurer.",
+        "role": "Population size"
+      },
+      {
+        "parameter": "generations",
+        "value": 6,
+        "meaning": "Obergrenze einschließlich der Anfangspopulation; native Frühstopps sind möglich.",
+        "reason": "6 gibt vorab maximal 60 Modellbewertungen in bis zu 6 Populationen vor. Explorationsbudget, keine Konvergenzgarantie.",
+        "role": "Maximum generations"
+      },
+      {
+        "parameter": "elitism_rate",
+        "value": 0.1,
+        "meaning": "Anteil unverändert übernommener bester Individuen; Anzahl ist round(rate * population_size).",
+        "reason": "0.1 erhält bei Population 10 genau ein Modell. Default 0.01 ergäbe bei diesem kleinen Budget null Eliten.",
+        "role": "Elitism fraction"
+      },
+      {
+        "parameter": "crossover_rate",
+        "value": 1.0,
+        "meaning": "Wahrscheinlichkeit zur Rekombination ausgewählter Eltern.",
+        "reason": "1.0 übernimmt den nativen Standard und kombiniert Eltern bei jeder entsprechenden Auswahl.",
+        "role": "Crossover probability"
+      },
+      {
+        "parameter": "mutation_rate",
+        "value": 0.01,
+        "meaning": "Wahrscheinlichkeit je Input-/Outputeintrag, vorhandene Nachbarn neu zu partitionieren.",
+        "reason": "0.01 übernimmt den Standard; dies ist nicht ein Prozent beliebig neu eingefügter Kanten.",
+        "role": "Partition mutation probability"
+      },
+      {
+        "parameter": "elitism_min_sample",
+        "value": 2,
+        "meaning": "Tatsächlich die Stichprobengröße der Eltern-Turnierauswahl; nicht die Zahl der Eliten.",
+        "reason": "2 hält bei Population 10 den Selektionsdruck moderat und ermöglicht mehr Elternvielfalt als der Default 5.",
+        "role": "Parent tournament sample size"
+      },
+      {
+        "parameter": "random / numpy seed",
+        "value": 20261025,
+        "meaning": "Kontrolliert Python-random und NumPy-Zufall.",
+        "reason": "Fixiert den konkreten Versuch. Ein Seed belegt keine Robustheit über mehrere Suchläufe.",
+        "role": "Random seed"
+      },
+      {
+        "parameter": "PYTHONHASHSEED",
+        "value": "20261025",
+        "meaning": "Fixiert Set-Reihenfolgen im separaten Python-Prozess.",
+        "reason": "Zusätzlich nötig, weil die Implementierung zufällig aus Set-basierten Pools zieht.",
+        "role": "Python hash seed"
+      },
+      {
+        "parameter": "log_csv",
+        "value": "evolution.csv",
+        "meaning": "Protokolliert die nativen Fitnesswerte je Population.",
+        "reason": "Unterscheidet geplante und tatsächlich durchgeführte Generationen sowie das interne Ziel von externen Qualitätsmetriken.",
+        "role": "Generation log"
+      }
+    ]
+  },
+  "sources": {
+    "src/discovery.py": "0ed96ff7b0d83958e0371a91f980cf321ab5616ca43b9428e186dbefa587ef68",
+    "src/genetic_miner.py": "570f00601d626bfbaa44993efe4d2046ed35f5133e6744bbd18cd10b7aa553fc"
+  },
+  "native_genetic_objective": {
+    "average_trace_fitness": 0.4,
+    "fraction_fitting_traces": 0.6
+  },
+  "optimization_recommendation": "Sound model and exact whole-case coverage near 80% first; then improve precision, with simplicity as tie-break and generalization as a diagnostic.",
+  "sources_urls": [
+    "https://processintelligence.solutions/app/pm4py/api/api/pm4py.discovery.html",
+    "https://processintelligence.solutions/pm4py/examples/process-discovery/",
+    "https://doi.org/10.1007/11494744_5"
+  ]
+}

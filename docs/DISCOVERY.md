@@ -108,3 +108,31 @@ Die ursprüngliche Discovery-Tabelle enthält lediglich Strukturzahlen. Die sepa
 - [Leemans, Fahland und van der Aalst (2013): Discovering block-structured process models from event logs: a constructive approach](https://research.tue.nl/en/publications/discovering-block-structured-process-models-from-event-logs-a-con-2/), DOI: 10.1007/978-3-642-38697-8_17.
 - [Offizieller PM4Py-Quellcode: Heuristics Miner CLASSIC](https://github.com/process-intelligence-solutions/pm4py/blob/release/pm4py/algo/discovery/heuristics/variants/classic.py).
 - Verwendete lokale PM4Py-Version und die tatsächlich aufgerufenen Parameter: `results/tables/discovery_manifest.json`. Die lokale, gepinnte Installation ist für diesen Lauf maßgeblich; der verlinkte Release-Branch kann sich ändern.
+
+
+## Dritter Versuch und begründete Parameterwahl (2026-10-25)
+
+Der native PM4Py Genetic Miner wurde auf derselben Completion-Projektion aller
+31.509 Fälle ausgeführt: Population 10, maximal 6 Generationen, tatsächlich 2;
+Seeds 20261025. Die vier externen Qualitätsdimensionen sind vollständig berechnet.
+Das Netz ist nachweislich unbeschränkt und wird nicht als finales Modell gewählt.
+Exakte Fallabdeckung ist für diesen Lauf nicht enumeriert; Token-Replay-Ergebnisse
+werden nicht als exakte Akzeptanz ausgegeben. Der PNML-Export wurde wegen mehrfacher
+nativer leerer Transitionsnamen korrigiert und gegen den ursprünglichen Graphen geprüft.
+
+- [Vergleich und Modell](../results/genetic/comparison.md)
+- [Alle Parameter: tatsächliche Werte, Bedeutung und Gründe](MINER_PARAMETERS.md)
+- [26 Designentscheidungen mit Evidenz und Grenzen](DESIGN_DECISIONS.md)
+- [Verifikationsprotokoll](genetic_verification.json)
+
+Reproduktionsbefehle nach Vorbereitung des Sequenz-Caches:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_genetic.py
+.\.venv\Scripts\python.exe scripts/render_genetic_comparison.py
+.\.venv\Scripts\python.exe scripts/export_miner_overview.py
+```
+
+`verify_genetic_trial.py` prüft zusätzlich den vorliegenden historischen Lauf
+gegen den erhaltenen Originalgraphen. `recover_genetic_export.py` dokumentiert
+nur dessen einmalige Exportreparatur; ein neuer Lauf benötigt diese Reparatur nicht.

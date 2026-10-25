@@ -38,7 +38,19 @@ def sha256(path):
 
 
 def export_model(name, model, output_dir=None):
+    # PNML IDs must be unique. Native Genetic Miner gives silent transitions
+    # the same empty name; normalizing identifiers preserves all behaviour.
+    from copy import deepcopy
+    model = deepcopy(model)
     net, initial, final = model
+    used = set()
+    for index, node in enumerate([*net.places, *net.transitions]):
+        if not node.name or node.name in used:
+            candidate = f"export_node_{index}"
+            while candidate in used:
+                candidate += "_"
+            node.name = candidate
+        used.add(node.name)
     output_dir = Path(output_dir) if output_dir is not None else ROOT / "results"
     models = output_dir / "models"
     figures = output_dir / "figures"

@@ -1,5 +1,6 @@
 % Factual appendix assets only. Author-written interpretation belongs in 04_process_model.tex.
 \input{tables/discovery_setup}
+\input{sections/miner_parameters}
 
 \clearpage
 \subsection{Raw Event Log Attribute Profile}
@@ -36,6 +37,16 @@
 \input{tables/literature_comparison}
 % TODO: Write your own interpretation of the source comparison using docs/REFINEMENT.md.
 
+\clearpage
+\subsection{Third Discovery Experiment: Genetic Miner}
+\label{app:genetic-quality}
+\input{tables/genetic_comparison}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.40\textheight,keepaspectratio]{figures/genetic_comparison.pdf}
+  \caption{Four external token-based quality dimensions; all 31,509 cases; refined IMf trained on 18,918 cases.}
+\end{figure}
+% TODO: Interpret the fixed exploratory budget and structural checks yourself.
 \clearpage
 \subsection{Baseline Quality Metrics}
 \label{app:quality}
@@ -85,6 +96,16 @@
   \includegraphics[width=\textwidth,height=0.90\textheight,keepaspectratio]{figures/heuristics_miner.pdf}
   \caption{Heuristics Miner (CLASSIC) baseline~\cite{pm4pyHeuristicsClassic}: Petri net, completion projection, dependency threshold 0.5.}
   \label{fig:heuristics-baseline}
+\end{figure}
+
+\clearpage
+\subsection{Genetic Miner (CLASSIC)}
+\label{app:genetic}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.86\textheight,keepaspectratio]{figures/genetic_miner.pdf}
+  \caption{Native PM4Py Genetic Miner CLASSIC~\cite{vdaalst2005genetic}: full completion projection; population 10; at most 6 generations; 2 evaluated; seed 20261025.}
+  \label{fig:genetic-miner}
 \end{figure}
 
 % Full refined BPMN in a large vector plate for readable task/gateway labels.

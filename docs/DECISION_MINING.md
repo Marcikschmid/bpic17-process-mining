@@ -3,7 +3,7 @@
 ## Ergebnis und Grenzen
 
 **Stand 2026-10-30:** Neu gerechnet auf dem finalen Modell nach den manuellen
-Änderungen G3+R3+R4 (`results/final/`, [MANUAL_EDITS.md](MANUAL_EDITS.md)). Der
+Änderungen G2+G3+R3+R4 (`results/final/`, [MANUAL_EDITS.md](MANUAL_EDITS.md)). Der
 Lauf vom 2026-10-18 auf dem verfeinerten IMf-Modell (16 Splits, 453.820
 Beobachtungen, Guards 3.277 / 31.509 = 10,40 %, Test 10,19 %) ist im Git-Verlauf erhalten.
 
@@ -11,11 +11,30 @@ Beobachtungen, Guards 3.277 / 31.509 = 10,40 %, Test 10,19 %) ist im Git-Verlauf
 1. **Verzweigungswahrscheinlichkeiten** ohne Daten: Häufigkeit je ausgehendem
    XOR-Fluss aus den optimalen Alignments, `results/decision_mining/branch_probabilities.{pdf,png,csv,tex}`
    (`scripts/render_branch_probabilities.py`). Schleifensplits zählen je Besuch.
-2. **Bedingungen** nach de Leoni/van der Aalst (2013) mit CART, wie unten beschrieben.
+2. **Bedingungen** nach de Leoni/van der Aalst (2013) mit CART, wie unten beschrieben,
+   in drei Merkmalsstufen (Tutorium, D35): nur Case-Attribute → + Event-Attribute
+   (Primärmodell, BPMN-Bedingungen) → + Feature Engineering.
 
-Alle **34 XOR-Gateways** des finalen BPMN sind erfasst: **17 Splits** mit gelernten
-Entscheidungsblöcken und **17 Merges** ohne Auswahlentscheidung. Die Regeln stammen
-aus **424.194 ausgerichteten Entscheidungsereignissen** aller 31.509 Fälle und
+| Stufe | Merkmale | Mittlere Balanced Accuracy (Test) | Splits über Zufallsniveau (1/Zweige) |
+|---|---|---:|---:|
+| A: Case | `ApplicationType`, `LoanGoal`, `RequestedAmount` | 0,514 | 5 / 18 |
+| B: Case + Event (primär) | + letzte synchronisierte Angebotswerte | 0,562 | 8 / 18 |
+| C: + Feature Engineering | + Anzahl Events/Angebote/`A_Incomplete`, Gateway-Besuche, Tage seit Fallbeginn, letzte Aktivität | 0,749 | 14 / 18 |
+
+Gleicher Fall-Split, gleiche CART-Parameter, gleiche Testfälle für alle Stufen
+(`results/decision_mining/feature_stages.{csv,tex}`). Feature Engineering = neue
+Eingangsgrößen aus Rohdaten ableiten, die Fachwissen kodieren; hier ausschließlich
+aus dem synchronisierten Präfix vor der Entscheidung (kein Leakage). Grenze: Verlaufs-
+merkmale beschreiben teils den Prozesszustand statt Geschäftsregeln.
+
+Modellwahl (Vorlesung 29.10., Folien 49/52): CART liefert direkt lesbare Regeln
+(Rozinat/van der Aalst 2006; de Leoni/van der Aalst 2013); neuronale Netze mit XAI
+(Park et al. 2023) oder Surrogatmodelle wären potenziell genauer, ihre Regeln aber
+weniger direkt. Die Bedingungen entsprechen Guards G(t) eines Colored Petri Net.
+
+Alle **36 XOR-Gateways** des finalen BPMN sind erfasst: **18 Splits** mit gelernten
+Entscheidungsblöcken (D14 mit drei Ausgängen) und **18 Merges** ohne Auswahlentscheidung.
+Die Regeln stammen aus **425.851 ausgerichteten Entscheidungsereignissen** aller 31.509 Fälle und
 5.623 Varianten. Wiederholte Schleifendurchläufe zählen als einzelne Entscheidungen.
 
 Die Ergebnisansicht bietet je Split einen grafischen Entscheidungsbaum, alle
@@ -23,7 +42,7 @@ Regelpfade, Häufigkeiten, Testkennzahlen und einen Vergleich mit der Mehrheitsk
 
 - <http://127.0.0.1:8787/results/decision_mining/index.html>
 - Interaktives BPMN: <http://127.0.0.1:8787/results/decision_mining/viewer.html>
-- `results/decision_mining/decision_blocks.pdf`: alle 17 Entscheidungsblöcke.
+- `results/decision_mining/decision_blocks.pdf`: alle 18 Entscheidungsblöcke.
 - `results/decision_mining/decision_model.bpmn`: separates BPMN mit experimentellen
   FEEL-Bedingungen und Textannotationen; `isExecutable=false`.
 - `results/decision_mining/decision_bpmn.pdf`: Vektorübersicht mit verknüpften Blöcken.
@@ -38,20 +57,20 @@ gegen sämtliche ursprünglichen Blattpfade sichert dieselbe Klassifikation.
 Die formalen Bedingungen in der BPMN-Datei bleiben unverändert.
 
 **Die Regeln sind keine validierten Geschäftsregeln der Bank.** Ihre Test-Accuracy
-liegt je Split zwischen 0,535 und 0,922. **9 von 17 Bäumen** sagen nur die
-Mehrheitsklasse vorher (Balanced Accuracy 0,5: D01, D04, D05, D06, D08, D09, D11,
-D12, D15); nur 7 Splits schlagen die Mehrheitsbaseline um mehr als 1 Prozentpunkt
-(D02, D03, D07, D10, D13, D14, D16; Balanced Accuracy 0,535–0,904).
+liegt je Split zwischen 0,534 und 0,922. **10 von 18 Bäumen** des Primärmodells sagen nur
+die Mehrheitsklasse vorher (Balanced Accuracy = 1/Zweige: D01, D02, D05, D06, D08, D09,
+D10, D13, D16, D18); nur 7 Splits schlagen die Mehrheitsbaseline um mehr als 1 Prozentpunkt
+(D03, D04, D07, D11, D12, D14, D15).
 Deshalb werden Accuracy, Macro-F1, Balanced Accuracy, Zweighäufigkeiten und
 nicht vorhergesagte Zweige gemeinsam ausgewiesen.
 
-Wird jeder Baum als harte Routingbedingung erzwungen, können **3.254 / 31.509 Fälle
-(10,33 %)** vollständig replayt werden. Im getrennten Test sind es **952 / 9.453
-(10,07 %)**; im Training 2.302 / 22.056 (10,44 %). Das wurde durch vollständiges
+Wird jeder Baum als harte Routingbedingung erzwungen, können **3.055 / 31.509 Fälle
+(9,70 %)** vollständig replayt werden. Im getrennten Test sind es **894 / 9.453
+(9,46 %)**; im Training 2.161 / 22.056 (9,80 %). Das wurde durch vollständiges
 guardabhängiges Tau-/NFA-Replay aller Fälle geprüft, mit allen erlaubten Pfaden,
 ohne Token-Einfügung und ohne Beschränkung auf das eine gewählte Alignment.
 
-Die **79,39 %** (25.016 Fälle) des finalen Modells betreffen das Kontrollflussmodell **ohne** diese Guards.
+Die **80,43 %** (25.343 Fälle) des finalen Modells betreffen das Kontrollflussmodell **ohne** diese Guards.
 Ursache des Verlusts: Mehrheitsbäume schließen Minderheitszweige deterministisch aus;
 für Simulation daher Wahrscheinlichkeiten aus Schritt 1 dort verwenden, wo ein Baum
 die Mehrheitsbaseline nicht schlägt (Hybrid nicht implementiert, offene Entscheidung).
@@ -89,9 +108,9 @@ folgt dem Paper; dies ist keine Behauptung einer identischen C4.5-Replikation.
 Start-/Endereignisse, XORs und parallelen Gateways in gewöhnliche P/T-Semantik.
 Sequenzflüsse werden zu Places. Jeder ausgehende XOR-Zweig erhält eine eigene,
 über stabile BPMN-IDs identifizierbare Transition. Unbekannte Konstrukte werden
-abgewiesen. Die 314 erreichbaren Markierungen sind vollständig enumeriert (Lauf 2026-10-18: 1.357).
+abgewiesen. Die 362 erreichbaren Markierungen sind vollständig enumeriert (Lauf 2026-10-18: 1.357).
 Die gesamte Kontrollflusssprache ist zum geprüften finalen PNML äquivalent
-(39 determinisierte Zustandspaare; vorher 57); es handelt sich nicht nur um einen Stichprobenvergleich.
+(43 determinisierte Zustandspaare; vorher 57); es handelt sich nicht nur um einen Stichprobenvergleich.
 
 `src/finite_alignment.py` berechnet mit Dijkstra für jede vollständige Variante
 ein optimales Alignment im Produkt aus Eventposition und Markierung. Kosten:
@@ -148,7 +167,7 @@ Macro-F1 umfasst alle strukturellen Zweige, einschließlich unvorhergesagter Kla
 Die Mehrheitsbaseline wird ausschließlich aus dem jeweiligen Training bestimmt.
 
 Blattpfade stehen mit voller Schwellengenauigkeit in JSON. Sie wurden für alle
-424.194 Beobachtungen gegen den trainierten Baum geprüft. Die Klassifikation
+425.851 Beobachtungen gegen den trainierten Baum geprüft. Die Klassifikation
 verwendet wie sklearn float32-Eingaben. FEEL exportiert entsprechende numerische
 Trennschwellen und explizite Nullbehandlung; dieser Export ist nicht in einer
 Workflow-Engine zertifiziert. Der Python-Guard-Replay verwendet die tatsächlich
@@ -159,6 +178,7 @@ BPMN `false`; das bedeutet **nicht**, dass dieser Ablauf fachlich unmöglich ist
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/mine_decisions.py
+.\.venv\Scripts\python.exe scripts/render_decision_stages.py
 .\.venv\Scripts\python.exe scripts/render_branch_probabilities.py
 .\.venv\Scripts\python.exe scripts/render_decisions.py
 .\.venv\Scripts\python.exe scripts/verify_decisions.py
@@ -178,7 +198,7 @@ Der Audit prüft alle Vorhersagen, alle Bedingungen, die Falltrennung und rekons
 sämtliche Snapshots aus der unveränderten Rohdatei.
 
 Die gesamte Suite besteht aus **42 bestandenen Tests**. Der abschließende Audit
-prüft zudem die numerischen exportierten Guard-Prädikate für sämtliche 424.194
+prüft zudem die numerischen exportierten Guard-Prädikate für sämtliche 425.851
 Beobachtungen; eine Zertifizierung in einer externen FEEL-Engine ist damit nicht
 verbunden. Nach rein grafischen Änderungen kann
 `scripts/verify_decisions.py --artifacts-only` die bestehenden wissenschaftlichen

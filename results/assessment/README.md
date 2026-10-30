@@ -23,7 +23,7 @@ Regenerate this file with `.\.venv\Scripts\python.exe scripts/render_assessment_
 | Record | Model file | State space | Sound | Woflan | Exact replay % | Token fitness | Alignment fitness | Token precision | Align-ET | Generalization | Arc degree | Nodes | Ext. Cardoso | ECyM | model_assessment.py |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `alpha_miner` | `results/alpha/alpha_miner.pnml` | unbounded (witness) | no (unbounded) | unsound | n/c | 0.4958 | n/c | 0.1259 | n/c | 0.9870 | 0.3920 | 49 | 34 | n/c | `4eb9d46b` |
-| `final_model` | `results/final/final_model.pnml` | bounded, 86 states | yes | sound | 79.39 | invalid | 0.9751 | invalid | 0.6974 | invalid | 0.7188 | 92 | 51 | 145 | `4eb9d46b` |
+| `final_model` | `results/final/final_model.pnml` | bounded, 94 states | yes | sound | 80.43 | invalid | 0.9786 | invalid | 0.6946 | invalid | 0.7101 | 98 | 55 | 166 | `4eb9d46b` |
 | `genetic_miner` | `results/genetic/seed_20261025/models/genetic_miner.pnml` | unbounded (witness) | no (unbounded) | unsound | n/c | 0.7410 | n/c | 0.5970 | n/c | 0.9828 | 0.7755 | 76 | 43 | n/c | `4eb9d46b` |
 | `heuristics_dep_0.5` | `results/heuristics/dep_0.5/model.pnml` | unbounded (witness) | no (unbounded) | unsound | n/c | 0.8334 | n/c | 0.9978 | n/c | 0.8550 | 0.4815 | 143 | 108 | n/c | `4eb9d46b` |
 | `heuristics_dep_0.7` | `results/heuristics/dep_0.7/model.pnml` | unbounded (witness) | no (unbounded) | unsound | n/c | 0.8334 | n/c | 0.9978 | n/c | 0.8549 | 0.4815 | 143 | 108 | n/c | `4eb9d46b` |

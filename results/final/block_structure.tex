@@ -2,13 +2,13 @@
 \hline
 Process-tree block & BPMN construct & Count \\
 \hline
-sequence $\rightarrow$ & sequence flows, no gateway & 9 \\
+sequence $\rightarrow$ & sequence flows, no gateway & 10 \\
 exclusive choice $\times$ & XOR split + XOR merge pair & 9 \\
-loop $\circlearrowleft$ & XOR merge (loop entry) + XOR split (exit or redo) pair & 8 \\
+loop $\circlearrowleft$ & XOR merge (loop entry) + XOR split (exit or redo) pair & 9 \\
 parallel $\wedge$ & AND split + AND join pair & 2 \\
-activity leaf & task & 23 \\
-tau leaf & no task; skip or redo path between gateways & 15 \\
+activity leaf & task & 25 \\
+tau leaf & no task; skip or redo path between gateways & 16 \\
 \hline
-\multicolumn{2}{l}{BPMN: tasks / XOR split+merge / AND split+join} & 23 / 17+17 / 2+2 \\
+\multicolumn{2}{l}{BPMN: tasks / XOR split+merge / AND split+join} & 25 / 18+18 / 2+2 \\
 \hline
 \end{tabular}

@@ -1,24 +1,25 @@
 {
-  "tree": "->( 'A_Create Application', X( tau, ->( 'A_Submitted', X( tau, 'W_Handle leads' ) ) ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( ->( 'O_Create Offer', 'O_Created' ), tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'W_Complete application' ) ), tau ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), +( X( tau, *( 'W_Validate application', tau ) ), ->( 'A_Validating', 'O_Returned', *( tau, ->( 'A_Incomplete', X( tau, 'W_Call incomplete files' ), X( tau, 'A_Validating' ) ) ), X( ->( 'O_Accepted', 'A_Pending', X( tau, *( 'O_Cancelled', tau ) ) ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ) ) ) ) )",
+  "tree": "->( 'A_Create Application', X( tau, ->( 'A_Submitted', X( tau, 'W_Handle leads' ) ) ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( ->( 'O_Create Offer', 'O_Created' ), tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'W_Complete application' ) ), tau ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), +( X( tau, *( 'W_Validate application', tau ) ), ->( 'A_Validating', 'O_Returned', *( tau, ->( 'A_Incomplete', X( tau, 'W_Call incomplete files' ), X( tau, 'A_Validating' ) ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), ->( 'O_Accepted', 'A_Pending', X( tau, *( 'O_Cancelled', tau ) ) ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ) ) ) ) )",
   "tree_operators": {
-    "activity leaf": 23,
+    "activity leaf": 25,
     "exclusive choice X": 9,
-    "loop *": 8,
+    "loop *": 9,
     "parallel +": 2,
-    "sequence ->": 9,
-    "tau leaf": 15
+    "sequence ->": 10,
+    "tau leaf": 16
   },
-  "bpmn_tasks": 23,
+  "bpmn_tasks": 25,
   "bpmn_distinct_task_labels": 21,
   "duplicated_task_labels": [
+    "A_Cancelled",
     "A_Validating",
     "O_Cancelled"
   ],
   "bpmn_gateways": {
     "AND merge": 2,
     "AND split": 2,
-    "XOR merge": 17,
-    "XOR split": 17
+    "XOR merge": 18,
+    "XOR split": 18
   },
   "mapping": {
     "sequence ->": "sequence flows, no gateway",
@@ -27,6 +28,6 @@
     "parallel +": "AND split + AND join pair",
     "tau leaf": "no task; skip or redo path between gateways"
   },
-  "expected_xor_pairs": 17,
+  "expected_xor_pairs": 18,
   "expected_and_pairs": 2
 }

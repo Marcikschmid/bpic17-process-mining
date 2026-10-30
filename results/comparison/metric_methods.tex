@@ -1,0 +1,17 @@
+\begin{tabular}{llrrrrp{0.20\textwidth}p{0.22\textwidth}l}
+\hline
+Criterion & Method & IM & HM & IMf & Final & Advantage & Limitation & Use here \\
+\hline
+Fitness & Token-based replay & 1.000 & 0.833 & 0.987 & invalid & fast; local diagnostics (missing/remaining tokens) & non-deterministic with silent transitions; token flooding; invalid with duplicate labels & baseline comparison only \\
+ & Alignment-based & 1.000 & n/c & 0.977 & 0.979 & optimal, deterministic cost; log/model moves as diagnostics & needs finite state space; HM run did not finish & reported fitness value \\
+ & Exact whole-case replay (\%) & 100.00 & $\leq$ 1.30 & 80.45 & 80.43 & directly 'share of cases represented' & binary per case; bounded nets only & constraint $\geq$ 80\% \\
+Precision & ETC (token-based) & 0.293 & 0.998 & 0.595 & invalid & fast & inherits token-replay problems; invalid with duplicate labels & baseline comparison only \\
+ & Align-ET (alignment-based) & 0.293 & n/c & 0.598 & 0.695 & prefixes from optimal alignments; deterministic & misleading on non-fitting nets (HM) & optimisation target \\
+Generalization & Token-based & 0.976 & 0.861 & 0.991 & invalid & standard formula 1 - mean(1/sqrt(n\_t)) & counts from token replay; invalid with duplicate labels & baseline comparison only \\
+ & Alignment-based counts & 0.976 & n/c & 0.991 & 0.988 & valid with duplicate labels & heuristic; tie-breaks between equal-cost alignments & guard rail (max. -0.01) \\
+Simplicity & Arc degree & 0.617 & 0.481 & 0.701 & 0.710 & normalised (higher = simpler) & ignores behaviour; flower model scores well & guard rail (max. -0.05) \\
+ & Size (nodes) & 87 & 143 & 89 & 98 & intuitive & counts silent routing nodes & guard rail (max. +25\%) \\
+ & Extended Cardoso & 47 & 108 & 52 & 55 & counts distinct choices per place & structural only & reported \\
+ & Extended Cyclomatic (ECyM) & 1,552 & n/c & 551 & 166 & behavioural complexity of the state space & bounded nets only & reported \\
+\hline
+\end{tabular}

@@ -12,28 +12,35 @@ O_Accepted,W_Validate application,13661
 A_Complete,W_Complete application,11952
 A_Complete,O_Sent (mail and online),11833
 W_Validate application,W_Validate application,9170
+W_Validate application,A_Cancelled,7717
 W_Validate application,O_Accepted,6556
+A_Validating,A_Cancelled,6257
 O_Sent (mail and online),W_Complete application,4174
 O_Sent (mail and online),W_Validate application,4093
 A_Incomplete,A_Denied,3900
 A_Denied,W_Validate application,2941
 W_Validate application,A_Denied,2654
 A_Pending,O_Cancelled,2365
+O_Returned,A_Cancelled,2204
+A_Incomplete,A_Cancelled,2183
 A_Validating,A_Denied,1651
-W_Call incomplete files,W_Validate application,1649
+W_Call incomplete files,A_Cancelled,1649
 W_Call incomplete files,O_Accepted,1649
 W_Call incomplete files,A_Incomplete,1649
+W_Call incomplete files,W_Validate application,1649
 W_Call incomplete files,A_Denied,1555
 O_Refused,O_Refused,1429
 A_Incomplete,W_Call incomplete files,1139
 A_Validating,W_Validate application,1127
 A_Pending,W_Validate application,1104
+O_Cancelled,W_Validate application,955
 W_Validate application,O_Returned,724
 A_Validating,A_Incomplete,721
 A_Incomplete,O_Accepted,686
 O_Refused,W_Validate application,672
+A_Cancelled,W_Validate application,638
 O_Created,O_Create Offer,603
-O_Cancelled,W_Validate application,511
+O_Cancelled,O_Cancelled,409
 A_Incomplete,A_Validating,328
 A_Validating,O_Accepted,292
 O_Sent (mail and online),A_Cancelled,254
@@ -41,7 +48,6 @@ O_Returned,A_Denied,195
 O_Returned,O_Accepted,175
 O_Sent (mail and online),A_Complete,108
 O_Sent (mail and online),A_Validating,104
-O_Cancelled,O_Cancelled,83
 O_Returned,W_Validate application,55
 O_Returned,A_Incomplete,55
 A_Complete,O_Create Offer,43

@@ -360,7 +360,7 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 
 ### D28: Precision als Optimierungsziel; Fitness als Bedingung; Generalization und Simplicity als Leitplanken
 
-- **Wahl:** Sound + 78–82 % exakte Fallabdeckung als Bedingung; Align-ET-Precision maximieren;
+- **Wahl:** Sound + 80–82 % exakte Fallabdeckung als Bedingung (bis 29.10.: 78–82 %, siehe D33); Align-ET-Precision maximieren;
   Leitplanken vor dem Screening fest: Alignment-Generalization −0,01, Arc-Degree −0,05, Knoten +25 %.
 - **Grund:** Simulationsbasis: nie beobachtetes Verhalten erzeugt unrealistische simulierte Fälle;
   IM hat bereits perfekte Fitness, aber Precision 0,293. Generalization/Simplicity sollen nicht
@@ -368,15 +368,16 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 - **Alternative/Preis:** Gewichtete Summe der vier Kriterien wäre ein Gewichtungsproblem ohne
   fachliche Begründung; reine Precision-Maximierung belohnt nicht-fittende Netze (HM 0,998).
 
-### D29: Manuelle Änderungen am Prozessbaum, Auswahl G3 + R3 + R4
+### D29: Manuelle Änderungen am Prozessbaum, Auswahl G2 + G3 + R3 + R4
 
 - **Wahl:** Sieben benannte Blockänderungen (R1–R4 einschränkend, G1–G3 verallgemeinernd) am
   IMf-Prozessbaum; alle 128 Kombinationen bewertet; vorab fixierte Regel (D28).
 - **Grund:** Einzelne Petri-Netz-Kanten zu ändern kann Soundness und Blockstruktur zerstören; der
   Prozessbaum garantiert beides, das Petri-Netz-Delta wird trotzdem je Kombination protokolliert.
   Wo geändert wird, bestimmen die Konformitätsdiagnosen (Escaping Edges, Log Moves).
-- **Ergebnis:** G3+R3+R4: Align-ET 0,598 → 0,697, exakte Abdeckung 80,45 % → 79,39 %,
-  Alignment-Generalization 0,9911 → 0,9899, 92 statt 89 Knoten, ECyM 551 → 145.
+- **Ergebnis:** G2+G3+R3+R4: Align-ET 0,598 → 0,695, exakte Abdeckung 80,45 % → 80,43 %,
+  Alignment-Generalization 0,9911 → 0,9880, 98 statt 89 Knoten, ECyM 551 → 166.
+  (Unter dem alten Band 78–82 %: G3+R3+R4 mit 79,39 % – durch D33 ersetzt.)
 - **Offen gelegt:** Leitplankenstufe zuerst auf Top 5, dann Top 10 begrenzt; alle Top-10 enthalten R1 und
   scheitern an der Generalization → Stufe läuft jetzt bis zum ersten bestandenen Kandidaten (Regel unverändert).
 - **Nachweis:** `docs/MANUAL_EDITS.md`, `results/manual_edits/screen.json`.
@@ -403,9 +404,55 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 - **Wahl:** Discovery (Top-Varianten bis 60 %, IMf 0,03) nur auf den 70 % Trainingsfällen des
   Decision-Mining-Splits wiederholen.
 - **Ergebnis:** identischer Prozessbaum (72 Varianten, 13.258 Fälle); exakte Abdeckung Training
-  80,49 % vs. Test 80,37 % → Discovery hängt nicht von den Testfällen ab.
+  80,49 % vs. Test 80,37 % (IMf), finales Modell 80,48 % vs. 80,32 % → Discovery hängt nicht von den Testfällen ab.
 - **Grenze:** Die manuellen Änderungen wurden auf allen Fällen bewertet; keine zeitliche Validierung.
 - **Nachweis:** `results/comparison/holdout_check.json`, `scripts/holdout_check.py`.
+
+### D33: „Mindestens 80 % aller Fälle“ statt „ungefähr 80 %“
+
+- **Anlass:** Vorlesung 29.10., Folie 36: „Your process model should represent at least 80% of all
+  cases and remain simple while ensuring generalization and precision.“
+- **Wahl:** Untergrenze des Auswahlbands 78 % → 80 %; Obergrenze 82 % unverändert (eigene Wahl:
+  nicht deutlich mehr als nötig abbilden, Precision und Einfachheit erhalten).
+- **Folgen:** IMf-Auswahl unverändert (kein anderer Kandidat in [80, 82]); manuelle Änderungen
+  G3+R3+R4 (79,39 %) → G2+G3+R3+R4 (80,43 %); Decision Mining neu gerechnet.
+- **Begründung „nicht 100 %“ (Tutorium):** 100 % Konformität ist nicht automatisch gut – seltene
+  Traces können Datenfehler sein und würden mitmodelliert. Beleg: IM 100 % Abdeckung, aber
+  Align-ET-Precision 0,293; 5.623 Varianten, die häufigsten 73 decken bereits 60 % der Fälle (18.918).
+- **Perspektiven (Folie 36):** akademisch: Soundness, Reproduzierbarkeit, Generalization (Held-out);
+  Beratung: Einfachheit, Verständlichkeit für Stakeholder, Blockstruktur/BPMN; Automatisierung/
+  Simulation: Precision (keine unbeobachteten Pfade) bei ausreichender Fitness, ausführbare Guards.
+
+### D34: Messverfahren je Qualitätskriterium – was verwendet, warum
+
+- **Wahl:** Fitness: exakte Fallabdeckung als Bedingung, Alignment-Fitness als Kennzahl, Token Replay
+  nur zum Vergleich. Precision: Align-ET statt ETC. Generalization: alignmentbasiert + Held-out.
+  Simplicity: Arc Degree, Größe, Extended Cardoso, ECyM gemeinsam.
+- **Grund (Folien 15, 20):** Token Replay ist bei stillen Transitionen/Schleifen nicht deterministisch
+  (HM: Fitness 0,833–0,836, Generalization 0,834–0,861 für dasselbe Netz) und bei doppelten Labels
+  nicht anwendbar (finales Modell: `invalid`); Alignments sind global optimal und erklärbar.
+- **Preis:** Alignments brauchen einen endlichen Zustandsraum; HM-Alignment-Lauf unvollständig.
+- **Nachweis:** `results/comparison/metric_methods.md`, Literatur: Rozinat/van der Aalst 2008,
+  van der Aalst/Adriansyah/van Dongen 2012, Rozinat 2010, Polančič/Cegnar 2017.
+
+### D35: Decision Mining in Merkmalsstufen; Feature Engineering
+
+- **Wahl (Tutorium):** pro XOR-Split drei Bäume mit identischem Split und identischen CART-Parametern:
+  (A) nur Case-Attribute, (B) Case + letzte bekannte Event-Attribute (Primärmodell, BPMN-Guards),
+  (C) B + Feature Engineering aus dem synchronisierten Präfix: Anzahl Events, Angebote, `A_Incomplete`,
+  Besuche desselben Gateways (Schleifenzähler), verstrichene Tage seit Fallbeginn, letzte Aktivität.
+- **Feature Engineering:** neue Eingangsgrößen aus Rohdaten ableiten, die fachliches Wissen kodieren
+  (Folie 48: Häufigkeiten, Zeitaggregate, jüngste Muster). Nur Information vor der Entscheidung →
+  kein Leakage; Log-Moves aktualisieren nichts (Test `test_engineered_features_use_only_the_synchronized_prefix`).
+- **Ergebnis:** mittlere Balanced Accuracy (Test) 0,514 → 0,562 → 0,749; Splits über Zufallsniveau
+  (1/Zweige) 5 → 8 → 14 von 18.
+- **Grenze:** Verlaufsmerkmale (Schleifenzähler, letzte Aktivität) beschreiben teils den Prozesszustand,
+  nicht Geschäftsregeln; Simulation braucht dann zustandsabhängiges Routing. Primärmodell bleibt B,
+  weil seine Regeln direkt als BPMN-Bedingungen lesbar sind.
+- **Modellwahl (Folien 49, 52):** CART wegen extrahierbarer Regeln (wie Rozinat/van der Aalst 2006,
+  de Leoni/van der Aalst 2013); Alternativen NN + XAI (Park et al. 2023) oder Surrogatmodell:
+  genauer, aber Regeln weniger direkt. Ausgabe entspricht Guards G(t) eines Colored Petri Net.
+- **Nachweis:** `results/decision_mining/feature_stages.{csv,tex}`, `decision_mining.json` (`stages`).
 
 ## Nächste Schritte nach wissenschaftlicher Priorität
 

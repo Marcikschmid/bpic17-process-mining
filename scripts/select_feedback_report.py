@@ -19,6 +19,8 @@ COPIES = {
     "results/manual_edits/guard_stage.tex": "tables/guard_stage.tex",
     "results/final/block_structure.tex": "tables/block_structure.tex",
     "results/comparison/final_quality.tex": "tables/final_quality.tex",
+    "results/comparison/metric_methods.tex": "tables/metric_methods.tex",
+    "results/decision_mining/feature_stages.tex": "tables/feature_stages.tex",
     "results/decision_mining/branch_probabilities.tex": "tables/branch_probabilities.tex",
     "results/final/final_bpmn.pdf": "figures/final_edited_bpmn.pdf",
     "results/decision_mining/branch_probabilities.pdf": "figures/branch_probabilities.pdf",

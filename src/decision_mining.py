@@ -12,6 +12,9 @@ NS={'b':BPMN,'di':'http://www.omg.org/spec/BPMN/20100524/DI',
     'dc':'http://www.omg.org/spec/DD/20100524/DC','edge':'http://www.omg.org/spec/DD/20100524/DI'}
 CASE_FIELDS=('ApplicationType','LoanGoal','RequestedAmount')
 EVENT_FIELDS=('CreditScore','FirstWithdrawalAmount','MonthlyCost','NumberOfTerms','OfferedAmount')
+# Feature engineering: aggregates of the synchronized prefix only (known before the decision).
+ENGINEERED=('eng_events_so_far','eng_offers_so_far','eng_incomplete_so_far','eng_gateway_visits','eng_elapsed_days')
+STAGES=('case','case_event','engineered')
 
 
 def bpmn_net(path):
@@ -63,14 +66,22 @@ Flow places make gateway-to-transition correspondence explicit, with no reductio
 def observations(events,case_attributes,alignment,choices):
     """Return snapshots of known inputs BEFORE the outgoing-flow transition."""
     state={f'case_{k}':case_attributes[k] for k in CASE_FIELDS if k in case_attributes}
-    result=[];latest=None
+    result=[];latest=None;seen=defaultdict(int);visits=defaultdict(int);first=last=None
     for step_index,move in enumerate(alignment['moves']):
         if move['transition'] in choices:
             gateway,flow=choices[move['transition']]
-            result.append({'gateway':gateway,'flow':flow,'features':state.copy(),
+            engineered={'eng_events_so_far':sum(seen.values()),'eng_offers_so_far':seen['O_Create Offer'],
+                        'eng_incomplete_so_far':seen['A_Incomplete'],'eng_gateway_visits':visits[gateway],
+                        'eng_last_activity':events[latest].get('concept:name','__NONE__') if latest is not None else '__NONE__'}
+            if first is not None:engineered['eng_elapsed_days']=(last-first)/86400
+            visits[gateway]+=1
+            result.append({'gateway':gateway,'flow':flow,'features':{**state,**engineered},
                            'alignment_step':step_index,'last_sync_event':latest})
         if move['kind']=='sync':
             latest=move['event_index'];event=events[latest]
+            seen[event.get('concept:name')]+=1
+            if event.get('time:timestamp') is not None:
+                last=event['time:timestamp'];first=last if first is None else first
             for k in EVENT_FIELDS:
                 if k in event and event[k] is not None:
                     value=event[k]
@@ -83,6 +94,20 @@ def encode_features(features):
     result={k:features.get(k,'__MISSING__') for k in ('case_ApplicationType','case_LoanGoal')}
     for k in ('case_RequestedAmount',*(f'event_{x}' for x in EVENT_FIELDS)):
         result[k]=float(features.get(k,-1));result[k+'_known']=int(k in features)
+    return result
+
+
+def encode_stage(features,stage):
+    """Feature sets compared per split: case only, case+event (primary), +engineered."""
+    if stage=='case_event':return encode_features(features)
+    if stage=='case':
+        result={k:features.get(k,'__MISSING__') for k in ('case_ApplicationType','case_LoanGoal')}
+        result['case_RequestedAmount']=float(features.get('case_RequestedAmount',-1))
+        result['case_RequestedAmount_known']=int('case_RequestedAmount' in features)
+        return result
+    result=encode_features(features)
+    for k in ENGINEERED:result[k]=float(features.get(k,-1))
+    result['eng_last_activity']=features.get('eng_last_activity','__NONE__')
     return result
 
 

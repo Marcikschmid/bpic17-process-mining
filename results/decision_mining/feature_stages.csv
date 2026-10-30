@@ -1,0 +1,19 @@
+split,branches,test,majority_accuracy,case_accuracy,case_event_accuracy,engineered_accuracy,case_balanced,case_event_balanced,engineered_balanced,engineered_features
+D01,2,3490,0.7926,0.7926,0.7926,0.9381,0.5,0.5,0.9604,eng_events_so_far eng_gateway_visits eng_offers_so_far
+D02,2,6592,0.7216,0.7216,0.7216,0.7216,0.5,0.5,0.5,eng_incomplete_so_far eng_last_activity=W_Call incomplete files event_CreditScore event_FirstWithdrawalAmount
+D03,2,9453,0.6507,0.8369,0.8369,0.8369,0.7668,0.7668,0.7668,case_ApplicationType=New credit case_LoanGoal=Unknown case_RequestedAmount
+D04,2,9453,0.7074,0.7074,0.7767,0.7767,0.5,0.825,0.825,case_ApplicationType=Limit raise event_CreditScore event_FirstWithdrawalAmount
+D05,2,6151,0.8288,0.8288,0.8288,0.8288,0.5,0.5,0.5,case_LoanGoal=Existing loan takeover case_LoanGoal=Home improvement case_LoanGoal=Not speficied case_RequestedAmount eng_elapsed_days
+D06,2,11021,0.8577,0.8577,0.8577,0.8577,0.5,0.5,0.5,case_ApplicationType=Limit raise case_LoanGoal=Remaining debt home event_CreditScore event_FirstWithdrawalAmount event_NumberOfTerms event_OfferedAmount
+D07,2,13279,0.5036,0.5284,0.5342,0.7365,0.5266,0.5346,0.737,case_LoanGoal=Car eng_last_activity=A_Incomplete eng_last_activity=O_Returned eng_last_activity=W_Validate application event_CreditScore event_MonthlyCost
+D08,2,6592,0.899,0.899,0.899,0.899,0.5,0.5,0.5,eng_elapsed_days eng_gateway_visits event_CreditScore event_FirstWithdrawalAmount event_MonthlyCost
+D09,2,445,0.7258,0.7258,0.7258,0.827,0.5,0.5,0.7762,eng_elapsed_days eng_gateway_visits eng_offers_so_far event_MonthlyCost
+D10,2,11952,0.9221,0.9221,0.9221,0.9742,0.5,0.5,0.9187,eng_gateway_visits eng_last_activity=O_Sent (mail and online) eng_offers_so_far
+D11,2,11021,0.5098,0.5373,0.5423,0.9954,0.5437,0.545,0.9953,eng_events_so_far eng_gateway_visits eng_last_activity=O_Created eng_last_activity=O_Sent (mail and online) event_CreditScore
+D12,2,6687,0.5126,0.5671,0.5989,0.8786,0.5621,0.6013,0.8754,eng_elapsed_days eng_incomplete_so_far eng_last_activity=A_Validating eng_last_activity=O_Returned
+D13,2,12381,0.8902,0.8902,0.8902,0.8926,0.5,0.5,0.5136,case_ApplicationType=New credit eng_elapsed_days eng_last_activity=O_Created eng_offers_so_far event_CreditScore event_FirstWithdrawalAmount
+D14,3,6687,0.7805,0.7805,0.8573,0.8814,0.3333,0.6123,0.5681,case_ApplicationType=New credit eng_incomplete_so_far eng_last_activity=A_Incomplete event_CreditScore
+D15,2,5219,0.7431,0.7431,0.8458,0.9536,0.5,0.704,0.9527,case_ApplicationType=Limit raise case_ApplicationType=New credit eng_events_so_far eng_incomplete_so_far eng_offers_so_far event_CreditScore
+D16,2,1726,0.7769,0.7769,0.7769,0.8783,0.5,0.5,0.8319,eng_elapsed_days eng_events_so_far eng_gateway_visits eng_incomplete_so_far eng_offers_so_far event_CreditScore
+D17,2,4660,0.6994,0.6994,0.7015,0.8824,0.5132,0.5192,0.8221,eng_elapsed_days eng_last_activity=A_Pending eng_last_activity=A_Validating eng_last_activity=O_Returned event_CreditScore
+D18,2,1444,0.7929,0.7929,0.7929,0.9349,0.5,0.5,0.9355,eng_elapsed_days eng_gateway_visits eng_incomplete_so_far eng_last_activity=W_Validate application eng_offers_so_far event_FirstWithdrawalAmount

@@ -89,12 +89,12 @@
       {
         "parameter": "target coverage band",
         "value": [
-          78,
+          80,
           82
         ],
         "default": "n/a (own setting)",
-        "meaning": "Eigenes Auswahlband für ungefähr 80 Prozent vollständig replaybare Fälle.",
-        "reason": "Operationalisierung der Aufgabenanforderung; keine Datenbereinigung und kein vom Datensatz vorgegebener Grenzwert.",
+        "meaning": "Auswahlband vollständig replaybarer Fälle; Untergrenze = Vorlesung 29.10., Folie 36: mindestens 80 % aller Fälle.",
+        "reason": "Bis 29.10. [78, 82]; Untergrenze angehoben, Obergrenze als eigene Wahl unverändert. Die IMf-Auswahl bleibt unter [80, 82] gleich.",
         "role": "Exact whole-case target band (%)"
       }
     ],

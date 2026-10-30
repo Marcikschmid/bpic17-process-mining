@@ -1,8 +1,19 @@
 % Factual technical metadata; scientific interpretation remains author-written.
+% Versions: installed .venv (requirements.txt), docs/graphviz_manifest.json, docs/bpmn_viewer_manifest.json.
 \begin{description}
   \item[Language:] Python 3.12.10.\footnote{\url{https://www.python.org/}}
   \item[Process mining:] PM4Py 2.7.23.11.\footnote{\url{https://processintelligence.solutions/pm4py/}}
   \item[Public code:] \href{https://github.com/Marcikschmid/bpic17-process-mining}{GitHub repository}.\footnote{\url{https://github.com/Marcikschmid/bpic17-process-mining}}
+  \item[Data handling:] pandas 3.0.6;\footnote{\url{https://pandas.pydata.org/}} NumPy 2.5.4.\footnote{\url{https://numpy.org/}}
+  \item[Numerics, LP:] SciPy 1.18.1, \texttt{linprog} for dead-transition certificates;\footnote{\url{https://scipy.org/}} CVXOPT 1.3.3, LP backend of PM4Py alignments.\footnote{\url{https://cvxopt.org/}}
+  \item[Graphs:] NetworkX 3.7, marking graphs and Extended Cyclomatic.\footnote{\url{https://networkx.org/}}
+  \item[Decision mining:] scikit-learn 1.9.1, CART.\footnote{\url{https://scikit-learn.org/}}
+  \item[Figures:] Matplotlib 3.11.2.\footnote{\url{https://matplotlib.org/}}
+  \item[Graph layout:] Graphviz 16.1.0 (portable); binding \texttt{graphviz} 0.21.\footnote{\url{https://graphviz.org/}}
+  \item[BPMN viewer:] bpmn-js 18.31.0 (local).\footnote{\url{https://bpmn.io/toolkit/bpmn-js/}}
+  \item[Notebooks:] JupyterLab 4.6.4, ipykernel 7.4.0.\footnote{\url{https://jupyter.org/}}
+  \item[Report:] MiKTeX 25.12, pdfLaTeX, Latexmk, BibTeX.\footnote{\url{https://miktex.org/}}
+  \item[Version control:] Git 2.52.0.\footnote{\url{https://git-scm.com/}}
 \end{description}
-% TODO: Explain the remaining libraries, visualization/modeling tools and versions.
-% Add their tool/package footnotes and discuss parameters and random seeds yourself.
+% TODO: Explain the role of the libraries, visualization/modeling tools and versions yourself.
+% Discuss parameters and random seeds yourself.

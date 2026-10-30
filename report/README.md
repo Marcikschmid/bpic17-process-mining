@@ -34,7 +34,7 @@ Erst wenn ein Ergebnis für die Abgabe ausgewählt wurde, wird die passende Abbi
 
 Dadurch lässt sich die Analyse erneut ausführen, ohne den Berichtsstand zu verändern. Umgekehrt lässt sich der Bericht ohne Datenimport kompilieren. Für eine separate LaTeX-Umgebung kann der gesamte Ordner `report/` übernommen werden.
 
-Der Hauptteil enthält weiterhin die Gliederung und Kommentare als Arbeitsgerüst. Der Anhang enthält die beiden entdeckten Petri-Netze (Inductive Miner und Heuristics Miner) sowie faktische Tabellen zur gemeinsamen Eingabe, zu den Parametern und zu den Modellgrößen. Die ausgewählten PDFs liegen unter `figures/`, die Tabellenkopie unter `tables/discovery_setup.tex`. Literaturangaben werden mit BibTeX erzeugt.
+Stand 29.10.2026: Der Hauptteil enthält weiterhin Gliederung, Kommentare und `% TODO`-Platzhalter als Arbeitsgerüst, dazu faktische Tabellen und Stichpunkte: `sections/02_technical_setup.tex` (Werkzeuge mit Versionen und Fußnoten), `tables/raw_log_statistics.tex` und `tables/concepts.tex` (Abschnitt 2.2), `tables/quality_metrics.tex`, `tables/refined_quality.tex` und `tables/guarded_coverage.tex` (Abschnitt 2.3). Der Anhang enthält die drei entdeckten Petri-Netze (`figures/inductive_miner.pdf`, `figures/heuristics_miner.pdf`, `figures/genetic_miner.pdf`), `tables/discovery_setup.tex` und `sections/miner_parameters.tex`, `tables/raw_attribute_profile.tex` mit `figures/raw_log_overview.pdf` und `figures/raw_activity_frequencies.pdf`, `figures/refinement_tradeoff.pdf` mit `tables/literature_comparison.tex`, `tables/genetic_comparison.tex` mit `figures/genetic_comparison.pdf`, `figures/quality_comparison.pdf` und `figures/simplicity_comparison.pdf`, `tables/decision_metrics.tex`, `figures/final_bpmn.pdf` sowie `sections/decision_appendix.tex` mit `figures/decision_bpmn.pdf` und `figures/decision_blocks/D01.pdf`–`D16.pdf`. Insgesamt 10 Tabellen unter `tables/` und 11 PDFs plus 16 Regelblätter unter `figures/`; Alpha-Miner-, HM-Sweep- und Modellbewertungsergebnisse liegen bisher nur unter `../results/`. Eigene Interpretation, Abstract und Einleitung fehlen noch; Abschnitt 2.4 (3.4) ist leer. Literaturangaben werden mit BibTeX erzeugt.
 
 Hauptteil und Parametertabellen verwenden A4. Die beiden vollständigen Modelltafeln stehen auf größeren A3-Seiten im Anhang, damit die Aktivitätsbeschriftungen lesbar bleiben; die eingebundenen PDFs sind Vektorgrafiken. `latexmkrc` führt BibTeX im Berichtsordner aus, um ungültige MSYS-Suchpfade zwischen Git-for-Windows-Perl und nativem MiKTeX zu vermeiden.
 
@@ -68,3 +68,18 @@ weiterhin ausschließlich nach `../results/decision_mining/`; Reportkopien werde
 separat ausgewählt. Die 80,45 % des Strukturmodells gelten ohne die experimentellen
 Guards; harte Guards ergeben 10,19 % vollständige Testfallabdeckung. Die eigene
 Interpretation dieser Grenze bleibt offen (`../docs/DECISION_MINING.md`).
+
+Stand 30.10.2026 (Tutor-Feedback, Branch `assignment-feedback`): Neu ausgewählt
+über `scripts/select_feedback_report.py` (Herkunft und Prüfsummen in
+`../docs/feedback_report_manifest.json`): im Hauptteil `tables/conformance_to_edits.tex`,
+`tables/single_edits.tex`, `tables/final_quality.tex`, `tables/holdout_check.tex` und
+`tables/block_structure.tex`; im Anhang `tables/model_comparison.tex`,
+`tables/soundness_summary.tex`, `tables/guard_stage.tex`, `tables/branch_probabilities.tex`,
+`figures/alpha_miner.pdf`, `figures/heuristics_net.pdf`, `figures/final_edited_bpmn.pdf`
+(finales Modell nach den manuellen Änderungen G3+R3+R4) und
+`figures/branch_probabilities.pdf`. `figures/final_bpmn.pdf` zeigt jetzt das
+verfeinerte Modell **vor** den manuellen Änderungen. Decision Mining wurde auf dem
+finalen Modell neu gerechnet: 17 Regelblätter `figures/decision_blocks/D01.pdf`–`D17.pdf`;
+Strukturabdeckung 79,39 %, harte Guards 10,07 % im Test. Die Absätze oben beschreiben
+den Stand vor dieser Runde. Stichpunkte für die eigenen Texte stehen als
+`%`-Kommentare in `sections/04_process_model.tex`; generierte Sätze enthält der Bericht nicht.

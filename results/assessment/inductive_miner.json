@@ -1,0 +1,156 @@
+{
+  "name": "inductive_miner",
+  "model": "results/models/inductive_miner.pnml",
+  "model_sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca",
+  "pnml_sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca",
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "pm4py": "2.7.23.11",
+  "created_utc": "2026-10-30T09:17:38.963535+00:00",
+  "implementation_sha256": {
+    "src/model_assessment.py": "4eb9d46bddc5f8ffdafde4e7a25e09a77a21df2b909e0eedb817f4e0362c8e01",
+    "src/soundness.py": "d4d3cd076b3ce6ab1cbff905ca00b407d06f86744a0df5c3de7dcb32622f113c",
+    "src/simplicity.py": "7e63ca88f0164b3a22f19486a9da1830ace934bc0dce6b0fc3bc594738318061",
+    "src/replay_coverage.py": "fb894dbc5f2c6c8d88287f274cc7718834a0c3ff03948783ca14a619dbc17156",
+    "src/finite_alignment.py": "b32dca5ac65bcd59e82c2a96436cd406e091fb3bd09909f3db9be2b154987f47",
+    "src/finite_precision.py": "3c34afc45e5d49034d5057c02b8e1e387e99debed16dcaa5755ad69da1246cde",
+    "scripts/assess_model.py": "2240e34ee0ca9cf6ca11a5d45cddec103e49b5b006ff2438cde6ef63e1ec138a"
+  },
+  "headline": {
+    "workflow_net": true,
+    "sound": true,
+    "easy_sound": true,
+    "relaxed_sound": true,
+    "exact_replay_pct": 100.0,
+    "token_fitness": 1.0,
+    "alignment_fitness": 0.9997701892912418,
+    "token_precision": 0.2926135820916598,
+    "align_et_precision": 0.2926135820916598,
+    "generalization": 0.9756702764431168,
+    "alignment_generalization": 0.9756702764431168,
+    "arc_degree_simplicity": 0.6170212765957447,
+    "nodes": 87,
+    "arcs": 114,
+    "extended_cardoso": 47,
+    "extended_cyclomatic": 1552
+  },
+  "soundness": {
+    "workflow_net": true,
+    "source_places": [
+      "source"
+    ],
+    "sink_places": [
+      "sink"
+    ],
+    "classical": {
+      "status": "ok",
+      "states_seen": 484,
+      "state_pairs_seen": 1996,
+      "seconds": 0.106,
+      "limits": {
+        "max_states": 30000,
+        "timeout_seconds": 90
+      },
+      "value": 1552,
+      "strongly_connected_components": 40,
+      "bounded": true,
+      "final_reachable": true,
+      "option_to_complete": true,
+      "proper_completion": true,
+      "dead_transitions": [],
+      "sound": true
+    },
+    "sound": true,
+    "unsound_reason": null,
+    "behavioural": {
+      "exploration_complete": true,
+      "states_explored": 484,
+      "easy_sound": true,
+      "relaxed_sound": true,
+      "transitions_not_on_complete_run": [],
+      "max_tokens_in_a_place": 1,
+      "safe": true
+    },
+    "woflan": {
+      "status": "ok",
+      "sound": true,
+      "seconds": 99.239
+    },
+    "woflan_agrees": true
+  },
+  "duplicate_visible_labels": [],
+  "simplicity": {
+    "arc_degree_pm4py": 0.6170212765957447,
+    "size_own": {
+      "nodes": 87,
+      "arcs": 114
+    },
+    "extended_cardoso_own": 47,
+    "extended_cyclomatic_own": 1552,
+    "places": 34,
+    "transitions": 53,
+    "silent_transitions": 29
+  },
+  "token": {
+    "fitness": {
+      "perc_fit_traces": 100.0,
+      "average_trace_fitness": 1.0,
+      "log_fitness": 1.0,
+      "percentage_of_fitting_traces": 100.0
+    },
+    "generalization": 0.9756702764431168,
+    "fitting_cases": 31509,
+    "precision": 0.2926135820916598,
+    "seconds": 209.68,
+    "valid": true
+  },
+  "exact_replay": {
+    "cases": 31509,
+    "fitting_cases": 31509,
+    "fitting_percentage": 100.0,
+    "variants": 5623,
+    "states": 484,
+    "sound": true
+  },
+  "alignment_fitness": {
+    "log_fitness": 0.9997701892912418,
+    "average_trace_fitness": 1.0,
+    "percentage_of_fitting_traces": 100.0,
+    "best_worst_cost": 40007,
+    "variants": 5623,
+    "cases": 31509,
+    "alignment_generalization": 0.9756702764431168,
+    "transitions_never_fired": 0,
+    "method": "exact finite-state Dijkstra alignments; PM4Py cost profile and fitness formula",
+    "pm4py_crosscheck": {
+      "status": "ok",
+      "variants_checked": 24,
+      "seed": 20261029,
+      "selection": "shortest third, fixed-seed random third, longest third"
+    },
+    "seconds": 43.092
+  },
+  "align_et_precision": {
+    "precision": 0.2926135820916598,
+    "prefixes": 27816,
+    "weighted_unfit_prefixes": 0,
+    "weighted_enabled": 4815812,
+    "weighted_escaping": 3406640,
+    "method": "PM4Py Align-ET formula; exact weighted finite-state prefix solver",
+    "complete_model_states": 484,
+    "silent_move_cost": 1,
+    "sync_move_cost": 0,
+    "pm4py_crosscheck": {
+      "status": "ok",
+      "prefixes_checked": 192,
+      "seed": 20261029
+    },
+    "seconds": 12.233
+  },
+  "evaluation_input": {
+    "cases": 31509,
+    "events": 475306,
+    "variants": 5623,
+    "cache": "tmp/evaluation/projected_sequences.json"
+  }
+}

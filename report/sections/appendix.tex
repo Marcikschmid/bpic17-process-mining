@@ -66,6 +66,43 @@
 \end{figure}
 
 \clearpage
+\subsection{All Discovered Models: Quality Criteria and Soundness}
+\label{app:model-comparison}
+\begin{table}[h!]
+\centering
+\caption{Four quality criteria of all discovered models on the same completion projection (31,509 cases). n/c: not computable on an unbounded net; certified: exact rational certificate, not replay.}
+\label{tab:model-comparison}
+\resizebox{\textwidth}{!}{\input{tables/model_comparison}}
+\end{table}
+\begin{table}[h!]
+\centering
+\caption{Structural and behavioural soundness of all discovered models; complete state space where bounded, unboundedness witness otherwise; PM4Py Woflan cross-check.}
+\label{tab:soundness}
+\resizebox{\textwidth}{!}{\input{tables/soundness_summary}}
+\end{table}
+
+\clearpage
+\subsection{Manual Edits: Guard Stage}
+\label{app:guard-stage}
+\begin{table}[h!]
+\centering
+\caption{Guard stage of the manual-edit selection: candidates in the 78--82 percent band in order of Align-ET precision until the first candidate passes all guards (generalization drop at most 0.01, arc-degree drop at most 0.05, at most 25 percent more nodes).}
+\label{tab:guard-stage}
+\resizebox{\textwidth}{!}{\input{tables/guard_stage}}
+\end{table}
+
+\clearpage
+\subsection{Branch Probabilities of the Final Model}
+\label{app:branch-probabilities}
+\begin{table}[h!]
+\centering
+\small
+\caption{Branch frequencies at every XOR split of the final model from one optimal alignment per variant; all 31,509 cases. Loop splits counted per visit.}
+\label{tab:branch-probabilities}
+\input{tables/branch_probabilities}
+\end{table}
+
+\clearpage
 % Larger appendix plates for legible complete models; the main report stays A4.
 \subsection{Held-out Decision Mining Results}
 \label{app:decisions}
@@ -108,6 +145,26 @@
   \label{fig:genetic-miner}
 \end{figure}
 
+\clearpage
+\subsection{Alpha Miner (classic)}
+\label{app:alpha}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.86\textheight,keepaspectratio]{figures/alpha_miner.pdf}
+  \caption{Alpha Miner (classic)~\cite{vdaalst2004workflow}: Petri net, full completion projection; no tuning parameters.}
+  \label{fig:alpha-miner}
+\end{figure}
+
+\clearpage
+\subsection{Heuristics Net (native Heuristics Miner output)}
+\label{app:heuristics-net}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.86\textheight,keepaspectratio]{figures/heuristics_net.pdf}
+  \caption{Native heuristics net, dependency threshold 0.5: activity frequencies; edges labelled with dependency value and frequency.}
+  \label{fig:heuristics-net}
+\end{figure}
+
 % Full refined BPMN in a large vector plate for readable task/gateway labels.
 \clearpage
 \newgeometry{layoutwidth=420mm,layoutheight=594mm,margin=20mm,headheight=15pt,headsep=8mm,footskip=12mm}
@@ -116,7 +173,26 @@
 \pdfpagewidth=\paperwidth
 \pdfpageheight=\paperheight
 \onecolumn
-\subsection{Refined BPMN 2.0}
+\subsection{Final BPMN 2.0 (after manual edits)}
+\label{app:final-edited-bpmn}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.91\textheight,keepaspectratio]{figures/final_edited_bpmn.pdf}
+  \caption{Final BPMN 2.0 after manual edits G3, R3, R4: 25,016 of 31,509 cases fully replayable (79.39 percent); 23 tasks; 17 XOR and 2 AND split/merge pairs.}
+  \label{fig:final-edited-bpmn}
+\end{figure}
+
+\clearpage
+\subsection{Branch Probabilities (decision mining, step 1)}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth,height=0.91\textheight,keepaspectratio]{figures/branch_probabilities.pdf}
+  \caption{Final model with branch probability and aligned frequency on every outgoing XOR flow; all 31,509 cases; loop splits per visit.}
+  \label{fig:branch-probabilities}
+\end{figure}
+
+\clearpage
+\subsection{Refined BPMN 2.0 (before manual edits)}
 \label{app:final-bpmn}
 \begin{figure}[h!]
   \centering

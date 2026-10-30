@@ -1,0 +1,10 @@
+model,record,workflow_net,bounded,safe,option_to_complete,proper_completion,dead_transitions,sound,easy_sound,relaxed_sound,woflan
+Alpha (classic),alpha_miner,yes,no (witness),no,n/c,n/c,>= 10 (certified),no,n/c,n/c,no
+"Heuristics, dep. 0.5 (default)",heuristics_miner,yes,no (witness),no,n/c,n/c,>= 12 (certified),no,yes,n/c,no
+"Heuristics, dep. 0.7",heuristics_dep_0.7,yes,no (witness),no,n/c,n/c,n/c,no,yes,n/c,no
+"Heuristics, dep. 0.9",heuristics_dep_0.9,yes,no (witness),no,n/c,n/c,n/c,no,yes,n/c,no
+"Heuristics, dep. 0.99",heuristics_dep_0.99,yes,no (witness),no,n/c,n/c,n/c,no,yes,n/c,no
+Genetic (seed 20261025),genetic_miner,yes,no (witness),no,n/c,n/c,15 (certified),no,n/c,n/c,no
+"Inductive (IM, full log)",inductive_miner,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
+IMf refined (before edits),refined_imf,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
+Final model (IMf + manual edits),final_model,yes,yes,yes,yes,yes,0,yes,yes,yes,yes

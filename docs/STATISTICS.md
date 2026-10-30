@@ -75,6 +75,30 @@ Attributprofile, Mittelwerte, Standardabweichungen, Quantile und Zeiteinheiten.
 - **Quantile:** lineare Interpolation (Hyndman-Fan Typ 7). Alle Verteilungen und
   Histogramme umfassen sämtliche Fälle, ohne Ausreißer auszublenden.
 
+## Konzepte: Event, Case, Trace, Variante
+
+| Begriff | Verwendete Definition | BPIC-17-Wert |
+|---|---|---|
+| Event | Ein XES-Event: Aktivität (`concept:name`), Lifecycle-Zustand, Zeitstempel, Ressource, Attribute | Roh: **1.202.267** Events (alle Lifecycle-Zustände) |
+| Completion-Event | Event mit `lifecycle:transition = complete`; Eingabe für Discovery, Bewertung, Verfeinerung | **475.306** Events; 726.961 Nicht-Complete-Events ausgeschlossen |
+| Lifecycle-Transition | Zustand einer Aktivitätsausführung; 7 Werte: schedule, start, suspend, resume, complete, ate_abort, withdraw | A_/O_-Events nur `complete` (Roh- = Projektionsanzahl für alle 18 A_/O_-Namen); W_-Work-Items: alle 7 Zustände |
+| Aktivitätsinstanz | Eine Ausführung einer Aktivität, ggf. mehrere Lifecycle-Events | Keine Instanzkennung im Log; `EventID` je Event eindeutig (1.202.267 Werte) |
+| Aktivität | Unterschiedlicher `concept:name`-Wert | Roh: 26; Completion-Projektion: 24 (`W_Personal Loan collection`, `W_Shortened completion ` ohne Complete-Events) |
+| Case | Prozessinstanz; Fall-ID `case:concept:name` | **31.509** Fälle = Kreditanträge (`Application_...`); in beiden Sichten vollständig |
+| Trace | Geordnete Eventfolge eines Falls, ursprüngliche XES-Reihenfolge | 31.509 Traces; mittlere Rohlänge 38,156 Events |
+| Variante | Unterschiedliche Aktivitätsfolge (ein oder mehrere Fälle) | Roh (alle Lifecycle-Zustände): **15.930**; (Aktivität, Lifecycle)-Paare: 16.692; Completion-Projektion: **5.623** |
+| Case-Notion | Wahl des Objekts, das Events zu einem Fall gruppiert | Antrag (Application) gewählt; `EventOrigin` mit 3 Werten: Application, Offer, Workflow |
+| Angebot | Teilobjekt eines Antrags; `OfferID` ist Event-Attribut, keine Fall-ID | 42.995 verschiedene `OfferID` = 42.995 `O_Create Offer`-Events; 8.559 Anträge mit 2–10 Angeboten |
+
+Die Case-Notion ist eine Designentscheidung: Angebotsevents tragen eine eigene
+`OfferID`, ein Antrag kann mehrere Angebote haben; eine Angebots- oder
+objektzentrierte Sicht ergäbe andere Fälle, Traces und Varianten. Quellen:
+`results/tables/raw_log_statistics.json`, `results/tables/import_summary.json`,
+`report/tables/raw_attribute_profile.tex` und Block `projection` des lokalen
+Caches `tmp/evaluation/projected_sequences.json` (Varianten- und Angebotszahlen
+aus dessen 31.509 Aktivitätsfolgen gezählt). Faktische Berichtstabelle:
+`report/tables/concepts.tex`.
+
 ## Zusätzliche Statistiken
 
 Die Auswertung enthält mehr als die geforderten zwei zusätzlichen Statistiken:

@@ -2,9 +2,20 @@
 
 ## Ergebnis und Grenzen
 
-Alle **32 XOR-Gateways** des finalen BPMN sind erfasst: **16 Splits** mit gelernten
-Entscheidungsblöcken und **16 Merges** ohne Auswahlentscheidung. Die Regeln stammen
-aus **453.820 ausgerichteten Entscheidungsereignissen** aller 31.509 Fälle und
+**Stand 2026-10-30:** Neu gerechnet auf dem finalen Modell nach den manuellen
+Änderungen G3+R3+R4 (`results/final/`, [MANUAL_EDITS.md](MANUAL_EDITS.md)). Der
+Lauf vom 2026-10-18 auf dem verfeinerten IMf-Modell (16 Splits, 453.820
+Beobachtungen, Guards 3.277 / 31.509 = 10,40 %, Test 10,19 %) ist im Git-Verlauf erhalten.
+
+**Zweistufig (Tutor-Feedback, D31):**
+1. **Verzweigungswahrscheinlichkeiten** ohne Daten: Häufigkeit je ausgehendem
+   XOR-Fluss aus den optimalen Alignments, `results/decision_mining/branch_probabilities.{pdf,png,csv,tex}`
+   (`scripts/render_branch_probabilities.py`). Schleifensplits zählen je Besuch.
+2. **Bedingungen** nach de Leoni/van der Aalst (2013) mit CART, wie unten beschrieben.
+
+Alle **34 XOR-Gateways** des finalen BPMN sind erfasst: **17 Splits** mit gelernten
+Entscheidungsblöcken und **17 Merges** ohne Auswahlentscheidung. Die Regeln stammen
+aus **424.194 ausgerichteten Entscheidungsereignissen** aller 31.509 Fälle und
 5.623 Varianten. Wiederholte Schleifendurchläufe zählen als einzelne Entscheidungen.
 
 Die Ergebnisansicht bietet je Split einen grafischen Entscheidungsbaum, alle
@@ -12,7 +23,7 @@ Regelpfade, Häufigkeiten, Testkennzahlen und einen Vergleich mit der Mehrheitsk
 
 - <http://127.0.0.1:8787/results/decision_mining/index.html>
 - Interaktives BPMN: <http://127.0.0.1:8787/results/decision_mining/viewer.html>
-- `results/decision_mining/decision_blocks.pdf`: alle 16 Entscheidungsblöcke.
+- `results/decision_mining/decision_blocks.pdf`: alle 17 Entscheidungsblöcke.
 - `results/decision_mining/decision_model.bpmn`: separates BPMN mit experimentellen
   FEEL-Bedingungen und Textannotationen; `isExecutable=false`.
 - `results/decision_mining/decision_bpmn.pdf`: Vektorübersicht mit verknüpften Blöcken.
@@ -27,18 +38,23 @@ gegen sämtliche ursprünglichen Blattpfade sichert dieselbe Klassifikation.
 Die formalen Bedingungen in der BPMN-Datei bleiben unverändert.
 
 **Die Regeln sind keine validierten Geschäftsregeln der Bank.** Ihre Test-Accuracy
-liegt je Split ungefähr zwischen 0,542 und 0,922. Mehrere Bäume verbessern die
-Mehrheitsvorhersage kaum; sechs Bäume sagen einen Minderheitszweig überhaupt nicht
-vorher. Deshalb werden Accuracy, Macro-F1, Balanced Accuracy, Zweighäufigkeiten und
+liegt je Split zwischen 0,535 und 0,922. **9 von 17 Bäumen** sagen nur die
+Mehrheitsklasse vorher (Balanced Accuracy 0,5: D01, D04, D05, D06, D08, D09, D11,
+D12, D15); nur 7 Splits schlagen die Mehrheitsbaseline um mehr als 1 Prozentpunkt
+(D02, D03, D07, D10, D13, D14, D16; Balanced Accuracy 0,535–0,904).
+Deshalb werden Accuracy, Macro-F1, Balanced Accuracy, Zweighäufigkeiten und
 nicht vorhergesagte Zweige gemeinsam ausgewiesen.
 
-Wird jeder Baum als harte Routingbedingung erzwungen, können **3.277 / 31.509 Fälle
-(10,40 %)** vollständig replayt werden. Im getrennten Test sind es **963 / 9.453
-(10,19 %)**; im Training 2.314 / 22.056 (10,49 %). Das wurde durch vollständiges
+Wird jeder Baum als harte Routingbedingung erzwungen, können **3.254 / 31.509 Fälle
+(10,33 %)** vollständig replayt werden. Im getrennten Test sind es **952 / 9.453
+(10,07 %)**; im Training 2.302 / 22.056 (10,44 %). Das wurde durch vollständiges
 guardabhängiges Tau-/NFA-Replay aller Fälle geprüft, mit allen erlaubten Pfaden,
 ohne Token-Einfügung und ohne Beschränkung auf das eine gewählte Alignment.
 
-Die **80,4532 %** aus 3.3.3 betreffen das Kontrollflussmodell **ohne** diese Guards.
+Die **79,39 %** (25.016 Fälle) des finalen Modells betreffen das Kontrollflussmodell **ohne** diese Guards.
+Ursache des Verlusts: Mehrheitsbäume schließen Minderheitszweige deterministisch aus;
+für Simulation daher Wahrscheinlichkeiten aus Schritt 1 dort verwenden, wo ein Baum
+die Mehrheitsbaseline nicht schlägt (Hybrid nicht implementiert, offene Entscheidung).
 Dessen PNML, BPMN und Qualitätswerte bleiben erhalten. Die bisherigen Precision-,
 Generalization- und Simplicity-Werte werden dem experimentellen Guard-Modell nicht
 als neu gemessene Werte zugeschrieben. Für realistische Simulation sind zusätzliche
@@ -73,9 +89,9 @@ folgt dem Paper; dies ist keine Behauptung einer identischen C4.5-Replikation.
 Start-/Endereignisse, XORs und parallelen Gateways in gewöhnliche P/T-Semantik.
 Sequenzflüsse werden zu Places. Jeder ausgehende XOR-Zweig erhält eine eigene,
 über stabile BPMN-IDs identifizierbare Transition. Unbekannte Konstrukte werden
-abgewiesen. Die 1.357 erreichbaren Markierungen sind vollständig enumeriert.
+abgewiesen. Die 314 erreichbaren Markierungen sind vollständig enumeriert (Lauf 2026-10-18: 1.357).
 Die gesamte Kontrollflusssprache ist zum geprüften finalen PNML äquivalent
-(57 determinisierte Zustandspaare); es handelt sich nicht nur um einen Stichprobenvergleich.
+(39 determinisierte Zustandspaare; vorher 57); es handelt sich nicht nur um einen Stichprobenvergleich.
 
 `src/finite_alignment.py` berechnet mit Dijkstra für jede vollständige Variante
 ein optimales Alignment im Produkt aus Eventposition und Markierung. Kosten:
@@ -132,7 +148,7 @@ Macro-F1 umfasst alle strukturellen Zweige, einschließlich unvorhergesagter Kla
 Die Mehrheitsbaseline wird ausschließlich aus dem jeweiligen Training bestimmt.
 
 Blattpfade stehen mit voller Schwellengenauigkeit in JSON. Sie wurden für alle
-453.820 Beobachtungen gegen den trainierten Baum geprüft. Die Klassifikation
+424.194 Beobachtungen gegen den trainierten Baum geprüft. Die Klassifikation
 verwendet wie sklearn float32-Eingaben. FEEL exportiert entsprechende numerische
 Trennschwellen und explizite Nullbehandlung; dieser Export ist nicht in einer
 Workflow-Engine zertifiziert. Der Python-Guard-Replay verwendet die tatsächlich
@@ -143,6 +159,7 @@ BPMN `false`; das bedeutet **nicht**, dass dieser Ablauf fachlich unmöglich ist
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/mine_decisions.py
+.\.venv\Scripts\python.exe scripts/render_branch_probabilities.py
 .\.venv\Scripts\python.exe scripts/render_decisions.py
 .\.venv\Scripts\python.exe scripts/verify_decisions.py
 .\.venv\Scripts\python.exe -m unittest tests.test_decision_mining -v
@@ -161,7 +178,7 @@ Der Audit prüft alle Vorhersagen, alle Bedingungen, die Falltrennung und rekons
 sämtliche Snapshots aus der unveränderten Rohdatei.
 
 Die gesamte Suite besteht aus **42 bestandenen Tests**. Der abschließende Audit
-prüft zudem die numerischen exportierten Guard-Prädikate für sämtliche 453.820
+prüft zudem die numerischen exportierten Guard-Prädikate für sämtliche 424.194
 Beobachtungen; eine Zertifizierung in einer externen FEEL-Engine ist damit nicht
 verbunden. Nach rein grafischen Änderungen kann
 `scripts/verify_decisions.py --artifacts-only` die bestehenden wissenschaftlichen

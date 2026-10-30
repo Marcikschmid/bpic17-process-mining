@@ -1,0 +1,17 @@
+kind,activity,cases,share_of_deviating_cases_pct
+log,O_Cancelled,1454,23.6077
+log,O_Create Offer,1197,19.435
+model,O_Sent (mail and online),685,11.1219
+log,A_Validating,593,9.6282
+model,A_Denied,550,8.93
+log,O_Refused,528,8.5728
+log,O_Sent (online only),292,4.741
+log,W_Assess potential fraud,211,3.4259
+log,W_Call after offers,171,2.7764
+log,O_Returned,146,2.3705
+model,A_Validating,110,1.786
+log,W_Call incomplete files,104,1.6886
+model,A_Cancelled,59,0.9579
+model,O_Returned,32,0.5196
+log,O_Sent (mail and online),19,0.3085
+log,W_Complete application,8,0.1299

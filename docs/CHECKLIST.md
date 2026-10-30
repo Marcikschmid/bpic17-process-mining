@@ -43,6 +43,24 @@
 - [x] Tatsächliche Miner-Parameter einschließlich IM/IMf mit Bedeutung, Begründung und Grenzen als Markdown, PDF, JSON und faktische LaTeX-Tabellen bereitstellen.
 - [x] 26 Designentscheidungen mit Alternativen, Evidenz und offenen Grenzen im technischen Begleitprotokoll begründen; eigene Berichtsdiskussion bleibt offen.
 
+## Tutor-Feedback (Branch `assignment-feedback`)
+- [x] Python/PM4Py, README mit Reproduktion, klickbarer Repo-Link im LaTeX.
+- [x] Alpha Miner → WF-Netz geprüft: strukturell WF-Netz, aber unbeschränkt, ≥ 10 tote Transitionen, zertifiziert 0 Fälle replaybar (docs/ALPHA_MINER.md).
+- [x] Heuristics Miner: natives Heuristics-Netz als Abbildung, Dependency-Sweep 0.5–0.99, alle unbeschränkt (docs/HEURISTICS_SWEEP.md).
+- [x] Genetic Miner als dritter Versuch inkl. Budget-Notizen (docs/GENETIC_BUDGET.md).
+- [x] Parameterübersicht aller Miner mit PM4Py-Default, gewähltem Wert und Rolle (docs/MINER_PARAMETERS.md, LaTeX-Anhang Englisch).
+- [x] Soundness und behavioural Soundness (klassisch, easy, relaxed, safe, Woflan) für alle 9 Modelle (results/comparison/).
+- [x] Alle vier Qualitätskriterien für alle Modelle; Zielmetrik Precision unter Fitness-Bedingung begründet (D28).
+- [x] Conformance Checking nach dem Mining: Escaping Edges und Log Moves des IMf-Modells → Ansatzpunkte der manuellen Änderungen.
+- [x] Manuelle Änderungen: 7 Blockänderungen, 128 Kombinationen, vorab fixierte Regel; Auswahl G3+R3+R4 (Align-ET 0,598 → 0,697, Abdeckung 79,39 %) (docs/MANUAL_EDITS.md).
+- [x] Finales BPMN mit Blockstruktur-Tabelle (17 XOR-, 2 AND-Paare), sprachäquivalent zum Petri-Netz.
+- [x] Held-out-Prüfung: Discovery auf Trainingsfällen ergibt identischen Baum; Test 79,26 % vs. Training 79,45 %.
+- [x] Decision Mining zweistufig: zuerst Wahrscheinlichkeitsgraph, dann Bedingungen; Neuberechnung auf dem finalen Modell (17 Splits, Guards Test 10,07 %).
+- [x] Event vs. Case vs. Trace vs. Variante als Tabelle (README, report/tables/concepts.tex).
+- [ ] Eigene Fließtexte zu allen neuen Tabellen schreiben (Stichpunkte als `%`-Kommentare in 04_process_model.tex).
+- [ ] Entscheiden: Hybrid aus Regeln (nur wo besser als Mehrheit) und Wahrscheinlichkeiten für die Simulation umsetzen oder nur diskutieren.
+- [ ] Änderungen committen und Branch pushen.
+
 ## Advanced: eine Option auswählen
 - [ ] SAP Signavio: Abschnitt 3.3 wiederholen, Werkzeuge vergleichen und Simulation untersuchen.
 - [ ] ODER eine begründete Data-Science-Analyse: Hypothese, Methode, Ergebnis, Visualisierung und Interpretation für Prediction/Simulation/Optimierung.

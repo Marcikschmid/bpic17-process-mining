@@ -343,6 +343,70 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
   10 Individuen und 2 tatsächlich bewerteten Generationen erlaubt keine allgemeine
   Aussage, dass Genetic Miner ungeeignet seien. Das Abbruchverhalten gehört zum Befund.
 
+## Tutor-Feedback (Branch `assignment-feedback`, 2026-10-29/30)
+
+### D27: Alpha Miner und HM-Sweep als zusätzliche Baselines; ein Soundness-Gate für alle Modelle
+
+- **Wahl:** Alpha (classic) und einen HM-Sweep (`dependency_thresh` 0.5/0.7/0.9/0.99) auf derselben
+  Completion-Projektion ergänzen; jedes Modell durch dasselbe Gate (`scripts/assess_model.py`):
+  WF-Netz-Struktur, klassische Soundness auf vollständigem Zustandsraum oder Unbeschränktheitszeuge,
+  easy/relaxed Soundness, Safeness, Woflan-Gegenprüfung, alle vier Qualitätsdimensionen.
+- **Grund:** Kette „Alpha → WF-Netz, Heuristics, Inductive“ belegen statt behaupten; ein WF-Netz ist
+  strukturell, Soundness ist Verhalten.
+- **Ergebnis:** Alpha und alle HM-Sweep-Netze sind WF-Netze, aber unbeschränkt; Alpha: ≥ 10 tote
+  Transitionen, zertifiziert 0 Fälle replaybar; HM: ≥ 12 tote, ≤ 1,30 %; Genetic: Endmarkierung
+  zertifiziert unerreichbar. Nur IM/IMf sind sound (Woflan stimmt überall zu).
+- **Nachweis:** `results/comparison/model_comparison.md`, `docs/ALPHA_MINER.md`, `docs/HEURISTICS_SWEEP.md`.
+
+### D28: Precision als Optimierungsziel; Fitness als Bedingung; Generalization und Simplicity als Leitplanken
+
+- **Wahl:** Sound + 78–82 % exakte Fallabdeckung als Bedingung; Align-ET-Precision maximieren;
+  Leitplanken vor dem Screening fest: Alignment-Generalization −0,01, Arc-Degree −0,05, Knoten +25 %.
+- **Grund:** Simulationsbasis: nie beobachtetes Verhalten erzeugt unrealistische simulierte Fälle;
+  IM hat bereits perfekte Fitness, aber Precision 0,293. Generalization/Simplicity sollen nicht
+  unbemerkt geopfert werden.
+- **Alternative/Preis:** Gewichtete Summe der vier Kriterien wäre ein Gewichtungsproblem ohne
+  fachliche Begründung; reine Precision-Maximierung belohnt nicht-fittende Netze (HM 0,998).
+
+### D29: Manuelle Änderungen am Prozessbaum, Auswahl G3 + R3 + R4
+
+- **Wahl:** Sieben benannte Blockänderungen (R1–R4 einschränkend, G1–G3 verallgemeinernd) am
+  IMf-Prozessbaum; alle 128 Kombinationen bewertet; vorab fixierte Regel (D28).
+- **Grund:** Einzelne Petri-Netz-Kanten zu ändern kann Soundness und Blockstruktur zerstören; der
+  Prozessbaum garantiert beides, das Petri-Netz-Delta wird trotzdem je Kombination protokolliert.
+  Wo geändert wird, bestimmen die Konformitätsdiagnosen (Escaping Edges, Log Moves).
+- **Ergebnis:** G3+R3+R4: Align-ET 0,598 → 0,697, exakte Abdeckung 80,45 % → 79,39 %,
+  Alignment-Generalization 0,9911 → 0,9899, 92 statt 89 Knoten, ECyM 551 → 145.
+- **Offen gelegt:** Leitplankenstufe zuerst auf Top 5, dann Top 10 begrenzt; alle Top-10 enthalten R1 und
+  scheitern an der Generalization → Stufe läuft jetzt bis zum ersten bestandenen Kandidaten (Regel unverändert).
+- **Nachweis:** `docs/MANUAL_EDITS.md`, `results/manual_edits/screen.json`.
+
+### D30: Generalization alignmentbasiert, wenn Labels doppelt vorkommen
+
+- **Wahl:** PM4Py-Generalization-Formel auf Ausführungszahlen exakter optimaler Alignments statt Token Replay.
+- **Grund:** PM4Py Token Replay ordnet jedes Label genau einer Transition zu; bei duplizierten Labels
+  (R1) entstehen ungültige Werte (Token-Precision 0,997). Zusätzlich sind HM-Tokenwerte zwischen
+  Läufen nicht reproduzierbar (Fitness 0,8334–0,8363, Generalization 0,834–0,861 für dasselbe Netz).
+- **Preis:** Bei gleich teuren optimalen Alignments hängt die Zählung vom Tie-Break ab (Abweichung
+  ≈ 5·10⁻⁵ zwischen PNML- und Baum-Import desselben Modells).
+
+### D31: Decision Mining zweistufig: zuerst Verzweigungswahrscheinlichkeiten, dann Regeln
+
+- **Wahl:** Schritt 1 nur Häufigkeiten je XOR-Ausgang aus optimalen Alignments (kein Datenmodell);
+  Schritt 2 CART-Regeln nach de Leoni/van der Aalst (2013) wie in D19–D22.
+- **Grund:** Wahrscheinlichkeiten sind die minimale, immer vollständige Simulationsparametrisierung;
+  Regeln lohnen nur, wo sie die Mehrheitsbaseline schlagen. Schleifensplits zählen je Besuch.
+- **Nachweis:** `results/decision_mining/branch_probabilities.*`, `scripts/render_branch_probabilities.py`.
+
+### D32: Held-out-Prüfung der Control-Flow-Discovery
+
+- **Wahl:** Discovery (Top-Varianten bis 60 %, IMf 0,03) nur auf den 70 % Trainingsfällen des
+  Decision-Mining-Splits wiederholen.
+- **Ergebnis:** identischer Prozessbaum (72 Varianten, 13.258 Fälle); exakte Abdeckung Training
+  80,49 % vs. Test 80,37 % → Discovery hängt nicht von den Testfällen ab.
+- **Grenze:** Die manuellen Änderungen wurden auf allen Fällen bewertet; keine zeitliche Validierung.
+- **Nachweis:** `results/comparison/holdout_check.json`, `scripts/holdout_check.py`.
+
 ## Nächste Schritte nach wissenschaftlicher Priorität
 
 1. Den negativen Guard-Coverage-Befund fachlich bewerten/verbessern.

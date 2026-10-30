@@ -1,0 +1,294 @@
+after_activity,escaping_activity,weighted_prefixes
+O_Create Offer,W_Assess potential fraud,42995
+O_Created,A_Complete,42995
+O_Created,W_Call after offers,42995
+O_Created,W_Complete application,42995
+O_Created,W_Assess potential fraud,42995
+O_Created,W_Validate application,42989
+O_Created,W_Call incomplete files,42980
+O_Created,A_Incomplete,42977
+O_Sent (mail and online),W_Assess potential fraud,39687
+O_Sent (mail and online),W_Call after offers,39677
+O_Sent (mail and online),O_Sent (online only),39660
+O_Sent (mail and online),A_Incomplete,39654
+O_Sent (mail and online),W_Validate application,39648
+O_Sent (mail and online),O_Accepted,39586
+O_Created,A_Validating,39508
+O_Sent (mail and online),W_Call incomplete files,39496
+O_Sent (mail and online),O_Returned,39080
+A_Validating,A_Complete,38813
+A_Validating,W_Call after offers,38813
+A_Validating,W_Complete application,38813
+A_Validating,O_Sent (mail and online),38813
+A_Validating,W_Call incomplete files,38813
+A_Validating,A_Validating,38813
+A_Validating,O_Sent (online only),38812
+O_Sent (mail and online),A_Denied,38601
+O_Sent (mail and online),O_Sent (mail and online),36162
+O_Sent (mail and online),O_Cancelled,35337
+O_Sent (mail and online),O_Create Offer,35207
+O_Sent (mail and online),A_Cancelled,34953
+O_Sent (mail and online),A_Validating,34268
+A_Validating,W_Assess potential fraud,32722
+A_Validating,O_Cancelled,32101
+A_Create Application,O_Create Offer,31509
+A_Create Application,A_Accepted,31509
+A_Create Application,W_Complete application,31509
+A_Create Application,W_Assess potential fraud,31509
+A_Create Application,W_Handle leads,31509
+A_Concept,O_Create Offer,31509
+A_Complete,A_Complete,31332
+A_Complete,W_Complete application,31332
+A_Complete,W_Validate application,31332
+A_Complete,W_Call incomplete files,31332
+A_Complete,A_Incomplete,31332
+A_Complete,O_Sent (online only),31308
+A_Complete,O_Sent (mail and online),31014
+A_Validating,O_Create Offer,28221
+A_Concept,W_Handle leads,28016
+A_Accepted,W_Handle leads,28011
+A_Validating,A_Cancelled,28002
+A_Validating,O_Accepted,24444
+A_Complete,W_Assess potential fraud,24213
+O_Returned,A_Complete,23303
+O_Returned,W_Call after offers,23303
+O_Returned,W_Complete application,23303
+O_Returned,O_Sent (online only),23303
+O_Returned,O_Sent (mail and online),23303
+A_Incomplete,A_Complete,23026
+A_Incomplete,W_Complete application,23026
+A_Incomplete,W_Validate application,23026
+A_Incomplete,O_Sent (mail and online),23021
+A_Incomplete,O_Sent (online only),23020
+A_Incomplete,W_Call after offers,22979
+A_Incomplete,W_Assess potential fraud,22704
+O_Returned,W_Call incomplete files,22548
+O_Returned,O_Returned,20837
+A_Submitted,W_Complete application,20423
+A_Submitted,O_Create Offer,20423
+A_Submitted,A_Accepted,20423
+A_Concept,W_Complete application,20423
+A_Concept,W_Assess potential fraud,20423
+A_Incomplete,A_Incomplete,20237
+A_Incomplete,O_Returned,19836
+W_Complete application,A_Denied,19041
+W_Complete application,W_Call after offers,19041
+W_Complete application,W_Complete application,19041
+W_Complete application,A_Cancelled,19041
+W_Complete application,A_Validating,19041
+W_Complete application,O_Sent (online only),19041
+W_Complete application,O_Sent (mail and online),19041
+W_Complete application,O_Cancelled,19041
+W_Complete application,W_Validate application,19041
+W_Complete application,W_Call incomplete files,19041
+W_Complete application,A_Incomplete,19041
+W_Complete application,O_Create Offer,19040
+W_Complete application,W_Assess potential fraud,19034
+O_Returned,A_Validating,17544
+O_Accepted,W_Assess potential fraud,17228
+O_Accepted,W_Call after offers,17228
+A_Validating,O_Returned,14684
+A_Accepted,W_Assess potential fraud,14580
+W_Validate application,O_Sent (mail and online),11812
+W_Validate application,W_Call incomplete files,11812
+W_Validate application,A_Complete,11812
+W_Validate application,O_Create Offer,11812
+W_Validate application,W_Call after offers,11812
+W_Validate application,W_Complete application,11812
+W_Validate application,A_Cancelled,11812
+W_Validate application,O_Sent (online only),11812
+W_Validate application,W_Validate application,11809
+A_Complete,W_Call after offers,11574
+W_Validate application,O_Returned,11489
+W_Validate application,O_Cancelled,10923
+A_Incomplete,O_Cancelled,10863
+A_Validating,A_Denied,10851
+W_Validate application,O_Accepted,10651
+W_Validate application,A_Validating,10525
+A_Cancelled,A_Denied,10312
+A_Cancelled,A_Complete,10312
+A_Cancelled,O_Create Offer,10312
+A_Cancelled,A_Cancelled,10312
+A_Cancelled,A_Validating,10312
+A_Cancelled,O_Sent (online only),10312
+A_Cancelled,O_Sent (mail and online),10312
+A_Cancelled,W_Assess potential fraud,10312
+A_Cancelled,W_Validate application,10312
+A_Cancelled,A_Incomplete,10312
+A_Cancelled,W_Complete application,10305
+A_Cancelled,W_Call after offers,10301
+A_Cancelled,W_Call incomplete files,10288
+A_Incomplete,A_Denied,8728
+O_Returned,O_Cancelled,8390
+O_Created,A_Denied,8381
+A_Pending,A_Denied,6940
+A_Pending,A_Complete,6940
+A_Pending,O_Create Offer,6940
+A_Pending,W_Call after offers,6940
+A_Pending,W_Complete application,6940
+A_Pending,A_Cancelled,6940
+A_Pending,A_Validating,6940
+A_Pending,O_Sent (online only),6940
+A_Pending,O_Sent (mail and online),6940
+A_Pending,W_Assess potential fraud,6940
+A_Pending,A_Incomplete,6940
+O_Cancelled,A_Complete,6847
+O_Cancelled,W_Assess potential fraud,6847
+O_Cancelled,O_Accepted,6845
+O_Cancelled,O_Returned,6842
+O_Cancelled,A_Incomplete,6839
+O_Cancelled,W_Validate application,6820
+O_Cancelled,W_Complete application,6808
+A_Pending,W_Call incomplete files,6759
+O_Cancelled,W_Call after offers,6747
+O_Cancelled,O_Sent (online only),6745
+W_Validate application,A_Denied,6689
+O_Cancelled,O_Sent (mail and online),6377
+O_Cancelled,W_Call incomplete files,6343
+O_Cancelled,A_Validating,6192
+O_Sent (mail and online),A_Complete,6122
+O_Cancelled,A_Denied,6101
+O_Sent (mail and online),W_Complete application,6073
+O_Returned,W_Assess potential fraud,6023
+A_Incomplete,A_Cancelled,6015
+O_Returned,A_Cancelled,5734
+O_Cancelled,A_Cancelled,5638
+A_Validating,A_Incomplete,5490
+W_Validate application,W_Assess potential fraud,5443
+O_Returned,O_Create Offer,5404
+O_Cancelled,O_Create Offer,5259
+O_Created,A_Cancelled,4748
+A_Incomplete,O_Create Offer,4697
+A_Incomplete,W_Call incomplete files,4363
+A_Validating,W_Validate application,4249
+A_Incomplete,O_Accepted,4221
+A_Denied,A_Denied,3733
+A_Denied,A_Complete,3733
+A_Denied,O_Create Offer,3733
+A_Denied,A_Cancelled,3733
+A_Denied,A_Validating,3733
+A_Denied,O_Sent (online only),3733
+A_Denied,O_Sent (mail and online),3733
+A_Denied,W_Assess potential fraud,3733
+A_Denied,O_Cancelled,3733
+A_Denied,A_Incomplete,3733
+A_Denied,W_Validate application,3732
+A_Denied,W_Call incomplete files,3730
+A_Denied,W_Complete application,3729
+A_Denied,W_Call after offers,3728
+A_Accepted,W_Complete application,3501
+W_Handle leads,W_Complete application,3493
+W_Handle leads,W_Assess potential fraud,3493
+W_Handle leads,O_Create Offer,3493
+W_Handle leads,A_Accepted,3493
+O_Returned,A_Denied,3104
+O_Created,O_Cancelled,2996
+A_Pending,O_Cancelled,2951
+O_Created,O_Create Offer,2839
+O_Refused,A_Denied,2718
+O_Refused,A_Complete,2718
+O_Refused,O_Create Offer,2718
+O_Refused,A_Cancelled,2718
+O_Refused,A_Validating,2718
+O_Refused,O_Sent (online only),2718
+O_Refused,O_Sent (mail and online),2718
+O_Refused,O_Cancelled,2718
+O_Refused,A_Incomplete,2718
+O_Refused,W_Complete application,2705
+O_Refused,W_Call after offers,2690
+O_Refused,W_Call incomplete files,2649
+A_Pending,W_Validate application,2615
+O_Returned,W_Validate application,2575
+O_Returned,A_Incomplete,2533
+O_Returned,O_Accepted,2253
+W_Call incomplete files,A_Complete,2162
+W_Call incomplete files,O_Create Offer,2162
+W_Call incomplete files,W_Call after offers,2162
+W_Call incomplete files,W_Complete application,2162
+W_Call incomplete files,A_Cancelled,2162
+W_Call incomplete files,O_Sent (online only),2162
+W_Call incomplete files,O_Sent (mail and online),2162
+W_Call incomplete files,W_Validate application,2162
+W_Call incomplete files,W_Call incomplete files,2162
+W_Call incomplete files,A_Incomplete,2162
+W_Call incomplete files,O_Cancelled,2144
+W_Call incomplete files,A_Denied,2067
+O_Sent (online only),W_Call after offers,2014
+O_Sent (online only),W_Assess potential fraud,2014
+W_Call incomplete files,W_Assess potential fraud,2014
+O_Sent (online only),O_Sent (mail and online),2011
+O_Sent (online only),W_Validate application,1999
+O_Sent (online only),A_Incomplete,1996
+O_Sent (online only),A_Denied,1944
+O_Sent (online only),O_Sent (online only),1920
+O_Cancelled,O_Cancelled,1819
+O_Sent (online only),O_Accepted,1818
+O_Refused,W_Assess potential fraud,1748
+O_Refused,O_Refused,1743
+O_Sent (online only),W_Call incomplete files,1635
+A_Incomplete,A_Validating,1622
+O_Sent (online only),A_Complete,1571
+O_Sent (online only),W_Complete application,1560
+O_Created,O_Sent (online only),1539
+O_Sent (online only),O_Cancelled,1532
+A_Complete,A_Denied,1301
+O_Sent (online only),O_Returned,1283
+O_Sent (online only),A_Cancelled,1206
+O_Sent (online only),O_Create Offer,1182
+O_Refused,W_Validate application,1130
+W_Validate application,A_Incomplete,907
+O_Sent (online only),A_Validating,792
+O_Created,O_Sent (mail and online),485
+A_Complete,O_Cancelled,482
+W_Call after offers,A_Denied,207
+W_Call after offers,A_Complete,207
+W_Call after offers,O_Create Offer,207
+W_Call after offers,W_Call after offers,207
+W_Call after offers,W_Complete application,207
+W_Call after offers,A_Cancelled,207
+W_Call after offers,O_Sent (online only),207
+W_Call after offers,O_Sent (mail and online),207
+W_Call after offers,W_Assess potential fraud,207
+W_Call after offers,O_Cancelled,207
+W_Call after offers,W_Validate application,207
+W_Call after offers,W_Call incomplete files,207
+W_Call after offers,A_Incomplete,207
+W_Assess potential fraud,O_Create Offer,185
+W_Assess potential fraud,W_Complete application,185
+W_Assess potential fraud,W_Assess potential fraud,171
+W_Assess potential fraud,A_Complete,166
+W_Assess potential fraud,O_Sent (online only),166
+W_Assess potential fraud,O_Sent (mail and online),166
+W_Assess potential fraud,O_Cancelled,166
+W_Assess potential fraud,W_Call incomplete files,166
+W_Assess potential fraud,W_Call after offers,162
+W_Assess potential fraud,A_Validating,162
+W_Assess potential fraud,A_Cancelled,154
+W_Assess potential fraud,O_Returned,151
+A_Complete,O_Create Offer,126
+W_Assess potential fraud,O_Accepted,116
+A_Complete,A_Cancelled,108
+A_Complete,A_Validating,95
+W_Assess potential fraud,W_Validate application,93
+W_Assess potential fraud,A_Denied,84
+W_Assess potential fraud,A_Incomplete,72
+A_Cancelled,O_Cancelled,42
+W_Call incomplete files,A_Validating,20
+W_Assess potential fraud,A_Accepted,18
+A_Denied,O_Refused,13
+W_Complete application,A_Complete,9
+W_Assess potential fraud,W_Handle leads,5
+A_Accepted,A_Denied,5
+A_Accepted,A_Complete,5
+A_Accepted,W_Call after offers,5
+A_Accepted,A_Cancelled,5
+A_Accepted,A_Validating,5
+A_Accepted,O_Sent (online only),5
+A_Accepted,O_Sent (mail and online),5
+A_Accepted,O_Cancelled,5
+A_Accepted,W_Validate application,5
+A_Accepted,W_Call incomplete files,5
+A_Accepted,A_Incomplete,5
+W_Call after offers,O_Accepted,3
+W_Call after offers,O_Returned,3
+A_Accepted,O_Create Offer,1

@@ -1,0 +1,620 @@
+{
+  "created_utc": "2026-10-29T15:03:48.408061+00:00",
+  "method": "PM4Py Heuristics Miner CLASSIC; dependency_thresh sweep, all other parameters as src.discovery",
+  "input": {
+    "cache": "tmp/evaluation/projected_sequences.json",
+    "cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+    "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+    "cases": 31509,
+    "events": 475306,
+    "variants": 5623,
+    "activities": 24,
+    "event_log": "src.model_assessment.event_log: concept:name per event, case id as trace attribute; no timestamps",
+    "projection": {
+      "attribute": "lifecycle:transition",
+      "values": [
+        "complete"
+      ],
+      "level": "event"
+    },
+    "event_order": "Original XES order within each trace; no timestamp sorting."
+  },
+  "versions": {
+    "python": "3.12.10",
+    "pm4py": "2.7.23.11",
+    "networkx": "3.7",
+    "graphviz_python": "0.21",
+    "graphviz_executable": "dot - graphviz version 16.1.0 (20260904.0139)"
+  },
+  "randomness": {
+    "random_seed": null,
+    "python_hash_seed": "20261029",
+    "note": "HM has no stochastic step; the hash seed fixes string-set order (clique order, silent-transition names)."
+  },
+  "base_parameters": {
+    "dependency_thresh": 0.5,
+    "and_measure_thresh": 0.65,
+    "loop_length_two_thresh": 0.5,
+    "min_act_count": 1,
+    "min_dfg_occurrences": 1,
+    "dfg_pre_cleaning_noise_thresh": 0.05,
+    "pm4py:param:activity_key": "concept:name",
+    "pm4py:param:timestamp_key": "time:timestamp",
+    "pm4py:param:case_id_key": "case:concept:name"
+  },
+  "thresholds": [
+    0.5,
+    0.7,
+    0.9,
+    0.99
+  ],
+  "visualization": {
+    "tool": "pm4py.visualization.heuristics_net (pydotplus variant), frequency decoration",
+    "node_label": "activity (occurrences)",
+    "heuristics_net_pm4py": "unchanged PM4Py edge label: frequency",
+    "heuristics_net": "edge label: dependency value (frequency); L2L arcs: 'L2L' measure (frequency)",
+    "dot_node_ids": "uuid4 replaced by a counter for reproducible DOT"
+  },
+  "implementation_sha256": {
+    "scripts/discover_heuristics_variants.py": "f112d33cdac2ca39196f3ea57c2daf4b66244bb09fabc8fdab81e778fa08be62",
+    "src/discovery.py": "0ed96ff7b0d83958e0371a91f980cf321ab5616ca43b9428e186dbefa587ef68",
+    "src/model_assessment.py": "8abf3b0df44fbbb169a0aaad61deb812926f653c387763500494e42553ee9847"
+  },
+  "native": {
+    "call": "pm4py.discover_heuristics_net",
+    "arguments": {
+      "dependency_threshold": 0.5,
+      "and_threshold": 0.65,
+      "loop_two_threshold": 0.5,
+      "min_act_count": 1,
+      "min_dfg_occurrences": 1,
+      "activity_key": "concept:name",
+      "timestamp_key": "time:timestamp",
+      "case_id_key": "case:concept:name",
+      "decoration": "frequency"
+    },
+    "dfg_pre_cleaning_noise_thresh": "PM4Py default 0.05",
+    "seconds": 0.841,
+    "heuristics_net": {
+      "nodes": 24,
+      "arcs": 73,
+      "dependency_arcs": 65,
+      "self_loops": 4,
+      "length_two_loop_arcs": 4,
+      "and_split_pairs": 15,
+      "and_join_pairs": 21,
+      "start_activities": [
+        "A_Create Application"
+      ],
+      "end_activities": [
+        "A_Cancelled",
+        "A_Complete",
+        "A_Denied",
+        "A_Incomplete",
+        "A_Pending",
+        "A_Validating",
+        "O_Cancelled",
+        "O_Refused",
+        "O_Returned",
+        "O_Sent (mail and online)",
+        "O_Sent (online only)",
+        "W_Assess potential fraud",
+        "W_Call after offers",
+        "W_Call incomplete files",
+        "W_Complete application",
+        "W_Validate application"
+      ],
+      "activities_without_node": [],
+      "minimum_kept_dependency": 0.737533692722372
+    },
+    "dfg": {
+      "arcs_before_pre_cleaning": 159,
+      "arcs_after_pre_cleaning": 76,
+      "cleaned_arcs_with_dependency_at_least": {
+        "0.0": 71,
+        "0.5": 69,
+        "0.7": 69,
+        "0.9": 62,
+        "0.99": 52
+      }
+    },
+    "artifacts": {
+      "results/heuristics/native/dependency_edges.csv": {
+        "bytes": 4278,
+        "sha256": "e161f46b3e6db2dd274790cebfd18bb59344673b33e105e327433a7517046386"
+      },
+      "results/heuristics/native/heuristics_net_pm4py.gv": {
+        "bytes": 10552,
+        "sha256": "2751bf290e724d7471ca9abf7546f2e05463364ea979712996e64565cca02a19"
+      },
+      "results/heuristics/native/heuristics_net_pm4py.svg": {
+        "bytes": 61657,
+        "sha256": "c481179b515da018a0ddec2e5061088c2436c51068ab821e4a2160f881f39376"
+      },
+      "results/heuristics/native/heuristics_net_pm4py.png": {
+        "bytes": 721529,
+        "sha256": "1e87681c5034e7cf3761e62b2a9015be5ce3caafdf915a78cce8984a0e6487eb"
+      },
+      "results/heuristics/native/heuristics_net_pm4py.pdf": {
+        "bytes": 42272,
+        "sha256": "56439e9254091ea23a8d24a1fc7d62efe84a45abcc4289ef85ab0e85d9d4354d"
+      },
+      "results/heuristics/native/heuristics_net.gv": {
+        "bytes": 11298,
+        "sha256": "6d4e216769c93e04fae1efdb15937ddaa0a28a12c19d5d96e85519a3912dfdd0"
+      },
+      "results/heuristics/native/heuristics_net.svg": {
+        "bytes": 64150,
+        "sha256": "5943db518beb9f8259447f42902cac5ee3795517a2934448b38cae97e3074d0c"
+      },
+      "results/heuristics/native/heuristics_net.png": {
+        "bytes": 809035,
+        "sha256": "f902ccd7d1220b3d22cc8a925da43ef6904db7cf47088b23eb0b822b14e63444"
+      },
+      "results/heuristics/native/heuristics_net.pdf": {
+        "bytes": 43694,
+        "sha256": "ab7c9c9ff01602cdf06b57bee24ffa97b2cbffe3f0ede34ab91bbd7cda93fcf5"
+      }
+    }
+  },
+  "sweep": {
+    "dep_0.5": {
+      "parameters": {
+        "dependency_thresh": 0.5,
+        "and_measure_thresh": 0.65,
+        "loop_length_two_thresh": 0.5,
+        "min_act_count": 1,
+        "min_dfg_occurrences": 1,
+        "dfg_pre_cleaning_noise_thresh": 0.05,
+        "pm4py:param:activity_key": "concept:name",
+        "pm4py:param:timestamp_key": "time:timestamp",
+        "pm4py:param:case_id_key": "case:concept:name"
+      },
+      "heuristics_net_seconds": 0.814,
+      "conversion_seconds": 0.032,
+      "heuristics_net": {
+        "nodes": 24,
+        "arcs": 73,
+        "dependency_arcs": 65,
+        "self_loops": 4,
+        "length_two_loop_arcs": 4,
+        "and_split_pairs": 15,
+        "and_join_pairs": 21,
+        "start_activities": [
+          "A_Create Application"
+        ],
+        "end_activities": [
+          "A_Cancelled",
+          "A_Complete",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Validating",
+          "O_Cancelled",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Validate application"
+        ],
+        "activities_without_node": [],
+        "minimum_kept_dependency": 0.737533692722372
+      },
+      "petri_net": {
+        "places": 49,
+        "transitions": 94,
+        "visible_transitions": 24,
+        "silent_transitions": 70,
+        "arcs": 220,
+        "activity_labels": [
+          "A_Accepted",
+          "A_Cancelled",
+          "A_Complete",
+          "A_Concept",
+          "A_Create Application",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Submitted",
+          "A_Validating",
+          "O_Accepted",
+          "O_Cancelled",
+          "O_Create Offer",
+          "O_Created",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Handle leads",
+          "W_Validate application"
+        ],
+        "initial_tokens": 1,
+        "final_tokens": 1,
+        "pnml_round_trip_verified": true,
+        "canonical_signature_sha256": "7795e18ea37e6d199bf43c612f11e29b8f4d2cc255c2fced49eb4b666fd419c8"
+      },
+      "reproduces_baseline": {
+        "baseline": "results/models/heuristics_miner.pnml",
+        "baseline_sha256": "d1cbbe639ab8d8501dde1fd78fd3d18a0e2243fef29a60fde0fd1190e1cd73e6",
+        "expected_counts": {
+          "places": 49,
+          "transitions": 94,
+          "arcs": 220
+        },
+        "baseline_counts": {
+          "places": 49,
+          "transitions": 94,
+          "arcs": 220
+        },
+        "counts_match": true,
+        "labelled_isomorphic": true,
+        "same_heuristics_net_as_native_api": true
+      },
+      "artifacts": {
+        "results/heuristics/dep_0.5/model.pnml": {
+          "bytes": 45450,
+          "sha256": "ebf9e22f2c3fdedeb270c4153d265344100eabeabb54dda3d969f1051acefb21"
+        },
+        "results/heuristics/dep_0.5/dependency_edges.csv": {
+          "bytes": 4278,
+          "sha256": "e161f46b3e6db2dd274790cebfd18bb59344673b33e105e327433a7517046386"
+        },
+        "results/heuristics/dep_0.5/heuristics_net.gv": {
+          "bytes": 11298,
+          "sha256": "6d4e216769c93e04fae1efdb15937ddaa0a28a12c19d5d96e85519a3912dfdd0"
+        },
+        "results/heuristics/dep_0.5/heuristics_net.svg": {
+          "bytes": 64150,
+          "sha256": "5943db518beb9f8259447f42902cac5ee3795517a2934448b38cae97e3074d0c"
+        },
+        "results/heuristics/dep_0.5/heuristics_net.png": {
+          "bytes": 809035,
+          "sha256": "f902ccd7d1220b3d22cc8a925da43ef6904db7cf47088b23eb0b822b14e63444"
+        },
+        "results/heuristics/dep_0.5/heuristics_net.pdf": {
+          "bytes": 43694,
+          "sha256": "62983e030a5a6e57506685d4d5d7c2eec3e75b986cacf20a92019a971db4144d"
+        }
+      }
+    },
+    "dep_0.7": {
+      "parameters": {
+        "dependency_thresh": 0.7,
+        "and_measure_thresh": 0.65,
+        "loop_length_two_thresh": 0.5,
+        "min_act_count": 1,
+        "min_dfg_occurrences": 1,
+        "dfg_pre_cleaning_noise_thresh": 0.05,
+        "pm4py:param:activity_key": "concept:name",
+        "pm4py:param:timestamp_key": "time:timestamp",
+        "pm4py:param:case_id_key": "case:concept:name"
+      },
+      "heuristics_net_seconds": 1.119,
+      "conversion_seconds": 0.023,
+      "heuristics_net": {
+        "nodes": 24,
+        "arcs": 73,
+        "dependency_arcs": 65,
+        "self_loops": 4,
+        "length_two_loop_arcs": 4,
+        "and_split_pairs": 15,
+        "and_join_pairs": 21,
+        "start_activities": [
+          "A_Create Application"
+        ],
+        "end_activities": [
+          "A_Cancelled",
+          "A_Complete",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Validating",
+          "O_Cancelled",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Validate application"
+        ],
+        "activities_without_node": [],
+        "minimum_kept_dependency": 0.737533692722372
+      },
+      "petri_net": {
+        "places": 49,
+        "transitions": 94,
+        "visible_transitions": 24,
+        "silent_transitions": 70,
+        "arcs": 220,
+        "activity_labels": [
+          "A_Accepted",
+          "A_Cancelled",
+          "A_Complete",
+          "A_Concept",
+          "A_Create Application",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Submitted",
+          "A_Validating",
+          "O_Accepted",
+          "O_Cancelled",
+          "O_Create Offer",
+          "O_Created",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Handle leads",
+          "W_Validate application"
+        ],
+        "initial_tokens": 1,
+        "final_tokens": 1,
+        "pnml_round_trip_verified": true,
+        "canonical_signature_sha256": "7795e18ea37e6d199bf43c612f11e29b8f4d2cc255c2fced49eb4b666fd419c8"
+      },
+      "artifacts": {
+        "results/heuristics/dep_0.7/model.pnml": {
+          "bytes": 45450,
+          "sha256": "08e4e2aa155c91f727f3e78f046f91da60b1a0431f809a808d875666c363ad04"
+        },
+        "results/heuristics/dep_0.7/dependency_edges.csv": {
+          "bytes": 4278,
+          "sha256": "e161f46b3e6db2dd274790cebfd18bb59344673b33e105e327433a7517046386"
+        },
+        "results/heuristics/dep_0.7/heuristics_net.gv": {
+          "bytes": 11298,
+          "sha256": "6d4e216769c93e04fae1efdb15937ddaa0a28a12c19d5d96e85519a3912dfdd0"
+        },
+        "results/heuristics/dep_0.7/heuristics_net.svg": {
+          "bytes": 64150,
+          "sha256": "5943db518beb9f8259447f42902cac5ee3795517a2934448b38cae97e3074d0c"
+        },
+        "results/heuristics/dep_0.7/heuristics_net.png": {
+          "bytes": 809035,
+          "sha256": "f902ccd7d1220b3d22cc8a925da43ef6904db7cf47088b23eb0b822b14e63444"
+        },
+        "results/heuristics/dep_0.7/heuristics_net.pdf": {
+          "bytes": 43694,
+          "sha256": "a614eb7721608b2ce588d48ab572544db7845682a34c28b1a323d62484ed9ecd"
+        }
+      }
+    },
+    "dep_0.9": {
+      "parameters": {
+        "dependency_thresh": 0.9,
+        "and_measure_thresh": 0.65,
+        "loop_length_two_thresh": 0.5,
+        "min_act_count": 1,
+        "min_dfg_occurrences": 1,
+        "dfg_pre_cleaning_noise_thresh": 0.05,
+        "pm4py:param:activity_key": "concept:name",
+        "pm4py:param:timestamp_key": "time:timestamp",
+        "pm4py:param:case_id_key": "case:concept:name"
+      },
+      "heuristics_net_seconds": 0.876,
+      "conversion_seconds": 0.024,
+      "heuristics_net": {
+        "nodes": 24,
+        "arcs": 74,
+        "dependency_arcs": 59,
+        "self_loops": 3,
+        "length_two_loop_arcs": 12,
+        "and_split_pairs": 10,
+        "and_join_pairs": 16,
+        "start_activities": [
+          "A_Create Application"
+        ],
+        "end_activities": [
+          "A_Cancelled",
+          "A_Complete",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Validating",
+          "O_Cancelled",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Validate application"
+        ],
+        "activities_without_node": [],
+        "minimum_kept_dependency": 0.9166666666666666
+      },
+      "petri_net": {
+        "places": 46,
+        "transitions": 95,
+        "visible_transitions": 24,
+        "silent_transitions": 71,
+        "arcs": 214,
+        "activity_labels": [
+          "A_Accepted",
+          "A_Cancelled",
+          "A_Complete",
+          "A_Concept",
+          "A_Create Application",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Submitted",
+          "A_Validating",
+          "O_Accepted",
+          "O_Cancelled",
+          "O_Create Offer",
+          "O_Created",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Handle leads",
+          "W_Validate application"
+        ],
+        "initial_tokens": 1,
+        "final_tokens": 1,
+        "pnml_round_trip_verified": true,
+        "canonical_signature_sha256": "4441a77d749601c225bbac47f95eb780e19a0964aae9638c8d38f94e5166c86d"
+      },
+      "artifacts": {
+        "results/heuristics/dep_0.9/model.pnml": {
+          "bytes": 44297,
+          "sha256": "307eced07c38bfdce51e25757804ed7a199909a20fa18426e0afbf9e073e0213"
+        },
+        "results/heuristics/dep_0.9/dependency_edges.csv": {
+          "bytes": 4379,
+          "sha256": "fd01705a8012fb2939b60acc50546e00ee274611a85bc6a4f0aa42461f6f789b"
+        },
+        "results/heuristics/dep_0.9/heuristics_net.gv": {
+          "bytes": 11422,
+          "sha256": "52c87c2c80fad60aa85781d4f5f62705658f4a389cca08a07346f9db2a1edd3e"
+        },
+        "results/heuristics/dep_0.9/heuristics_net.svg": {
+          "bytes": 65879,
+          "sha256": "d0eafe7dd34e1780a0e7321d8af174e5b0dd88e3706d83d813ee32fe144374bb"
+        },
+        "results/heuristics/dep_0.9/heuristics_net.png": {
+          "bytes": 792683,
+          "sha256": "53b7f831dc6e5ace13bea8ce262d0062317e0be17c8ec0a6c1500f753c01a609"
+        },
+        "results/heuristics/dep_0.9/heuristics_net.pdf": {
+          "bytes": 44372,
+          "sha256": "80e37a5838901f27576bf3a7cfe707d0f916d9e0706322357cad14f944864d18"
+        }
+      }
+    },
+    "dep_0.99": {
+      "parameters": {
+        "dependency_thresh": 0.99,
+        "and_measure_thresh": 0.65,
+        "loop_length_two_thresh": 0.5,
+        "min_act_count": 1,
+        "min_dfg_occurrences": 1,
+        "dfg_pre_cleaning_noise_thresh": 0.05,
+        "pm4py:param:activity_key": "concept:name",
+        "pm4py:param:timestamp_key": "time:timestamp",
+        "pm4py:param:case_id_key": "case:concept:name"
+      },
+      "heuristics_net_seconds": 0.685,
+      "conversion_seconds": 0.018,
+      "heuristics_net": {
+        "nodes": 24,
+        "arcs": 64,
+        "dependency_arcs": 49,
+        "self_loops": 3,
+        "length_two_loop_arcs": 12,
+        "and_split_pairs": 8,
+        "and_join_pairs": 13,
+        "start_activities": [
+          "A_Create Application"
+        ],
+        "end_activities": [
+          "A_Cancelled",
+          "A_Complete",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Validating",
+          "O_Cancelled",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Validate application"
+        ],
+        "activities_without_node": [],
+        "minimum_kept_dependency": 0.9900990099009901
+      },
+      "petri_net": {
+        "places": 41,
+        "transitions": 83,
+        "visible_transitions": 24,
+        "silent_transitions": 59,
+        "arcs": 185,
+        "activity_labels": [
+          "A_Accepted",
+          "A_Cancelled",
+          "A_Complete",
+          "A_Concept",
+          "A_Create Application",
+          "A_Denied",
+          "A_Incomplete",
+          "A_Pending",
+          "A_Submitted",
+          "A_Validating",
+          "O_Accepted",
+          "O_Cancelled",
+          "O_Create Offer",
+          "O_Created",
+          "O_Refused",
+          "O_Returned",
+          "O_Sent (mail and online)",
+          "O_Sent (online only)",
+          "W_Assess potential fraud",
+          "W_Call after offers",
+          "W_Call incomplete files",
+          "W_Complete application",
+          "W_Handle leads",
+          "W_Validate application"
+        ],
+        "initial_tokens": 1,
+        "final_tokens": 1,
+        "pnml_round_trip_verified": true,
+        "canonical_signature_sha256": "a4dd5c58a97260784bb8ca48d2cf93d475cf1f0b58bdc61e040d2dcf41db92a9"
+      },
+      "artifacts": {
+        "results/heuristics/dep_0.99/model.pnml": {
+          "bytes": 38304,
+          "sha256": "6324062477d8d650f5a1e0b10198f90a24ddde824e6398a58bd79efc8a6c7dea"
+        },
+        "results/heuristics/dep_0.99/dependency_edges.csv": {
+          "bytes": 3789,
+          "sha256": "6a09da82a7e27ae914863c3ae719ff02c0b16b3d1ca8ec78a3c21cd89d09e789"
+        },
+        "results/heuristics/dep_0.99/heuristics_net.gv": {
+          "bytes": 10467,
+          "sha256": "6c5e8480a19e5aeefc915c2454b27f9b9ddbf5b0e58a0604241c623b82249734"
+        },
+        "results/heuristics/dep_0.99/heuristics_net.svg": {
+          "bytes": 57769,
+          "sha256": "1f2b584140db72be713b4577c4f51d315f89e2f745cd9942f570b281ce6174e9"
+        },
+        "results/heuristics/dep_0.99/heuristics_net.png": {
+          "bytes": 625218,
+          "sha256": "c93067295271af210f4c233e134ef846edbd914e55a534a9af6394997ce32677"
+        },
+        "results/heuristics/dep_0.99/heuristics_net.pdf": {
+          "bytes": 42202,
+          "sha256": "1f7a84b165ee93cd8dbecc9393b9825f432daa59851581eed7e2902ef5f629af"
+        }
+      }
+    }
+  },
+  "total_seconds": 18.49
+}

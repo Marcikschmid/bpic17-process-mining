@@ -1,0 +1,27 @@
+% Factual concept table; sources: results/tables/raw_log_statistics.json, results/tables/import_summary.json,
+% tables/raw_attribute_profile.tex, "projection" block and sequences of tmp/evaluation/projected_sequences.json.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Event-log concepts in BPIC-17: raw log vs.\ completion projection.}
+\label{tab:concepts}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\columnwidth}>{\raggedright\arraybackslash}p{0.43\columnwidth}r@{}}
+\toprule
+Concept & Operationalization & Value \\
+\midrule
+Event (raw) & XES event, all lifecycle states & 1,202,267 \\
+Event (projection) & lifecycle state complete only & 475,306 \\
+Excluded events & schedule, start, suspend, resume, ate\_abort, withdraw; W\_ only & 726,961 \\
+Activity instance & no instance ID; \texttt{EventID} unique per event & -- \\
+Activities & raw / projection & 26 / 24 \\
+Case & application; \texttt{case:concept:name} & 31,509 \\
+Trace & event sequence per case; original XES order & 31,509 \\
+Variants (raw) & activity sequence, all lifecycle states & 15,930 \\
+Variants (projection) & activity sequence, complete only & 5,623 \\
+Case notion & \texttt{EventOrigin}: Application, Offer, Workflow & 3 \\
+Offers & distinct \texttt{OfferID} (event attribute) & 42,995 \\
+Multi-offer cases & applications with 2--10 offers & 8,559 \\
+\bottomrule
+\end{tabular}
+\end{table}

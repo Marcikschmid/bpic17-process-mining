@@ -1,0 +1,32 @@
+{
+  "tree": "->( 'A_Create Application', X( tau, ->( 'A_Submitted', X( tau, 'W_Handle leads' ) ) ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( ->( 'O_Create Offer', 'O_Created' ), tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'W_Complete application' ) ), tau ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), +( X( tau, *( 'W_Validate application', tau ) ), ->( 'A_Validating', 'O_Returned', *( tau, ->( 'A_Incomplete', X( tau, 'W_Call incomplete files' ), X( tau, 'A_Validating' ) ) ), X( ->( 'O_Accepted', 'A_Pending', X( tau, *( 'O_Cancelled', tau ) ) ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ) ) ) ) )",
+  "tree_operators": {
+    "activity leaf": 23,
+    "exclusive choice X": 9,
+    "loop *": 8,
+    "parallel +": 2,
+    "sequence ->": 9,
+    "tau leaf": 15
+  },
+  "bpmn_tasks": 23,
+  "bpmn_distinct_task_labels": 21,
+  "duplicated_task_labels": [
+    "A_Validating",
+    "O_Cancelled"
+  ],
+  "bpmn_gateways": {
+    "AND merge": 2,
+    "AND split": 2,
+    "XOR merge": 17,
+    "XOR split": 17
+  },
+  "mapping": {
+    "sequence ->": "sequence flows, no gateway",
+    "exclusive choice X": "XOR split + XOR merge pair",
+    "loop *": "XOR merge (loop entry) + XOR split (exit or redo) pair",
+    "parallel +": "AND split + AND join pair",
+    "tau leaf": "no task; skip or redo path between gateways"
+  },
+  "expected_xor_pairs": 17,
+  "expected_and_pairs": 2
+}

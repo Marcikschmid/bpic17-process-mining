@@ -1,0 +1,156 @@
+{
+  "name": "refined_imf",
+  "model": "results/refinement/final_model.pnml",
+  "model_sha256": "6f782b41bb492e152d09782aee7535ea3c70a3674521f8b0e373cf1666cd9d15",
+  "pnml_sha256": "6f782b41bb492e152d09782aee7535ea3c70a3674521f8b0e373cf1666cd9d15",
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "pm4py": "2.7.23.11",
+  "created_utc": "2026-10-30T09:22:10.446715+00:00",
+  "implementation_sha256": {
+    "src/model_assessment.py": "4eb9d46bddc5f8ffdafde4e7a25e09a77a21df2b909e0eedb817f4e0362c8e01",
+    "src/soundness.py": "d4d3cd076b3ce6ab1cbff905ca00b407d06f86744a0df5c3de7dcb32622f113c",
+    "src/simplicity.py": "7e63ca88f0164b3a22f19486a9da1830ace934bc0dce6b0fc3bc594738318061",
+    "src/replay_coverage.py": "fb894dbc5f2c6c8d88287f274cc7718834a0c3ff03948783ca14a619dbc17156",
+    "src/finite_alignment.py": "b32dca5ac65bcd59e82c2a96436cd406e091fb3bd09909f3db9be2b154987f47",
+    "src/finite_precision.py": "3c34afc45e5d49034d5057c02b8e1e387e99debed16dcaa5755ad69da1246cde",
+    "scripts/assess_model.py": "2240e34ee0ca9cf6ca11a5d45cddec103e49b5b006ff2438cde6ef63e1ec138a"
+  },
+  "headline": {
+    "workflow_net": true,
+    "sound": true,
+    "easy_sound": true,
+    "relaxed_sound": true,
+    "exact_replay_pct": 80.45320384652004,
+    "token_fitness": 0.9874756653243484,
+    "alignment_fitness": 0.9765245757360197,
+    "token_precision": 0.5951685521879374,
+    "align_et_precision": 0.5976739688393717,
+    "generalization": 0.9912109884248378,
+    "alignment_generalization": 0.9911636244631823,
+    "arc_degree_simplicity": 0.7007874015748031,
+    "nodes": 89,
+    "arcs": 108,
+    "extended_cardoso": 52,
+    "extended_cyclomatic": 551
+  },
+  "soundness": {
+    "workflow_net": true,
+    "source_places": [
+      "source"
+    ],
+    "sink_places": [
+      "sink"
+    ],
+    "classical": {
+      "status": "ok",
+      "states_seen": 187,
+      "state_pairs_seen": 684,
+      "seconds": 0.035,
+      "limits": {
+        "max_states": 30000,
+        "timeout_seconds": 90
+      },
+      "value": 551,
+      "strongly_connected_components": 54,
+      "bounded": true,
+      "final_reachable": true,
+      "option_to_complete": true,
+      "proper_completion": true,
+      "dead_transitions": [],
+      "sound": true
+    },
+    "sound": true,
+    "unsound_reason": null,
+    "behavioural": {
+      "exploration_complete": true,
+      "states_explored": 187,
+      "easy_sound": true,
+      "relaxed_sound": true,
+      "transitions_not_on_complete_run": [],
+      "max_tokens_in_a_place": 1,
+      "safe": true
+    },
+    "woflan": {
+      "status": "ok",
+      "sound": true,
+      "seconds": 14.416
+    },
+    "woflan_agrees": true
+  },
+  "duplicate_visible_labels": [],
+  "simplicity": {
+    "arc_degree_pm4py": 0.7007874015748031,
+    "size_own": {
+      "nodes": 89,
+      "arcs": 108
+    },
+    "extended_cardoso_own": 52,
+    "extended_cyclomatic_own": 551,
+    "places": 39,
+    "transitions": 50,
+    "silent_transitions": 29
+  },
+  "token": {
+    "fitness": {
+      "perc_fit_traces": 81.62429781967057,
+      "average_trace_fitness": 0.9883113994462213,
+      "log_fitness": 0.9874756653243484,
+      "percentage_of_fitting_traces": 81.62429781967057
+    },
+    "generalization": 0.9912109884248378,
+    "fitting_cases": 25719,
+    "precision": 0.5951685521879374,
+    "seconds": 125.366,
+    "valid": true
+  },
+  "exact_replay": {
+    "cases": 31509,
+    "fitting_cases": 25350,
+    "fitting_percentage": 80.45320384652004,
+    "variants": 5623,
+    "states": 187,
+    "sound": true
+  },
+  "alignment_fitness": {
+    "log_fitness": 0.9765245757360197,
+    "average_trace_fitness": 0.9805262340503638,
+    "percentage_of_fitting_traces": 80.45320384652004,
+    "best_worst_cost": 80008,
+    "variants": 5623,
+    "cases": 31509,
+    "alignment_generalization": 0.9911636244631823,
+    "transitions_never_fired": 0,
+    "method": "exact finite-state Dijkstra alignments; PM4Py cost profile and fitness formula",
+    "pm4py_crosscheck": {
+      "status": "ok",
+      "variants_checked": 24,
+      "seed": 20261029,
+      "selection": "shortest third, fixed-seed random third, longest third"
+    },
+    "seconds": 111.649
+  },
+  "align_et_precision": {
+    "precision": 0.5976739688393717,
+    "prefixes": 27816,
+    "weighted_unfit_prefixes": 40338,
+    "weighted_enabled": 1411589,
+    "weighted_escaping": 567919,
+    "method": "PM4Py Align-ET formula; exact weighted finite-state prefix solver",
+    "complete_model_states": 187,
+    "silent_move_cost": 1,
+    "sync_move_cost": 0,
+    "pm4py_crosscheck": {
+      "status": "ok",
+      "prefixes_checked": 192,
+      "seed": 20261029
+    },
+    "seconds": 4.344
+  },
+  "evaluation_input": {
+    "cases": 31509,
+    "events": 475306,
+    "variants": 5623,
+    "cache": "tmp/evaluation/projected_sequences.json"
+  }
+}

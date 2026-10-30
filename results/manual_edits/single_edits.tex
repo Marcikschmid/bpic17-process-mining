@@ -1,0 +1,14 @@
+\begin{tabular}{llp{0.36\textwidth}rrrr}
+\hline
+Edit & Type & Log evidence (all 31,509 cases) & Exact replay \% & $\Delta$pp & Align-ET & Nodes \\
+\hline
+base & -- & refined IMf (frequent\_0.60\_imf\_0.03) & 80.45 & -- & 0.598 & 89 \\
+R1 & restricting & A\_Complete after first O\_Sent: 31,362 (99.53\%); before: 0 & 80.42 & -0.03 & 0.656 & 111 \\
+R2 & restricting & direct O\_Sent repetition in 2,781 (8.83\%) & 74.17 & -6.28 & 0.624 & 84 \\
+R3 & restricting & O\_Returned / A\_Incomplete before first A\_Validating: 0 / 0 & 77.90 & -2.55 & 0.697 & 84 \\
+R4 & restricting & O\_Cancelled after A\_Denied: 195; after A\_Cancelled: 10,431 & 80.45 & +0.00 & 0.598 & 92 \\
+G1 & generalizing & O\_Sent (online only) in 1,800 (5.71\%) & 81.88 & +1.43 & 0.585 & 90 \\
+G2 & generalizing & A\_Cancelled after A\_Validating: 1,014 (3.22\%) & 81.52 & +1.07 & 0.595 & 90 \\
+G3 & generalizing & $\geq$2 O\_Refused: 777 (2.47\%) & 82.06 & +1.61 & 0.597 & 92 \\
+\hline
+\end{tabular}

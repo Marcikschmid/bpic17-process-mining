@@ -13,6 +13,8 @@ from src.decision_mining import bpmn_net,observations,encode_features,tree_rules
 from src.finite_alignment import FiniteAligner
 
 OUT=ROOT/'results/decision_mining';CACHE=ROOT/'tmp/decision_mining';SEED=20261018
+# Final model after manual edits (scripts/export_final_model.py); the run of 2026-10-18 used results/refinement.
+MODEL=ROOT/'results/final'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def write(p,x):
     p.parent.mkdir(parents=True,exist_ok=True)
@@ -47,10 +49,10 @@ def main():
     from sklearn.model_selection import train_test_split
     from src.replay_coverage import ExactReplay
     OUT.mkdir(parents=True,exist_ok=True);CACHE.mkdir(parents=True,exist_ok=True)
-    bpmn=ROOT/'results/refinement/final_model.bpmn'
+    bpmn=MODEL/'final_model.bpmn'
     net,im,fm,gateways,choices=bpmn_net(bpmn)
     # Full-language audit against the independently converted/exported net.
-    original=ExactReplay(*pm4py.read_pnml(str(ROOT/'results/refinement/final_model.pnml')))
+    original=ExactReplay(*pm4py.read_pnml(str(MODEL/'final_model.pnml')))
     machine=ExactReplay(net,im,fm)
     equivalence=original.language_equivalent(machine)
     if not equivalence['equivalent'] or not machine.sound:raise ValueError('BPMN decision net mismatch')

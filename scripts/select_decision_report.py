@@ -17,7 +17,8 @@ def main():
     for p,digest in rendered['artifacts'].items():assert sha(source/p)==digest,p
     copies={'decision_bpmn.pdf':'figures/decision_bpmn.pdf','decision_metrics.tex':'tables/decision_metrics.tex',
             'guarded_coverage.tex':'tables/guarded_coverage.tex','decision_appendix.tex':'sections/decision_appendix.tex'}
-    copies.update({f'blocks/D{i:02d}.pdf':f'figures/decision_blocks/D{i:02d}.pdf' for i in range(1,17)})
+    splits=[g['id'] for g in json.loads((source/'decision_mining.json').read_text(encoding='utf-8'))['gateways'] if g['kind']=='split']
+    copies.update({f'blocks/{key}.pdf':f'figures/decision_blocks/{key}.pdf' for key in splits})
     manifest={}
     for src,dest in copies.items():
         output=report/dest;output.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source/src,output)

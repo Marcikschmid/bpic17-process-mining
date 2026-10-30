@@ -13,24 +13,33 @@ separately in [`report/`](report/).
 | Assignment component | Available implementation and results |
 |---|---|
 | 3.2: log statistics | Full raw-log statistics and independent XML audit |
-| 3.3.1: process discovery | Inductive Miner and Heuristics Miner baselines; additional native Genetic experiment |
-| 3.3.2: model quality | Four quality dimensions and independently implemented complexity measures; additional optimal HM alignment fitness remains incomplete |
-| 3.3.3: refinement | 40 candidates; selected BPMN structure replays 25,350/31,509 cases (80.45%) |
-| 3.3.4: decision mining | 16 XOR-split classifiers; rules visible directly in BPMN; separate test cases |
+| 3.3.1: process discovery | Alpha, Heuristics (native heuristics net + dependency sweep), Inductive and native Genetic Miner on the same input |
+| 3.3.2: model quality | Four quality dimensions and soundness gate for every model ([comparison](results/comparison/model_comparison.md)); additional optimal HM alignment fitness remains incomplete |
+| 3.3.3: refinement | 40 IM/IMf candidates, then manual process-tree edits screened in all 128 combinations; final model replays 25,016/31,509 cases (79.39%), Align-ET precision 0.697 ([manual edits](docs/MANUAL_EDITS.md)) |
+| 3.3.4: decision mining | Step 1: branch probabilities at all 17 XOR splits; step 2: 17 CART classifiers, rules visible directly in BPMN; separate test cases |
 | Report | Selected factual tables and figures; author-written interpretation still pending |
 | 3.4: advanced analysis | Not implemented |
 
-**Structural coverage and guarded coverage are different.** The selected
-control-flow model reaches 80.45% whole-case replay without learned guards.
-Enforcing all learned guards yields 10.40% over all cases and **10.19% on the
-held-out test cases**. These statistical rules are not validated bank policy.
+**Structural coverage and guarded coverage are different.** The final
+control-flow model reaches 79.39% whole-case replay without learned guards.
+Enforcing all learned guards yields 10.33% over all cases and **10.07% on the
+held-out test cases**; 9 of 17 trees only predict the majority branch. These
+statistical rules are not validated bank policy; branch probabilities
+([graph](results/decision_mining/branch_probabilities.pdf)) are the data-free alternative.
 See [refinement](docs/REFINEMENT.md), [decision mining](docs/DECISION_MINING.md)
 and the [assignment checklist](docs/CHECKLIST.md) for limitations and open work.
 
 ## Parameters, design rationale and optimization
 
-- [Actual miner parameters, meanings and reasons](docs/MINER_PARAMETERS.md), including IM/IMf and HM settings.
-- [26 design decisions: alternatives, evidence and limitations](docs/DESIGN_DECISIONS.md).
+- [Actual miner parameters, PM4Py defaults, meanings and reasons](docs/MINER_PARAMETERS.md), including Alpha, IM/IMf, HM and Genetic settings.
+- [32 design decisions: alternatives, evidence and limitations](docs/DESIGN_DECISIONS.md).
+- [All models, four quality criteria and soundness](results/comparison/model_comparison.md);
+  [Alpha Miner](docs/ALPHA_MINER.md), [Heuristics net and sweep](docs/HEURISTICS_SWEEP.md),
+  [Genetic budget](docs/GENETIC_BUDGET.md).
+- [Manual edits of the refined model](docs/MANUAL_EDITS.md): conformance diagnostics, log evidence,
+  128 combinations, fixed selection rule; final model G3+R3+R4 in [`results/final/`](results/final/).
+- Held-out check: IMf rediscovered on the 70% training cases gives the identical tree; final model
+  replays 79.45% of training and 79.26% of test cases ([`holdout_check.json`](results/comparison/holdout_check.json)).
 - [Printable parameter overview](results/parameters/miner_parameter_overview.pdf).
 - Third experiment: native PM4Py Genetic Miner, same full completion input,
   explicit population/generation budget and seeds; `scripts/discover_genetic.py`.
@@ -98,7 +107,7 @@ root and leave its terminal running:
 
 - [BPMN with visible XOR rules](http://127.0.0.1:8787/results/decision_mining/viewer.html)
 - [Decision trees and evaluation](http://127.0.0.1:8787/results/decision_mining/index.html)
-- [Original refined control-flow model](http://127.0.0.1:8787/results/refinement/index.html)
+- [Refined control-flow model before manual edits](http://127.0.0.1:8787/results/refinement/index.html)
 
 These localhost links work on your computer while its server is running.
 Use the gateway selector or zoom controls to inspect each decision. Static
@@ -123,6 +132,30 @@ The original data and its terms are documented in [`data/README.md`](data/README
 Raw downloads, virtual environments, browser libraries, alignment checkpoints
 and bulky per-decision observations are excluded from Git. The repository tracks
 source code, manifests, selected models, summary tables and figures.
+
+## Concepts: event, case, trace, variant
+
+| Concept | Definition used here | BPIC-17 value |
+|---|---|---|
+| Event | One XES event: activity (`concept:name`), lifecycle state, timestamp, resource, attributes | Raw: **1,202,267** events (all lifecycle states) |
+| Completion event | Event with `lifecycle:transition = complete`; input of discovery, evaluation, refinement | **475,306** events; 726,961 non-complete events excluded |
+| Lifecycle transition | State of one activity execution; 7 values: schedule, start, suspend, resume, complete, ate_abort, withdraw | A_/O_ events: `complete` only (raw count = projected count for all 18 A_/O_ labels); W_ work items: all 7 states |
+| Activity instance | One execution of an activity, possibly several lifecycle events | No instance identifier in the log; `EventID` unique per event (1,202,267 distinct) |
+| Activity | Distinct `concept:name` label | Raw: 26; completion projection: 24 (`W_Personal Loan collection`, `W_Shortened completion ` have no complete events) |
+| Case | Process instance; case ID `case:concept:name` | **31,509** cases = loan applications (`Application_...`); retained in both views |
+| Trace | Ordered event sequence of one case, original XES order | 31,509 traces; mean raw length 38.156 events |
+| Variant | Distinct activity sequence (one or more cases share it) | Raw (all lifecycle states): **15,930**; (activity, lifecycle) pairs: 16,692; completion projection: **5,623** |
+| Case notion | Choice of the object that groups events into a case | Application chosen; `EventOrigin` has 3 values: Application, Offer, Workflow |
+| Offer | Sub-object of an application; `OfferID` is an event attribute, not a case ID | 42,995 distinct `OfferID` values = 42,995 `O_Create Offer` events; 8,559 applications with 2–10 offers |
+
+Case notion is a design choice: offer events carry their own `OfferID` and one
+application can have several offers, so an offer-level or object-centric view
+would yield different cases, traces and variants. Sources:
+[`raw_log_statistics.json`](results/tables/raw_log_statistics.json),
+[`import_summary.json`](results/tables/import_summary.json),
+[`raw_attribute_profile.tex`](report/tables/raw_attribute_profile.tex) and the
+`projection` block of the local cache `tmp/evaluation/projected_sequences.json`
+(variant and offer counts computed from its 31,509 activity sequences).
 
 ## How Python and PM4Py are used
 
@@ -187,14 +220,39 @@ Prepare the full-log sequence cache before refinement or decision mining:
 .\.venv\Scripts\python.exe scripts/evaluate_models.py --prepare
 ```
 
-**Decision mining (3.3.4):** starting from the committed refined BPMN and the
-prepared sequence cache:
+**Additional baselines, assessment gate and manual edits (tutor feedback):**
+
+```powershell
+.\.venv\Scripts\python.exe scripts/discover_alpha.py
+.\.venv\Scripts\python.exe scripts/discover_heuristics_variants.py
+.\.venv\Scripts\python.exe scripts/assess_model.py results/refinement/final_model.pnml --name refined_imf --out results/assessment --diagnostics
+.\.venv\Scripts\python.exe scripts/manual_edits.py
+.\.venv\Scripts\python.exe scripts/render_manual_edits.py
+.\.venv\Scripts\python.exe scripts/export_final_model.py
+.\.venv\Scripts\python.exe scripts/assess_model.py results/final/final_model.pnml --name final_model --out results/assessment --diagnostics
+.\.venv\Scripts\python.exe scripts/render_model_comparison.py
+.\.venv\Scripts\python.exe scripts/holdout_check.py
+```
+
+`assess_model.py <model.pnml> --name <record> --out results/assessment` is run
+once per model (Alpha, Genetic, IM, HM and sweep points; `--diagnostics` only for
+bounded nets); examples in [`docs/ALPHA_MINER.md`](docs/ALPHA_MINER.md) and
+[`docs/HEURISTICS_SWEEP.md`](docs/HEURISTICS_SWEEP.md), index of all records in
+[`results/assessment/README.md`](results/assessment/README.md).
+
+**Decision mining (3.3.4):** on the final BPMN (`results/final/`) and the
+prepared sequence cache; step 1 renders branch probabilities, step 2 learns rules:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/mine_decisions.py
+.\.venv\Scripts\python.exe scripts/render_branch_probabilities.py
 .\.venv\Scripts\python.exe scripts/render_decisions.py
 .\.venv\Scripts\python.exe scripts/verify_decisions.py
 ```
+
+Report copies of the feedback-round tables and figures:
+`scripts/select_feedback_report.py`, `scripts/select_decision_report.py`,
+`scripts/select_miner_overview.py`.
 
 The case-wise train/test split uses seed **20261018**. All repetitions of a case
 stay in the same split. Parameters, feature availability, alignment ambiguity

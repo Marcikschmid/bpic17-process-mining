@@ -4,13 +4,27 @@
 \begin{table}[h!]
 \centering
 \small
-\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}
 \hline
-Parameter & Value & Role \\
+Parameter & PM4Py default & Chosen & Role \\
 \hline
-\texttt{activity\_key} & concept:name & Activity attribute \\
-\texttt{timestamp\_key} & time:timestamp & Timestamp attribute \\
-\texttt{case\_id\_key} & case:concept:name & Case identifier \\
+\texttt{activity\_\allowbreak{}key} & concept:\allowbreak{}name & concept:\allowbreak{}name & Activity attribute \\
+\texttt{timestamp\_\allowbreak{}key} & time:\allowbreak{}timestamp & time:\allowbreak{}timestamp & Timestamp attribute \\
+\texttt{case\_\allowbreak{}id\_\allowbreak{}key} & case:\allowbreak{}concept:\allowbreak{}name & case:\allowbreak{}concept:\allowbreak{}name & Case identifier \\
+\hline
+\end{tabular}
+\caption{Actual configuration; PM4Py 2.7.23.11.}
+\end{table}
+\clearpage
+\subsection{Alpha Miner CLASSIC}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}
+\hline
+Parameter & PM4Py default & Chosen & Role \\
+\hline
+\texttt{variant} & CLASSIC & CLASSIC & Algorithm variant; no tuning parameters \\
 \hline
 \end{tabular}
 \caption{Actual configuration; PM4Py 2.7.23.11.}
@@ -20,16 +34,17 @@ Parameter & Value & Role \\
 \begin{table}[h!]
 \centering
 \small
-\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}
 \hline
-Parameter & Value & Role \\
+Parameter & PM4Py default & Chosen & Role \\
 \hline
-\texttt{noise\_threshold} & 0.0 & Relative noise threshold \\
-\texttt{multi\_processing} & false & Parallel execution \\
-\texttt{disable\_fallthroughs} & false & Disable selected fall-throughs \\
-\texttt{final noise\_threshold} & 0.03 & Selected IMf noise \\
-\texttt{training\_coverage} & 0.6 & Frequent-variant training target \\
-\texttt{target coverage band} & [78, 82] & Exact whole-case target band (\%) \\
+\texttt{noise\_\allowbreak{}threshold} & 0.0 & 0.0 & Relative noise threshold; 0 = IM, >0 = IMf \\
+\texttt{multi\_\allowbreak{}processing} & false & false & Parallel execution only; no effect on the model \\
+\texttt{disable\_\allowbreak{}fallthroughs} & false & false & Fall-throughs when no cut is found \\
+\texttt{final noise\_\allowbreak{}threshold} & 0.0 & 0.03 & Selected IMf noise (refinement) \\
+\texttt{training\_\allowbreak{}coverage} & n/a (own setting) & 0.6 & Frequent-variant training set (share of cases) \\
+\texttt{refinement search grid} & n/a (own setting) & 19 full-log noise values 0-0.80; 21 frequent-variant candidates (coverage 0.60-0.80, noise 0-0.10) & Candidates compared in the refinement \\
+\texttt{target coverage band} & n/a (own setting) & [78, 82] & Exact whole-case target band (\%) \\
 \hline
 \end{tabular}
 \caption{Actual configuration; PM4Py 2.7.23.11.}
@@ -39,17 +54,18 @@ Parameter & Value & Role \\
 \begin{table}[h!]
 \centering
 \small
-\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}
 \hline
-Parameter & Value & Role \\
+Parameter & PM4Py default & Chosen & Role \\
 \hline
-\texttt{variant} & CLASSIC & Algorithm variant \\
-\texttt{dependency\_thresh} & 0.5 & Dependency threshold \\
-\texttt{and\_measure\_thresh} & 0.65 & AND threshold \\
-\texttt{loop\_length\_two\_thresh} & 0.5 & Length-two loop threshold \\
-\texttt{min\_act\_count} & 1 & Minimum activity count \\
-\texttt{min\_dfg\_occurrences} & 1 & Minimum DFG edge count \\
-\texttt{dfg\_pre\_cleaning\_noise\_thresh} & 0.05 & Relative DFG pre-cleaning \\
+\texttt{variant} & CLASSIC & CLASSIC & Algorithm variant \\
+\texttt{dependency\_\allowbreak{}thresh} & 0.5 & 0.5 & Dependency threshold \\
+\texttt{and\_\allowbreak{}measure\_\allowbreak{}thresh} & 0.65 & 0.65 & AND threshold \\
+\texttt{loop\_\allowbreak{}length\_\allowbreak{}two\_\allowbreak{}thresh} & 0.5 & 0.5 & Length-two loop threshold \\
+\texttt{min\_\allowbreak{}act\_\allowbreak{}count} & 1 & 1 & Minimum activity count \\
+\texttt{min\_\allowbreak{}dfg\_\allowbreak{}occurrences} & 1 & 1 & Minimum DFG edge count \\
+\texttt{dfg\_\allowbreak{}pre\_\allowbreak{}cleaning\_\allowbreak{}noise\_\allowbreak{}thresh} & 0.05 & 0.05 & Relative DFG pre-cleaning \\
+\texttt{dependency\_\allowbreak{}thresh sweep} & n/a (own setting) & [0.5, 0.7, 0.9, 0.99] & Sensitivity sweep (results/heuristics) \\
 \hline
 \end{tabular}
 \caption{Actual configuration; PM4Py 2.7.23.11.}
@@ -59,19 +75,19 @@ Parameter & Value & Role \\
 \begin{table}[h!]
 \centering
 \small
-\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}
+\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}
 \hline
-Parameter & Value & Role \\
+Parameter & PM4Py default & Chosen & Role \\
 \hline
-\texttt{population\_size} & 10 & Population size \\
-\texttt{generations} & 6 & Maximum generations \\
-\texttt{elitism\_rate} & 0.1 & Elitism fraction \\
-\texttt{crossover\_rate} & 1.0 & Crossover probability \\
-\texttt{mutation\_rate} & 0.01 & Partition mutation probability \\
-\texttt{elitism\_min\_sample} & 2 & Parent tournament sample size \\
-\texttt{random / numpy seed} & 20261025 & Random seed \\
-\texttt{PYTHONHASHSEED} & 20261025 & Python hash seed \\
-\texttt{log\_csv} & evolution.csv & Generation log \\
+\texttt{population\_\allowbreak{}size} & 500 & 10 & Population size \\
+\texttt{generations} & 100 & 6 & Maximum generations \\
+\texttt{elitism\_\allowbreak{}rate} & 0.01 & 0.1 & Elitism fraction \\
+\texttt{crossover\_\allowbreak{}rate} & 1.0 & 1.0 & Crossover probability \\
+\texttt{mutation\_\allowbreak{}rate} & 0.01 & 0.01 & Partition mutation probability \\
+\texttt{elitism\_\allowbreak{}min\_\allowbreak{}sample} & 5 & 2 & Parent tournament sample size \\
+\texttt{random / numpy seed} & n/a (own setting) & 20261025 & Random seed \\
+\texttt{PYTHONHASHSEED} & n/a (own setting) & 20261025 & Python hash seed \\
+\texttt{log\_\allowbreak{}csv} & n/a (own setting) & evolution.csv & Generation log \\
 \hline
 \end{tabular}
 \caption{Actual configuration; PM4Py 2.7.23.11.}

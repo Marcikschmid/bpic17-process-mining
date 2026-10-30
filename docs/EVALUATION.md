@@ -1,24 +1,31 @@
 # Qualitätsbewertung: Assignment 3.3.2
 
-**Stand:** Die vier Qualitätsdimensionen sind für beide Modelle auf der gesamten
-Projektion berechnet: Token-Fitness, Token-/Alignment-Precision, Token-Generalization
-und Simplicity. Die zusätzliche optimale Alignment-Fitness ist beim IM vollständig,
-beim HM unvollständig. Ein serieller Lauf lieferte 21.501 vollständige Fallwerte;
-ein weiterer Acht-Prozess-Lauf wurde nach rund 66 Minuten ohne zurückgegebenes
-Gesamtergebnis beendet. Auf ausdrücklichen Nutzerwunsch läuft jetzt eine erneute
-vollständige Berechnung ohne weitere Zeitgrenze, mit dauerhaften Checkpoints
-pro Variante. Bis zu ihrem Abschluss wird kein Teilmengenmittelwert angegeben.
+**Stand:** 29.10.2026. Die vier Qualitätsdimensionen sind für beide Modelle auf der
+gesamten Projektion berechnet: Token-Fitness, Token-/Alignment-Precision,
+Token-Generalization und Simplicity. Die zusätzliche optimale Alignment-Fitness ist
+beim IM vollständig (31.509/31.509 Fälle), beim HM **endgültig unvollständig**.
+`results/tables/evaluation/heuristics_miner_alignment.json`: `status` `incomplete`,
+`fitness` `null`, `evaluated_cases` 21.501 von 31.509 (serieller Lauf, 1.300,651 s,
+`max_align_time_trace` 60 s, `max_align_time` 1.200 s); Zusatzversuch mit acht
+Prozessen und `max_align_time_trace` 120 s nach 3.975 s ohne zurückgegebenes
+Ergebnis beendet (`stopped_after_supplementary_budget`). Kein Teilmengenmittelwert.
 
 ## Eingabe und Abgrenzung
 
-Aktueller Wiederanlauf am 18.10.2026: 654 fertige Varianten mit 22.578 Fällen
-übernommen. Wegen nahezu vollständig belegtem physischen RAM wurde der Lauf von
-vier auf **zwei Worker** umgestellt. Log:
-`tmp/evaluation/heuristics_miner_alignment_unlimited_2.log`; keine weitere
-Zeitgrenze. Die automatische Nachbereitung wartet auf Prozess 16200 und akzeptiert
-nur ein vollständiges Ergebnis für beide Modelle. Bis dahin ist die zusätzliche
-HM-Alignment-Fitness weiterhin offen; die vier vorhandenen Qualitätsdimensionen
-werden nicht durch einen Mittelwert aus den fertigen Checkpoints ersetzt.
+**HM-Alignment-Fitness: abgeschlossen als unvollständig, außerhalb des Umfangs.**
+Die späteren Läufe ohne Zeitgrenze (acht → vier → zwei Worker wegen RAM-Belegung;
+zuletzt Prozess 16200, Log `tmp/evaluation/heuristics_miner_alignment_unlimited_2.log`)
+wurden nicht abgeschlossen. Endstand der lokalen Checkpoints: 654 von 5.623 Varianten
+(22.578 Fälle) unter `tmp/evaluation/heuristics_miner_variants/`; die beiden letzten
+Wiederanläufe vom 18.10.2026 ergänzten keine weitere Variante. Prozess 16200 läuft
+nicht mehr; der letzte Nachbereitungsstatus `tmp/evaluation/finalization_status.json`
+ist `error` (vollständige HM-Alignment-Fitness fehlt). Die Checkpoints werden nicht
+zu einem Mittelwert zusammengefasst und nicht in `results/` übernommen.
+Begründung der Abgrenzung: Das HM-Netz ist nachweislich unbeschränkt und damit
+nicht sound; höchstens **411 von 31.509 Fällen (1,3044 %)** können vollständig
+replaybar sein (`results/tables/dead_transition_audit.json`, siehe unten). Ein
+vollständiger Alignment-Wert würde diese Obergrenze nicht ändern. Die vier
+vorhandenen Qualitätsdimensionen bleiben unverändert.
 
 Weitere Beschleunigungsproben: zusätzliche vorwärts/rückwärts monotone
 Markierungsschranken begrenzen nur sieben von 49 Places; kaskadierte Dead-Transition-
@@ -238,9 +245,15 @@ Ein Fitnessmittelwert einer Teilmenge wird auch in diesem Modus nicht akzeptiert
 
 Ressourcengrenzen der übrigen Jobs: eigene Zustandsraumsuche höchstens
 30.000 Zustände bzw. 90 s; Strukturjob höchstens 180 s; Precision-/Token-Jobs
-höchstens 1.500 s. Für Fitness-Alignments gibt es standardmäßig **keine weitere
-Zeitgrenze**, weder pro Variante noch für den Gesamtjob. Nur ein ausdrücklich
-übergebenes `--alignment-trace-timeout` begrenzt einzelne Varianten.
+höchstens 1.500 s. Die **persistierten** Fitness-Alignments
+(`results/tables/evaluation/inductive_miner_alignment.json` und
+`heuristics_miner_alignment.json`, Block `parameters`) liefen mit
+`max_align_time_trace` 60 s pro Trace und `max_align_time` 1.200 s für den
+Gesamtjob. Beim IM waren diese Grenzen nicht bindend: alle 31.509 Fälle
+ausgerichtet, 249,286 s. Erst die aktuelle Fassung von `scripts/evaluate_models.py`
+setzt standardmäßig keine Zeitgrenze mehr; nur ein ausdrücklich übergebenes
+`--alignment-trace-timeout` begrenzt dort einzelne Varianten. Ein Neulauf mit
+dieser Fassung würde daher mit anderen Parametern gespeichert.
 
 Die früheren begrenzten HM-Läufe sind keine vollständigen Fitnessresultate:
 Der serielle Lauf lieferte 21.501 vollständige Fallwerte; der anschließende
@@ -281,18 +294,24 @@ Die getrennte Nachbereitung ist mit `scripts/finalize_evaluation.py` möglich.
 Sie akzeptiert ausschließlich vollständige Alignment-Ergebnisse, führt den
 strengen Audit aus, kopiert nur die drei bereits ausgewählten Qualitätsassets
 nach `report/` und baut die PDF. `--wait-pid` wartet zuvor ohne Frist auf den
-angegebenen Windows-Prozess. Für den unbegrenzten HM-Lauf wurde diese
-Nachbereitung bereits vorgemerkt. Protokoll: `tmp/evaluation/finalization.log`;
+angegebenen Windows-Prozess. Für die unbegrenzten HM-Läufe war diese
+Nachbereitung vorgemerkt; sie lief mangels vollständiger Ergebnisse nicht durch
+(Historie unten). Protokoll: `tmp/evaluation/finalization.log`;
 Ergebnisstatus: `tmp/evaluation/finalization_status.json`. Eine abschließende
 visuelle Prüfung der neu gebauten PDF bleibt darin getrennt ausgewiesen.
 
-Am 2026-10-17 wurde der unbegrenzte Acht-Prozess-Lauf wegen tatsächlich
-96 Prozent belegtem physischem RAM mit vier Prozessen fortgesetzt. 603 fertige
-Varianten (22.426 Fälle) wurden aus geprüften Checkpoints übernommen; laufende,
-noch nicht abgeschlossene Varianten werden erneut berechnet. Es wurde keine
-weitere Zeitgrenze gesetzt. Die automatische Nachbereitung wurde an den neuen
-Prozess gebunden. Das lokale Neustartprotokoll liegt unter
-`tmp/evaluation/hm_memory_restart.json`.
+Berechnungshistorie der unbegrenzten HM-Läufe (abgeschlossen, ohne Ergebnis):
+17.10.2026 Umstellung von acht auf vier Prozesse wegen 96 % belegtem physischem
+RAM, 603 Varianten (22.426 Fälle) übernommen (`tmp/evaluation/hm_memory_restart.json`);
+dieser Lauf erreichte nach rund 84.000 s 654 Varianten (22.578 Fälle,
+`heuristics_miner_alignment_unlimited_4.log`). 18.10.2026 Wiederanläufe mit vier
+und zwei Workern übernahmen diese 654 Varianten und schlossen keine weitere ab
+(`heuristics_miner_alignment_resumed.log`, `heuristics_miner_alignment_unlimited_2.log`).
+Die an Prozess 37524 bzw. 16200 gebundenen Nachbereitungen
+(`finalization_resumed.log`, `finalization_unlimited_2.log`)
+endeten ohne vollständiges Ergebnis; Report und Qualitätstabellen wurden dadurch
+nicht verändert. Weitere HM-Alignment-Läufe sind nicht vorgesehen (siehe
+„Eingabe und Abgrenzung“).
 
 ## Quellen
 

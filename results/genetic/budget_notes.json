@@ -1,0 +1,233 @@
+{
+  "method": "Wall-clock derived from recorded artifacts of seed 20261025; no rerun. Per evaluation = generation-1 interval / population size. Extrapolation assumes the same mean cost per evaluation.",
+  "inputs": {
+    "results/genetic/seed_20261025/manifest.json": "fedc5f3222e8a6482bf79199bc23e230fd379944f0afd747a1767b91e94f13f0",
+    "results/genetic/seed_20261025/evolution.csv": "31b825628b7607767168c65a00c82e650513ab5ae2db7c34731773a8c24a6eb7",
+    "tmp/genetic_seed_20261025.log": "11fdec6f148c4bf50c7a7364de2b7735ddde821b856a5ae9bbf7b9a4f91e9b70",
+    ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py": "897b7002e0c98e9d082bac8fb6b4370ee6f7dd34aafed495d4df7dbe05f599a8",
+    ".venv/Lib/site-packages/pm4py/discovery.py": "7ab3a50e6658c4443a65a3be60b052e92d1d02d46a9ba40a5b92ea6e4679ff7e"
+  },
+  "pm4py": "2.7.23.11",
+  "run": {
+    "parameters": {
+      "population_size": 10,
+      "elitism_rate": 0.1,
+      "crossover_rate": 1.0,
+      "mutation_rate": 0.01,
+      "generations": 6,
+      "elitism_min_sample": 2,
+      "activity_key": "concept:name",
+      "timestamp_key": "time:timestamp",
+      "case_id_key": "case:concept:name"
+    },
+    "cases": 31509,
+    "events": 475306,
+    "started_utc": "2026-10-25T15:15:10.135486+00:00",
+    "discovery_seconds": 1460.533,
+    "total_seconds": 1491.867,
+    "tournaments_run": 2,
+    "maximum_tournaments": 6,
+    "fitness_evaluations": 20,
+    "maximum_fitness_evaluations": 60,
+    "elite_reevaluations": 1,
+    "best_objective_per_tournament": [
+      0.30489724447042077,
+      0.30489724447042077
+    ],
+    "stop_reason": "best objective of tournament 1 equals tournament 0; window history[-3:] then holds only one value, so one stagnant generation suffices"
+  },
+  "timing": {
+    "evolution_csv_clock": "naive local time (datetime.now in classic.py)",
+    "derived_utc_offset_seconds": 3600,
+    "offset_residual_seconds": 0.002,
+    "tournament_end_local": [
+      "2026-10-25T16:28:30.520090",
+      "2026-10-25T16:39:30.670010"
+    ],
+    "start_to_tournament_0_seconds": 800.385,
+    "tournament_0_to_1_seconds": 660.15,
+    "seconds_per_fitness_evaluation": 66.015,
+    "milliseconds_per_case": 2.095,
+    "microseconds_per_event": 138.9,
+    "fixed_overhead_seconds_estimate": 140.2,
+    "fixed_overhead_contents": "input preparation, DataFrame handling, causal-matrix counting, initial population; assumes tournament 0 costs as much as tournament 1",
+    "log_has_timestamps": false
+  },
+  "log_check": {
+    "start_parameters_match_manifest": true,
+    "done_generations": 2,
+    "done_native_objective_matches": true,
+    "done_quality_metrics_used": false,
+    "reason": "DONE quality line scores the invalid duplicate-ID export (manifest export_correction)"
+  },
+  "extrapolation_pm4py_defaults": {
+    "parameters": {
+      "population_size": 500,
+      "generations": 100,
+      "elitism_rate": 0.01,
+      "elitism_min_sample": 5
+    },
+    "per_tournament": {
+      "evaluations": 500,
+      "seconds": 33007.5,
+      "hours": 9.17,
+      "days": 0.38
+    },
+    "maximum": {
+      "evaluations": 50000,
+      "seconds": 3300749.6,
+      "hours": 916.87,
+      "days": 38.2
+    },
+    "earliest_native_stop": {
+      "evaluations": 1000,
+      "seconds": 66015.0,
+      "hours": 18.34,
+      "days": 0.76
+    },
+    "earliest_stop_if_generation_1_improves": {
+      "evaluations": 26000,
+      "seconds": 1716389.8,
+      "hours": 476.77,
+      "days": 19.87
+    },
+    "ratio_maximum_to_this_budget": 833.3333333333334,
+    "excludes": "fixed overhead; extra cost of building 500 initial individuals; token-replay cost variation"
+  },
+  "early_stop_rule": {
+    "condition": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 160,
+      "code": "if fitness[0] == 1 or (history and all(f == fitness[0] for f in history[-int(generations/2):])):"
+    },
+    "action": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 161,
+      "code": "break"
+    },
+    "history_append": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 162,
+      "code": "history.append(fitness[0])"
+    },
+    "generation_loop": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 159,
+      "code": "for _ in tqdm(range(generations-1), \"Genetic generations\"):"
+    },
+    "initial_tournament": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 155,
+      "code": "population, fitness = tournament(tqdm(population, f\"\u2514\u2500Tournament {len(history)}\"), log, T, sort=True)"
+    },
+    "next_tournament": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 177,
+      "code": "population, fitness = tournament(tqdm(next_population, f\"\u2514\u2500Tournament {len(history)}\"), log, T, sort=True)"
+    },
+    "elitism": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 164,
+      "code": "next_population = population[:round(elitism_rate * population_size)]"
+    },
+    "evaluation_loop": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 232,
+      "code": "for i,(I,O) in enumerate(population):"
+    },
+    "evaluation_call": {
+      "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+      "line": 234,
+      "code": "metrics = pm4py.fitness_token_based_replay("
+    },
+    "objective": [
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 242,
+        "code": "0.4 * metrics['average_trace_fitness']"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 253,
+        "code": "0.6 * metrics['percentage_of_fitting_traces']/100"
+      }
+    ],
+    "window_this_run": 3,
+    "window_defaults": 50,
+    "possible_tournament_counts_this_run": [
+      2,
+      5,
+      6
+    ],
+    "possible_tournament_counts_defaults": {
+      "stagnant_generation_1": 2,
+      "otherwise_from": 52,
+      "to": 100
+    },
+    "default_scenarios_tournaments": {
+      "best_unchanged_after_generation_1": 2,
+      "improves_in_generation_1_then_stagnates": 52,
+      "improves_every_generation": 100
+    },
+    "note": "Elite kept and re-evaluated deterministically, so the best never decreases. Before the history reaches the window length the slice is shorter: at the first check one equal value stops. fitness[0] == 1 stops at any check."
+  },
+  "defaults_in_source": {
+    "classic_apply": [
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 117,
+        "code": "Parameters.POPULATION_SIZE, parameters, 500"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 120,
+        "code": "Parameters.ELITISM_RATE, parameters, 0.01"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 123,
+        "code": "Parameters.CROSSOVER_RATE, parameters, 1.0"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 126,
+        "code": "Parameters.MUTATION_RATE, parameters, 0.01"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 129,
+        "code": "Parameters.GENERATIONS, parameters, 100"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/algo/discovery/genetic/variants/classic.py",
+        "line": 132,
+        "code": "Parameters.ELITISM_MIN_SAMPLE, parameters, 5"
+      }
+    ],
+    "discover_petri_net_genetic": [
+      {
+        "file": ".venv/Lib/site-packages/pm4py/discovery.py",
+        "line": 456,
+        "code": "population_size: int = 500,"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/discovery.py",
+        "line": 457,
+        "code": "elitism_rate: float = 0.01,"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/discovery.py",
+        "line": 460,
+        "code": "generations: int = 100,"
+      },
+      {
+        "file": ".venv/Lib/site-packages/pm4py/discovery.py",
+        "line": 461,
+        "code": "elitism_min_sample: int = 5,"
+      }
+    ]
+  },
+  "implementation_sha256": {
+    "scripts/genetic_budget.py": "4520f7e25bcbd2ed85657de39df1dc7dfae377335a7236c14a99e018a4dff29a"
+  }
+}

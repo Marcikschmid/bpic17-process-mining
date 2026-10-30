@@ -1,0 +1,63 @@
+after_activity,escaping_activity,weighted_prefixes
+O_Create Offer,A_Complete,35006
+O_Created,A_Complete,35006
+O_Sent (mail and online),O_Sent (mail and online),33899
+O_Sent (mail and online),O_Create Offer,33482
+A_Validating,A_Validating,33294
+A_Validating,W_Call incomplete files,33294
+A_Accepted,A_Complete,31483
+A_Complete,O_Returned,30349
+A_Complete,W_Validate application,30349
+A_Complete,A_Incomplete,30349
+A_Validating,O_Accepted,20966
+A_Incomplete,W_Validate application,19626
+O_Returned,W_Call incomplete files,19409
+W_Complete application,O_Create Offer,18403
+A_Incomplete,A_Incomplete,16838
+O_Returned,A_Validating,15019
+O_Accepted,W_Validate application,14298
+A_Complete,W_Complete application,11952
+A_Complete,O_Sent (mail and online),11833
+W_Validate application,W_Validate application,9524
+W_Validate application,W_Call incomplete files,9108
+W_Validate application,O_Accepted,7947
+W_Validate application,A_Validating,7829
+A_Validating,A_Denied,5951
+A_Incomplete,A_Denied,5443
+O_Sent (mail and online),W_Complete application,4174
+O_Sent (mail and online),O_Returned,4093
+O_Sent (mail and online),W_Validate application,4093
+O_Sent (mail and online),A_Incomplete,4093
+W_Validate application,A_Denied,3993
+A_Denied,W_Validate application,3189
+A_Pending,O_Cancelled,2422
+A_Incomplete,O_Accepted,2131
+A_Validating,A_Incomplete,1974
+A_Incomplete,W_Call incomplete files,1844
+W_Call incomplete files,W_Validate application,1782
+W_Call incomplete files,A_Incomplete,1782
+O_Refused,O_Cancelled,1773
+A_Validating,W_Validate application,1526
+A_Pending,W_Validate application,1208
+O_Returned,O_Accepted,1070
+O_Returned,W_Validate application,949
+O_Returned,A_Incomplete,925
+O_Returned,A_Denied,907
+W_Validate application,O_Returned,784
+O_Refused,W_Validate application,607
+O_Created,O_Create Offer,603
+A_Incomplete,A_Validating,520
+O_Sent (mail and online),A_Cancelled,254
+O_Sent (mail and online),A_Complete,108
+O_Sent (mail and online),A_Validating,104
+O_Cancelled,O_Cancelled,83
+A_Complete,O_Create Offer,43
+W_Call incomplete files,O_Returned,40
+A_Complete,A_Cancelled,36
+A_Incomplete,O_Returned,35
+A_Denied,O_Returned,33
+A_Validating,O_Returned,28
+A_Complete,A_Validating,21
+O_Refused,O_Returned,16
+O_Created,O_Sent (mail and online),16
+W_Validate application,A_Incomplete,3

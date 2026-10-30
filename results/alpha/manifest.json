@@ -1,0 +1,272 @@
+{
+  "created_at_utc": "2026-10-29T15:04:00.794231+00:00",
+  "algorithm": "Alpha Miner (classic), pm4py.discover_petri_net_alpha -> Variants.ALPHA_VERSION_CLASSIC",
+  "reference": "van der Aalst, Weijters, Maruster (2004), IEEE TKDE 16(9), doi:10.1109/TKDE.2004.47",
+  "input": {
+    "path": "tmp/evaluation/projected_sequences.json",
+    "sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+    "raw_log": "data/raw/BPI Challenge 2017.xes.gz",
+    "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+    "cases": 31509,
+    "events": 475306,
+    "activities": 24,
+    "variants": 5623,
+    "case_ids_unique": true,
+    "empty_cases": 0,
+    "projection": "lifecycle:transition = complete, original XES order within each case (cache summary identical to results/tables/discovery_manifest.json preprocessing)",
+    "event_log_construction": "PM4Py EventLog built from the cached activity sequences (src.model_assessment.event_log): trace attribute concept:name = case id, events carry concept:name only; no timestamps, no re-parsing of the raw XES",
+    "why_sufficient": "Classic Alpha uses only the directly-follows relation and start/end activities, i.e. only the event order within each case"
+  },
+  "parameters": {
+    "activity_key": "concept:name",
+    "timestamp_key": "time:timestamp",
+    "case_id_key": "case:concept:name"
+  },
+  "tuning_parameters": {
+    "count": 0,
+    "note": "Classic Alpha exposes no thresholds, noise filter or frequency cut-off; only the attribute keys above. With EventLog input timestamp_key and case_id_key are not read (no sorting); every observed directly-follows pair counts, irrespective of frequency."
+  },
+  "versions": {
+    "python": "3.12.10",
+    "pm4py": "2.7.23.11",
+    "graphviz_python": "0.21",
+    "graphviz_executable": "dot - graphviz version 16.1.0 (20260904.0139)"
+  },
+  "randomness": {
+    "random_seed": null,
+    "python_hash_seed": "20261029",
+    "reason": "No stochastic step; the hash seed fixes set iteration order, on which PM4Py place names and its single-pass pair-merging loop depend.",
+    "normalization": "Only the net name (PM4Py: alpha_classic_net_<time>) is set to alpha_miner; no node, arc or label changed.",
+    "byte_reproducibility": "PNML arc ids and Graphviz node ids derive from object hashes; behaviour, not bytes, is reproducible."
+  },
+  "footprint": {
+    "activities": 24,
+    "directly_follows_pairs": 159,
+    "causal_pairs": 91,
+    "parallel_pairs_unordered": 30,
+    "choice_pairs_unordered": 155,
+    "start_activities": [
+      "A_Create Application"
+    ],
+    "end_activities": [
+      "A_Cancelled",
+      "A_Complete",
+      "A_Denied",
+      "A_Incomplete",
+      "A_Pending",
+      "A_Validating",
+      "O_Cancelled",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Call after offers",
+      "W_Call incomplete files",
+      "W_Complete application",
+      "W_Validate application"
+    ],
+    "length_one_loop_activities": [
+      "A_Incomplete",
+      "O_Cancelled",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Validate application"
+    ],
+    "length_two_loop_pairs": [
+      [
+        "A_Cancelled",
+        "O_Cancelled"
+      ],
+      [
+        "A_Complete",
+        "O_Sent (mail and online)"
+      ],
+      [
+        "A_Complete",
+        "O_Sent (online only)"
+      ],
+      [
+        "A_Incomplete",
+        "A_Validating"
+      ],
+      [
+        "A_Incomplete",
+        "O_Returned"
+      ],
+      [
+        "A_Validating",
+        "O_Returned"
+      ],
+      [
+        "A_Validating",
+        "W_Validate application"
+      ],
+      [
+        "O_Cancelled",
+        "O_Sent (mail and online)"
+      ],
+      [
+        "O_Create Offer",
+        "O_Created"
+      ],
+      [
+        "O_Returned",
+        "W_Validate application"
+      ],
+      [
+        "W_Assess potential fraud",
+        "W_Complete application"
+      ],
+      [
+        "W_Assess potential fraud",
+        "W_Validate application"
+      ]
+    ],
+    "length_two_loop_pairs_classified_parallel": 12,
+    "method": "own computation on the 5,623 distinct variants; a>b observed directly-follows, a->b iff a>b and not b>a, a||b iff a>b and b>a, a#b iff neither"
+  },
+  "discovery_seconds": 0.316,
+  "visualization": {
+    "rankdir": "TB",
+    "font_size": 14,
+    "nodesep": 0.1,
+    "ranksep": 0.1,
+    "place_diameter_inches": 0.2,
+    "note": "Same layout settings as scripts/discover_models.py; all nodes, arcs and labels retained."
+  },
+  "implementation_sha256": {
+    "scripts/discover_alpha.py": "05ed784d1956cf8fc2c26416ada88fd7709b4d3560dda08382668f1e00d6c11f",
+    "src/discovery.py": "0ed96ff7b0d83958e0371a91f980cf321ab5616ca43b9428e186dbefa587ef68",
+    "src/model_assessment.py": "8abf3b0df44fbbb169a0aaad61deb812926f653c387763500494e42553ee9847",
+    "src/net_certificates.py": "c36f839aa634aa330ee2a7641f577a9857b763ea2677534723792b2f6bf4f45f"
+  },
+  "model": {
+    "places": 25,
+    "transitions": 24,
+    "visible_transitions": 24,
+    "silent_transitions": 0,
+    "arcs": 87,
+    "activity_labels": [
+      "A_Accepted",
+      "A_Cancelled",
+      "A_Complete",
+      "A_Concept",
+      "A_Create Application",
+      "A_Denied",
+      "A_Incomplete",
+      "A_Pending",
+      "A_Submitted",
+      "A_Validating",
+      "O_Accepted",
+      "O_Cancelled",
+      "O_Create Offer",
+      "O_Created",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Call after offers",
+      "W_Call incomplete files",
+      "W_Complete application",
+      "W_Handle leads",
+      "W_Validate application"
+    ],
+    "initial_tokens": 1,
+    "final_tokens": 1,
+    "pnml_round_trip_verified": true,
+    "artifacts": {
+      "results/alpha/alpha_miner.pnml": {
+        "bytes": 18366,
+        "sha256": "0b3afd423ac4174dc11b842fad4a09123feb7bb4d8bd64e0dca29e7dce7ff9e2"
+      },
+      "results/alpha/alpha_miner.gv": {
+        "bytes": 14406,
+        "sha256": "dcd76c3d8c4b8ecf364c10a01f356a57d398c309fb9132316d5b5c31f2adfc5a"
+      },
+      "results/alpha/alpha_miner.pdf": {
+        "bytes": 42738,
+        "sha256": "141a1d0c4af7facc1795041ba025a7468099a7ac475f8f88b0df604cf41f2db0"
+      },
+      "results/alpha/alpha_miner.svg": {
+        "bytes": 47708,
+        "sha256": "99fa391398de4e5ecdb6d802cdd6edd64f29b90e821c5aff853f91176b3ca638"
+      },
+      "results/alpha/alpha_miner.png": {
+        "bytes": 178955,
+        "sha256": "f92103e04d03daf60e22cb9ac00f90bb9b759144ecd943526d879bd94237cdd1"
+      }
+    }
+  },
+  "structure": {
+    "workflow_net_directed_definition": {
+      "workflow_net": false,
+      "source_places": [
+        "start"
+      ],
+      "sink_places": [
+        "end"
+      ],
+      "nodes_without_directed_path_from_source": [
+        "A_Incomplete",
+        "O_Cancelled",
+        "O_Created",
+        "O_Refused",
+        "O_Returned",
+        "O_Sent (mail and online)",
+        "O_Sent (online only)",
+        "W_Assess potential fraud",
+        "W_Validate application"
+      ],
+      "nodes_without_directed_path_to_sink": [
+        "({'A_Complete', 'A_Accepted'}, {'O_Create Offer'})",
+        "({'A_Concept'}, {'A_Accepted'})",
+        "({'A_Validating', 'A_Accepted'}, {'O_Create Offer'})",
+        "({'W_Complete application', 'A_Validating'}, {'O_Create Offer'})",
+        "A_Accepted",
+        "O_Create Offer"
+      ]
+    },
+    "pm4py_check_wfnet": {
+      "value": true,
+      "note": "PM4Py tests source/sink connectivity on the UNDIRECTED graph only"
+    },
+    "internal_places": 23,
+    "textbook_maximal_pairs": 23,
+    "pm4py_places_equal_textbook_Y_L": true,
+    "pairs_missing_in_pm4py": [],
+    "places_not_in_textbook_Y_L": [],
+    "transitions_without_input_place": [
+      "A_Incomplete",
+      "O_Cancelled",
+      "O_Created",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Validate application"
+    ],
+    "transitions_without_output_place": [
+      "O_Create Offer"
+    ],
+    "isolated_transitions": [],
+    "transitions_only_connected_to_start_or_end": [
+      "A_Incomplete",
+      "O_Cancelled",
+      "O_Refused",
+      "O_Returned",
+      "O_Sent (mail and online)",
+      "O_Sent (online only)",
+      "W_Assess potential fraud",
+      "W_Validate application"
+    ],
+    "self_loop_activities_in_any_internal_place": []
+  },
+  "quality_evaluation": "scripts/assess_model.py results/alpha/alpha_miner.pnml --name alpha_miner -> results/assessment/alpha_miner.json",
+  "total_seconds": 3.52
+}

@@ -1,0 +1,54 @@
+{
+  "tables/model_comparison.tex": {
+    "source": "results/comparison/model_comparison.tex",
+    "sha256": "bb41a809aaac23312105d236be16334dc24fbad1cdea38ed362448cd978a8952"
+  },
+  "tables/soundness_summary.tex": {
+    "source": "results/comparison/soundness_summary.tex",
+    "sha256": "c994d2ca52caedb06b0dd1d1c2df1f4c88dabf58937bae643ac8ab4ed0658fbd"
+  },
+  "tables/holdout_check.tex": {
+    "source": "results/comparison/holdout_check.tex",
+    "sha256": "5301ebe8b2c979b9cd7329cbd8d472b298db4eb68bd2ae0f5e8d2979005b0d5d"
+  },
+  "tables/conformance_to_edits.tex": {
+    "source": "results/manual_edits/conformance_to_edits.tex",
+    "sha256": "7fb1b90c45097aa74dca114b915aa627e0fd21967553f1c03f3555abade5662f"
+  },
+  "tables/single_edits.tex": {
+    "source": "results/manual_edits/single_edits.tex",
+    "sha256": "999a4c88be4c93c2c900b429476754439a5e3adbaf3fc9f93cae9b3d911161f9"
+  },
+  "tables/guard_stage.tex": {
+    "source": "results/manual_edits/guard_stage.tex",
+    "sha256": "0ee3eafab022f762d0df26d5f54e5e79362525c3ac5b9970b8c106f28c2360d0"
+  },
+  "tables/block_structure.tex": {
+    "source": "results/final/block_structure.tex",
+    "sha256": "9997943f5de92c463a0b48b9c57b575556e5d756067f7881860c3502aa635e2f"
+  },
+  "tables/final_quality.tex": {
+    "source": "results/comparison/final_quality.tex",
+    "sha256": "84646a906c598c29d5fbef0dd5031ba70626897a374a5058e31115082c606f73"
+  },
+  "tables/branch_probabilities.tex": {
+    "source": "results/decision_mining/branch_probabilities.tex",
+    "sha256": "124042ab559a1baf400ccfb4633c8cbf0aac44ab48ea242abfe09bd3a9a6a23a"
+  },
+  "figures/final_edited_bpmn.pdf": {
+    "source": "results/final/final_bpmn.pdf",
+    "sha256": "1a862aa2c591d1ca78dad75ad80a79b378b84f0aae037b8b25f4ecb40ba8a747"
+  },
+  "figures/branch_probabilities.pdf": {
+    "source": "results/decision_mining/branch_probabilities.pdf",
+    "sha256": "60e7f088fbb37a2abafad7389fd2d9e0b6ed832f084959f5f34e30d5753ac91f"
+  },
+  "figures/alpha_miner.pdf": {
+    "source": "results/alpha/alpha_miner.pdf",
+    "sha256": "141a1d0c4af7facc1795041ba025a7468099a7ac475f8f88b0df604cf41f2db0"
+  },
+  "figures/heuristics_net.pdf": {
+    "source": "results/heuristics/native/heuristics_net.pdf",
+    "sha256": "ab7c9c9ff01602cdf06b57bee24ffa97b2cbffe3f0ede34ab91bbd7cda93fcf5"
+  }
+}

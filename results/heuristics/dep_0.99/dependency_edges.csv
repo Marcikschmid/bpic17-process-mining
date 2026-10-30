@@ -1,0 +1,65 @@
+source,target,kind,frequency,dependency,length_two_loop_measure
+A_Accepted,O_Create Offer,dependency,31504,0.999968,
+A_Cancelled,O_Cancelled,dependency,10270,0.999903,
+A_Complete,A_Cancelled,dependency,8034,0.999876,
+A_Complete,A_Validating,dependency,18339,0.999945,
+A_Complete,O_Create Offer,dependency,4135,0.999758,
+A_Complete,W_Call after offers,dependency,202,0.995074,
+A_Concept,A_Accepted,dependency,31501,0.999968,
+A_Create Application,A_Concept,dependency,11086,0.99991,
+A_Create Application,A_Submitted,dependency,20423,0.999951,
+A_Denied,O_Refused,dependency,3720,0.999731,
+A_Incomplete,A_Cancelled,dependency,737,0.998645,
+A_Incomplete,A_Denied,dependency,189,0.994737,
+A_Incomplete,A_Validating,length_two_loop,12282,0.470078,0.999811
+A_Incomplete,O_Accepted,dependency,4781,0.999791,
+A_Incomplete,O_Create Offer,dependency,1704,0.999413,
+A_Incomplete,O_Returned,length_two_loop,1168,-0.737534,0.972222
+A_Incomplete,W_Call incomplete files,dependency,2053,0.999513,
+A_Pending,O_Cancelled,dependency,3529,0.999717,
+A_Pending,W_Validate application,dependency,3352,0.999702,
+A_Submitted,A_Concept,dependency,16929,0.999941,
+A_Submitted,W_Handle leads,dependency,3476,0.999712,
+A_Validating,A_Denied,dependency,1095,0.999088,
+A_Validating,A_Incomplete,length_two_loop,4427,-0.470078,0.999811
+A_Validating,O_Accepted,dependency,7136,0.99986,
+A_Validating,O_Returned,length_two_loop,21542,0.878242,0.5
+A_Validating,W_Validate application,dependency,4488,0.999777,
+O_Accepted,A_Pending,dependency,17228,0.999942,
+O_Cancelled,O_Cancelled,self_loop,4429,0.999774,
+O_Cancelled,O_Create Offer,dependency,753,0.998674,
+O_Cancelled,W_Call after offers,dependency,100,0.990099,
+O_Cancelled,W_Call incomplete files,dependency,498,0.997996,
+O_Create Offer,O_Created,length_two_loop,42995,0.833145,0.999872
+O_Created,O_Cancelled,dependency,760,0.998686,
+O_Created,O_Create Offer,length_two_loop,3913,-0.833145,0.999872
+O_Created,O_Sent (mail and online),dependency,36212,0.999972,
+O_Created,O_Sent (online only),dependency,1920,0.999479,
+O_Refused,O_Refused,self_loop,975,0.998975,
+O_Refused,W_Validate application,dependency,1550,0.999355,
+O_Returned,A_Denied,dependency,2190,0.999544,
+O_Returned,A_Incomplete,length_two_loop,7735,0.737534,0.972222
+O_Returned,A_Validating,length_two_loop,1396,-0.878242,0.5
+O_Returned,O_Accepted,dependency,5281,0.999811,
+O_Returned,W_Validate application,dependency,6355,0.999843,
+O_Sent (mail and online),A_Cancelled,dependency,1038,0.999038,
+O_Sent (mail and online),A_Complete,dependency,12215,0.999918,
+O_Sent (mail and online),A_Validating,dependency,3235,0.999691,
+O_Sent (mail and online),O_Sent (mail and online),self_loop,3111,0.999679,
+O_Sent (mail and online),W_Complete application,dependency,18697,0.999947,
+O_Sent (online only),A_Cancelled,dependency,134,0.992593,
+O_Sent (online only),A_Complete,dependency,115,0.991379,
+O_Sent (online only),A_Validating,dependency,834,0.998802,
+O_Sent (online only),O_Create Offer,dependency,154,0.993548,
+O_Sent (online only),O_Returned,dependency,272,0.996337,
+O_Sent (online only),W_Complete application,dependency,335,0.997024,
+W_Assess potential fraud,W_Complete application,length_two_loop,0,,0.5
+W_Assess potential fraud,W_Validate application,length_two_loop,38,-0.3125,0.956522
+W_Call after offers,A_Validating,dependency,207,0.995192,
+W_Call incomplete files,A_Validating,dependency,2135,0.999532,
+W_Complete application,A_Complete,dependency,19032,0.999947,
+W_Complete application,W_Assess potential fraud,length_two_loop,6,0.857143,0.5
+W_Handle leads,A_Concept,dependency,3493,0.999714,
+W_Validate application,A_Incomplete,dependency,10790,0.999907,
+W_Validate application,O_Cancelled,dependency,889,0.998876,
+W_Validate application,W_Assess potential fraud,length_two_loop,73,0.3125,0.956522

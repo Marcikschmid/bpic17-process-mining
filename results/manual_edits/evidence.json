@@ -1,0 +1,43 @@
+{
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "cases": 31509,
+  "evidence": {
+    "R1": {
+      "A_Complete_after_first_O_Sent": 31362,
+      "cases_with_A_Complete": 31362
+    },
+    "R2": {
+      "cases_with_direct_repetition": 2781,
+      "direct_repetition_events": 3111
+    },
+    "R3": {
+      "A_Incomplete_before_first_A_Validating": 0,
+      "A_Validating_direct_repetition_events": 0,
+      "O_Returned_before_first_A_Validating": 0,
+      "cases_with_A_Incomplete": 15003,
+      "cases_with_O_Returned": 21768
+    },
+    "R4": {
+      "A_Cancelled|with_O_Cancelled": 10431,
+      "A_Denied|with_O_Cancelled": 195,
+      "A_Denied|without_O_Cancelled": 3557,
+      "A_Pending|with_O_Cancelled": 5050,
+      "A_Pending|without_O_Cancelled": 12178,
+      "none|with_O_Cancelled": 6,
+      "none|without_O_Cancelled": 92
+    },
+    "G1": {
+      "O_Sent_online_only_events": 2026,
+      "cases_with_O_Sent_online_only": 1800
+    },
+    "G2": {
+      "A_Cancelled_after_A_Validating": 1014,
+      "cases_with_A_Cancelled": 10431
+    },
+    "G3": {
+      "cases_with_2plus_O_Refused": 777,
+      "cases_with_O_Refused": 3720
+    }
+  },
+  "implementation_sha256": "fa0177058592c524a1f80a9f950e6708aa927874ef95e9ebf2dd0d66b5630303"
+}

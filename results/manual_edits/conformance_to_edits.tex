@@ -1,0 +1,25 @@
+\begin{tabular}{llp{0.40\textwidth}rl}
+\hline
+Leak & Diagnostic & Where & Weight & Edit \\
+\hline
+precision & escaping edge & O\_Create Offer $\rightarrow$ A\_Complete & 35,006 & R1 \\
+ &  & O\_Created $\rightarrow$ A\_Complete & 35,006 & R1 \\
+ &  & O\_Sent (mail and online) $\rightarrow$ O\_Sent (mail and online) & 33,899 & R2 \\
+ &  & O\_Sent (mail and online) $\rightarrow$ O\_Create Offer & 33,482 & -- \\
+ &  & A\_Validating $\rightarrow$ A\_Validating & 33,294 & R3 \\
+ &  & A\_Validating $\rightarrow$ W\_Call incomplete files & 33,294 & R3 \\
+ &  & A\_Accepted $\rightarrow$ A\_Complete & 31,483 & R1 \\
+ &  & A\_Complete $\rightarrow$ O\_Returned & 30,349 & R3 \\
+ &  & A\_Complete $\rightarrow$ W\_Validate application & 30,349 & -- \\
+ &  & A\_Complete $\rightarrow$ A\_Incomplete & 30,349 & R3 \\
+ &  & A\_Validating $\rightarrow$ O\_Accepted & 20,966 & -- \\
+ &  & A\_Incomplete $\rightarrow$ W\_Validate application & 19,626 & -- \\
+\hline
+fitness & log move & O\_Sent (online only) & 2,026 & G1 \\
+ &  & O\_Cancelled & 1,964 & G2, R4 \\
+ &  & O\_Returned & 1,904 & -- \\
+ &  & O\_Created & 1,575 & -- \\
+ &  & O\_Create Offer & 1,575 & -- \\
+ &  & O\_Refused & 991 & G3 \\
+\hline
+\end{tabular}

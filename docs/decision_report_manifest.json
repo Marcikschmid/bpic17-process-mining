@@ -1,82 +1,86 @@
 {
   "figures/decision_bpmn.pdf": {
     "source": "results/decision_mining/decision_bpmn.pdf",
-    "sha256": "a0a8d2679ba39231ec744ccedfd0d16778cac3e3d34bef004f44e415c0aeafca"
+    "sha256": "d75ea7fe15053b60cc724d8e38d09a76b56e5b80361cb15b31464b3745ce2eed"
   },
   "tables/decision_metrics.tex": {
     "source": "results/decision_mining/decision_metrics.tex",
-    "sha256": "5dd0c77ba6e0a6707234420c3eedff69503ffdd5434528f21707a7864e8f19d1"
+    "sha256": "601b52fb9738bb41061641751ebdc303b28ee3cc88274e000ca45fcf94b3dcd7"
   },
   "tables/guarded_coverage.tex": {
     "source": "results/decision_mining/guarded_coverage.tex",
-    "sha256": "0a27be928e548e34964172633ad33ee11b619802d35636da74bbfa23747354ff"
+    "sha256": "bd77994d89d48d009ea3d344e1d5d8b9afeca06063c43049ce1e9d0df0383ea2"
   },
   "sections/decision_appendix.tex": {
     "source": "results/decision_mining/decision_appendix.tex",
-    "sha256": "1d66b215111d5028d67703c8afed78e0ead95505aa29478bf28e46c3956f80a7"
+    "sha256": "2a390e2d9adcb0bfe68baafee510ea676201ba2b9cacafcf114ec10b280d7484"
   },
   "figures/decision_blocks/D01.pdf": {
     "source": "results/decision_mining/blocks/D01.pdf",
-    "sha256": "2157870fcb2be14ea618e4a9fa317a23b54cd35724b333c9df1e912d7626043d"
+    "sha256": "cd8a909a275d275e47996a4b8c07f9e6078cea4ba6cdf27c6d6328022f09cafd"
   },
   "figures/decision_blocks/D02.pdf": {
     "source": "results/decision_mining/blocks/D02.pdf",
-    "sha256": "f3e84074bd53f431deeb699b9a703bf99452eadb3b0f391eec45f98850cae605"
+    "sha256": "d76e4c59761352580626261e361872a600bfd313566d7f2fe7011583d3277a1b"
   },
   "figures/decision_blocks/D03.pdf": {
     "source": "results/decision_mining/blocks/D03.pdf",
-    "sha256": "5a6f65775e81607ffa5c67da599f583c4d45d3717e914ed43629532ffe3d5753"
+    "sha256": "3eba1dd4a7f4d4d214559555b7a668bac48f92c95676cf3b0b008c9c7bcfbeb3"
   },
   "figures/decision_blocks/D04.pdf": {
     "source": "results/decision_mining/blocks/D04.pdf",
-    "sha256": "8d07d373203bff32fbde9c1df8333720e21c998f070d4ff205020908f0b0ce12"
+    "sha256": "9c9304a07c656fadb68a524883b3da4f00e6354ac266fc36d59bc080dfaa6447"
   },
   "figures/decision_blocks/D05.pdf": {
     "source": "results/decision_mining/blocks/D05.pdf",
-    "sha256": "871a341204648fa88a8eb67ac68cc5bbf29b5f31ef531d390854e6b6198b3753"
+    "sha256": "04191d0e001d61e9f3408ecc25111c435b2e0d3080728f487005a1ac135053ce"
   },
   "figures/decision_blocks/D06.pdf": {
     "source": "results/decision_mining/blocks/D06.pdf",
-    "sha256": "e277784def55d2bc7f901c58fc2695ce7643277016883223e6b049317242c62b"
+    "sha256": "3d9df85d41e436e59bbb9d7e89fcfa6b5760ec715fc03d5b4febfc9263eaee8d"
   },
   "figures/decision_blocks/D07.pdf": {
     "source": "results/decision_mining/blocks/D07.pdf",
-    "sha256": "7075f57a6c90178b727ff9c4db3ac8b2479c45730b9885fa477ccc6e26986b76"
+    "sha256": "d3f95dbb0e4a3f7e1dd8bccf4331a24b645c939cc7849aaaec65f8c36cb4d32e"
   },
   "figures/decision_blocks/D08.pdf": {
     "source": "results/decision_mining/blocks/D08.pdf",
-    "sha256": "2d108f9ae2068fb61125cc463e8c51dfdc6306322a9861dc42816a6b1f1c90b1"
+    "sha256": "d18f1dc18bf10a5ad334be49ca549d9428bd40c25b4b70e55ffcc201978ebd38"
   },
   "figures/decision_blocks/D09.pdf": {
     "source": "results/decision_mining/blocks/D09.pdf",
-    "sha256": "6ef6692c12236e4292d4ebafd8d226d8b6a7435a2c3e15f025398360525f3a4f"
+    "sha256": "9b39303a40322b62afdf7a768e8f81f919be5c51875586d1c3c8c9a2e76283f8"
   },
   "figures/decision_blocks/D10.pdf": {
     "source": "results/decision_mining/blocks/D10.pdf",
-    "sha256": "117dee44fd32da1c05973ab4ffb4ddaf5e348ae740015d928c0523c2331ea5b6"
+    "sha256": "15aaf05c843942b15c182509b15edd20c5cc638c2d11574bca0f901db08e4799"
   },
   "figures/decision_blocks/D11.pdf": {
     "source": "results/decision_mining/blocks/D11.pdf",
-    "sha256": "40792931415a561d0e06b33917ce9403a0ebe428666fa2fd7731ec33818b148f"
+    "sha256": "dbbafe64a7b30ac7f21cdce0d93b5a4a527fafbf85c5c326030dd208d29d26fd"
   },
   "figures/decision_blocks/D12.pdf": {
     "source": "results/decision_mining/blocks/D12.pdf",
-    "sha256": "d0dce9c115ae3937faacd046a6f007a975c7d42cd8826c67f3e5b50aeb680cad"
+    "sha256": "71571e9378b270c7127b7b83018682c1ad8cdbd269be5417bf5a179cea98fe1c"
   },
   "figures/decision_blocks/D13.pdf": {
     "source": "results/decision_mining/blocks/D13.pdf",
-    "sha256": "fff4271011db453159d16958d725b994598c046f26cd0aa84551c72492d7748f"
+    "sha256": "204d909912db03a58939540970b02c3b93c74db2895803991cecd26a0eda98b8"
   },
   "figures/decision_blocks/D14.pdf": {
     "source": "results/decision_mining/blocks/D14.pdf",
-    "sha256": "86f71ab17a79fc13681aa35d24980f795e2f377e6953d7e1015d24f2dd8e811a"
+    "sha256": "8ad76ee5ddfd9fc36c84216a4894c85e7477fa84d90854851da3f1892105e06c"
   },
   "figures/decision_blocks/D15.pdf": {
     "source": "results/decision_mining/blocks/D15.pdf",
-    "sha256": "6aa0da9ea88fc35e24fb57ce84fabf6c1c60a73dbd8c05bd089d2976a0ad633a"
+    "sha256": "305551729543b2b2981d763fd7a3b65f3ef9c316f742046e42b8c2c5912c065b"
   },
   "figures/decision_blocks/D16.pdf": {
     "source": "results/decision_mining/blocks/D16.pdf",
-    "sha256": "9153cefb11ab76ccd47fa72d434ce5c79f28b43d3830ebd581d8b7228474003f"
+    "sha256": "3377d3beb73b5722c387f9477dd28a38a754135de5afa2cdbf010337c9e1276b"
+  },
+  "figures/decision_blocks/D17.pdf": {
+    "source": "results/decision_mining/blocks/D17.pdf",
+    "sha256": "19cd069bdbc09dbfa3a765f5eaf70a15abc88e953fca5bec980e63658973e3d9"
   }
 }

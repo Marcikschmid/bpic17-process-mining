@@ -1,0 +1,73 @@
+{
+  "model": "results/alpha/alpha_miner.pnml",
+  "model_sha256": "0b3afd423ac4174dc11b842fad4a09123feb7bb4d8bd64e0dca29e7dce7ff9e2",
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "trigger": {
+    "assessment": "results/assessment/alpha_miner.json",
+    "assessment_sha256": "4f69337936fe83427de461d60d3e46374635d62f3c03fb27889a678b74aeab72",
+    "classical_status": "unbounded",
+    "easy_sound": null,
+    "final_marking_reachable": null
+  },
+  "final_marking": {
+    "status": "certified",
+    "final_marking_reachable": false,
+    "certificate": {
+      "({'A_Cancelled', 'A_Concept', 'A_Denied'}, {'W_Complete application'})": "100",
+      "({'A_Cancelled', 'A_Denied'}, {'W_Complete application', 'W_Call after offers'})": "-100",
+      "({'A_Cancelled', 'A_Pending'}, {'W_Call incomplete files'})": "-100",
+      "({'A_Cancelled'}, {'W_Complete application', 'W_Call incomplete files', 'W_Call after offers'})": "100",
+      "({'A_Complete', 'A_Accepted'}, {'O_Create Offer'})": "100",
+      "({'A_Complete', 'O_Created'}, {'A_Cancelled', 'A_Denied'})": "100",
+      "({'A_Complete', 'O_Created'}, {'A_Validating'})": "100",
+      "({'A_Complete', 'W_Call incomplete files'}, {'A_Validating'})": "-100",
+      "({'A_Complete'}, {'A_Cancelled', 'O_Create Offer', 'A_Denied'})": "99",
+      "({'A_Complete'}, {'O_Create Offer', 'W_Call after offers'})": "-100",
+      "({'A_Concept'}, {'A_Accepted'})": "100",
+      "({'A_Create Application', 'W_Handle leads'}, {'A_Concept'})": "100",
+      "({'A_Create Application'}, {'A_Submitted'})": "100",
+      "({'A_Submitted'}, {'A_Concept'})": "100",
+      "({'A_Submitted'}, {'W_Handle leads'})": "100",
+      "({'A_Validating', 'A_Accepted'}, {'O_Create Offer'})": "100",
+      "({'A_Validating'}, {'A_Cancelled', 'O_Create Offer', 'O_Accepted', 'A_Denied'})": "-100",
+      "({'O_Accepted'}, {'A_Pending'})": "98",
+      "({'O_Created', 'A_Pending'}, {'W_Call incomplete files'})": "99",
+      "({'O_Created', 'W_Call after offers'}, {'A_Validating'})": "-100",
+      "({'W_Call incomplete files', 'W_Call after offers'}, {'A_Validating'})": "100",
+      "({'W_Complete application', 'A_Validating'}, {'O_Create Offer'})": "-99",
+      "({'W_Complete application'}, {'A_Complete'})": "100",
+      "end": "99",
+      "start": "100"
+    },
+    "method": "Farkas: y*C >= 0 for every transition and y*Mf < y*M0; exact rational verification"
+  },
+  "exact_replay": {
+    "cases": 31509,
+    "variants": 5623,
+    "fitting_cases": 0,
+    "fitting_percentage": 0.0,
+    "first_failure": [
+      {
+        "kind": "not_enabled",
+        "activity": "O_Create Offer",
+        "cases": 20421
+      },
+      {
+        "kind": "not_enabled",
+        "activity": "A_Concept",
+        "cases": 11086
+      },
+      {
+        "kind": "not_enabled",
+        "activity": "W_Complete application",
+        "cases": 2
+      }
+    ],
+    "method": "exact: injective labels, no silent transitions; fire each case in order, then compare with the final marking"
+  },
+  "scipy": "1.18.1",
+  "implementation_sha256": {
+    "src/net_certificates.py": "c36f839aa634aa330ee2a7641f577a9857b763ea2677534723792b2f6bf4f45f",
+    "scripts/discover_alpha.py": "05ed784d1956cf8fc2c26416ada88fd7709b4d3560dda08382668f1e00d6c11f"
+  }
+}

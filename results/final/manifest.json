@@ -1,0 +1,31 @@
+{
+  "source": "results/manual_edits/selected/model.ptml",
+  "source_sha256": "a0d59b714d01ee8c6d74f838c2b99f716b87d7c8a8afc1f876b1852cef428a9f",
+  "selection": "results/manual_edits/screen.json",
+  "pm4py": "2.7.23.11",
+  "states": 86,
+  "sound": true,
+  "bpmn_language_equivalence": {
+    "equivalent": true,
+    "counterexample": null,
+    "pairs": 39
+  },
+  "artifacts": {
+    "block_structure.json": "cee57f3ed6e246d3e4208c666860a51e8ddab9e96f4c955657a09a14b922608a",
+    "block_structure.tex": "9997943f5de92c463a0b48b9c57b575556e5d756067f7881860c3502aa635e2f",
+    "bpmn_roundtrip.pnml": "69aa177bf4a732a8ca3a7c9f590a89dbda5af6476f4d48589fa7e98171be1575",
+    "final_bpmn.pdf": "1a862aa2c591d1ca78dad75ad80a79b378b84f0aae037b8b25f4ecb40ba8a747",
+    "final_bpmn.png": "ce391b97d23783a8c859ed98d856baee1da46be1f37b906ca352c99090d7562f",
+    "final_bpmn.svg": "11b5c4568bf9a9624f141cf6bb30a76ce01b9491ea4dae8b6b261fb270914f17",
+    "final_bpmn_lr.pdf": "28c1a23bb3ab5abe09e66528fe5b548f059fb24bcca945e7fe2565503f056343",
+    "final_bpmn_lr.png": "fac90706ea747ed0a16f126ca2dee081d6874ead121ac1df74eb2661ca8d10b9",
+    "final_bpmn_lr.svg": "dffe4bd7b46c62f98bef31c212d5898dc332147ed06892e8ccf8983bcb28dd27",
+    "final_model.bpmn": "8ae7227445ae2a6312fb1e6baf29c5c33bfc29b404c0ad4a7a7778bed7bf5f34",
+    "final_model.pnml": "5038ec98db68673f83d20dd4feccf75193ed4165dafdc80a757f2989a490c4c4",
+    "final_model.ptml": "b90214b8195dea3658ca2c08cc12a15685e2a993a6d769d829bc61487296cb22"
+  },
+  "implementation_sha256": {
+    "scripts/export_final_model.py": "c80c101a8cd5c40a2c5353623569b436f37761555b04e24da3a6a0fa2e8b85a7",
+    "src/replay_coverage.py": "fb894dbc5f2c6c8d88287f274cc7718834a0c3ff03948783ca14a619dbc17156"
+  }
+}

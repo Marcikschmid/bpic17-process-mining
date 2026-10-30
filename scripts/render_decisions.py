@@ -8,6 +8,7 @@ from src.runtime import configure_runtime
 configure_runtime()
 from src.decision_mining import BPMN,NS,feel_guard
 from src.decision_display import annotation_text,compact_rules
+from scripts.mine_decisions import MODEL
 OUT=ROOT/'results/decision_mining'
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -29,7 +30,12 @@ def main():
     from matplotlib.backends.backend_pdf import PdfPages
     from matplotlib.patches import FancyBboxPatch,Polygon
     data=json.loads((OUT/'decision_mining.json').read_text(encoding='utf-8'))
-    root=ET.parse(ROOT/'results/refinement/final_model.bpmn').getroot()
+    root=ET.parse(MODEL/'final_model.bpmn').getroot()
+    splits=[g for g in data['gateways'] if g['kind']=='split'];merges=[g for g in data['gateways'] if g['kind']=='merge']
+    structural=100*data['exact_structural_fitting_cases']/data['cases']
+    test=data['guarded_replay']['test'];guarded_test=100*test['guarded_fitting_cases']/test['cases']
+    guarded_all=sum(v['guarded_fitting_cases'] for v in data['guarded_replay'].values())
+    german=lambda value:format(value,'.2f').replace('.',',')
     process=root.find('b:process',NS);nodes={e.attrib.get('id'):e for e in process};flows={e.attrib['id']:e for e in process.findall('b:sequenceFlow',NS)}
     for prefix,uri in [('bpmn',BPMN),('bpmndi',NS['di']),('omgdc',NS['dc']),('omgdi',NS['edge']),('xsi','http://www.w3.org/2001/XMLSchema-instance')]:ET.register_namespace(prefix,uri)
     root.set('expressionLanguage','https://www.omg.org/spec/DMN/20191111/FEEL/')
@@ -85,12 +91,12 @@ def main():
             fig.text(.06,.16,f'Branches never predicted by this tree: {absent}',fontsize=10,color='#9a421c')
             fig.text(.06,.115,'c. = case input at start; e. = last synchronized event input. Missing numeric value = -1; explicit *_known flags.',fontsize=9)
             fig.text(.06,.088,'Inputs update after synchronous moves only. One optimal alignment per variant; alternative alignments may change decisions.',fontsize=9)
-            fig.text(.06,.061,'Statistical associations; not bank policy. Structural replay coverage 80.45% is measured without these guards.',fontsize=9)
+            fig.text(.06,.061,f'Statistical associations; not bank policy. Structural replay coverage {structural:.2f}% is measured without these guards.',fontsize=9)
             pdf.savefig(fig)
             page=OUT/'blocks'/f'{g["id"]}.pdf';page.parent.mkdir(exist_ok=True);fig.savefig(page)
             fig.savefig(page.with_suffix('.png'),dpi=110)
             plt.close(fig);pages.append(page)
-    print('Rendered 16 PDF decision blocks',flush=True)
+    print(f'Rendered {len(pages)} PDF decision blocks',flush=True)
     ET.indent(root,space='  ');ET.ElementTree(root).write(OUT/'decision_model.bpmn',encoding='utf-8',xml_declaration=True)
     (OUT/'guards.json').write_text(json.dumps(guards,indent=2)+'\n',encoding='utf-8')
     # BPMN-shaped vector overview with linked statistical decision blocks.
@@ -166,9 +172,9 @@ def main():
         (OUT/'trees').mkdir(exist_ok=True)
         for fmt in ('pdf','svg','png'):tree.render(str(OUT/'trees'/key),format=fmt,cleanup=True)
         print(f'Rendered tree {key}',flush=True)
-    overview=['<h1>BPIC-17: Decision Mining</h1><p>Alle 16 XOR-Splits; Regeln aus Trainingsfällen, Kennzahlen aus getrennten Testfällen. XOR-Merges führen nur zusammen.</p>',
+    overview=[f'<h1>BPIC-17: Decision Mining</h1><p>Alle {len(splits)} XOR-Splits; Regeln aus Trainingsfällen, Kennzahlen aus getrennten Testfällen. XOR-Merges führen nur zusammen.</p>',
         '<p><a href="decision_blocks.pdf">Alle Entscheidungsblöcke als PDF</a> · <a href="decision_bpmn.pdf">BPMN-Übersicht als PDF</a> · <a href="decision_model.bpmn" download>BPMN mit Bedingungen</a> · <a href="viewer.html">Interaktives BPMN</a></p>',
-        f'<p><strong>Harte Guards: {sum(v["guarded_fitting_cases"] for v in data["guarded_replay"].values()):,} / {data["cases"]:,} Fälle vollständig replaybar. Im Test: {data["guarded_replay"]["test"]["guarded_fitting_cases"]:,} / {data["guarded_replay"]["test"]["cases"]:,} ({100*data["guarded_replay"]["test"]["guarded_fitting_cases"]/data["guarded_replay"]["test"]["cases"]:.2f} %).</strong> Die 80,45 % des bisherigen Modells gelten ohne diese Guards. Seltene Zweige können vom Baum nie vorhergesagt werden. Die Regeln sind für Analyse und Diskussion; Simulation benötigt weitere Validierung.</p>']
+        f'<p><strong>Harte Guards: {sum(v["guarded_fitting_cases"] for v in data["guarded_replay"].values()):,} / {data["cases"]:,} Fälle vollständig replaybar. Im Test: {data["guarded_replay"]["test"]["guarded_fitting_cases"]:,} / {data["guarded_replay"]["test"]["cases"]:,} ({100*data["guarded_replay"]["test"]["guarded_fitting_cases"]/data["guarded_replay"]["test"]["cases"]:.2f} %).</strong> Die {german(structural)} % Strukturabdeckung gelten ohne diese Guards. Seltene Zweige können vom Baum nie vorhergesagt werden. Die Regeln sind für Analyse und Diskussion; Simulation benötigt weitere Validierung.</p>']
     for key,g in records.items():
         overview.append(f'<section id="{key}"><h2>{key}</h2><p>n={g["observations"]:,}; Test-Accuracy {g["accuracy"]:.3f}; Mehrheitsbaseline {g["majority_accuracy"]:.3f}; Macro-F1 {g["macro_f1"]:.3f}</p>')
         overview.append(f'<a href="trees/{key}.pdf"><img src="trees/{key}.svg" style="width:100%;max-height:520px" alt="Entscheidungsbaum {key}"></a>')
@@ -186,12 +192,12 @@ const modeler=new BpmnJS({container:'#canvas'});window.modeler=modeler;
 const decisions=DECISION_RECORDS;const jump=document.getElementById('jump');
 for(const g of decisions){const o=document.createElement('option');o.value=g.id;o.textContent=g.id;jump.append(o);}
 function humanPredicate(p){let n=p.feature.replace('case_','Fall.').replace('event_','Angebot.');if(n.includes('=')&&p.threshold>=0&&p.threshold<1){const i=n.indexOf('=');return n.slice(0,i)+(p.op==='<='?' ≠ ':' = ')+n.slice(i+1);}return n+' '+p.op+' '+Number(p.threshold.toFixed(4));}
-function focusDecision(id){const g=decisions.find(g=>g.id===id);const e=modeler.get('elementRegistry').get(g.bpmn_id);const note=modeler.get('elementRegistry').get('note_'+id);const left=Math.min(e.x,note.x)-80;const top=Math.min(e.y,note.y)-80;modeler.get('canvas').viewbox({x:left,y:top,width:Math.max(900,Math.max(e.x+e.width,note.x+note.width)-left+80),height:Math.max(650,Math.max(e.y+e.height,note.y+note.height)-top+160)});jump.value=id;let text=g.id+' · Gelernter Entscheidungsblock\\n\\nTest-Accuracy '+g.accuracy.toFixed(3)+'; Mehrheit '+g.majority_accuracy.toFixed(3)+'; Macro-F1 '+g.macro_f1.toFixed(3)+'\\n\\nStatistische Regeln. Harte Guards: 10,19 % vollständige Testfallabdeckung.\\n\\n';for(const leaf of g.leaves){text+=g.branches[leaf.class]+': '+(leaf.predicates.map(humanPredicate).join(' UND ')||'immer')+'\\nTraining n='+leaf.samples+'\\n\\n';}text+='Fehlend: numerisch -1; *_known zeigt bekannte Werte. Für den formalen Ausdruck einen Pfeil anklicken.';document.getElementById('details').textContent=text;}
+function focusDecision(id){const g=decisions.find(g=>g.id===id);const e=modeler.get('elementRegistry').get(g.bpmn_id);const note=modeler.get('elementRegistry').get('note_'+id);const left=Math.min(e.x,note.x)-80;const top=Math.min(e.y,note.y)-80;modeler.get('canvas').viewbox({x:left,y:top,width:Math.max(900,Math.max(e.x+e.width,note.x+note.width)-left+80),height:Math.max(650,Math.max(e.y+e.height,note.y+note.height)-top+160)});jump.value=id;let text=g.id+' · Gelernter Entscheidungsblock\\n\\nTest-Accuracy '+g.accuracy.toFixed(3)+'; Mehrheit '+g.majority_accuracy.toFixed(3)+'; Macro-F1 '+g.macro_f1.toFixed(3)+'\\n\\nStatistische Regeln. Harte Guards: GUARDED_TEST % vollständige Testfallabdeckung.\\n\\n';for(const leaf of g.leaves){text+=g.branches[leaf.class]+': '+(leaf.predicates.map(humanPredicate).join(' UND ')||'immer')+'\\nTraining n='+leaf.samples+'\\n\\n';}text+='Fehlend: numerisch -1; *_known zeigt bekannte Werte. Für den formalen Ausdruck einen Pfeil anklicken.';document.getElementById('details').textContent=text;}
 jump.onchange=()=>focusDecision(jump.value);
 modeler.on('element.click',e=>{const b=e.element.businessObject;const docs=(b.documentation||[]).map(x=>x.text).join('\\n');document.getElementById('details').textContent=(b.name||b.id)+'\\n\\n'+docs+'\\n\\n'+(b.conditionExpression?b.conditionExpression.body:'');});
-fetch('decision_model.bpmn').then(r=>r.text()).then(async xml=>{const r=await modeler.importXML(xml);focusDecision('D03');document.getElementById('state').textContent='Geladen · '+r.warnings.length+' Hinweise';window.bpmnReady=true;window.bpmnWarnings=r.warnings.map(x=>x.message);}).catch(e=>document.getElementById('state').textContent=e.message);
+fetch('decision_model.bpmn').then(r=>r.text()).then(async xml=>{const r=await modeler.importXML(xml);focusDecision(FIRST_SPLIT);document.getElementById('state').textContent='Geladen · '+r.warnings.length+' Hinweise';window.bpmnReady=true;window.bpmnWarnings=r.warnings.map(x=>x.message);}).catch(e=>document.getElementById('state').textContent=e.message);
 </script>'''
-    viewer=viewer.replace('DECISION_RECORDS',json.dumps(list(records.values()),ensure_ascii=False))
+    viewer=viewer.replace('DECISION_RECORDS',json.dumps(list(records.values()),ensure_ascii=False)).replace('GUARDED_TEST',german(guarded_test)).replace('FIRST_SPLIT',json.dumps(splits[0]['id']))
     (OUT/'viewer.html').write_text(viewer,encoding='utf-8')
     rows=['\\begin{table}[t]','\\centering','\\caption{Alignment-based decision mining~\\cite{deleoni2013dataaware}: held-out results; case-wise 70/30 split, seed 20261018; fixed full-log control-flow model.}','\\label{tab:decision-mining}','\\begin{tabular}{lrrrr}','\\hline','XOR & Test $n$ & Accuracy & Majority & Macro-F1 \\\\','\\hline']
     for g in records.values():rows.append(f'{g["id"]} & {g["test"]:,} & {g["accuracy"]:.3f} & {g["majority_accuracy"]:.3f} & {g["macro_f1"]:.3f} \\\\')
@@ -219,7 +225,7 @@ fetch('decision_model.bpmn').then(r=>r.text()).then(async xml=>{const r=await mo
         appendix.extend([f'\\subsection{{BPMN with Decision Blocks: Panel {i+1}/{panels}}}',
             '\\begin{figure}[h!]','\\centering',
             f'\\includegraphics[viewport=0 {bottom:.3f} {width:.3f} {top:.3f},clip,width=\\textwidth,height=0.87\\textheight,keepaspectratio]{{figures/decision_bpmn.pdf}}',
-            f'\\caption{{XOR splits D01--D16: learned decision blocks; merges M01--M16: no branch choice. Overlapping vector panel {i+1}/{panels}. Experimental hard guards: 3,277/31,509 fitting cases; original unguarded structure: 25,350/31,509.}}',
+            f'\\caption{{XOR splits {splits[0]["id"]}--{splits[-1]["id"]}: learned decision blocks; merges {merges[0]["id"]}--{merges[-1]["id"]}: no branch choice. Overlapping vector panel {i+1}/{panels}. Experimental hard guards: {guarded_all:,}/{data["cases"]:,} fitting cases; unguarded structure: {data["exact_structural_fitting_cases"]:,}/{data["cases"]:,}.}}',
             '\\end{figure}'])
     appendix.extend(['\\clearpage','\\newgeometry{layoutwidth=297mm,layoutheight=210mm,margin=12mm,headheight=15pt,headsep=5mm,footskip=7mm}',
         '\\setlength{\\paperwidth}{297mm}','\\setlength{\\paperheight}{210mm}','\\pdfpagewidth=\\paperwidth','\\pdfpageheight=\\paperheight','\\onecolumn'])

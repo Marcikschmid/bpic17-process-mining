@@ -5,6 +5,7 @@ from collections import Counter
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ[key]='1'
+from scripts.mine_decisions import MODEL
 from src.decision_mining import bpmn_net,encode_features,predict_rules,observations,NS,CASE_FIELDS,EVENT_FIELDS,feel_guard
 OUT=ROOT/'results/decision_mining'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -45,10 +46,10 @@ def main():
     split=json.loads((OUT/'case_split.json').read_text());train=set(split['train_cases']);test=set(split['test_cases'])
     assert not train&test and len(train|test)==data['cases']
     assert sha(ROOT/'data/raw/BPI Challenge 2017.xes.gz')==data['raw_sha256']
-    assert sha(ROOT/'results/refinement/final_model.bpmn')==data['identity']['bpmn_sha256']
+    assert sha(MODEL/'final_model.bpmn')==data['identity']['bpmn_sha256']
     if 'implementation_sha256' in data:
         for p,digest in data['implementation_sha256'].items():assert sha(ROOT/p)==digest,p
-    net,im,fm,gateways,choices=bpmn_net(ROOT/'results/refinement/final_model.bpmn')
+    net,im,fm,gateways,choices=bpmn_net(MODEL/'final_model.bpmn')
     assert {(g['id'],g['bpmn_id'],g['kind']) for g in gateways}=={(g['id'],g['bpmn_id'],g['kind']) for g in data['gateways']}
     annotated=ET.parse(OUT/'decision_model.bpmn').getroot()
     flows={e.attrib['id']:e for e in annotated.findall('.//b:sequenceFlow',NS)}

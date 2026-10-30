@@ -1,0 +1,43 @@
+{
+  "split": {
+    "source": "results/decision_mining/case_split.json",
+    "seed": 20261018,
+    "train_cases": 22056,
+    "test_cases": 9453
+  },
+  "training_only_discovery": {
+    "training_variants": 72,
+    "training_cases": 13258,
+    "noise_threshold": 0.03,
+    "tree": "->( 'A_Create Application', X( tau, ->( 'A_Submitted', X( tau, 'W_Handle leads' ) ) ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( ->( 'O_Create Offer', 'O_Created' ), tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'W_Complete application' ) ), tau ) ), X( 'A_Cancelled', +( X( tau, *( 'W_Validate application', tau ) ), 'O_Returned', ->( +( *( *( 'A_Validating', tau ), 'W_Call incomplete files' ), X( tau, *( 'A_Incomplete', tau ) ) ), X( ->( 'O_Accepted', 'A_Pending' ), ->( 'A_Denied', 'O_Refused' ) ) ) ) ), X( tau, *( 'O_Cancelled', tau ) ) )",
+    "identical_to_refined_tree": true
+  },
+  "exact_replay": {
+    "refined_imf": {
+      "train": {
+        "cases": 22056,
+        "fitting": 17753,
+        "percentage": 80.49056945955749
+      },
+      "test": {
+        "cases": 9453,
+        "fitting": 7597,
+        "percentage": 80.36602136887761
+      }
+    },
+    "final_model": {
+      "train": {
+        "cases": 22056,
+        "fitting": 17524,
+        "percentage": 79.45230322814653
+      },
+      "test": {
+        "cases": 9453,
+        "fitting": 7492,
+        "percentage": 79.25526287950915
+      }
+    }
+  },
+  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "implementation_sha256": "60d858778a48d0db2a7adf36e524f9318898b91a228cae7cbdb4ea9b7955def9"
+}

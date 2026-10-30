@@ -11,20 +11,33 @@ from src.discovery import INDUCTIVE_PARAMETERS,HEURISTICS_PARAMETERS
 from src.genetic_miner import GENETIC_PARAMETERS,DEFAULT_SEED
 OUT=ROOT/'results/parameters'
 
-def row(name,value,meaning,reason,role):
-    return {'parameter':name,'value':value,'meaning':meaning,'reason':reason,'role':role}
+OWN='n/a (own setting)'
+
+def row(name,value,meaning,reason,role,default=OWN):
+    return {'parameter':name,'value':value,'default':default,'meaning':meaning,'reason':reason,'role':role}
+
+def defaults(function):
+    """Defaults of the installed PM4Py high-level API, read from its signature."""
+    import inspect
+    return {k:v.default for k,v in inspect.signature(function).parameters.items() if v.default is not inspect.Parameter.empty}
 
 def catalogue():
+    import pm4py
+    from pm4py.objects.heuristics_net import defaults as hm_defaults
     refined=json.loads((ROOT/'results/refinement/final_metrics.json').read_text())
+    im_default=defaults(pm4py.discover_petri_net_inductive);gm_default=defaults(pm4py.discover_petri_net_genetic)
+    hm_sweep=json.loads((ROOT/'results/heuristics/manifest.json').read_text(encoding='utf-8'))['thresholds']
     im=[
-        row('noise_threshold',INDUCTIVE_PARAMETERS['noise_threshold'],'Relative Rauschschwelle; 0 aktiviert IM, positive Werte IMf. Kein Anteil entfernter Fälle.','0 als Vergleichsbasis ohne zusätzlichen Rauschfilter; im finalen Modell 0.03 nach dokumentierter Kandidatensuche.','Relative noise threshold'),
-        row('multi_processing',INDUCTIVE_PARAMETERS['multi_processing'],'Parallele Ausführung des Miners. Kein fachlicher Filter.','False begrenzt Prozess-/Speicheraufwand und vereinfacht Fehlersuche. Kein Qualitätsoptimierungshebel.','Parallel execution'),
-        row('disable_fallthroughs',INDUCTIVE_PARAMETERS['disable_fallthroughs'],'False erlaubt zusätzliche Rückfallstrategien, wenn kein strukturierter Cut gefunden wird.','Standardstrategien bleiben verfügbar. True lässt hier weiterhin Empty-Trace-/Flower-Fallback zu; es garantiert keine höhere Präzision.','Disable selected fall-throughs'),
-        row('final noise_threshold',refined['selected_candidate']['noise_threshold'],'Rauschschwelle des gewählten IMf-Kandidaten, bei anderer Discovery-Trainingsmenge.','0.03 wurde in der Suche ausgewählt; kein Beweis einer generell optimalen 3-Prozent-Schwelle.','Selected IMf noise'),
-        row('training_coverage',0.60,'Externer Frequenzfilter für das finale Modell; kein interner IM-Parameter.','Häufige Varianten als Discovery-Fokus. Tatsächlich 18,918 Fälle und 73 Varianten; Bewertung weiterhin auf allen 31,509 Fällen.','Frequent-variant training target'),
+        row('noise_threshold',INDUCTIVE_PARAMETERS['noise_threshold'],'Relative Rauschschwelle; 0 aktiviert IM, positive Werte IMf. Kein Anteil entfernter Fälle.','0 als Vergleichsbasis ohne zusätzlichen Rauschfilter; im finalen Modell 0.03 nach dokumentierter Kandidatensuche.','Relative noise threshold; 0 = IM, >0 = IMf',im_default['noise_threshold']),
+        row('multi_processing',INDUCTIVE_PARAMETERS['multi_processing'],'Parallele Ausführung des Miners. Kein fachlicher Filter.','False begrenzt Prozess-/Speicheraufwand und vereinfacht Fehlersuche. Kein Qualitätsoptimierungshebel.','Parallel execution only; no effect on the model',im_default['multi_processing']),
+        row('disable_fallthroughs',INDUCTIVE_PARAMETERS['disable_fallthroughs'],'False erlaubt zusätzliche Rückfallstrategien, wenn kein strukturierter Cut gefunden wird.','Standardstrategien bleiben verfügbar. True lässt hier weiterhin Empty-Trace-/Flower-Fallback zu; es garantiert keine höhere Präzision.','Fall-throughs when no cut is found',im_default['disable_fallthroughs']),
+        row('final noise_threshold',refined['selected_candidate']['noise_threshold'],'Rauschschwelle des gewählten IMf-Kandidaten, bei anderer Discovery-Trainingsmenge.','0.03 wurde in der Suche ausgewählt; kein Beweis einer generell optimalen 3-Prozent-Schwelle.','Selected IMf noise (refinement)',im_default['noise_threshold']),
+        row('training_coverage',0.60,'Externer Frequenzfilter für das finale Modell; kein interner IM-Parameter.','Häufige Varianten als Discovery-Fokus. Tatsächlich 18,918 Fälle und 73 Varianten; Bewertung weiterhin auf allen 31,509 Fällen.','Frequent-variant training set (share of cases)'),
+        row('refinement search grid','19 full-log noise values 0-0.80; 21 frequent-variant candidates (coverage 0.60-0.80, noise 0-0.10)','40 Kandidaten, alle auf allen 31.509 Fällen bewertet.','Raster vor der Auswahl festgelegt; feinere Schritte nur nahe dem Zielband.','Candidates compared in the refinement'),
         row('target coverage band',[78,82],'Eigenes Auswahlband für ungefähr 80 Prozent vollständig replaybare Fälle.','Operationalisierung der Aufgabenanforderung; keine Datenbereinigung und kein vom Datensatz vorgegebener Grenzwert.','Exact whole-case target band (%)'),
     ]
-    hm=[row('variant','CLASSIC','Verwendete Heuristics-Miner-Variante; Ausgabe wird in ein Petri-Netz umgewandelt.','Festgelegte Vergleichsbasis. Ein exportiertes Workflow-Netz ist noch kein Soundness-Nachweis.','Algorithm variant')]
+    alpha=[row('variant','CLASSIC','pm4py.discover_petri_net_alpha ruft ALPHA_VERSION_CLASSIC auf; keine Tuning-Parameter.','Lehrbuch-Baseline; zeigt, dass ein WF-Netz-Output noch nicht sound ist (kurze Schleifen, Rauschen, keine stillen Transitionen).','Algorithm variant; no tuning parameters','CLASSIC')]
+    hm=[row('variant','CLASSIC','Verwendete Heuristics-Miner-Variante; Ausgabe wird in ein Petri-Netz umgewandelt.','Festgelegte Vergleichsbasis. Ein exportiertes Workflow-Netz ist noch kein Soundness-Nachweis.','Algorithm variant','CLASSIC')]
     meanings={
         'dependency_thresh':('Mindest-Abhängigkeitsmaß für eine direkt folgende Relation.','0.5 ist die dokumentierte Baseline, nicht datenoptimiert. Höher ist strenger; seltene reale Pfade können entfallen.','Dependency threshold'),
         'and_measure_thresh':('Schwelle für die Interpretation benachbarter Relationen als Parallelität.','0.65 als Bibliotheksstandard. Höhere Werte erschweren AND-Erkennung; keine globale Monotonie der Qualitätswerte.','AND threshold'),
@@ -33,7 +46,11 @@ def catalogue():
         'min_dfg_occurrences':('Absolute Mindesthäufigkeit einer direkt folgenden Kante.','1 als permissive absolute Baseline; Dependency und relatives Pre-Cleaning können Kanten weiterhin entfernen.','Minimum DFG edge count'),
         'dfg_pre_cleaning_noise_thresh':('Relative DFG-Bereinigung vor der Abhängigkeitsberechnung.','0.05 als expliziter Standard. Bezieht sich auf lokale Kantenhäufigkeiten, nicht auf fünf Prozent gelöschte Fälle.','Relative DFG pre-cleaning'),
     }
-    for key,(meaning,reason,role) in meanings.items():hm.append(row(key,HEURISTICS_PARAMETERS[key],meaning,reason,role))
+    hm_default={'dependency_thresh':hm_defaults.DEFAULT_DEPENDENCY_THRESH,'and_measure_thresh':hm_defaults.DEFAULT_AND_MEASURE_THRESH,
+        'loop_length_two_thresh':hm_defaults.DEFAULT_LOOP_LENGTH_TWO_THRESH,'min_act_count':hm_defaults.DEFAULT_MIN_ACT_COUNT,
+        'min_dfg_occurrences':hm_defaults.DEFAULT_MIN_DFG_OCCURRENCES,'dfg_pre_cleaning_noise_thresh':hm_defaults.DEFAULT_DFG_PRE_CLEANING_NOISE_THRESH}
+    for key,(meaning,reason,role) in meanings.items():hm.append(row(key,HEURISTICS_PARAMETERS[key],meaning,reason,role,hm_default[key]))
+    hm.append(row('dependency_thresh sweep',hm_sweep,'Sensitivitätslauf; alle anderen Parameter unverändert.','Prüft, ob ein strengerer Schwellenwert die Unbeschränktheit beseitigt: alle Sweep-Netze bleiben unbeschränkt.','Sensitivity sweep (results/heuristics)'))
     gm=[]
     gm_info={
         'population_size':('Anzahl konkurrierender Modelle je Generation.','10 entspricht dem offiziellen kleinen Beispiel und hält den Voll-Log-Versuch bezahlbar; Default 500 wäre deutlich teurer.','Population size'),
@@ -43,16 +60,16 @@ def catalogue():
         'mutation_rate':('Wahrscheinlichkeit je Input-/Outputeintrag, vorhandene Nachbarn neu zu partitionieren.','0.01 übernimmt den Standard; dies ist nicht ein Prozent beliebig neu eingefügter Kanten.','Partition mutation probability'),
         'elitism_min_sample':('Tatsächlich die Stichprobengröße der Eltern-Turnierauswahl; nicht die Zahl der Eliten.','2 hält bei Population 10 den Selektionsdruck moderat und ermöglicht mehr Elternvielfalt als der Default 5.','Parent tournament sample size'),
     }
-    for key,(meaning,reason,role) in gm_info.items():gm.append(row(key,GENETIC_PARAMETERS[key],meaning,reason,role))
+    for key,(meaning,reason,role) in gm_info.items():gm.append(row(key,GENETIC_PARAMETERS[key],meaning,reason,role,gm_default[key]))
     gm.extend([
         row('random / numpy seed',DEFAULT_SEED,'Kontrolliert Python-random und NumPy-Zufall.','Fixiert den konkreten Versuch. Ein Seed belegt keine Robustheit über mehrere Suchläufe.','Random seed'),
         row('PYTHONHASHSEED',str(DEFAULT_SEED),'Fixiert Set-Reihenfolgen im separaten Python-Prozess.','Zusätzlich nötig, weil die Implementierung zufällig aus Set-basierten Pools zieht.','Python hash seed'),
         row('log_csv','evolution.csv','Protokolliert die nativen Fitnesswerte je Population.','Unterscheidet geplante und tatsächlich durchgeführte Generationen sowie das interne Ziel von externen Qualitätsmetriken.','Generation log'),
     ])
-    common=[row('activity_key','concept:name','Aktivitätslabel für alle Miner.','Originale Namen einschließlich Leerzeichen bleiben erhalten.','Activity attribute'),
-        row('timestamp_key','time:timestamp','Zeitstempelattribut; beim Genetic Miner auch für interne Sortierung verwendet.','Alle Fallsequenzen nach nativer Sortierung gegen dieselbe Completion-Projektion geprüft.','Timestamp attribute'),
-        row('case_id_key','case:concept:name','DataFrame-Schlüssel; im EventLog liegen IDs als Trace-Attribut concept:name vor.','Alle 31,509 Fall-IDs und Fallgewichte bleiben erhalten.','Case identifier')]
-    return {'common':common,'inductive':im,'heuristics':hm,'genetic':gm}
+    common=[row('activity_key','concept:name','Aktivitätslabel für alle Miner.','Originale Namen einschließlich Leerzeichen bleiben erhalten.','Activity attribute',im_default['activity_key']),
+        row('timestamp_key','time:timestamp','Zeitstempelattribut; beim Genetic Miner auch für interne Sortierung verwendet.','Alle Fallsequenzen nach nativer Sortierung gegen dieselbe Completion-Projektion geprüft.','Timestamp attribute',im_default['timestamp_key']),
+        row('case_id_key','case:concept:name','DataFrame-Schlüssel; im EventLog liegen IDs als Trace-Attribut concept:name vor.','Alle 31,509 Fall-IDs und Fallgewichte bleiben erhalten.','Case identifier',im_default['case_id_key'])]
+    return {'common':common,'alpha':alpha,'inductive':im,'heuristics':hm,'genetic':gm}
 
 def format_value(value):
     return json.dumps(value,ensure_ascii=False) if isinstance(value,(bool,list)) else str(value)
@@ -60,6 +77,9 @@ def format_value(value):
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
     groups=catalogue()
+    mined=json.loads((ROOT/'results/decision_mining/decision_mining.json').read_text(encoding='utf-8'))
+    test=mined['guarded_replay']['test'];german=lambda value:format(value,'.2f').replace('.',',')
+    guarded_test=german(100*test['guarded_fitting_cases']/test['cases']);structural=german(100*mined['exact_structural_fitting_cases']/mined['cases'])
     sources={'src/discovery.py':hashlib.sha256((ROOT/'src/discovery.py').read_bytes()).hexdigest(),
              'src/genetic_miner.py':hashlib.sha256((ROOT/'src/genetic_miner.py').read_bytes()).hexdigest()}
     document={'pm4py':'2.7.23.11','groups':groups,'sources':sources,
@@ -70,13 +90,13 @@ def main():
     md=['# Miner-Parameter: Bedeutung, Werte und Begründung','',
         'Die Werte stammen aus der tatsächlichen Python-Konfiguration. Baseline, ausgewähltes IMf-Modell und neuer Genetic-Versuch werden ausdrücklich unterschieden.','',
         '**Hauptziel:** gültiges, soundes Modell und ungefähr 80 % exakte Fallabdeckung als Bedingungen; danach Präzision erhöhen. Einfachheit als zusätzlicher Auswahlgrund, Generalization nur mit ihren Grenzen interpretieren.','',
-        '**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur 10,19 % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.','',
+        f'**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur {guarded_test} % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.','',
         '## Alle gemeinsam verwendeten Schlüssel','']
-    titles={'common':'Gemeinsame Schlüssel','inductive':'Inductive Miner und IMf','heuristics':'Heuristics Miner CLASSIC','genetic':'Genetic Miner CLASSIC: dritter Versuch'}
+    titles={'common':'Gemeinsame Schlüssel','alpha':'Alpha Miner CLASSIC','inductive':'Inductive Miner und IMf','heuristics':'Heuristics Miner CLASSIC','genetic':'Genetic Miner CLASSIC: dritter Versuch'}
     for key,rows in groups.items():
         if key!='common':md+=['',f'## {titles[key]}','']
-        md+=['| Parameter | Tatsächlicher Wert | Bedeutung | Begründung und Grenze |','|---|---|---|---|']
-        for r in rows:md.append(f'| `{r["parameter"]}` | `{format_value(r["value"])}` | {r["meaning"]} | {r["reason"]} |')
+        md+=['| Parameter | PM4Py-Default | Tatsächlicher Wert | Bedeutung | Begründung und Grenze |','|---|---|---|---|---|']
+        for r in rows:md.append(f'| `{r["parameter"]}` | `{format_value(r["default"])}` | `{format_value(r["value"])}` | {r["meaning"]} | {r["reason"]} |')
     md+=['','## Besonders wichtig beim Inductive Miner','',
         '- `noise_threshold=0`: IM-Baseline; positive Werte wählen hier IMf. `0.03` bedeutet **nicht**, dass 3 % der Fälle oder Events gelöscht werden.',
         '- IMf filtert bei fehlendem Cut lokal schwache DFG-Kanten relativ zu starken ausgehenden Kanten; auch die Startaktivitätsfilterung ist relativ. Die Klassifikationsschwelle verändert nicht direkt einen vorgegebenen Anteil des Logs.',
@@ -106,7 +126,7 @@ def main():
     import matplotlib.pyplot as plt
     from matplotlib.backends.backend_pdf import PdfPages
     with PdfPages(OUT/'miner_parameter_overview.pdf') as pdf:
-        for key in ('common','inductive','heuristics','genetic'):
+        for key in ('common','alpha','inductive','heuristics','genetic'):
             fig=plt.figure(figsize=(16.54,11.69),facecolor='white')
             fig.text(.045,.945,titles[key],fontsize=22,weight='bold',color='#163b54')
             subtitle='Python / PM4Py 2.7.23.11 | tatsächliche Werte | Rolle und Begründung getrennt'
@@ -114,12 +134,13 @@ def main():
             ax=fig.add_axes([.04,.18,.92,.68]);ax.axis('off')
             cells=[]
             for r in groups[key]:
-                cells.append(['\n'.join(textwrap.wrap(r['parameter'],26)),
-                    '\n'.join(textwrap.wrap(format_value(r['value']),20)),
-                    '\n'.join(textwrap.wrap(r['meaning'],55)),
-                    '\n'.join(textwrap.wrap(r['reason'],63))])
-            table=ax.table(cellText=cells,colLabels=['Parameter','Wert','Bedeutung','Begründung / Grenze'],
-                colWidths=[.18,.13,.32,.37],cellLoc='left',loc='upper left')
+                cells.append(['\n'.join(textwrap.wrap(r['parameter'],22)),
+                    '\n'.join(textwrap.wrap(format_value(r['default']),14)),
+                    '\n'.join(textwrap.wrap(format_value(r['value']),16)),
+                    '\n'.join(textwrap.wrap(r['meaning'],48)),
+                    '\n'.join(textwrap.wrap(r['reason'],58))])
+            table=ax.table(cellText=cells,colLabels=['Parameter','PM4Py-Default','Wert','Bedeutung','Begründung / Grenze'],
+                colWidths=[.16,.10,.12,.28,.34],cellLoc='left',loc='upper left')
             table.auto_set_font_size(False);table.set_fontsize(10)
             for (i,j),cell in table.get_celld().items():
                 cell.set_edgecolor('#c5d2dc');cell.PAD=.05
@@ -128,8 +149,9 @@ def main():
                     lines=max(value.count('\n')+1 for value in cells[i-1]);cell.set_height(.025*lines+.027)
                     cell.set_facecolor('#f0f5f8' if i%2 else 'white');cell.set_text_props(va='center')
             if key=='common':
-                footer='Priorität: Soundness + ungefähr 80 % exakte Fallabdeckung; danach Precision erhöhen.\nHarte Guards: aktuell 10,19 % vollständige Testfallabdeckung; Struktur ohne Guards: 80,45 %.\nMetriken stets auf derselben Eingabe und mit ihren Ausschlüssen vergleichen.'
+                footer=f'Priorität: Soundness + ungefähr 80 % exakte Fallabdeckung; danach Precision erhöhen.\nHarte Guards: aktuell {guarded_test} % vollständige Testfallabdeckung; Struktur ohne Guards: {structural} %.\nMetriken stets auf derselben Eingabe und mit ihren Ausschlüssen vergleichen.'
             elif key=='genetic':footer='Native Zielfunktion: 0.4 × mittlere Trace-Fitness + 0.6 × Anteil passender Traces.\nPrecision wird intern nicht optimiert. Maximal 60 Modellbewertungen in bis zu 6 Populationen; tatsächliche Generationen im Laufprotokoll.\nTatsächlich 2 Generationen; Modell unbeschränkt. Explorationslauf, keine globale Optimalitätsbehauptung.'
+            elif key=='alpha':footer='Keine Tuning-Parameter: nur Attributschlüssel.\nDas Ergebnis ist strukturell ein WF-Netz, aber unbeschränkt und nicht sound.\nNachweislich kein Fall vollständig replaybar (Zertifikat, results/alpha/).'
             elif key=='inductive':footer='Wichtig: 0.03 ist eine relative Rauschschwelle, kein Anteil gelöschter Fälle.\nDas finale Modell verwendet zusätzlich eine häufigkeitsbasierte Discovery-Trainingsmenge.\nMehr Rauschfilterung garantiert keine monoton höhere Precision.'
             else:footer='Die Baselinewerte sind dokumentierte Standardwerte, keine Optimierung auf diesen Datensatz.\nDas aktuelle HM-Netz ist nachweislich unbeschränkt. Hohe Precision allein genügt nicht.\nDie Folgen dieser Wahl sind Teil des Ergebnisvergleichs.'
             fig.text(.045,.09,footer,fontsize=11,linespacing=1.6)
@@ -137,12 +159,14 @@ def main():
             pdf.savefig(fig);fig.savefig(OUT/f'parameters_{key}.png',dpi=85);plt.close(fig)
     # Factual English parameter appendix. Justifications stay in companion docs.
     def tex(value):
-        return str(value).replace('\\',r'\textbackslash{}').replace('_',r'\_').replace('%',r'\%').replace('&',r'\&')
+        # Break points after '_' and ':' so long identifiers fit the narrow columns.
+        return (str(value).replace('\\',r'\textbackslash{}').replace('_',r'\_\allowbreak{}').replace('%',r'\%')
+                .replace('&',r'\&').replace(':',r':\allowbreak{}'))
     lines=['% Factual configuration only; author-written rationale belongs in the main report.']
-    for key in ('common','inductive','heuristics','genetic'):
-        title={'common':'Shared Attribute Keys','inductive':'Inductive Miner and Refinement','heuristics':'Heuristics Miner CLASSIC','genetic':'Genetic Miner CLASSIC: Exploratory Trial'}[key]
-        lines+=['\\clearpage',f'\\subsection{{{title}}}',r'\begin{table}[h!]',r'\centering',r'\small',r'\begin{tabular}{p{0.34\textwidth}p{0.20\textwidth}p{0.38\textwidth}}',r'\hline',r'Parameter & Value & Role \\',r'\hline']
-        for r in groups[key]:lines.append('\\texttt{'+tex(r['parameter'])+'} & '+tex(format_value(r['value']))+' & '+tex(r['role'])+r' \\')
+    for key in ('common','alpha','inductive','heuristics','genetic'):
+        title={'common':'Shared Attribute Keys','alpha':'Alpha Miner CLASSIC','inductive':'Inductive Miner and Refinement','heuristics':'Heuristics Miner CLASSIC','genetic':'Genetic Miner CLASSIC: Exploratory Trial'}[key]
+        lines+=['\\clearpage',f'\\subsection{{{title}}}',r'\begin{table}[h!]',r'\centering',r'\small',r'\begin{tabular}{p{0.26\textwidth}p{0.13\textwidth}p{0.20\textwidth}p{0.30\textwidth}}',r'\hline',r'Parameter & PM4Py default & Chosen & Role \\',r'\hline']
+        for r in groups[key]:lines.append('\\texttt{'+tex(r['parameter'])+'} & '+tex(format_value(r['default']))+' & '+tex(format_value(r['value']))+' & '+tex(r['role'])+r' \\')
         lines += [r'\hline',r'\end{tabular}',r'\caption{Actual configuration; PM4Py 2.7.23.11.}',r'\end{table}']
     (OUT/'miner_parameters.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
     print('Exported code-derived parameter JSON, Markdown, PDF and factual LaTeX tables',flush=True)

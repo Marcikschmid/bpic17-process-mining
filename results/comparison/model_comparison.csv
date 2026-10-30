@@ -1,0 +1,10 @@
+model,record,sound,exact_replay_pct,token_fitness,alignment_fitness,token_precision,align_et_precision,token_generalization,alignment_generalization,arc_degree,nodes,extended_cardoso,extended_cyclomatic
+Alpha (classic),alpha_miner,no,<= 0.00 (certified),0.496,n/c,0.126,n/c,0.987,n/c,0.392,49,34,n/c
+"Heuristics, dep. 0.5 (default)",heuristics_miner,no,<= 1.30 (certified),0.833,n/c,0.998,n/c,0.861,n/c,0.481,143,108,n/c
+"Heuristics, dep. 0.7",heuristics_dep_0.7,no,n/c,0.833,n/c,0.998,n/c,0.855,n/c,0.481,143,108,n/c
+"Heuristics, dep. 0.9",heuristics_dep_0.9,no,n/c,0.839,n/c,0.997,n/c,0.837,n/c,0.491,141,108,n/c
+"Heuristics, dep. 0.99",heuristics_dep_0.99,no,n/c,0.846,n/c,0.996,n/c,0.905,n/c,0.504,124,93,n/c
+Genetic (seed 20261025),genetic_miner,no,<= 0.00 (certified),0.741,n/c,0.597,n/c,0.983,n/c,0.776,76,43,n/c
+"Inductive (IM, full log)",inductive_miner,yes,100.00,1.000,1.000,0.293,0.293,0.976,0.976,0.617,87,47,"1,552"
+IMf refined (before edits),refined_imf,yes,80.45,0.987,0.977,0.595,0.598,0.991,0.991,0.701,89,52,551
+Final model (IMf + manual edits),final_model,yes,79.39,n/c,0.975,n/c,0.697,n/c,0.990,0.719,92,51,145

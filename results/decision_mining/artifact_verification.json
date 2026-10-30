@@ -1,7 +1,7 @@
 {
   "status": "ok",
-  "scientific_audit_source_sha256": "37cee610afc207717a2c369afbd9b35061891520cd3bdd85ca420ebfc9f204fe",
-  "presentation_manifest_sha256": "1c16879f6cc14fa58e26101a205bd713c36ecab963f00fc33b86daa729ca5af2",
-  "report_copies_checked": 21,
-  "visible_xor_rule_blocks_checked": 17
+  "scientific_audit_source_sha256": "6a7715a273c3973bfaaeaa6cf040d0832b66e0b40fac01ad3b1bbbd3a9964712",
+  "presentation_manifest_sha256": "cac3c33f26e14ebd7c713ea59bebc2c81d2d5d8ac3e26685c2d24a84f9ae3b20",
+  "report_copies_checked": 22,
+  "visible_xor_rule_blocks_checked": 18
 }

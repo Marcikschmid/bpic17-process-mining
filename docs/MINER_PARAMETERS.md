@@ -4,7 +4,7 @@ Die Werte stammen aus der tatsächlichen Python-Konfiguration. Baseline, ausgew�
 
 **Hauptziel:** gültiges, soundes Modell und ungefähr 80 % exakte Fallabdeckung als Bedingungen; danach Präzision erhöhen. Einfachheit als zusätzlicher Auswahlgrund, Generalization nur mit ihren Grenzen interpretieren.
 
-**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur 10,07 % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.
+**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur 9,46 % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.
 
 ## Alle gemeinsam verwendeten Schlüssel
 
@@ -30,7 +30,7 @@ Die Werte stammen aus der tatsächlichen Python-Konfiguration. Baseline, ausgew�
 | `final noise_threshold` | `0.0` | `0.03` | Rauschschwelle des gewählten IMf-Kandidaten, bei anderer Discovery-Trainingsmenge. | 0.03 wurde in der Suche ausgewählt; kein Beweis einer generell optimalen 3-Prozent-Schwelle. |
 | `training_coverage` | `n/a (own setting)` | `0.6` | Externer Frequenzfilter für das finale Modell; kein interner IM-Parameter. | Häufige Varianten als Discovery-Fokus. Tatsächlich 18,918 Fälle und 73 Varianten; Bewertung weiterhin auf allen 31,509 Fällen. |
 | `refinement search grid` | `n/a (own setting)` | `19 full-log noise values 0-0.80; 21 frequent-variant candidates (coverage 0.60-0.80, noise 0-0.10)` | 40 Kandidaten, alle auf allen 31.509 Fällen bewertet. | Raster vor der Auswahl festgelegt; feinere Schritte nur nahe dem Zielband. |
-| `target coverage band` | `n/a (own setting)` | `[78, 82]` | Eigenes Auswahlband für ungefähr 80 Prozent vollständig replaybare Fälle. | Operationalisierung der Aufgabenanforderung; keine Datenbereinigung und kein vom Datensatz vorgegebener Grenzwert. |
+| `target coverage band` | `n/a (own setting)` | `[80, 82]` | Auswahlband vollständig replaybarer Fälle; Untergrenze = Vorlesung 29.10., Folie 36: mindestens 80 % aller Fälle. | Bis 29.10. [78, 82]; Untergrenze angehoben, Obergrenze als eigene Wahl unverändert. Die IMf-Auswahl bleibt unter [80, 82] gleich. |
 
 ## Heuristics Miner CLASSIC
 

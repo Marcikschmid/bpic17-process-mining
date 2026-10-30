@@ -52,10 +52,14 @@
 - [x] Soundness und behavioural Soundness (klassisch, easy, relaxed, safe, Woflan) für alle 9 Modelle (results/comparison/).
 - [x] Alle vier Qualitätskriterien für alle Modelle; Zielmetrik Precision unter Fitness-Bedingung begründet (D28).
 - [x] Conformance Checking nach dem Mining: Escaping Edges und Log Moves des IMf-Modells → Ansatzpunkte der manuellen Änderungen.
-- [x] Manuelle Änderungen: 7 Blockänderungen, 128 Kombinationen, vorab fixierte Regel; Auswahl G3+R3+R4 (Align-ET 0,598 → 0,697, Abdeckung 79,39 %) (docs/MANUAL_EDITS.md).
-- [x] Finales BPMN mit Blockstruktur-Tabelle (17 XOR-, 2 AND-Paare), sprachäquivalent zum Petri-Netz.
-- [x] Held-out-Prüfung: Discovery auf Trainingsfällen ergibt identischen Baum; Test 79,26 % vs. Training 79,45 %.
-- [x] Decision Mining zweistufig: zuerst Wahrscheinlichkeitsgraph, dann Bedingungen; Neuberechnung auf dem finalen Modell (17 Splits, Guards Test 10,07 %).
+- [x] Manuelle Änderungen: 7 Blockänderungen, 128 Kombinationen, vorab fixierte Regel; Auswahl G2+G3+R3+R4 (Align-ET 0,598 → 0,695, Abdeckung 80,43 % ≥ 80 % laut Folie 36) (docs/MANUAL_EDITS.md).
+- [x] Finales BPMN mit Blockstruktur-Tabelle (18 XOR-, 2 AND-Paare), sprachäquivalent zum Petri-Netz.
+- [x] Held-out-Prüfung: Discovery auf Trainingsfällen ergibt identischen Baum; Test 80,32 % vs. Training 80,48 %.
+- [x] Decision Mining zweistufig: zuerst Wahrscheinlichkeitsgraph, dann Bedingungen; Neuberechnung auf dem finalen Modell (18 Splits, Guards Test 9,46 %).
+- [x] Decision Mining in Merkmalsstufen (Tutorium): nur Case → + Event → + Feature Engineering; Balanced Accuracy 0,514 → 0,562 → 0,749 (D35).
+- [x] Messverfahren je Qualitätskriterium verglichen (Token vs. Alignment vs. exakte Abdeckung usw.), was verwendet und warum (D34, results/comparison/metric_methods.md).
+- [x] Anforderung „mindestens 80 % aller Fälle“ (Folie 36) umgesetzt; 100 %-Konformität bewusst nicht angestrebt (D33).
+- [ ] Finales Modell in SAP Signavio importieren, Screenshot in den Anhang (Dateien und Anleitung: docs/SIGNAVIO.md).
 - [x] Event vs. Case vs. Trace vs. Variante als Tabelle (README, report/tables/concepts.tex).
 - [ ] Eigene Fließtexte zu allen neuen Tabellen schreiben (Stichpunkte als `%`-Kommentare in 04_process_model.tex).
 - [ ] Entscheiden: Hybrid aus Regeln (nur wo besser als Mehrheit) und Wahrscheinlichkeiten für die Simulation umsetzen oder nur diskutieren.

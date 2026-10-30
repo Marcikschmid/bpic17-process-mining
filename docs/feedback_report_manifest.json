@@ -1,7 +1,7 @@
 {
   "tables/model_comparison.tex": {
     "source": "results/comparison/model_comparison.tex",
-    "sha256": "bb41a809aaac23312105d236be16334dc24fbad1cdea38ed362448cd978a8952"
+    "sha256": "4f408f006dde1f4343f97d40ea1de037b0ba89560b03f85e036c5ef876cb48a0"
   },
   "tables/soundness_summary.tex": {
     "source": "results/comparison/soundness_summary.tex",
@@ -9,7 +9,7 @@
   },
   "tables/holdout_check.tex": {
     "source": "results/comparison/holdout_check.tex",
-    "sha256": "5301ebe8b2c979b9cd7329cbd8d472b298db4eb68bd2ae0f5e8d2979005b0d5d"
+    "sha256": "6161f81949681395d37a7331ae37fc73008687f14e8cab94fc5b26dd01b8ef56"
   },
   "tables/conformance_to_edits.tex": {
     "source": "results/manual_edits/conformance_to_edits.tex",
@@ -21,27 +21,35 @@
   },
   "tables/guard_stage.tex": {
     "source": "results/manual_edits/guard_stage.tex",
-    "sha256": "0ee3eafab022f762d0df26d5f54e5e79362525c3ac5b9970b8c106f28c2360d0"
+    "sha256": "ae45a2ec03c41938490e3abade622be25e9e7bd75091b673e18e3fbb8ac08a20"
   },
   "tables/block_structure.tex": {
     "source": "results/final/block_structure.tex",
-    "sha256": "9997943f5de92c463a0b48b9c57b575556e5d756067f7881860c3502aa635e2f"
+    "sha256": "2a235365c4c67e9096f15f203da828d82f2fb06b13c2f582c60a7266b59d2a7e"
   },
   "tables/final_quality.tex": {
     "source": "results/comparison/final_quality.tex",
-    "sha256": "84646a906c598c29d5fbef0dd5031ba70626897a374a5058e31115082c606f73"
+    "sha256": "43d5d306f5a4ba41771d6065852abf8294ebd542d541f12ff5cf072300827f28"
+  },
+  "tables/metric_methods.tex": {
+    "source": "results/comparison/metric_methods.tex",
+    "sha256": "46fe4d5bd7536a6ccbcb3fd59408d98bbe2c4fc0b6a6e1805bd20962f222c1a0"
+  },
+  "tables/feature_stages.tex": {
+    "source": "results/decision_mining/feature_stages.tex",
+    "sha256": "c95c55f851bca8e6ec89716099856c6cf083c79cf8894cda4f29aaede7f9a61f"
   },
   "tables/branch_probabilities.tex": {
     "source": "results/decision_mining/branch_probabilities.tex",
-    "sha256": "124042ab559a1baf400ccfb4633c8cbf0aac44ab48ea242abfe09bd3a9a6a23a"
+    "sha256": "83e9e918d1c329c9c7546c1bcc1184444e03bce8ef0ff0c8c12a1271cff0b2c6"
   },
   "figures/final_edited_bpmn.pdf": {
     "source": "results/final/final_bpmn.pdf",
-    "sha256": "1a862aa2c591d1ca78dad75ad80a79b378b84f0aae037b8b25f4ecb40ba8a747"
+    "sha256": "a7e001ccbf5310c0a4f267a8b1258dfc183ce34b5413085b7f0c919ca76a4625"
   },
   "figures/branch_probabilities.pdf": {
     "source": "results/decision_mining/branch_probabilities.pdf",
-    "sha256": "60e7f088fbb37a2abafad7389fd2d9e0b6ed832f084959f5f34e30d5753ac91f"
+    "sha256": "506034b4faeb344e9f5b3ed2957a82df26a71fa7716d57b79c6538ae76895890"
   },
   "figures/alpha_miner.pdf": {
     "source": "results/alpha/alpha_miner.pdf",

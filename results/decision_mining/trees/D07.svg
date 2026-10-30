@@ -76,8 +76,8 @@
 <g id="node4" class="node">
 <title>n3</title>
 <path fill="#d5ece6" stroke="black" d="M67.75,-36C67.75,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 67.75,0 67.75,0 73.75,0 79.75,-6 79.75,-12 79.75,-12 79.75,-24 79.75,-24 79.75,-30 73.75,-36 67.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="39.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="39.88" y="-7.55" font-family="Arial" font-size="11.00">train n=2,424</text>
+<text xml:space="preserve" text-anchor="middle" x="39.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="39.88" y="-7.55" font-family="Arial" font-size="11.00">train n=2,463</text>
 </g>
 <!-- n2&#45;&gt;n3 -->
 <g id="edge3" class="edge">
@@ -90,7 +90,7 @@
 <g id="node5" class="node">
 <title>n4</title>
 <path fill="#d5ece6" stroke="black" d="M156.25,-36C156.25,-36 109.5,-36 109.5,-36 103.5,-36 97.5,-30 97.5,-24 97.5,-24 97.5,-12 97.5,-12 97.5,-6 103.5,0 109.5,0 109.5,0 156.25,0 156.25,0 162.25,0 168.25,-6 168.25,-12 168.25,-12 168.25,-24 168.25,-24 168.25,-30 162.25,-36 156.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="132.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="132.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
 <text xml:space="preserve" text-anchor="middle" x="132.88" y="-7.55" font-family="Arial" font-size="11.00">train n=324</text>
 </g>
 <!-- n2&#45;&gt;n4 -->
@@ -104,7 +104,7 @@
 <g id="node7" class="node">
 <title>n6</title>
 <path fill="#d5ece6" stroke="black" d="M245.25,-36C245.25,-36 198.5,-36 198.5,-36 192.5,-36 186.5,-30 186.5,-24 186.5,-24 186.5,-12 186.5,-12 186.5,-6 192.5,0 198.5,0 198.5,0 245.25,0 245.25,0 251.25,0 257.25,-6 257.25,-12 257.25,-12 257.25,-24 257.25,-24 257.25,-30 251.25,-36 245.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="221.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="221.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
 <text xml:space="preserve" text-anchor="middle" x="221.88" y="-7.55" font-family="Arial" font-size="11.00">train n=146</text>
 </g>
 <!-- n5&#45;&gt;n6 -->
@@ -118,7 +118,7 @@
 <g id="node8" class="node">
 <title>n7</title>
 <path fill="#d5ece6" stroke="black" d="M334.25,-36C334.25,-36 287.5,-36 287.5,-36 281.5,-36 275.5,-30 275.5,-24 275.5,-24 275.5,-12 275.5,-12 275.5,-6 281.5,0 287.5,0 287.5,0 334.25,0 334.25,0 340.25,0 346.25,-6 346.25,-12 346.25,-12 346.25,-24 346.25,-24 346.25,-30 340.25,-36 334.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="310.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="310.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
 <text xml:space="preserve" text-anchor="middle" x="310.88" y="-7.55" font-family="Arial" font-size="11.00">train n=125</text>
 </g>
 <!-- n5&#45;&gt;n7 -->
@@ -133,7 +133,7 @@
 <title>n9</title>
 <path fill="#eef4f8" stroke="black" d="M514.38,-120C514.38,-120 453.38,-120 453.38,-120 447.38,-120 441.38,-114 441.38,-108 441.38,-108 441.38,-96 441.38,-96 441.38,-90 447.38,-84 453.38,-84 453.38,-84 514.38,-84 514.38,-84 520.38,-84 526.38,-90 526.38,-96 526.38,-96 526.38,-108 526.38,-108 526.38,-114 520.38,-120 514.38,-120"/>
 <text xml:space="preserve" text-anchor="middle" x="483.88" y="-105.05" font-family="Arial" font-size="11.00">e.MonthlyCost</text>
-<text xml:space="preserve" text-anchor="middle" x="483.88" y="-91.55" font-family="Arial" font-size="11.00">200.07</text>
+<text xml:space="preserve" text-anchor="middle" x="483.88" y="-91.55" font-family="Arial" font-size="11.00">200.37</text>
 </g>
 <!-- n8&#45;&gt;n9 -->
 <g id="edge9" class="edge">
@@ -160,8 +160,8 @@
 <g id="node11" class="node">
 <title>n10</title>
 <path fill="#d5ece6" stroke="black" d="M437.75,-36C437.75,-36 376,-36 376,-36 370,-36 364,-30 364,-24 364,-24 364,-12 364,-12 364,-6 370,0 376,0 376,0 437.75,0 437.75,0 443.75,0 449.75,-6 449.75,-12 449.75,-12 449.75,-24 449.75,-24 449.75,-30 443.75,-36 437.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="406.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="406.88" y="-7.55" font-family="Arial" font-size="11.00">train n=10,181</text>
+<text xml:space="preserve" text-anchor="middle" x="406.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="406.88" y="-7.55" font-family="Arial" font-size="11.00">train n=10,393</text>
 </g>
 <!-- n9&#45;&gt;n10 -->
 <g id="edge10" class="edge">
@@ -174,8 +174,8 @@
 <g id="node12" class="node">
 <title>n11</title>
 <path fill="#d5ece6" stroke="black" d="M541.75,-36C541.75,-36 480,-36 480,-36 474,-36 468,-30 468,-24 468,-24 468,-12 468,-12 468,-6 474,0 480,0 480,0 541.75,0 541.75,0 547.75,0 553.75,-6 553.75,-12 553.75,-12 553.75,-24 553.75,-24 553.75,-30 547.75,-36 541.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="510.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
-<text xml:space="preserve" text-anchor="middle" x="510.88" y="-7.55" font-family="Arial" font-size="11.00">train n=15,353</text>
+<text xml:space="preserve" text-anchor="middle" x="510.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="510.88" y="-7.55" font-family="Arial" font-size="11.00">train n=15,584</text>
 </g>
 <!-- n9&#45;&gt;n11 -->
 <g id="edge11" class="edge">
@@ -188,8 +188,8 @@
 <g id="node14" class="node">
 <title>n13</title>
 <path fill="#d5ece6" stroke="black" d="M630.25,-36C630.25,-36 583.5,-36 583.5,-36 577.5,-36 571.5,-30 571.5,-24 571.5,-24 571.5,-12 571.5,-12 571.5,-6 577.5,0 583.5,0 583.5,0 630.25,0 630.25,0 636.25,0 642.25,-6 642.25,-12 642.25,-12 642.25,-24 642.25,-24 642.25,-30 636.25,-36 630.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="606.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
-<text xml:space="preserve" text-anchor="middle" x="606.88" y="-7.55" font-family="Arial" font-size="11.00">train n=871</text>
+<text xml:space="preserve" text-anchor="middle" x="606.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="606.88" y="-7.55" font-family="Arial" font-size="11.00">train n=875</text>
 </g>
 <!-- n12&#45;&gt;n13 -->
 <g id="edge13" class="edge">
@@ -202,8 +202,8 @@
 <g id="node15" class="node">
 <title>n14</title>
 <path fill="#d5ece6" stroke="black" d="M719.25,-36C719.25,-36 672.5,-36 672.5,-36 666.5,-36 660.5,-30 660.5,-24 660.5,-24 660.5,-12 660.5,-12 660.5,-6 666.5,0 672.5,0 672.5,0 719.25,0 719.25,0 725.25,0 731.25,-6 731.25,-12 731.25,-12 731.25,-24 731.25,-24 731.25,-30 725.25,-36 719.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="695.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
-<text xml:space="preserve" text-anchor="middle" x="695.88" y="-7.55" font-family="Arial" font-size="11.00">train n=399</text>
+<text xml:space="preserve" text-anchor="middle" x="695.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="695.88" y="-7.55" font-family="Arial" font-size="11.00">train n=409</text>
 </g>
 <!-- n12&#45;&gt;n14 -->
 <g id="edge14" class="edge">

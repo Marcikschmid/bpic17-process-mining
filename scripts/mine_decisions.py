@@ -9,7 +9,7 @@ for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):os.envi
 os.environ['PM4PY_DEFAULT_IS_THREADING_MANAGEMENT_ENABLED']='False'
 from src.runtime import configure_runtime
 configure_runtime()
-from src.decision_mining import bpmn_net,observations,encode_features,tree_rules,predict_rules,guarded_accepts,CASE_FIELDS,EVENT_FIELDS
+from src.decision_mining import bpmn_net,observations,encode_features,encode_stage,tree_rules,predict_rules,guarded_accepts,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,STAGES
 from src.finite_alignment import FiniteAligner
 
 OUT=ROOT/'results/decision_mining';CACHE=ROOT/'tmp/decision_mining';SEED=20261018
@@ -32,6 +32,8 @@ def data_rows():
                     raw={e.attrib.get('key'):e for e in child}
                     if raw.get('lifecycle:transition') is None or raw['lifecycle:transition'].attrib.get('value')!='complete':continue
                     event={'concept:name':raw['concept:name'].attrib['value']}
+                    # Only for prefix aggregates (elapsed days); never a direct input.
+                    if 'time:timestamp' in raw:event['time:timestamp']=datetime.fromisoformat(raw['time:timestamp'].attrib['value']).timestamp()
                     for field in EVENT_FIELDS:
                         if field in raw:event[field]=float(raw[field].attrib['value'])
                     events.append(event)
@@ -142,6 +144,21 @@ def main():
             'used_features':sorted({p['feature'] for l in leaves for p in l['predicates']}),
             'class_order':clf.classes_.tolist(),'parameters':clf.get_params(),
             'rule_check_rows':len(table)}
+        # Feature-set stages (tutorial): same split, same CART parameters, same test cases.
+        summary['stages']={}
+        for stage in STAGES:
+            if stage=='case_event':
+                summary['stages'][stage]={k:summary[k] for k in ('accuracy','balanced_accuracy','macro_f1','used_features','depth')}
+                summary['stages'][stage]['leaves']=len(leaves);continue
+            staged=DictVectorizer(sparse=False);Xs=staged.fit_transform([encode_stage(r['features'],stage) for r in train])
+            model=DecisionTreeClassifier(max_depth=3,min_samples_leaf=50,random_state=SEED).fit(Xs,y)
+            stage_leaves=tree_rules(model,staged.get_feature_names_out().tolist())
+            guess=model.predict(staged.transform([encode_stage(r['features'],stage) for r in test])) if test else []
+            summary['stages'][stage]={'accuracy':float(accuracy_score(truth,guess)) if test else None,
+                'balanced_accuracy':float(balanced_accuracy_score(truth,guess)) if test else None,
+                'macro_f1':float(f1_score(truth,guess,labels=labels,average='macro',zero_division=0)) if test else None,
+                'used_features':sorted({p['feature'] for l in stage_leaves for p in l['predicates']}),
+                'depth':model.get_depth(),'leaves':len(stage_leaves)}
         summaries.append(summary)
         print(f'{key}: n={len(table)} test={len(test)} accuracy={summary["accuracy"]:.4f} majority={summary["majority_accuracy"]:.4f}',flush=True)
     models={g['id']:g for g in summaries if g['kind']=='split'}
@@ -166,8 +183,11 @@ def main():
         'alignment_cost_sum':alignment_cost,'flow_net_states':len(aligner.states),'bpmn_language_equivalence':equivalence,
         'reference_checks':reference,'training_cases':len(training),'testing_cases':len(testing),
         'write_operations':writes,'write_threshold_percentage':95,'guarded_replay':guarded,
-        'case_fields':CASE_FIELDS,'event_fields':EVENT_FIELDS,
-        'excluded':['case/Event/Offer IDs','Accepted','Selected','activity label','resource','Action','EventOrigin','timestamps'],
+        'case_fields':CASE_FIELDS,'event_fields':EVENT_FIELDS,'engineered_fields':[*ENGINEERED,'eng_last_activity'],
+        'feature_stages':{'case':'case attributes only','case_event':'case + last synchronized event attributes (primary; BPMN guards)',
+                          'engineered':'case_event + aggregates of the synchronized prefix (counts, gateway visits, elapsed days, last activity)'},
+        'excluded':['case/Event/Offer IDs','Accepted','Selected','resource','Action','EventOrigin',
+                    'raw timestamps and activity labels as direct inputs (engineered stage uses prefix aggregates only)'],
         'limitations':['One deterministic optimal alignment; choices/parallel data order may be ambiguous.',
            'Control-flow discovered using full log: held-out metrics assess guards conditional on this fixed model.',
            'Last synchronized offer values may belong to different offers; no object-centric correlation.',

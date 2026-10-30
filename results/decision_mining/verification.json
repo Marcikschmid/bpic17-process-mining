@@ -1,18 +1,18 @@
 {
   "status": "ok",
-  "source_sha256": "37cee610afc207717a2c369afbd9b35061891520cd3bdd85ca420ebfc9f204fe",
-  "xor_nodes": 34,
-  "xor_splits": 17,
-  "xor_merges": 17,
-  "rule_predictions_checked": 424194,
-  "flow_conditions_checked": 34,
+  "source_sha256": "6a7715a273c3973bfaaeaa6cf040d0832b66e0b40fac01ad3b1bbbd3a9964712",
+  "xor_nodes": 36,
+  "xor_splits": 18,
+  "xor_merges": 18,
+  "rule_predictions_checked": 425851,
+  "flow_conditions_checked": 37,
   "case_split_overlap": 0,
   "guarded_replay_counts": {
     "cases": 31509,
-    "structural": 25016,
-    "guarded": 3254
+    "structural": 25343,
+    "guarded": 3055
   },
   "reference_cost_checks": 24,
-  "raw_snapshot_rows_reconstructed": 424194,
-  "exported_guard_predicate_rows_checked": 424194
+  "raw_snapshot_rows_reconstructed": 425851,
+  "exported_guard_predicate_rows_checked": 425851
 }

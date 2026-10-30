@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ[key]='1'
 from scripts.mine_decisions import MODEL
-from src.decision_mining import bpmn_net,encode_features,predict_rules,observations,NS,CASE_FIELDS,EVENT_FIELDS,feel_guard
+from src.decision_mining import bpmn_net,encode_features,predict_rules,observations,NS,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,feel_guard
 OUT=ROOT/'results/decision_mining'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def main():
@@ -69,7 +69,7 @@ def main():
         assert len(matches)==1
         return matches[0]
     saved_rows=Counter()
-    rules_checked=conditions_checked=0;allowed={f'case_{k}' for k in CASE_FIELDS}|{f'event_{k}' for k in EVENT_FIELDS}
+    rules_checked=conditions_checked=0;allowed={f'case_{k}' for k in CASE_FIELDS}|{f'event_{k}' for k in EVENT_FIELDS}|{*ENGINEERED,'eng_last_activity'}
     for g in data['gateways']:
         if g['kind']=='merge':assert g['status']=='merge_no_choice';continue
         rows=json.loads((OUT/'observations'/f'{g["id"]}.json').read_text(encoding='utf-8'))

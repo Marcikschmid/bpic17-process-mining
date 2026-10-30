@@ -8,7 +8,7 @@ was changed and why"). Numbers from `results/manual_edits/` and
 ## Starting point and goal
 
 - Base: refined IMf model `frequent_0.60_imf_0.03` (40-candidate refinement, `docs/REFINEMENT.md`): sound, 80.45 % exact whole-case replay, Align-ET precision 0.598, 89 nodes.
-- Goal (simulation base model): keep soundness and ~80 % exact replay (band 78-82 %, same as refinement); raise precision = remove behaviour the log never shows, because a simulation would generate such unobserved paths.
+- Goal (simulation base model): keep soundness and at least 80 % exact replay (band 80-82 %: lower bound = lecture slide 36 "at least 80% of all cases", upper bound own choice, unchanged from refinement); raise precision = remove behaviour the log never shows, because a simulation would generate such unobserved paths.
 - Guard rails for the other two criteria (fixed before screening): alignment generalization drop <= 0.01, arc-degree simplicity drop <= 0.05, node increase <= 25 %.
 
 ## Why edits on the process tree, not on single Petri-net arcs
@@ -37,7 +37,7 @@ was changed and why"). Numbers from `results/manual_edits/` and
 | G2 | generalizing | late cancellation `A_Cancelled` as third validation outcome | after `A_Validating` in 1,014 cases (3.22 %) | 81.52 % | 0.595 | 90 |
 | G3 | generalizing | several refused offers (`O_Refused` loop) | >= 2 `O_Refused` in 777 cases (2.47 %) | 82.06 % | 0.597 | 92 |
 
-- Restricting edits (R*) shrink the model language -> exact replay can only stay or fall; budget to the 78 % floor: 772 cases (2.45 pp).
+- Restricting edits (R*) shrink the model language -> exact replay can only stay or fall; budget to the 80 % floor (25,208 cases): 142 cases (0.45 pp).
 - Generalizing edits (G*) add observed behaviour -> buy back replay for restricting edits; cost: small precision loss.
 - R2 alone already leaves the band (-6.28 pp): direct `O_Sent` repetitions are real (8.83 % of cases) -> no combination with R2 is in the band.
 - R3 = largest single precision gain (+0.100) and smaller model (84 nodes), but alone below the band (77.90 %) -> needs a generalizing partner.
@@ -47,11 +47,11 @@ was changed and why"). Numbers from `results/manual_edits/` and
 
 - Every combination: exact replay (all cases), Align-ET (exact finite-state solver, PM4Py-identical), soundness via complete state space, size, Extended Cardoso, ECyM, arc degree (`results/manual_edits/screen.csv`).
 - All 128 combinations sound (process trees).
-- 40 combinations inside the band.
+- 28 combinations inside the band 80-82 % (40 inside 78-82 %).
 
 ## Selection rule (fixed before any combination was evaluated)
 
-1. sound and 78 % <= exact replay <= 82 %;
+1. sound and 80 % <= exact replay <= 82 %;
 2. maximise Align-ET precision;
 3. guard rails on the full assessment (alignment generalization, arc degree, nodes vs. base);
 4. tie: fewer nodes.
@@ -60,29 +60,32 @@ Run history (deviations stated openly):
 
 - Run 1: guard stage on the top 5, token-based generalization -> invalid for edits that duplicate labels (PM4Py token replay maps each label to one transition; token precision 0.997 implausible) -> switched to alignment-based generalization (PM4Py formula on exact optimal alignments) before any selection.
 - Run 2: guard stage on the top 10 -> all 10 contain R1 and all fail the generalization guard (0.972 vs. base 0.991, drop 0.019 > 0.01) -> no selection.
-- Run 3 (2026-10-30): same rule, guard stage walks down the ranking until the first candidate passes (no cap); already computed full assessments reused.
+- Run 3 (2026-10-30): same rule, guard stage walks down the ranking until the first candidate passes (no cap); already computed full assessments reused -> G3+R3+R4 (79.39 %).
+- Run 4 (2026-10-30, after lecture of 2026-10-29, slide 36 "at least 80% of all cases"): lower band bound 78 -> 80 %; refinement base unchanged under [80, 82] (all other refinement candidates are < 80 % or > 82 %); same edits, same guards.
 - Why R1 fails: duplicated offer transitions split the execution counts; the generalization formula `1 - mean(1/sqrt(n_t))` penalises rarely executed transitions -> R1 trades precision against generalization, exactly the trade-off the guard rail is for.
 
-## Result: G3 + R3 + R4
+## Result: G2 + G3 + R3 + R4
 
-- Guard stage: 14 candidates with R1 rejected (alignment generalization 0.9717-0.9727, drop > 0.01; 7 of them also > 25 % more nodes); first candidate without R1 = G3+R3+R4 -> passes all guards -> selected (`results/manual_edits/guard_stage.tex`).
+- Guard stage (band 80-82 %): 8 candidates with R1 rejected (alignment generalization 0.9717-0.9724, drop > 0.01; 5 of them also > 25 % more nodes); first candidate without R1 = G2+G3+R3+R4 -> passes all guards -> selected (`results/manual_edits/guard_stage.tex`).
+- Earlier selection under the 78 % floor (run 3): G3+R3+R4 (79.39 %, Align-ET 0.697) -> below "at least 80 %" -> replaced.
 
-| | Base (IMf) | Final (G3+R3+R4) | Change |
+| | Base (IMf) | Final (G2+G3+R3+R4) | Change |
 |---|---:|---:|---:|
-| Exact whole-case replay | 80.45 % (25,350) | 79.39 % (25,016) | -1.06 pp (-334 cases) |
-| Alignment fitness | 0.9765 | 0.9751 | -0.0014 |
-| Align-ET precision | 0.598 | 0.697 | +0.100 |
-| Alignment generalization | 0.9911 | 0.9899 | -0.0012 |
-| Arc-degree simplicity | 0.701 | 0.719 | +0.018 |
-| Nodes | 89 | 92 | +3 |
-| Extended Cardoso / ECyM | 52 / 551 | 51 / 145 | -1 / -406 |
-| Reachable markings | 187 | 86 | -101 |
+| Exact whole-case replay | 80.45 % (25,350) | 80.43 % (25,343) | -0.02 pp (-7 cases) |
+| Alignment fitness | 0.9765 | 0.9786 | +0.0021 |
+| Align-ET precision | 0.598 | 0.695 | +0.097 |
+| Alignment generalization | 0.9911 | 0.9880 | -0.0031 |
+| Arc-degree simplicity | 0.701 | 0.710 | +0.009 |
+| Nodes | 89 | 98 | +9 |
+| Extended Cardoso / ECyM | 52 / 551 | 55 / 166 | +3 / -385 |
+| Reachable markings | 187 | 94 | -93 |
 
-- Petri-net delta vs. base: +3 transitions (1 silent), +2 arcs, 0 places; visible transitions added: second `A_Validating` (incomplete-files loop), second `O_Cancelled` (pending branch).
-- Why these three, in words of the evidence: R3 = validation order never violated in the log (0 counterexamples) and removes the AND-block around `O_Returned`/`A_Incomplete` -> largest precision gain; R4 = `O_Cancelled` only where the log shows it (195 denied cases with `O_Cancelled` sacrificed); G3 = 777 cases with repeated `O_Refused` regained -> brings R3 back into the band.
-- Not chosen: R1 (precision +0.058 but fails generalization guard, see above); R2 (8.83 % of cases repeat `O_Sent` -> leaves band); G1/G2 (lower precision than G3 at similar replay gain).
-- BPMN: 23 tasks (21 labels; `A_Validating`, `O_Cancelled` twice), 17 XOR split/merge pairs (9 choices + 8 loops), 2 AND pairs; language-equivalent to the Petri net (`results/final/manifest.json`).
-- Caveat: edits screened on all cases (incl. the decision-mining test cases); the control-flow discovery itself is unchanged by a train-only rerun (`results/comparison/holdout_check.json`).
+- Petri-net delta vs. base: +2 places, +7 transitions (3 silent), +10 arcs; visible transitions added: second `A_Validating` (incomplete-files loop), second `A_Cancelled` (late cancellation), two more `O_Cancelled` (cancelled branches, pending branch).
+- Why these four, in words of the evidence: R3 = validation order never violated in the log (0 counterexamples) and removes the AND-block around `O_Returned`/`A_Incomplete` -> largest precision gain; R4 = `O_Cancelled` only where the log shows it (195 denied cases with `O_Cancelled` sacrificed); G3 = 777 cases with repeated `O_Refused` regained; G2 = 1,014 cases cancelled after validation regained -> together they bring R3 back above 80 %.
+- Not chosen: R1 (precision +0.058 but fails generalization guard, see above); R2 (8.83 % of cases repeat `O_Sent` -> leaves band); G1 (lower precision than G2 at similar replay gain).
+- BPMN: 25 tasks (21 labels; `A_Cancelled`, `A_Validating`, `O_Cancelled` duplicated), 18 XOR split/merge pairs (9 choices + 9 loops), 2 AND pairs; language-equivalent to the Petri net (`results/final/manifest.json`).
+- Held-out: final model replays 80.48 % of training and 80.32 % of test cases (`results/comparison/holdout_check.json`).
+- Caveat: edits screened on all cases (incl. the decision-mining test cases); the control-flow discovery itself is unchanged by a train-only rerun.
 
 ## Reproduction
 

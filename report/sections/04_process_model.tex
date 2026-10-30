@@ -21,13 +21,29 @@
 \input{tables/quality_metrics}
 
 % ---------------------------------------------------------------- Metric goal
-% TODO (author): which metric to optimise and why (docs/MINER_PARAMETERS.md, D13).
-% - goal = simulation base model
-% - fitness as constraint: sound + ~80% exact whole-case replay (band 78--82%)
+% TODO (author): which metric to optimise and why (docs/MINER_PARAMETERS.md, D13, D28, D33).
+% - goal = simulation base model; requirement: at least 80% of all cases (lecture 2026-10-29, slide 36)
+% - fitness as constraint: sound + exact whole-case replay 80--82% (lower bound = requirement)
+% - 100% conformance not automatically good: rare traces may be data errors (IM: 100% replay, Align-ET 0.293)
+% - perspectives: academic (soundness, reproducibility, generalization) vs consulting (simplicity,
+%   readability) vs automation/simulation (precision at sufficient fitness, executable guards)
 % - precision = optimisation target: unobserved behaviour -> unrealistic simulated cases
 % - generalization, simplicity = guard rails (no notable loss)
 % - counter-example: HM Align-ET ~0.998 although <=1.30% of cases can fit -> precision alone misleading
-% Literature: \cite{carmona2018conformance,lassen2009complexity,pedro2015simplification}.
+% TODO (author): measurement methods per criterion, what was used and why (docs/DESIGN_DECISIONS.md D34).
+% - token replay \cite{rozinat2008conformance}: fast, but non-deterministic with silent transitions
+%   (HM 0.833--0.836 between runs), token flooding, invalid with duplicate labels (final model)
+% - alignments \cite{vdaalst2012replaying}: globally optimal, diagnostics; need finite state space
+% - exact whole-case replay = 'share of cases represented' -> constraint; Align-ET -> target
+% - simplicity: several metrics \cite{polancic2017complexity,rozinat2010thesis}; flower model problem
+% Literature: \cite{vdaalst2016processmining,carmona2018conformance,lassen2009complexity,pedro2015simplification}.
+\begin{table*}[t]
+\centering
+\small
+\caption{Measurement methods per quality criterion on the same 31,509 cases: values for IM, HM, refined IMf and the final model; invalid: token replay not applicable with duplicated labels; n/c: not computable.}
+\label{tab:metric-methods}
+\resizebox{\textwidth}{!}{\input{tables/metric_methods}}
+\end{table*}
 
 % ---------------------------------------------------------------- Refinement
 % TODO (author): algorithm choice IMf (docs/REFINEMENT.md, docs/DESIGN_DECISIONS.md D05, D12--D16).
@@ -54,11 +70,12 @@
 % TODO (author): which flow was changed manually and why (docs/MANUAL_EDITS.md).
 % - edits on the process tree, not single arcs: soundness + block structure preserved; Petri-net delta logged
 % - R = restricting (precision up, replay down), G = generalizing (replay up, precision slightly down)
-% - all 128 combinations screened; 40 in band; selection rule fixed in advance
+% - all 128 combinations screened; 28 in band 80--82%; selection rule fixed in advance
 % - R1: strongest evidence (0 counter-cases), +0.058 precision, but duplicates offer block ->
-%   alignment generalization 0.972 vs 0.991 -> fails guard (all 14 R1 combinations)
+%   alignment generalization 0.972 vs 0.991 -> fails guard (all 8 R1 combinations in the band)
 % - R2: 8.83% of cases repeat O_Sent -> leaves band
-% - selected G3+R3+R4: Align-ET 0.598 -> 0.697, exact replay 80.45% -> 79.39%, generalization -0.001
+% - selected G2+G3+R3+R4: Align-ET 0.598 -> 0.695, exact replay 80.45% -> 80.43%, generalization -0.003
+% - under the earlier 78% floor: G3+R3+R4 (79.39%) -> replaced after slide 36 (at least 80%)
 % - guard stage, all checked candidates: App. Table~\ref{tab:guard-stage}
 \begin{table*}[t]
 \centering
@@ -71,7 +88,7 @@
 % ---------------------------------------------------------------- Final model
 % TODO (author): final model quality, trade-offs, generalization evidence.
 % - four criteria IM -> IMf -> final: precision up, replay constraint kept, generalization stable
-% - held-out: IMf rediscovered on 70% train cases only = identical tree; test replay 80.37% vs train 80.49%
+% - held-out: IMf rediscovered on 70% train cases only = identical tree; final model test 80.32% vs train 80.48%
 % - caveat: edits screened on all cases
 \begin{table}[t]
 \centering
@@ -105,11 +122,24 @@
 % TODO (author): decision mining in two steps (docs/DECISION_MINING.md).
 % - step 1: branch probabilities per XOR split from optimal alignments, no data (App. Figure~\ref{fig:branch-probabilities})
 % - loop splits: probability per iteration, not per case
-% - step 2: Algorithm 1 of \cite{deleoni2013dataaware}; CART instead of C4.5; case-wise 70/30 split
-% - 17 XOR splits (9 choices + 8 loops), 17 merges: no choice, no classifier; 424,194 aligned decisions
-% - 9 of 17 trees predict only the majority branch (balanced accuracy 0.5);
-%   7 beat the majority baseline by >1 pp (D02, D03, D07, D10, D13, D14, D16)
-% - structural vs guarded replay: 79.39% -> 10.33% (test 10.07%); cause: majority trees forbid minority branches
+% - step 2: Algorithm 1 of \cite{deleoni2013dataaware} (token-based predecessor \cite{rozinat2006decision});
+%   CART instead of C4.5; case-wise 70/30 split
+% - feature stages (tutorial): case only -> + event -> + feature engineering (prefix aggregates, no leakage)
+% - mean balanced accuracy 0.514 -> 0.562 -> 0.749; splits above chance 5 -> 8 -> 14 of 18
+% - feature engineering: derive inputs from raw data with domain knowledge (counts, loop visits, elapsed time)
+% - model choice: decision tree = readable guards; NN + XAI \cite{park2023explainable} / surrogate as alternatives
+% - output = guards G(t) of a coloured Petri net, translated to BPMN XOR conditions
+% - 18 XOR splits (9 choices + 9 loops; D14 three-way), 18 merges: no choice, no classifier; 425,851 aligned decisions
+% - primary model: 10 of 18 trees predict only the majority branch (balanced accuracy = 1/branches);
+%   7 beat the majority baseline by >1 pp (D03, D04, D07, D11, D12, D14, D15)
+% - structural vs guarded replay: 80.43% -> 9.70% (test 9.46%); cause: majority trees forbid minority branches
+\begin{table*}[t]
+\centering
+\small
+\caption{Decision mining in three feature stages: held-out balanced accuracy per XOR split; same case-wise split (seed 20261018), CART depth 3, minimum leaf 50.}
+\label{tab:feature-stages}
+\input{tables/feature_stages}
+\end{table*}
 % - simulation: probabilities where a tree does not beat the majority baseline (open design choice)
 \input{tables/guarded_coverage}
 

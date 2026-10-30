@@ -178,7 +178,7 @@
 \begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth,height=0.91\textheight,keepaspectratio]{figures/final_edited_bpmn.pdf}
-  \caption{Final BPMN 2.0 after manual edits G3, R3, R4: 25,016 of 31,509 cases fully replayable (79.39 percent); 23 tasks; 17 XOR and 2 AND split/merge pairs.}
+  \caption{Final BPMN 2.0 after manual edits G2, G3, R3, R4: 25,343 of 31,509 cases fully replayable (80.43 percent); 25 tasks; 18 XOR and 2 AND split/merge pairs.}
   \label{fig:final-edited-bpmn}
 \end{figure}
 
@@ -190,6 +190,19 @@
   \caption{Final model with branch probability and aligned frequency on every outgoing XOR flow; all 31,509 cases; loop splits per visit.}
   \label{fig:branch-probabilities}
 \end{figure}
+
+% Final model in SAP Signavio (tutorial 2026-10-29). Import results/signavio/
+% bpic17_final_probabilities.bpmn (docs/SIGNAVIO.md), export the diagram to
+% figures/signavio_final_model.png, then uncomment this block.
+% \clearpage
+% \subsection{Final Model in SAP Signavio}
+% \label{app:signavio}
+% \begin{figure}[h!]
+%   \centering
+%   \includegraphics[width=\textwidth,height=0.91\textheight,keepaspectratio]{figures/signavio_final_model.png}
+%   \caption{Final model imported into SAP Signavio Process Manager as BPMN 2.0 XML; branch probabilities on XOR flows.}
+%   \label{fig:signavio}
+% \end{figure}
 
 \clearpage
 \subsection{Refined BPMN 2.0 (before manual edits)}

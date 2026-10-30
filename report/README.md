@@ -83,3 +83,10 @@ finalen Modell neu gerechnet: 17 Regelblätter `figures/decision_blocks/D01.pdf`
 Strukturabdeckung 79,39 %, harte Guards 10,07 % im Test. Die Absätze oben beschreiben
 den Stand vor dieser Runde. Stichpunkte für die eigenen Texte stehen als
 `%`-Kommentare in `sections/04_process_model.tex`; generierte Sätze enthält der Bericht nicht.
+
+Nachtrag 30.10.2026 (neue Vorlesungsfolien und Tutorium): finales Modell jetzt
+G2+G3+R3+R4 (80,43 %, Vorgabe „mindestens 80 % aller Fälle“); neu im Hauptteil
+`tables/metric_methods.tex` (Messverfahren je Qualitätskriterium) und
+`tables/feature_stages.tex` (Decision Mining: Case → + Event → + Feature Engineering);
+18 Regelblätter `figures/decision_blocks/D01.pdf`–`D18.pdf`. Im Anhang ist ein
+auskommentierter Block für die Signavio-Abbildung vorbereitet (`../docs/SIGNAVIO.md`).

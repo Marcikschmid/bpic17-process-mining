@@ -8,7 +8,7 @@
     "pairs": 46
   },
   "band_pct": [
-    78.0,
+    80.0,
     82.0
   ],
   "guards": {
@@ -5306,8 +5306,8 @@
     }
   },
   "selection": {
-    "rule": "1. sound and 78% <= exact whole-case replay <= 82% (same band as refinement);\n2. maximize Align-ET precision (exact finite-state solver);\n3. guard rails on the full assessment of the best candidates: generalization drop\n   <= 0.01, arc-degree simplicity drop <= 0.05, node increase <= 25% (vs base);\n4. tie: fewer nodes.\nScreening uses all 31,509 cases; no case is removed.\n\nGeneralization is measured alignment-based (PM4Py formula, transition counts\nfrom exact optimal alignments). Correction after the first run: PM4Py token\nreplay maps each label to ONE transition, so token generalization is invalid\nfor edits that duplicate labels (R1); token values are kept for information.\n\nCorrection after the second run: step 3 first checked only the ten best\ncandidates; all ten contain R1 and fail the generalization guard. The guard\nstage now walks down the same ranking until the first candidate passes (rule\nunchanged, --top only as an optional cap). Full assessments are cached per\ncandidate name, keyed by the hashes of src/tree_edits.py and src/model_assessment.py.",
-    "eligible": 40,
+    "rule": "1. sound and 80% <= exact whole-case replay <= 82% (lower bound: assignment);\n2. maximize Align-ET precision (exact finite-state solver);\n3. guard rails on the full assessment of the best candidates: generalization drop\n   <= 0.01, arc-degree simplicity drop <= 0.05, node increase <= 25% (vs base);\n4. tie: fewer nodes.\nScreening uses all 31,509 cases; no case is removed.\n\nGeneralization is measured alignment-based (PM4Py formula, transition counts\nfrom exact optimal alignments). Correction after the first run: PM4Py token\nreplay maps each label to ONE transition, so token generalization is invalid\nfor edits that duplicate labels (R1); token values are kept for information.\n\nCorrection after the second run: step 3 first checked only the ten best\ncandidates; all ten contain R1 and fail the generalization guard. The guard\nstage now walks down the same ranking until the first candidate passes (rule\nunchanged, --top only as an optional cap). Full assessments are cached per\ncandidate name, keyed by the hashes of src/tree_edits.py and src/model_assessment.py.\n\nCorrection after the lecture of 2026-10-29 (slide 36: the model \"should represent\nat least 80% of all cases\"): lower band bound raised from 78% to 80%; upper bound\n82% unchanged. The refinement base is the same under [80, 82].",
+    "eligible": 28,
     "base": {
       "alignment_generalization": 0.991118689386397,
       "alignment_fitness": 0.9765245757360197,
@@ -5317,94 +5317,6 @@
       "token_precision": 0.5951685521879374
     },
     "checked": [
-      {
-        "candidate": "G3+R1+R3+R4",
-        "alignment_generalization": 0.972685739150577,
-        "alignment_fitness": 0.9749739444625952,
-        "duplicate_visible_labels": [
-          "A_Validating",
-          "O_Cancelled",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.7355434966522778,
-        "token_fitness": 0.9167427290168171,
-        "token_precision": 0.9966884514614643,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": false
-        },
-        "passes": false
-      },
-      {
-        "candidate": "G3+R1+R3",
-        "alignment_generalization": 0.9724464790780691,
-        "alignment_fitness": 0.9740805279056853,
-        "duplicate_visible_labels": [
-          "A_Validating",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.8798219209616989,
-        "token_fitness": 0.9237576818583644,
-        "token_precision": 0.997194290347215,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": true
-        },
-        "passes": false
-      },
-      {
-        "candidate": "G2+R1+R3+R4",
-        "alignment_generalization": 0.9719776185982901,
-        "alignment_fitness": 0.977233990173482,
-        "duplicate_visible_labels": [
-          "A_Cancelled",
-          "A_Validating",
-          "O_Cancelled",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.7430991098751656,
-        "token_fitness": 0.9310600120894782,
-        "token_precision": 0.8206665811527278,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": false
-        },
-        "passes": false
-      },
-      {
-        "candidate": "G2+R1+R3",
-        "alignment_generalization": 0.9722234681211043,
-        "alignment_fitness": 0.9765236196936673,
-        "duplicate_visible_labels": [
-          "A_Cancelled",
-          "A_Validating",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.7675953239271105,
-        "token_fitness": 0.9226378451438018,
-        "token_precision": 0.9966884514614643,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": true
-        },
-        "passes": false
-      },
       {
         "candidate": "G2+G3+R1+R3+R4",
         "alignment_generalization": 0.972115851597692,
@@ -5443,51 +5355,6 @@
         "token_generalization": 0.774190958696775,
         "token_fitness": 0.9192335541124583,
         "token_precision": 0.9966884514614643,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": true
-        },
-        "passes": false
-      },
-      {
-        "candidate": "G1+R1+R3+R4",
-        "alignment_generalization": 0.9718722912369285,
-        "alignment_fitness": 0.976406888135242,
-        "duplicate_visible_labels": [
-          "A_Validating",
-          "O_Cancelled",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "O_Sent (online only)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.9098876304272779,
-        "token_fitness": 0.8938606027592129,
-        "token_precision": 0.9951518522100783,
-        "guards": {
-          "generalization": false,
-          "arc_degree": true,
-          "node_increase": true
-        },
-        "passes": false
-      },
-      {
-        "candidate": "G1+R1+R3",
-        "alignment_generalization": 0.972027141892446,
-        "alignment_fitness": 0.975576772594614,
-        "duplicate_visible_labels": [
-          "A_Validating",
-          "O_Create Offer",
-          "O_Created",
-          "O_Sent (mail and online)",
-          "O_Sent (online only)",
-          "W_Complete application"
-        ],
-        "token_generalization": 0.770747499761638,
-        "token_fitness": 0.8943836866743875,
-        "token_precision": 0.9997953479669283,
         "guards": {
           "generalization": false,
           "arc_degree": true,
@@ -5635,16 +5502,17 @@
         "passes": false
       },
       {
-        "candidate": "G3+R3+R4",
-        "alignment_generalization": 0.9898789756713244,
-        "alignment_fitness": 0.9750557918025278,
+        "candidate": "G2+G3+R3+R4",
+        "alignment_generalization": 0.9879648550112774,
+        "alignment_fitness": 0.9785986375684694,
         "duplicate_visible_labels": [
+          "A_Cancelled",
           "A_Validating",
           "O_Cancelled"
         ],
-        "token_generalization": 0.9711155136757234,
-        "token_fitness": 0.9478105192409865,
-        "token_precision": 0.6734218396222771,
+        "token_generalization": 0.8857741388466186,
+        "token_fitness": 0.9321554485596482,
+        "token_precision": 0.669037951878011,
         "guards": {
           "generalization": true,
           "arc_degree": true,
@@ -5653,7 +5521,7 @@
         "passes": true
       }
     ],
-    "selected": "G3+R3+R4"
+    "selected": "G2+G3+R3+R4"
   },
   "full_assessment": {
     "identity": {
@@ -5898,6 +5766,18 @@
         "token_generalization": 0.9711155136757234,
         "token_fitness": 0.9478105192409865,
         "token_precision": 0.6734218396222771
+      },
+      "G2+G3+R3+R4": {
+        "alignment_generalization": 0.9879648550112774,
+        "alignment_fitness": 0.9785986375684694,
+        "duplicate_visible_labels": [
+          "A_Cancelled",
+          "A_Validating",
+          "O_Cancelled"
+        ],
+        "token_generalization": 0.8857741388466186,
+        "token_fitness": 0.9321554485596482,
+        "token_precision": 0.669037951878011
       }
     }
   }

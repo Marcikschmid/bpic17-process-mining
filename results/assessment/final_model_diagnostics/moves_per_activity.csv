@@ -1,20 +1,18 @@
 activity,log_moves_cases,model_moves_cases
-O_Returned,2096,373
-O_Cancelled,2034,53
+O_Returned,1745,417
 O_Sent (online only),2026,0
-A_Validating,1737,161
-A_Incomplete,1678,0
-O_Created,1676,0
-O_Create Offer,1676,0
-O_Sent (mail and online),707,894
-A_Cancelled,709,205
-A_Pending,0,626
-O_Accepted,0,626
-W_Call incomplete files,440,0
+O_Cancelled,1814,53
+O_Created,1750,0
+O_Create Offer,1750,0
+O_Sent (mail and online),736,860
+A_Validating,1332,162
+A_Incomplete,1348,0
+W_Call incomplete files,651,0
+A_Cancelled,166,256
 W_Call after offers,342,0
 W_Assess potential fraud,282,0
-W_Validate application,184,0
-W_Complete application,173,0
+W_Complete application,170,0
 A_Complete,0,147
-A_Denied,25,0
-O_Refused,3,11
+A_Denied,35,42
+W_Validate application,65,0
+O_Refused,3,43

@@ -28,13 +28,13 @@
     "final_model": {
       "train": {
         "cases": 22056,
-        "fitting": 17524,
-        "percentage": 79.45230322814653
+        "fitting": 17750,
+        "percentage": 80.47696771853464
       },
       "test": {
         "cases": 9453,
-        "fitting": 7492,
-        "percentage": 79.25526287950915
+        "fitting": 7593,
+        "percentage": 80.3237067597588
       }
     }
   },

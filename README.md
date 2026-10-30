@@ -15,15 +15,17 @@ separately in [`report/`](report/).
 | 3.2: log statistics | Full raw-log statistics and independent XML audit |
 | 3.3.1: process discovery | Alpha, Heuristics (native heuristics net + dependency sweep), Inductive and native Genetic Miner on the same input |
 | 3.3.2: model quality | Four quality dimensions and soundness gate for every model ([comparison](results/comparison/model_comparison.md)); additional optimal HM alignment fitness remains incomplete |
-| 3.3.3: refinement | 40 IM/IMf candidates, then manual process-tree edits screened in all 128 combinations; final model replays 25,016/31,509 cases (79.39%), Align-ET precision 0.697 ([manual edits](docs/MANUAL_EDITS.md)) |
-| 3.3.4: decision mining | Step 1: branch probabilities at all 17 XOR splits; step 2: 17 CART classifiers, rules visible directly in BPMN; separate test cases |
+| 3.3.3: refinement | 40 IM/IMf candidates, then manual process-tree edits screened in all 128 combinations; final model replays 25,343/31,509 cases (80.43%, requirement: at least 80%), Align-ET precision 0.695 ([manual edits](docs/MANUAL_EDITS.md)) |
+| 3.3.4: decision mining | Step 1: branch probabilities at all 18 XOR splits; step 2: CART classifiers in three feature stages (case, +event, +engineered), rules visible directly in BPMN; separate test cases |
 | Report | Selected factual tables and figures; author-written interpretation still pending |
 | 3.4: advanced analysis | Not implemented |
 
 **Structural coverage and guarded coverage are different.** The final
-control-flow model reaches 79.39% whole-case replay without learned guards.
-Enforcing all learned guards yields 10.33% over all cases and **10.07% on the
-held-out test cases**; 9 of 17 trees only predict the majority branch. These
+control-flow model reaches 80.43% whole-case replay without learned guards.
+Enforcing all learned guards yields 9.70% over all cases and **9.46% on the
+held-out test cases**; 10 of 18 trees only predict the majority branch.
+Feature engineering raises the mean held-out balanced accuracy from 0.562 to 0.749
+([feature stages](results/decision_mining/feature_stages.csv)). These
 statistical rules are not validated bank policy; branch probabilities
 ([graph](results/decision_mining/branch_probabilities.pdf)) are the data-free alternative.
 See [refinement](docs/REFINEMENT.md), [decision mining](docs/DECISION_MINING.md)
@@ -32,14 +34,16 @@ and the [assignment checklist](docs/CHECKLIST.md) for limitations and open work.
 ## Parameters, design rationale and optimization
 
 - [Actual miner parameters, PM4Py defaults, meanings and reasons](docs/MINER_PARAMETERS.md), including Alpha, IM/IMf, HM and Genetic settings.
-- [32 design decisions: alternatives, evidence and limitations](docs/DESIGN_DECISIONS.md).
+- [35 design decisions: alternatives, evidence and limitations](docs/DESIGN_DECISIONS.md).
+- [Measurement methods per quality criterion: what was used and why](results/comparison/metric_methods.md).
 - [All models, four quality criteria and soundness](results/comparison/model_comparison.md);
   [Alpha Miner](docs/ALPHA_MINER.md), [Heuristics net and sweep](docs/HEURISTICS_SWEEP.md),
   [Genetic budget](docs/GENETIC_BUDGET.md).
 - [Manual edits of the refined model](docs/MANUAL_EDITS.md): conformance diagnostics, log evidence,
-  128 combinations, fixed selection rule; final model G3+R3+R4 in [`results/final/`](results/final/).
+  128 combinations, fixed selection rule; final model G2+G3+R3+R4 in [`results/final/`](results/final/).
+- [SAP Signavio import files](docs/SIGNAVIO.md) of the final model (`results/signavio/`).
 - Held-out check: IMf rediscovered on the 70% training cases gives the identical tree; final model
-  replays 79.45% of training and 79.26% of test cases ([`holdout_check.json`](results/comparison/holdout_check.json)).
+  replays 80.48% of training and 80.32% of test cases ([`holdout_check.json`](results/comparison/holdout_check.json)).
 - [Printable parameter overview](results/parameters/miner_parameter_overview.pdf).
 - Third experiment: native PM4Py Genetic Miner, same full completion input,
   explicit population/generation budget and seeds; `scripts/discover_genetic.py`.
@@ -231,6 +235,7 @@ Prepare the full-log sequence cache before refinement or decision mining:
 .\.venv\Scripts\python.exe scripts/export_final_model.py
 .\.venv\Scripts\python.exe scripts/assess_model.py results/final/final_model.pnml --name final_model --out results/assessment --diagnostics
 .\.venv\Scripts\python.exe scripts/render_model_comparison.py
+.\.venv\Scripts\python.exe scripts/render_metric_methods.py
 .\.venv\Scripts\python.exe scripts/holdout_check.py
 ```
 
@@ -245,9 +250,11 @@ prepared sequence cache; step 1 renders branch probabilities, step 2 learns rule
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/mine_decisions.py
+.\.venv\Scripts\python.exe scripts/render_decision_stages.py
 .\.venv\Scripts\python.exe scripts/render_branch_probabilities.py
 .\.venv\Scripts\python.exe scripts/render_decisions.py
 .\.venv\Scripts\python.exe scripts/verify_decisions.py
+.\.venv\Scripts\python.exe scripts/export_signavio.py
 ```
 
 Report copies of the feedback-round tables and figures:

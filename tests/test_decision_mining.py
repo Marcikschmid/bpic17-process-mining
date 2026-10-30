@@ -41,6 +41,26 @@ class DecisionTests(unittest.TestCase):
         self.assertEqual(rows[2]['features']['event_CreditScore'],700)
         self.assertFalse(any('Accepted' in k or 'secret' in str(v) for r in rows for k,v in r['features'].items()))
 
+    def test_engineered_features_use_only_the_synchronized_prefix(self):
+        from src.decision_mining import encode_stage
+        events=[{'concept:name':'O_Create Offer','time:timestamp':0.0},{'concept:name':'X','time:timestamp':86400.0},
+                {'concept:name':'A_Incomplete','time:timestamp':3*86400.0}]
+        alignment={'moves':[{'kind':'tau','transition':'choice','event_index':None},
+            {'kind':'sync','transition':'A','event_index':0},
+            {'kind':'log','transition':None,'event_index':1},
+            {'kind':'tau','transition':'choice','event_index':None},
+            {'kind':'sync','transition':'B','event_index':2},
+            {'kind':'tau','transition':'choice','event_index':None}]}
+        first,second,third=(r['features'] for r in observations(events,{'LoanGoal':'Car'},alignment,{'choice':('D01','flow')}))
+        self.assertEqual((first['eng_events_so_far'],first['eng_gateway_visits'],first['eng_last_activity']),(0,0,'__NONE__'))
+        self.assertNotIn('eng_elapsed_days',first)
+        self.assertEqual((second['eng_events_so_far'],second['eng_offers_so_far'],second['eng_gateway_visits'],second['eng_elapsed_days']),(1,1,1,0.0))
+        self.assertEqual((third['eng_events_so_far'],third['eng_incomplete_so_far'],third['eng_gateway_visits'],
+                          third['eng_elapsed_days'],third['eng_last_activity']),(2,1,2,3.0,'A_Incomplete'))
+        self.assertEqual(set(encode_stage(third,'case')),{'case_ApplicationType','case_LoanGoal','case_RequestedAmount','case_RequestedAmount_known'})
+        self.assertNotIn('eng_offers_so_far',encode_stage(third,'case_event'))
+        self.assertEqual(encode_stage(third,'engineered')['eng_offers_so_far'],1.0)
+
     def test_exported_rules_partition_missing_categorical_and_numeric_inputs(self):
         from sklearn.feature_extraction import DictVectorizer
         from sklearn.tree import DecisionTreeClassifier

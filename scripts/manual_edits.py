@@ -4,7 +4,7 @@ Base: the refined model frequent_0.60_imf_0.03 (results/refinement/final_model.*
 reconstructed exactly and checked for complete language equivalence first.
 
 Selection rule, fixed before any combination was evaluated:
-1. sound and 78% <= exact whole-case replay <= 82% (same band as refinement);
+1. sound and 80% <= exact whole-case replay <= 82% (lower bound: assignment);
 2. maximize Align-ET precision (exact finite-state solver);
 3. guard rails on the full assessment of the best candidates: generalization drop
    <= 0.01, arc-degree simplicity drop <= 0.05, node increase <= 25% (vs base);
@@ -21,6 +21,10 @@ candidates; all ten contain R1 and fail the generalization guard. The guard
 stage now walks down the same ranking until the first candidate passes (rule
 unchanged, --top only as an optional cap). Full assessments are cached per
 candidate name, keyed by the hashes of src/tree_edits.py and src/model_assessment.py.
+
+Correction after the lecture of 2026-10-29 (slide 36: the model "should represent
+at least 80% of all cases"): lower band bound raised from 78% to 80%; upper bound
+82% unchanged. The refinement base is the same under [80, 82].
 """
 import argparse
 import csv
@@ -43,7 +47,7 @@ from src.tree_edits import EDITS, all_combinations, build_tree, parse
 
 OUT = ROOT / "results/manual_edits"
 BASE = ROOT / "results/refinement"
-BAND = (78.0, 82.0)
+BAND = (80.0, 82.0)
 GUARDS = {"generalization": 0.01, "arc_degree": 0.05, "node_increase": 0.25}
 
 
@@ -100,6 +104,7 @@ def main():
         result = {"input_cache_sha256": sha(CACHE), "tree_edits_sha256": sha(ROOT / "src/tree_edits.py"),
                   "base": "frequent_0.60_imf_0.03", "base_language_equivalence": equivalence,
                   "band_pct": BAND, "guards": GUARDS, "edits": EDITS, "candidates": {}}
+    result["band_pct"] = BAND  # screening values do not depend on the band; selection does
     for combination in all_combinations():
         name = key(combination)
         if name in result["candidates"]:

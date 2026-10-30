@@ -12,72 +12,72 @@
 <!-- n0 -->
 <g id="node1" class="node">
 <title>n0</title>
-<path fill="#eef4f8" stroke="black" d="M443.5,-288C443.5,-288 284.25,-288 284.25,-288 278.25,-288 272.25,-282 272.25,-276 272.25,-276 272.25,-264 272.25,-264 272.25,-258 278.25,-252 284.25,-252 284.25,-252 443.5,-252 443.5,-252 449.5,-252 455.5,-258 455.5,-264 455.5,-264 455.5,-276 455.5,-276 455.5,-282 449.5,-288 443.5,-288"/>
-<text xml:space="preserve" text-anchor="middle" x="363.88" y="-273.05" font-family="Arial" font-size="11.00">c.LoanGoal=Remaining debt home</text>
-<text xml:space="preserve" text-anchor="middle" x="363.88" y="-259.55" font-family="Arial" font-size="11.00">0.5</text>
+<path fill="#eef4f8" stroke="black" d="M439.5,-288C439.5,-288 280.25,-288 280.25,-288 274.25,-288 268.25,-282 268.25,-276 268.25,-276 268.25,-264 268.25,-264 268.25,-258 274.25,-252 280.25,-252 280.25,-252 439.5,-252 439.5,-252 445.5,-252 451.5,-258 451.5,-264 451.5,-264 451.5,-276 451.5,-276 451.5,-282 445.5,-288 439.5,-288"/>
+<text xml:space="preserve" text-anchor="middle" x="359.88" y="-273.05" font-family="Arial" font-size="11.00">c.LoanGoal=Remaining debt home</text>
+<text xml:space="preserve" text-anchor="middle" x="359.88" y="-259.55" font-family="Arial" font-size="11.00">0.5</text>
 </g>
 <!-- n1 -->
 <g id="node2" class="node">
 <title>n1</title>
-<path fill="#eef4f8" stroke="black" d="M335.25,-204C335.25,-204 276.5,-204 276.5,-204 270.5,-204 264.5,-198 264.5,-192 264.5,-192 264.5,-180 264.5,-180 264.5,-174 270.5,-168 276.5,-168 276.5,-168 335.25,-168 335.25,-168 341.25,-168 347.25,-174 347.25,-180 347.25,-180 347.25,-192 347.25,-192 347.25,-198 341.25,-204 335.25,-204"/>
-<text xml:space="preserve" text-anchor="middle" x="305.88" y="-189.05" font-family="Arial" font-size="11.00">e.CreditScore</text>
-<text xml:space="preserve" text-anchor="middle" x="305.88" y="-175.55" font-family="Arial" font-size="11.00">882.5</text>
+<path fill="#eef4f8" stroke="black" d="M331.25,-204C331.25,-204 272.5,-204 272.5,-204 266.5,-204 260.5,-198 260.5,-192 260.5,-192 260.5,-180 260.5,-180 260.5,-174 266.5,-168 272.5,-168 272.5,-168 331.25,-168 331.25,-168 337.25,-168 343.25,-174 343.25,-180 343.25,-180 343.25,-192 343.25,-192 343.25,-198 337.25,-204 331.25,-204"/>
+<text xml:space="preserve" text-anchor="middle" x="301.88" y="-189.05" font-family="Arial" font-size="11.00">e.CreditScore</text>
+<text xml:space="preserve" text-anchor="middle" x="301.88" y="-175.55" font-family="Arial" font-size="11.00">882.5</text>
 </g>
 <!-- n0&#45;&gt;n1 -->
 <g id="edge1" class="edge">
 <title>n0&#45;&gt;n1</title>
-<path fill="none" stroke="black" d="M351.57,-251.61C343.73,-240.52 333.42,-225.94 324.57,-213.43"/>
-<polygon fill="black" stroke="black" points="327.66,-211.74 319.03,-205.6 321.95,-215.79 327.66,-211.74"/>
-<text xml:space="preserve" text-anchor="middle" x="356.72" y="-224.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
+<path fill="none" stroke="black" d="M347.57,-251.61C339.73,-240.52 329.42,-225.94 320.57,-213.43"/>
+<polygon fill="black" stroke="black" points="323.66,-211.74 315.03,-205.6 317.95,-215.79 323.66,-211.74"/>
+<text xml:space="preserve" text-anchor="middle" x="352.72" y="-224.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
 </g>
 <!-- n8 -->
 <g id="node9" class="node">
 <title>n8</title>
-<path fill="#eef4f8" stroke="black" d="M477.88,-204C477.88,-204 401.88,-204 401.88,-204 395.88,-204 389.88,-198 389.88,-192 389.88,-192 389.88,-180 389.88,-180 389.88,-174 395.88,-168 401.88,-168 401.88,-168 477.88,-168 477.88,-168 483.88,-168 489.88,-174 489.88,-180 489.88,-180 489.88,-192 489.88,-192 489.88,-198 483.88,-204 477.88,-204"/>
-<text xml:space="preserve" text-anchor="middle" x="439.88" y="-189.05" font-family="Arial" font-size="11.00">e.FirstWithdrawal</text>
-<text xml:space="preserve" text-anchor="middle" x="439.88" y="-175.55" font-family="Arial" font-size="11.00">10125</text>
+<path fill="#eef4f8" stroke="black" d="M482.88,-204C482.88,-204 406.88,-204 406.88,-204 400.88,-204 394.88,-198 394.88,-192 394.88,-192 394.88,-180 394.88,-180 394.88,-174 400.88,-168 406.88,-168 406.88,-168 482.88,-168 482.88,-168 488.88,-168 494.88,-174 494.88,-180 494.88,-180 494.88,-192 494.88,-192 494.88,-198 488.88,-204 482.88,-204"/>
+<text xml:space="preserve" text-anchor="middle" x="444.88" y="-189.05" font-family="Arial" font-size="11.00">e.FirstWithdrawal</text>
+<text xml:space="preserve" text-anchor="middle" x="444.88" y="-175.55" font-family="Arial" font-size="11.00">10125</text>
 </g>
 <!-- n0&#45;&gt;n8 -->
 <g id="edge8" class="edge">
 <title>n0&#45;&gt;n8</title>
-<path fill="none" stroke="black" d="M379.99,-251.61C390.47,-240.3 404.32,-225.36 416.06,-212.7"/>
-<polygon fill="black" stroke="black" points="418.52,-215.19 422.75,-205.48 413.39,-210.43 418.52,-215.19"/>
-<text xml:space="preserve" text-anchor="middle" x="419.18" y="-224.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
+<path fill="none" stroke="black" d="M377.9,-251.61C389.73,-240.19 405.41,-225.08 418.62,-212.33"/>
+<polygon fill="black" stroke="black" points="421.02,-214.88 425.79,-205.42 416.16,-209.84 421.02,-214.88"/>
+<text xml:space="preserve" text-anchor="middle" x="420.21" y="-224.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
 </g>
 <!-- n2 -->
 <g id="node3" class="node">
 <title>n2</title>
-<path fill="#eef4f8" stroke="black" d="M187.12,-120C187.12,-120 88.62,-120 88.62,-120 82.62,-120 76.62,-114 76.62,-108 76.62,-108 76.62,-96 76.62,-96 76.62,-90 82.62,-84 88.62,-84 88.62,-84 187.12,-84 187.12,-84 193.12,-84 199.12,-90 199.12,-96 199.12,-96 199.12,-108 199.12,-108 199.12,-114 193.12,-120 187.12,-120"/>
-<text xml:space="preserve" text-anchor="middle" x="137.88" y="-105.05" font-family="Arial" font-size="11.00">c.AppType=Limit raise</text>
-<text xml:space="preserve" text-anchor="middle" x="137.88" y="-91.55" font-family="Arial" font-size="11.00">0.5</text>
+<path fill="#eef4f8" stroke="black" d="M167.25,-120C167.25,-120 108.5,-120 108.5,-120 102.5,-120 96.5,-114 96.5,-108 96.5,-108 96.5,-96 96.5,-96 96.5,-90 102.5,-84 108.5,-84 108.5,-84 167.25,-84 167.25,-84 173.25,-84 179.25,-90 179.25,-96 179.25,-96 179.25,-108 179.25,-108 179.25,-114 173.25,-120 167.25,-120"/>
+<text xml:space="preserve" text-anchor="middle" x="137.88" y="-105.05" font-family="Arial" font-size="11.00">e.CreditScore</text>
+<text xml:space="preserve" text-anchor="middle" x="137.88" y="-91.55" font-family="Arial" font-size="11.00">597.5</text>
 </g>
 <!-- n1&#45;&gt;n2 -->
 <g id="edge2" class="edge">
 <title>n1&#45;&gt;n2</title>
-<path fill="none" stroke="black" d="M270.25,-167.61C244.97,-155.27 210.82,-138.6 183.54,-125.29"/>
-<polygon fill="black" stroke="black" points="185.33,-122.27 174.81,-121.03 182.26,-128.56 185.33,-122.27"/>
-<text xml:space="preserve" text-anchor="middle" x="250.31" y="-140.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
+<path fill="none" stroke="black" d="M267.09,-167.61C242.52,-155.32 209.38,-138.75 182.8,-125.46"/>
+<polygon fill="black" stroke="black" points="184.47,-122.38 173.96,-121.04 181.34,-128.64 184.47,-122.38"/>
+<text xml:space="preserve" text-anchor="middle" x="248.07" y="-140.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
 </g>
 <!-- n5 -->
 <g id="node6" class="node">
 <title>n5</title>
-<path fill="#eef4f8" stroke="black" d="M343.12,-120C343.12,-120 268.62,-120 268.62,-120 262.62,-120 256.62,-114 256.62,-108 256.62,-108 256.62,-96 256.62,-96 256.62,-90 262.62,-84 268.62,-84 268.62,-84 343.12,-84 343.12,-84 349.12,-84 355.12,-90 355.12,-96 355.12,-96 355.12,-108 355.12,-108 355.12,-114 349.12,-120 343.12,-120"/>
-<text xml:space="preserve" text-anchor="middle" x="305.88" y="-105.05" font-family="Arial" font-size="11.00">e.OfferedAmount</text>
-<text xml:space="preserve" text-anchor="middle" x="305.88" y="-91.55" font-family="Arial" font-size="11.00">25800</text>
+<path fill="#eef4f8" stroke="black" d="M339.12,-120C339.12,-120 264.62,-120 264.62,-120 258.62,-120 252.62,-114 252.62,-108 252.62,-108 252.62,-96 252.62,-96 252.62,-90 258.62,-84 264.62,-84 264.62,-84 339.12,-84 339.12,-84 345.12,-84 351.12,-90 351.12,-96 351.12,-96 351.12,-108 351.12,-108 351.12,-114 345.12,-120 339.12,-120"/>
+<text xml:space="preserve" text-anchor="middle" x="301.88" y="-105.05" font-family="Arial" font-size="11.00">e.OfferedAmount</text>
+<text xml:space="preserve" text-anchor="middle" x="301.88" y="-91.55" font-family="Arial" font-size="11.00">25800</text>
 </g>
 <!-- n1&#45;&gt;n5 -->
 <g id="edge5" class="edge">
 <title>n1&#45;&gt;n5</title>
-<path fill="none" stroke="black" d="M305.88,-167.61C305.88,-157.17 305.88,-143.64 305.88,-131.66"/>
-<polygon fill="black" stroke="black" points="309.38,-131.88 305.88,-121.88 302.38,-131.88 309.38,-131.88"/>
-<text xml:space="preserve" text-anchor="middle" x="318.62" y="-140.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
+<path fill="none" stroke="black" d="M301.88,-167.61C301.88,-157.17 301.88,-143.64 301.88,-131.66"/>
+<polygon fill="black" stroke="black" points="305.38,-131.88 301.88,-121.88 298.38,-131.88 305.38,-131.88"/>
+<text xml:space="preserve" text-anchor="middle" x="314.62" y="-140.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
 </g>
 <!-- n3 -->
 <g id="node4" class="node">
 <title>n3</title>
 <path fill="#d5ece6" stroke="black" d="M67.75,-36C67.75,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 67.75,0 67.75,0 73.75,0 79.75,-6 79.75,-12 79.75,-12 79.75,-24 79.75,-24 79.75,-30 73.75,-36 67.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="39.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="39.88" y="-7.55" font-family="Arial" font-size="11.00">train n=6,321</text>
+<text xml:space="preserve" text-anchor="middle" x="39.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="39.88" y="-7.55" font-family="Arial" font-size="11.00">train n=4,817</text>
 </g>
 <!-- n2&#45;&gt;n3 -->
 <g id="edge3" class="edge">
@@ -90,8 +90,8 @@
 <g id="node5" class="node">
 <title>n4</title>
 <path fill="#d5ece6" stroke="black" d="M165.75,-36C165.75,-36 110,-36 110,-36 104,-36 98,-30 98,-24 98,-24 98,-12 98,-12 98,-6 104,0 110,0 110,0 165.75,0 165.75,0 171.75,0 177.75,-6 177.75,-12 177.75,-12 177.75,-24 177.75,-24 177.75,-30 171.75,-36 165.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="137.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="137.88" y="-7.55" font-family="Arial" font-size="11.00">train n=1,250</text>
+<text xml:space="preserve" text-anchor="middle" x="137.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="137.88" y="-7.55" font-family="Arial" font-size="11.00">train n=2,831</text>
 </g>
 <!-- n2&#45;&gt;n4 -->
 <g id="edge4" class="edge">
@@ -104,92 +104,92 @@
 <g id="node7" class="node">
 <title>n6</title>
 <path fill="#d5ece6" stroke="black" d="M263.75,-36C263.75,-36 208,-36 208,-36 202,-36 196,-30 196,-24 196,-24 196,-12 196,-12 196,-6 202,0 208,0 208,0 263.75,0 263.75,0 269.75,0 275.75,-6 275.75,-12 275.75,-12 275.75,-24 275.75,-24 275.75,-30 269.75,-36 263.75,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="235.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="235.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
 <text xml:space="preserve" text-anchor="middle" x="235.88" y="-7.55" font-family="Arial" font-size="11.00">train n=1,922</text>
 </g>
 <!-- n5&#45;&gt;n6 -->
 <g id="edge6" class="edge">
 <title>n5&#45;&gt;n6</title>
-<path fill="none" stroke="black" d="M290.46,-83.63C285.53,-78.03 280.07,-71.77 275.12,-66 269.42,-59.34 263.31,-52.09 257.66,-45.32"/>
-<polygon fill="black" stroke="black" points="260.37,-43.11 251.28,-37.66 254.99,-47.58 260.37,-43.11"/>
-<text xml:space="preserve" text-anchor="middle" x="293.5" y="-56.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
+<path fill="none" stroke="black" d="M287.48,-83.6C282.88,-78 277.77,-71.75 273.12,-66 267.73,-59.32 261.95,-52.06 256.58,-45.29"/>
+<polygon fill="black" stroke="black" points="259.49,-43.33 250.54,-37.65 254,-47.67 259.49,-43.33"/>
+<text xml:space="preserve" text-anchor="middle" x="291.5" y="-56.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
 </g>
 <!-- n7 -->
 <g id="node8" class="node">
 <title>n7</title>
 <path fill="#d5ece6" stroke="black" d="M352.25,-36C352.25,-36 305.5,-36 305.5,-36 299.5,-36 293.5,-30 293.5,-24 293.5,-24 293.5,-12 293.5,-12 293.5,-6 299.5,0 305.5,0 305.5,0 352.25,0 352.25,0 358.25,0 364.25,-6 364.25,-12 364.25,-12 364.25,-24 364.25,-24 364.25,-30 358.25,-36 352.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="328.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="328.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
 <text xml:space="preserve" text-anchor="middle" x="328.88" y="-7.55" font-family="Arial" font-size="11.00">train n=825</text>
 </g>
 <!-- n5&#45;&gt;n7 -->
 <g id="edge7" class="edge">
 <title>n5&#45;&gt;n7</title>
-<path fill="none" stroke="black" d="M310.75,-83.61C313.71,-73.06 317.56,-59.36 320.94,-47.28"/>
-<polygon fill="black" stroke="black" points="324.26,-48.4 323.6,-37.82 317.52,-46.51 324.26,-48.4"/>
-<text xml:space="preserve" text-anchor="middle" x="331.5" y="-56.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
+<path fill="none" stroke="black" d="M307.6,-83.61C311.07,-73.06 315.59,-59.36 319.56,-47.28"/>
+<polygon fill="black" stroke="black" points="322.88,-48.4 322.68,-37.8 316.23,-46.21 322.88,-48.4"/>
+<text xml:space="preserve" text-anchor="middle" x="329.74" y="-56.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
 </g>
 <!-- n9 -->
 <g id="node10" class="node">
 <title>n9</title>
-<path fill="#eef4f8" stroke="black" d="M477.88,-120C477.88,-120 401.88,-120 401.88,-120 395.88,-120 389.88,-114 389.88,-108 389.88,-108 389.88,-96 389.88,-96 389.88,-90 395.88,-84 401.88,-84 401.88,-84 477.88,-84 477.88,-84 483.88,-84 489.88,-90 489.88,-96 489.88,-96 489.88,-108 489.88,-108 489.88,-114 483.88,-120 477.88,-120"/>
-<text xml:space="preserve" text-anchor="middle" x="439.88" y="-105.05" font-family="Arial" font-size="11.00">e.FirstWithdrawal</text>
-<text xml:space="preserve" text-anchor="middle" x="439.88" y="-91.55" font-family="Arial" font-size="11.00">3051.535</text>
+<path fill="#eef4f8" stroke="black" d="M482.88,-120C482.88,-120 406.88,-120 406.88,-120 400.88,-120 394.88,-114 394.88,-108 394.88,-108 394.88,-96 394.88,-96 394.88,-90 400.88,-84 406.88,-84 406.88,-84 482.88,-84 482.88,-84 488.88,-84 494.88,-90 494.88,-96 494.88,-96 494.88,-108 494.88,-108 494.88,-114 488.88,-120 482.88,-120"/>
+<text xml:space="preserve" text-anchor="middle" x="444.88" y="-105.05" font-family="Arial" font-size="11.00">e.FirstWithdrawal</text>
+<text xml:space="preserve" text-anchor="middle" x="444.88" y="-91.55" font-family="Arial" font-size="11.00">3051.535</text>
 </g>
 <!-- n8&#45;&gt;n9 -->
 <g id="edge9" class="edge">
 <title>n8&#45;&gt;n9</title>
-<path fill="none" stroke="black" d="M439.88,-167.61C439.88,-157.17 439.88,-143.64 439.88,-131.66"/>
-<polygon fill="black" stroke="black" points="443.38,-131.88 439.88,-121.88 436.38,-131.88 443.38,-131.88"/>
-<text xml:space="preserve" text-anchor="middle" x="458.25" y="-140.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
+<path fill="none" stroke="black" d="M444.88,-167.61C444.88,-157.17 444.88,-143.64 444.88,-131.66"/>
+<polygon fill="black" stroke="black" points="448.38,-131.88 444.88,-121.88 441.38,-131.88 448.38,-131.88"/>
+<text xml:space="preserve" text-anchor="middle" x="463.25" y="-140.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
 </g>
 <!-- n12 -->
 <g id="node13" class="node">
 <title>n12</title>
-<path fill="#eef4f8" stroke="black" d="M633.12,-120C633.12,-120 558.62,-120 558.62,-120 552.62,-120 546.62,-114 546.62,-108 546.62,-108 546.62,-96 546.62,-96 546.62,-90 552.62,-84 558.62,-84 558.62,-84 633.12,-84 633.12,-84 639.12,-84 645.12,-90 645.12,-96 645.12,-96 645.12,-108 645.12,-108 645.12,-114 639.12,-120 633.12,-120"/>
-<text xml:space="preserve" text-anchor="middle" x="595.88" y="-105.05" font-family="Arial" font-size="11.00">e.OfferedAmount</text>
-<text xml:space="preserve" text-anchor="middle" x="595.88" y="-91.55" font-family="Arial" font-size="11.00">26000</text>
+<path fill="#eef4f8" stroke="black" d="M626.38,-120C626.38,-120 565.38,-120 565.38,-120 559.38,-120 553.38,-114 553.38,-108 553.38,-108 553.38,-96 553.38,-96 553.38,-90 559.38,-84 565.38,-84 565.38,-84 626.38,-84 626.38,-84 632.38,-84 638.38,-90 638.38,-96 638.38,-96 638.38,-108 638.38,-108 638.38,-114 632.38,-120 626.38,-120"/>
+<text xml:space="preserve" text-anchor="middle" x="595.88" y="-105.05" font-family="Arial" font-size="11.00">e.MonthlyCost</text>
+<text xml:space="preserve" text-anchor="middle" x="595.88" y="-91.55" font-family="Arial" font-size="11.00">264.98001</text>
 </g>
 <!-- n8&#45;&gt;n12 -->
 <g id="edge12" class="edge">
 <title>n8&#45;&gt;n12</title>
-<path fill="none" stroke="black" d="M472.96,-167.61C496.23,-155.38 527.58,-138.9 552.8,-125.64"/>
-<polygon fill="black" stroke="black" points="554.28,-128.82 561.5,-121.07 551.02,-122.62 554.28,-128.82"/>
-<text xml:space="preserve" text-anchor="middle" x="539.97" y="-140.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
+<path fill="none" stroke="black" d="M476.9,-167.61C499.32,-155.43 529.5,-139.04 553.86,-125.82"/>
+<polygon fill="black" stroke="black" points="555.45,-128.94 562.57,-121.09 552.11,-122.78 555.45,-128.94"/>
+<text xml:space="preserve" text-anchor="middle" x="542.17" y="-140.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
 </g>
 <!-- n10 -->
 <g id="node11" class="node">
 <title>n10</title>
 <path fill="#d5ece6" stroke="black" d="M441.25,-36C441.25,-36 394.5,-36 394.5,-36 388.5,-36 382.5,-30 382.5,-24 382.5,-24 382.5,-12 382.5,-12 382.5,-6 388.5,0 394.5,0 394.5,0 441.25,0 441.25,0 447.25,0 453.25,-6 453.25,-12 453.25,-12 453.25,-24 453.25,-24 453.25,-30 447.25,-36 441.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="417.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
-<text xml:space="preserve" text-anchor="middle" x="417.88" y="-7.55" font-family="Arial" font-size="11.00">train n=346</text>
+<text xml:space="preserve" text-anchor="middle" x="417.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
+<text xml:space="preserve" text-anchor="middle" x="417.88" y="-7.55" font-family="Arial" font-size="11.00">train n=347</text>
 </g>
 <!-- n9&#45;&gt;n10 -->
 <g id="edge10" class="edge">
 <title>n9&#45;&gt;n10</title>
-<path fill="none" stroke="black" d="M435.21,-83.61C432.38,-73.06 428.7,-59.36 425.46,-47.28"/>
-<polygon fill="black" stroke="black" points="428.9,-46.58 422.93,-37.83 422.14,-48.39 428.9,-46.58"/>
-<text xml:space="preserve" text-anchor="middle" x="448.57" y="-56.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
+<path fill="none" stroke="black" d="M439.15,-83.61C435.68,-73.06 431.16,-59.36 427.19,-47.28"/>
+<polygon fill="black" stroke="black" points="430.52,-46.21 424.07,-37.8 423.87,-48.4 430.52,-46.21"/>
+<text xml:space="preserve" text-anchor="middle" x="451.37" y="-56.5" font-family="Arial" font-size="10.00">yes (&lt;=)</text>
 </g>
 <!-- n11 -->
 <g id="node12" class="node">
 <title>n11</title>
 <path fill="#d5ece6" stroke="black" d="M530.25,-36C530.25,-36 483.5,-36 483.5,-36 477.5,-36 471.5,-30 471.5,-24 471.5,-24 471.5,-12 471.5,-12 471.5,-6 477.5,0 483.5,0 483.5,0 530.25,0 530.25,0 536.25,0 542.25,-6 542.25,-12 542.25,-12 542.25,-24 542.25,-24 542.25,-30 536.25,-36 530.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="506.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="506.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
 <text xml:space="preserve" text-anchor="middle" x="506.88" y="-7.55" font-family="Arial" font-size="11.00">train n=103</text>
 </g>
 <!-- n9&#45;&gt;n11 -->
 <g id="edge11" class="edge">
 <title>n9&#45;&gt;n11</title>
-<path fill="none" stroke="black" d="M455.58,-83.77C460.55,-78.17 466.02,-71.89 470.88,-66 476.36,-59.35 482.11,-52.01 487.37,-45.15"/>
-<polygon fill="black" stroke="black" points="489.99,-47.48 493.25,-37.4 484.42,-43.25 489.99,-47.48"/>
-<text xml:space="preserve" text-anchor="middle" x="492.78" y="-56.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
+<path fill="none" stroke="black" d="M459.61,-83.77C464.27,-78.18 469.37,-71.9 473.88,-66 478.83,-59.5 484,-52.35 488.73,-45.62"/>
+<polygon fill="black" stroke="black" points="491.58,-47.66 494.42,-37.45 485.84,-43.66 491.58,-47.66"/>
+<text xml:space="preserve" text-anchor="middle" x="495.07" y="-56.5" font-family="Arial" font-size="10.00">no (&gt;)</text>
 </g>
 <!-- n13 -->
 <g id="node14" class="node">
 <title>n13</title>
 <path fill="#d5ece6" stroke="black" d="M619.25,-36C619.25,-36 572.5,-36 572.5,-36 566.5,-36 560.5,-30 560.5,-24 560.5,-24 560.5,-12 560.5,-12 560.5,-6 566.5,0 572.5,0 572.5,0 619.25,0 619.25,0 625.25,0 631.25,-6 631.25,-12 631.25,-12 631.25,-24 631.25,-24 631.25,-30 625.25,-36 619.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="595.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="595.88" y="-7.55" font-family="Arial" font-size="11.00">train n=131</text>
+<text xml:space="preserve" text-anchor="middle" x="595.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="595.88" y="-7.55" font-family="Arial" font-size="11.00">train n=102</text>
 </g>
 <!-- n12&#45;&gt;n13 -->
 <g id="edge13" class="edge">
@@ -202,8 +202,8 @@
 <g id="node15" class="node">
 <title>n14</title>
 <path fill="#d5ece6" stroke="black" d="M702.25,-36C702.25,-36 661.5,-36 661.5,-36 655.5,-36 649.5,-30 649.5,-24 649.5,-24 649.5,-12 649.5,-12 649.5,-6 655.5,0 661.5,0 661.5,0 702.25,0 702.25,0 708.25,0 714.25,-6 714.25,-12 714.25,-12 714.25,-24 714.25,-24 714.25,-30 708.25,-36 702.25,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="681.88" y="-21.05" font-family="Arial" font-size="11.00">B1</text>
-<text xml:space="preserve" text-anchor="middle" x="681.88" y="-7.55" font-family="Arial" font-size="11.00">train n=59</text>
+<text xml:space="preserve" text-anchor="middle" x="681.88" y="-21.05" font-family="Arial" font-size="11.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="681.88" y="-7.55" font-family="Arial" font-size="11.00">train n=90</text>
 </g>
 <!-- n12&#45;&gt;n14 -->
 <g id="edge14" class="edge">

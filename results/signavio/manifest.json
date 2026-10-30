@@ -1,0 +1,35 @@
+{
+  "source_bpmn": "results/final/final_model.bpmn",
+  "decision_mining_sha256": "6a7715a273c3973bfaaeaa6cf040d0832b66e0b40fac01ad3b1bbbd3a9964712",
+  "files": [
+    {
+      "file": "results/signavio/bpic17_final_probabilities.bpmn",
+      "sha256": "fbec2d10af51fa9266ace8cf83cec7e9a12f09ed5d00290c7f29075b227c2af7",
+      "tasks": 25,
+      "sequence_flows": 87,
+      "diagram": {
+        "duplicate_ids": 0,
+        "nodes_without_shape": [],
+        "flows_without_edge": [],
+        "edges_below_two_waypoints": []
+      },
+      "language_equivalent_to_final_pnml": true,
+      "ok": true
+    },
+    {
+      "file": "results/signavio/bpic17_final_rules.bpmn",
+      "sha256": "6408ba89a77492d8472ce4c76c955c80963efadf25bd9d52fe3f905e10171bdb",
+      "tasks": 25,
+      "sequence_flows": 87,
+      "diagram": {
+        "duplicate_ids": 0,
+        "nodes_without_shape": [],
+        "flows_without_edge": [],
+        "edges_below_two_waypoints": []
+      },
+      "language_equivalent_to_final_pnml": true,
+      "ok": true
+    }
+  ],
+  "implementation_sha256": "0ab1f320404c55bb636bbd67586029bd79f51f06fded5e2dd9515fb40804c59c"
+}

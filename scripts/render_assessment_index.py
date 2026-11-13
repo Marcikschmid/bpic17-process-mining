@@ -13,9 +13,14 @@ FOLDER = ROOT / "results/assessment"
 FORMAT = """# Model assessment records
 
 Each `<name>.json` is written by `scripts/assess_model.py` for one saved Petri net
-(PNML, or PTML converted to PNML), always evaluated on the same full completion
-projection `tmp/evaluation/projected_sequences.json` (31,509 cases, 475,306 events,
-5,623 variants, 24 activities). Provenance keys hold the model path and SHA-256 of
+(PNML, or PTML converted to PNML), evaluated on all 31,509 cases of either the full
+completion projection `tmp/evaluation/projected_sequences.json` (log C: 475,306 events,
+5,623 variants, 24 activities; all discovery baselines and the models before the event
+abstraction) or the abstracted log `tmp/evaluation/abstracted_sequences.json` (log A:
+364,930 events, 2,680 variants, 17 activities; `abstracted_base`, `final_model`; see
+`docs/EVENT_ABSTRACTION.md`). Column "Log" names it; values of C and A records are not
+directly comparable. The final model before the abstraction is archived in
+`results/before_abstraction/assessment/`. Provenance keys hold the model path and SHA-256 of
 the model, input cache, raw log and every implementation file plus the PM4Py
 version; `headline` is a flat row; `soundness` holds the PM4Py WF-net check, the
 complete-state-space classical verdict or an unboundedness witness, easy/relaxed
@@ -30,7 +35,8 @@ Regenerate this file with `.\\.venv\\Scripts\\python.exe scripts/render_assessme
 
 `n/c` = not computed (finite-state metric on an unbounded net, or no verdict).
 """
-COLUMNS = ("Record", "Model file", "State space", "Sound", "Woflan", "Exact replay %", "Token fitness",
+LOGS = {"tmp/evaluation/projected_sequences.json": "C", "tmp/evaluation/abstracted_sequences.json": "A"}
+COLUMNS = ("Record", "Model file", "Log", "State space", "Sound", "Woflan", "Exact replay %", "Token fitness",
            "Alignment fitness", "Token precision", "Align-ET", "Generalization", "Arc degree", "Nodes",
            "Ext. Cardoso", "ECyM", "model_assessment.py")
 
@@ -54,7 +60,8 @@ def row(record):
     sound = {True: "yes", False: "no", None: "n/c"}[h["sound"]]
     if h["sound"] is False and s.get("unsound_reason"):
         sound += f" ({s['unsound_reason']})"
-    return (f"`{record['name']}`", f"`{record['model']}`", space, sound, woflan, number(h["exact_replay_pct"], 2),
+    log = LOGS.get(record.get("evaluation_input", {}).get("cache", "tmp/evaluation/projected_sequences.json"), "?")
+    return (f"`{record['name']}`", f"`{record['model']}`", log, space, sound, woflan, number(h["exact_replay_pct"], 2),
             token("token_fitness"), number(h["alignment_fitness"]), token("token_precision"),
             number(h["align_et_precision"]), token("generalization"), number(h["arc_degree_simplicity"]),
             number(h["nodes"]), number(h["extended_cardoso"]), number(h["extended_cyclomatic"]),

@@ -24,7 +24,7 @@ def main():
         output=report/dest;output.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source/src,output)
         assert sha(source/src)==sha(output)
         manifest[dest]={'source':'results/decision_mining/'+src,'sha256':sha(output)}
-    path=ROOT/'docs/decision_report_manifest.json';temporary=path.with_suffix('.tmp')
+    path=ROOT/'docs/manifests/decision_report_manifest.json';temporary=path.with_suffix('.tmp')
     temporary.write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8',newline='\n');temporary.replace(path)
     print(f'Selected {len(copies)} audited factual report artifacts')
 if __name__=='__main__':main()

@@ -2,9 +2,12 @@
 \hline
 Model & Train $n$ & Train exact \% & Test $n$ & Test exact \% \\
 \hline
-IMf (before edits) & 22,056 & 80.49 & 9,453 & 80.37 \\
-Final (after edits) & 22,056 & 80.48 & 9,453 & 80.32 \\
+IMf before abstraction (before edits) & 22,056 & 80.49 & 9,453 & 80.37 \\
+Final before abstraction & 22,056 & 80.48 & 9,453 & 80.32 \\
+Abstracted IMf (before edits) & 22,056 & 85.33 & 9,453 & 85.39 \\
+Final (abstraction + R1) & 22,056 & 85.33 & 9,453 & 85.39 \\
 \hline
-Train-only IMf & \multicolumn{4}{l}{identical tree (72 variants, 13,258 cases)} \\
+Train-only IMf, before abstraction & \multicolumn{4}{l}{identical tree (72 variants); unseen test variants 14.70\,\%} \\
+Train-only IMf, abstracted & \multicolumn{4}{l}{identical tree (24 variants); unseen test variants 6.76\,\%} \\
 \hline
 \end{tabular}

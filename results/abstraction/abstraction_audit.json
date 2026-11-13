@@ -1,0 +1,275 @@
+{
+  "created_utc": "2026-11-12T16:52:15.491220+00:00",
+  "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
+  "source_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "abstracted_cache": "tmp/evaluation/abstracted_sequences.json",
+  "abstracted_cache_sha256": "c5885d77693f7e9bd061772ab08cdc46bebbf70c9f83a32f4b8ee443d511f696",
+  "implementation_sha256": {
+    "src/event_abstraction.py": "7f8e44a5897b3b51e156c057fee323bbb8b711c72263991fe5c37187341f4bd1",
+    "scripts/abstract_log.py": "f3282f5c18743586fbe81cc5a694093bdc1148ad880802e940abda55fbbedc1d"
+  },
+  "rules": {
+    "MIRROR": {
+      "action": "drop",
+      "labels": [
+        "O_Created",
+        "O_Accepted"
+      ],
+      "reason": "same system action as the neighbouring event on the other object"
+    },
+    "WORK_ITEM": {
+      "action": "drop",
+      "labels": [
+        "W_Complete application",
+        "W_Validate application",
+        "W_Call incomplete files",
+        "W_Handle leads",
+        "W_Call after offers"
+      ],
+      "reason": "presence of the complete event depends on the work-item life cycle; logged together with an application state change"
+    },
+    "SIMULTANEOUS": {
+      "action": "collapse direct repetition",
+      "labels": [
+        "O_Cancelled",
+        "O_Refused",
+        "O_Sent (mail and online)",
+        "O_Sent (online only)"
+      ],
+      "max_seconds": 1.0,
+      "reason": "one application-level action recorded once per open offer"
+    },
+    "KEPT": {
+      "action": "keep",
+      "labels": [
+        "W_Assess potential fraud",
+        "O_Sent (online only)"
+      ],
+      "reason": "rare but real behaviour (edge cases), not a logging artefact"
+    }
+  },
+  "simultaneity_seconds": 1.0,
+  "evidence": {
+    "MIRROR": {
+      "O_Created": {
+        "events": 42995,
+        "partner": "O_Create Offer",
+        "partner_directly_before_pct": 100.0,
+        "gap_to_partner": {
+          "n": 42995,
+          "within_1s_pct": 49.78253285265728,
+          "within_60s_pct": 100.0,
+          "median_seconds": 1.0199999809265137
+        }
+      },
+      "O_Accepted": {
+        "events": 17228,
+        "partner": "A_Pending",
+        "partner_directly_after_pct": 100.0,
+        "gap_to_partner": {
+          "n": 17228,
+          "within_1s_pct": 99.982586487114,
+          "within_60s_pct": 100.0,
+          "median_seconds": 0.003999948501586914
+        }
+      }
+    },
+    "WORK_ITEM": {
+      "W_Complete application": {
+        "raw_events": 148900,
+        "raw_lifecycle": {
+          "ate_abort": 10565,
+          "complete": 19104,
+          "resume": 22652,
+          "schedule": 31532,
+          "start": 29918,
+          "suspend": 33266,
+          "withdraw": 1863
+        },
+        "complete_share_of_raw_pct": 12.830087306917394,
+        "completion_events": 19104,
+        "cases_with_completion_pct": 60.623948713066106,
+        "adjacent_A_event_within_1s_pct": 99.67546063651591,
+        "adjacent_A_events": {
+          "A_Complete": 19031,
+          "A_Cancelled": 7,
+          "A_Denied": 4
+        }
+      },
+      "W_Validate application": {
+        "raw_events": 209496,
+        "raw_lifecycle": {
+          "ate_abort": 23161,
+          "complete": 15848,
+          "resume": 33920,
+          "schedule": 39012,
+          "start": 39444,
+          "suspend": 58111
+        },
+        "complete_share_of_raw_pct": 7.564822240042769,
+        "completion_events": 15848,
+        "cases_with_completion_pct": 34.63137516265194,
+        "adjacent_A_event_within_1s_pct": 89.22892478546188,
+        "adjacent_A_events": {
+          "A_Incomplete": 10782,
+          "A_Pending": 3352,
+          "A_Validating": 6,
+          "A_Denied": 1
+        }
+      },
+      "W_Call incomplete files": {
+        "raw_events": 168529,
+        "raw_lifecycle": {
+          "ate_abort": 20220,
+          "complete": 2793,
+          "resume": 39201,
+          "schedule": 23055,
+          "start": 23218,
+          "suspend": 60042
+        },
+        "complete_share_of_raw_pct": 1.657281536115446,
+        "completion_events": 2793,
+        "cases_with_completion_pct": 8.442032435177252,
+        "adjacent_A_event_within_1s_pct": 79.52022914428929,
+        "adjacent_A_events": {
+          "A_Validating": 2135,
+          "A_Pending": 59,
+          "A_Cancelled": 24,
+          "A_Denied": 3
+        }
+      },
+      "W_Handle leads": {
+        "raw_events": 47264,
+        "raw_lifecycle": {
+          "ate_abort": 151,
+          "complete": 3493,
+          "resume": 1247,
+          "schedule": 20446,
+          "start": 3727,
+          "suspend": 1398,
+          "withdraw": 16802
+        },
+        "complete_share_of_raw_pct": 7.390402843601896,
+        "completion_events": 3493,
+        "cases_with_completion_pct": 11.085721539877495,
+        "adjacent_A_event_within_1s_pct": 99.94274262811336,
+        "adjacent_A_events": {
+          "A_Concept": 3491
+        }
+      },
+      "W_Call after offers": {
+        "raw_events": 191092,
+        "raw_lifecycle": {
+          "ate_abort": 31085,
+          "complete": 342,
+          "resume": 29130,
+          "schedule": 34656,
+          "start": 31485,
+          "suspend": 61218,
+          "withdraw": 3176
+        },
+        "complete_share_of_raw_pct": 0.1789713855106441,
+        "completion_events": 342,
+        "cases_with_completion_pct": 1.0822304738328732,
+        "adjacent_A_event_within_1s_pct": 54.09356725146199,
+        "adjacent_A_events": {
+          "A_Validating": 169,
+          "A_Cancelled": 11,
+          "A_Denied": 5
+        }
+      }
+    },
+    "SIMULTANEOUS": {
+      "O_Cancelled": {
+        "direct_repetitions": 4429,
+        "n": 4429,
+        "within_1s_pct": 99.48069541657259,
+        "within_60s_pct": 99.70648001806276,
+        "median_seconds": 0.009000062942504883
+      },
+      "O_Refused": {
+        "direct_repetitions": 975,
+        "n": 975,
+        "within_1s_pct": 100.0,
+        "within_60s_pct": 100.0,
+        "median_seconds": 0.008999824523925781
+      },
+      "O_Sent (mail and online)": {
+        "direct_repetitions": 3111,
+        "n": 3111,
+        "within_1s_pct": 99.87142397942783,
+        "within_60s_pct": 99.96785599485696,
+        "median_seconds": 0.002000093460083008
+      },
+      "O_Sent (online only)": {
+        "direct_repetitions": 85,
+        "n": 85,
+        "within_1s_pct": 100.0,
+        "within_60s_pct": 100.0,
+        "median_seconds": 0.002000093460083008
+      }
+    },
+    "KEPT": {
+      "W_Assess potential fraud": {
+        "events": 282,
+        "cases_pct": 0.850550636326129
+      },
+      "O_Sent (online only)": {
+        "events": 2026,
+        "cases_pct": 5.712653527563553
+      }
+    },
+    "reference_application_states": {
+      "A_Complete": {
+        "events": 31362,
+        "cases_pct": 99.5334666285823
+      },
+      "A_Incomplete": {
+        "events": 23055,
+        "cases_pct": 47.614967152242215
+      },
+      "A_Validating": {
+        "events": 38816,
+        "cases_pct": 69.40874035989717
+      },
+      "A_Concept": {
+        "events": 31509,
+        "cases_pct": 100.0
+      }
+    }
+  },
+  "removed_events_per_label": {
+    "O_Accepted": 17228,
+    "O_Created": 42995,
+    "W_Call after offers": 342,
+    "W_Call incomplete files": 2793,
+    "W_Complete application": 19104,
+    "W_Handle leads": 3493,
+    "W_Validate application": 15848
+  },
+  "applied_rule_counts": {
+    "MIRROR": 60223,
+    "WORK_ITEM": 41580,
+    "SIMULTANEOUS": 8573
+  },
+  "before": {
+    "cases": 31509,
+    "events": 475306,
+    "labels": 24,
+    "variants": 5623,
+    "cases_in_singleton_variants_pct": 13.170840077438193,
+    "variants_for_60pct_of_cases": 73,
+    "variants_for_80pct_of_cases": 610
+  },
+  "after": {
+    "cases": 31509,
+    "events": 364930,
+    "labels": 17,
+    "variants": 2680,
+    "cases_in_singleton_variants_pct": 5.9855914183249235,
+    "variants_for_60pct_of_cases": 12,
+    "variants_for_80pct_of_cases": 67
+  },
+  "cases_preserved": 31509,
+  "empty_cases": 0
+}

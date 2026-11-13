@@ -13,8 +13,28 @@ NS={'b':BPMN,'di':'http://www.omg.org/spec/BPMN/20100524/DI',
 CASE_FIELDS=('ApplicationType','LoanGoal','RequestedAmount')
 EVENT_FIELDS=('CreditScore','FirstWithdrawalAmount','MonthlyCost','NumberOfTerms','OfferedAmount')
 # Feature engineering: aggregates of the synchronized prefix only (known before the decision).
-ENGINEERED=('eng_events_so_far','eng_offers_so_far','eng_incomplete_so_far','eng_gateway_visits','eng_elapsed_days')
+# Every feature is computable from the case history alone (log-observable, path-independent),
+# so it can serve as a guard variable; XOR gateway visits are not in the log and are excluded.
+ENGINEERED=('eng_events_so_far','eng_offers_so_far','eng_incomplete_so_far','eng_last_activity_count','eng_elapsed_days')
 STAGES=('case','case_event','engineered')
+FINAL_STAGE='engineered'
+
+
+class History:
+    """Engineered features of the synchronized event prefix of one case."""
+    def __init__(self):
+        self.counts=defaultdict(int);self.last=None;self.first=self.latest=None
+    def update(self,event):
+        self.last=event.get('concept:name');self.counts[self.last]+=1
+        if event.get('time:timestamp') is not None:
+            self.latest=event['time:timestamp'];self.first=self.latest if self.first is None else self.first
+    def features(self):
+        result={'eng_events_so_far':sum(self.counts.values()),'eng_offers_so_far':self.counts.get('O_Create Offer',0),
+                'eng_incomplete_so_far':self.counts.get('A_Incomplete',0),
+                'eng_last_activity':'__NONE__' if self.last is None else self.last,
+                'eng_last_activity_count':0 if self.last is None else self.counts[self.last]}
+        if self.first is not None:result['eng_elapsed_days']=(self.latest-self.first)/86400
+        return result
 
 
 def bpmn_net(path):
@@ -66,22 +86,15 @@ Flow places make gateway-to-transition correspondence explicit, with no reductio
 def observations(events,case_attributes,alignment,choices):
     """Return snapshots of known inputs BEFORE the outgoing-flow transition."""
     state={f'case_{k}':case_attributes[k] for k in CASE_FIELDS if k in case_attributes}
-    result=[];latest=None;seen=defaultdict(int);visits=defaultdict(int);first=last=None
+    result=[];latest=None;history=History()
     for step_index,move in enumerate(alignment['moves']):
         if move['transition'] in choices:
             gateway,flow=choices[move['transition']]
-            engineered={'eng_events_so_far':sum(seen.values()),'eng_offers_so_far':seen['O_Create Offer'],
-                        'eng_incomplete_so_far':seen['A_Incomplete'],'eng_gateway_visits':visits[gateway],
-                        'eng_last_activity':events[latest].get('concept:name','__NONE__') if latest is not None else '__NONE__'}
-            if first is not None:engineered['eng_elapsed_days']=(last-first)/86400
-            visits[gateway]+=1
-            result.append({'gateway':gateway,'flow':flow,'features':{**state,**engineered},
+            result.append({'gateway':gateway,'flow':flow,'features':{**state,**history.features()},
                            'alignment_step':step_index,'last_sync_event':latest})
         if move['kind']=='sync':
             latest=move['event_index'];event=events[latest]
-            seen[event.get('concept:name')]+=1
-            if event.get('time:timestamp') is not None:
-                last=event['time:timestamp'];first=last if first is None else first
+            history.update(event)
             for k in EVENT_FIELDS:
                 if k in event and event[k] is not None:
                     value=event[k]
@@ -107,8 +120,14 @@ def encode_stage(features,stage):
         return result
     result=encode_features(features)
     for k in ENGINEERED:result[k]=float(features.get(k,-1))
+    result['eng_elapsed_days_known']=int('eng_elapsed_days' in features)
     result['eng_last_activity']=features.get('eng_last_activity','__NONE__')
     return result
+
+
+def encode_final(features):
+    """Encoding of the final decision model (guards in the BPMN)."""
+    return encode_stage(features,FINAL_STAGE)
 
 
 def tree_rules(classifier,feature_names):
@@ -139,16 +158,18 @@ def predict_rules(leaves,encoded):
     return matches[0]
 
 
-def guarded_accepts(aligner,events,case_attributes,choices,models):
+def guarded_accepts(aligner,events,case_attributes,choices,models,encode=encode_features):
     """Exact whole-trace replay with learned guards on the fixed event order.
 
     In deviation-free replay every event synchronizes. Its values become known
     only AFTER that step. Explore all allowed tau paths, not one chosen alignment.
+    History features depend only on the event prefix, hence equal on all paths.
     """
     import numpy as np
     state={f'case_{k}':case_attributes[k] for k in CASE_FIELDS if k in case_attributes}
+    history=History()
     def closure(markings):
-        encoded=encode_features(state)
+        encoded=encode({**state,**history.features()})
         encoded={k:float(np.float32(v)) if isinstance(v,(float,int)) else v for k,v in encoded.items()}
         predictions={};seen=set(markings);queue=list(markings)
         for s in queue:
@@ -168,6 +189,7 @@ def guarded_accepts(aligner,events,case_attributes,choices,models):
         if not targets:return False
         for field in EVENT_FIELDS:
             if field in event and event[field] is not None:state[f'event_{field}']=event[field]
+        history.update(event)
         markings=closure(targets)
     return aligner.final in markings
 

@@ -1,5 +1,9 @@
 # Manual edits of the refined IMf model
 
+**Status 2026-11-12:** this screen belongs to the model *before* the event abstraction
+(D37). That final model is archived in `results/before_abstraction/`; the current final
+model is built on the abstracted log with edit R1 ([EVENT_ABSTRACTION.md](EVENT_ABSTRACTION.md)).
+
 Keyword notes for the author's own report text (tutor: "can single flows of the
 Petri net be changed manually to optimise the metric further; justify which flow
 was changed and why"). Numbers from `results/manual_edits/` and

@@ -52,14 +52,36 @@ class DecisionTests(unittest.TestCase):
             {'kind':'sync','transition':'B','event_index':2},
             {'kind':'tau','transition':'choice','event_index':None}]}
         first,second,third=(r['features'] for r in observations(events,{'LoanGoal':'Car'},alignment,{'choice':('D01','flow')}))
-        self.assertEqual((first['eng_events_so_far'],first['eng_gateway_visits'],first['eng_last_activity']),(0,0,'__NONE__'))
+        self.assertEqual((first['eng_events_so_far'],first['eng_last_activity_count'],first['eng_last_activity']),(0,0,'__NONE__'))
         self.assertNotIn('eng_elapsed_days',first)
-        self.assertEqual((second['eng_events_so_far'],second['eng_offers_so_far'],second['eng_gateway_visits'],second['eng_elapsed_days']),(1,1,1,0.0))
-        self.assertEqual((third['eng_events_so_far'],third['eng_incomplete_so_far'],third['eng_gateway_visits'],
-                          third['eng_elapsed_days'],third['eng_last_activity']),(2,1,2,3.0,'A_Incomplete'))
+        self.assertEqual((second['eng_events_so_far'],second['eng_offers_so_far'],second['eng_last_activity_count'],second['eng_elapsed_days']),(1,1,1,0.0))
+        self.assertEqual((third['eng_events_so_far'],third['eng_incomplete_so_far'],third['eng_last_activity_count'],
+                          third['eng_elapsed_days'],third['eng_last_activity']),(2,1,1,3.0,'A_Incomplete'))
         self.assertEqual(set(encode_stage(third,'case')),{'case_ApplicationType','case_LoanGoal','case_RequestedAmount','case_RequestedAmount_known'})
         self.assertNotIn('eng_offers_so_far',encode_stage(third,'case_event'))
         self.assertEqual(encode_stage(third,'engineered')['eng_offers_so_far'],1.0)
+        self.assertEqual(encode_stage(first,'engineered')['eng_elapsed_days_known'],0)
+
+    def test_guarded_replay_sees_the_same_history_features_as_training(self):
+        import xml.etree.ElementTree as ET
+        from src.decision_mining import encode_final
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'test.bpmn';tree=parse("->('A',X('B','C'))")
+            pm4py.write_bpmn(pm4py.convert_to_bpmn(tree),str(path))
+            net,im,fm,gateways,choices=bpmn_net(path);aligner=FiniteAligner(net,im,fm)
+            g=next(g for g in gateways if g['kind']=='split');root=ET.parse(path).getroot()
+            nodes={e.attrib.get('id'):e for e in root.find('b:process',NS)}
+            flow_b=next(fid for fid in g['outgoing'] if nodes[nodes[fid].attrib['targetRef']].attrib.get('name')=='B')
+            flow_c=next(fid for fid in g['outgoing'] if fid!=flow_b)
+            # History rule: B iff the last activity before the XOR is A and occurred once.
+            leaves=[{'class':flow_b,'predicates':[{'feature':'eng_last_activity=A','op':'>','threshold':0.5},
+                                                  {'feature':'eng_last_activity_count','op':'<=','threshold':1.5}]},
+                    {'class':flow_c,'predicates':[{'feature':'eng_last_activity=A','op':'>','threshold':0.5},
+                                                  {'feature':'eng_last_activity_count','op':'>','threshold':1.5}]},
+                    {'class':flow_c,'predicates':[{'feature':'eng_last_activity=A','op':'<=','threshold':0.5}]}]
+            models={g['id']:{'leaves':leaves}}
+            self.assertTrue(guarded_accepts(aligner,[{'concept:name':'A'},{'concept:name':'B'}],{},choices,models,encode=encode_final))
+            self.assertFalse(guarded_accepts(aligner,[{'concept:name':'A'},{'concept:name':'C'}],{},choices,models,encode=encode_final))
 
     def test_exported_rules_partition_missing_categorical_and_numeric_inputs(self):
         from sklearn.feature_extraction import DictVectorizer

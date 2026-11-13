@@ -1,0 +1,33 @@
+after_activity,escaping_activity,weighted_prefixes
+O_Create Offer,A_Complete,35007
+A_Accepted,A_Complete,31484
+O_Sent (mail and online),O_Create Offer,30450
+A_Complete,A_Pending,30349
+A_Complete,O_Returned,30349
+A_Validating,A_Validating,29090
+O_Returned,A_Validating,8823
+O_Sent (mail and online),A_Pending,3906
+O_Sent (mail and online),O_Returned,3906
+A_Validating,A_Cancelled,2945
+A_Incomplete,A_Denied,1332
+O_Returned,A_Cancelled,1052
+A_Incomplete,A_Cancelled,806
+O_Sent (mail and online),A_Denied,789
+O_Returned,A_Denied,592
+A_Validating,A_Denied,454
+A_Validating,A_Incomplete,207
+O_Returned,A_Pending,200
+A_Complete,A_Denied,173
+A_Incomplete,A_Pending,172
+O_Create Offer,O_Create Offer,123
+A_Incomplete,A_Validating,70
+A_Validating,A_Pending,69
+O_Sent (mail and online),A_Cancelled,41
+A_Incomplete,O_Returned,13
+O_Create Offer,O_Sent (mail and online),12
+O_Sent (mail and online),A_Validating,12
+A_Validating,O_Returned,12
+O_Returned,A_Incomplete,6
+A_Complete,O_Create Offer,3
+A_Complete,A_Cancelled,3
+A_Complete,A_Validating,3

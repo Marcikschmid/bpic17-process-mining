@@ -1,7 +1,7 @@
 """Explicitly select the factual assets of the tutor-feedback round for report/.
 
 Copies tables and figures (no prose) and records source and SHA-256 of every copy
-in docs/feedback_report_manifest.json. Run after the producing scripts, then
+in docs/manifests/feedback_report_manifest.json. Run after the producing scripts, then
 report/build.ps1.
 """
 import hashlib
@@ -14,13 +14,21 @@ COPIES = {
     "results/comparison/model_comparison.tex": "tables/model_comparison.tex",
     "results/comparison/soundness_summary.tex": "tables/soundness_summary.tex",
     "results/comparison/holdout_check.tex": "tables/holdout_check.tex",
+    # Manual edits before event abstraction (earlier final model, results/before_abstraction/).
     "results/manual_edits/conformance_to_edits.tex": "tables/conformance_to_edits.tex",
     "results/manual_edits/single_edits.tex": "tables/single_edits.tex",
     "results/manual_edits/guard_stage.tex": "tables/guard_stage.tex",
+    # Event abstraction and the final model built on it (docs/EVENT_ABSTRACTION.md).
+    "results/abstraction/abstraction_rules.tex": "tables/abstraction_rules.tex",
+    "results/abstraction/comparison.tex": "tables/abstraction_comparison.tex",
+    "results/abstraction/discovery_candidates.tex": "tables/abstracted_candidates.tex",
+    "results/abstraction/single_edits.tex": "tables/abstracted_single_edits.tex",
+    "results/abstraction/guard_stage.tex": "tables/abstracted_guard_stage.tex",
     "results/final/block_structure.tex": "tables/block_structure.tex",
     "results/comparison/final_quality.tex": "tables/final_quality.tex",
     "results/comparison/metric_methods.tex": "tables/metric_methods.tex",
     "results/decision_mining/feature_stages.tex": "tables/feature_stages.tex",
+    "results/decision_mining/decision_tuning.tex": "tables/decision_tuning.tex",
     "results/decision_mining/branch_probabilities.tex": "tables/branch_probabilities.tex",
     "results/final/final_bpmn.pdf": "figures/final_edited_bpmn.pdf",
     "results/decision_mining/branch_probabilities.pdf": "figures/branch_probabilities.pdf",
@@ -41,7 +49,7 @@ def main():
         shutil.copyfile(source_path, target_path)
         assert sha(source_path) == sha(target_path), target
         manifest[target] = {"source": source, "sha256": sha(target_path)}
-    path = ROOT / "docs/feedback_report_manifest.json"
+    path = ROOT / "docs/manifests/feedback_report_manifest.json"
     path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"Selected {len(manifest)} factual report assets", flush=True)
 

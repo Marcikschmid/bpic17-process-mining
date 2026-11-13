@@ -1,25 +1,24 @@
 {
-  "tree": "->( 'A_Create Application', X( tau, ->( 'A_Submitted', X( tau, 'W_Handle leads' ) ) ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( ->( 'O_Create Offer', 'O_Created' ), tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'W_Complete application' ) ), tau ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), +( X( tau, *( 'W_Validate application', tau ) ), ->( 'A_Validating', 'O_Returned', *( tau, ->( 'A_Incomplete', X( tau, 'W_Call incomplete files' ), X( tau, 'A_Validating' ) ) ), X( ->( 'A_Cancelled', *( 'O_Cancelled', tau ) ), ->( 'O_Accepted', 'A_Pending', X( tau, *( 'O_Cancelled', tau ) ) ), ->( 'A_Denied', *( 'O_Refused', tau ) ) ) ) ) ) )",
+  "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', ->( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), +( 'A_Complete', X( tau, *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ) ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
   "tree_operators": {
-    "activity leaf": 25,
-    "exclusive choice X": 9,
-    "loop *": 9,
+    "activity leaf": 17,
+    "exclusive choice X": 7,
+    "loop *": 4,
     "parallel +": 2,
-    "sequence ->": 10,
-    "tau leaf": 16
+    "sequence ->": 7,
+    "tau leaf": 9
   },
-  "bpmn_tasks": 25,
-  "bpmn_distinct_task_labels": 21,
+  "bpmn_tasks": 17,
+  "bpmn_distinct_task_labels": 15,
   "duplicated_task_labels": [
-    "A_Cancelled",
-    "A_Validating",
-    "O_Cancelled"
+    "O_Create Offer",
+    "O_Sent (mail and online)"
   ],
   "bpmn_gateways": {
     "AND merge": 2,
     "AND split": 2,
-    "XOR merge": 18,
-    "XOR split": 18
+    "XOR merge": 11,
+    "XOR split": 11
   },
   "mapping": {
     "sequence ->": "sequence flows, no gateway",
@@ -28,6 +27,6 @@
     "parallel +": "AND split + AND join pair",
     "tau leaf": "no task; skip or redo path between gateways"
   },
-  "expected_xor_pairs": 18,
+  "expected_xor_pairs": 11,
   "expected_and_pairs": 2
 }

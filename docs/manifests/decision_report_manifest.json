@@ -1,0 +1,62 @@
+{
+  "figures/decision_bpmn.pdf": {
+    "source": "results/decision_mining/decision_bpmn.pdf",
+    "sha256": "056b728be61bd24e96bad830f1d352071d61bf18c1fce4c16abbd91386633a60"
+  },
+  "tables/decision_metrics.tex": {
+    "source": "results/decision_mining/decision_metrics.tex",
+    "sha256": "87a59952f6d5f39db8253af06ddcecbe5e4ded9c14e756917e4e5a0e2f3a0ba0"
+  },
+  "tables/guarded_coverage.tex": {
+    "source": "results/decision_mining/guarded_coverage.tex",
+    "sha256": "086e4b7f482f99ba2c60a41c93e9b05041e5ee58512f74e7184ef49bd5d7c18a"
+  },
+  "sections/decision_appendix.tex": {
+    "source": "results/decision_mining/decision_appendix.tex",
+    "sha256": "2b7b16f3c69823a47c6dc1cce5a6ed36f4475c9a5769c8d1d149487c7b858f67"
+  },
+  "figures/decision_blocks/D01.pdf": {
+    "source": "results/decision_mining/blocks/D01.pdf",
+    "sha256": "d0a3bb5fe762b559ee33e68e5a962c68ee47f7d28e41c399a7ff730c004c6a38"
+  },
+  "figures/decision_blocks/D02.pdf": {
+    "source": "results/decision_mining/blocks/D02.pdf",
+    "sha256": "96e24fc4673e1cfd1deba4362872135cc6d035938787942839d560460db2186d"
+  },
+  "figures/decision_blocks/D03.pdf": {
+    "source": "results/decision_mining/blocks/D03.pdf",
+    "sha256": "1262eaf6420a513d42aa967d15d1e74e69960a21930c6b5bd70a75b1caa7ece0"
+  },
+  "figures/decision_blocks/D04.pdf": {
+    "source": "results/decision_mining/blocks/D04.pdf",
+    "sha256": "14b6ace4a41b9a6427ca9456143f2809f37acb3981b5cdbdee532aff8c05e16d"
+  },
+  "figures/decision_blocks/D05.pdf": {
+    "source": "results/decision_mining/blocks/D05.pdf",
+    "sha256": "31080b9f215b0ae6dc15d5143449dfb6e2847d6fea5ed8d8b0fdee905a829f52"
+  },
+  "figures/decision_blocks/D06.pdf": {
+    "source": "results/decision_mining/blocks/D06.pdf",
+    "sha256": "871e0407e1f907aadef79b7ea2d9349d71f829e327fd15f9e362b21158515172"
+  },
+  "figures/decision_blocks/D07.pdf": {
+    "source": "results/decision_mining/blocks/D07.pdf",
+    "sha256": "32b6e837d421376fc25f18d0e77e204881b5b047d24e380acbd636af41854ebf"
+  },
+  "figures/decision_blocks/D08.pdf": {
+    "source": "results/decision_mining/blocks/D08.pdf",
+    "sha256": "559617a2eabc710982ea9c5c01c775cded802d98485082fd1314dfbd351be488"
+  },
+  "figures/decision_blocks/D09.pdf": {
+    "source": "results/decision_mining/blocks/D09.pdf",
+    "sha256": "9804d42671cb2e130567233522231de8644d92d9e6ee333f5a8c7b72c98457ac"
+  },
+  "figures/decision_blocks/D10.pdf": {
+    "source": "results/decision_mining/blocks/D10.pdf",
+    "sha256": "84ef7cafdb13a86a7eb7d42b377dd899041e7888a37373e22455f1623d78e369"
+  },
+  "figures/decision_blocks/D11.pdf": {
+    "source": "results/decision_mining/blocks/D11.pdf",
+    "sha256": "6105475b02b848f74f1ee44af16ff16a0740eca2643421b707ca949c8df70c5a"
+  }
+}

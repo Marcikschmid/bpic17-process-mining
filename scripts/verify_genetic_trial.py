@@ -49,6 +49,6 @@ def main():
   'native_objective_reproduced':objective,'unboundedness':proof,
   'exact_case_coverage':'not enumerated; no exact 0% claim',
   'manifest_sha256':sha(folder/'manifest.json'),'verifier_sha256':sha(Path(__file__))}
- (ROOT/'docs/genetic_verification.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
+ (ROOT/'docs/manifests/genetic_verification.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
  print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

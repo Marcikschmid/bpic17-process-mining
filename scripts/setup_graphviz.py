@@ -51,7 +51,7 @@ def main():
         "publisher_sha256": expected,
         "dot_path": executables[0].relative_to(ROOT).as_posix(),
     }
-    (ROOT / "docs" / "graphviz_manifest.json").write_text(
+    (ROOT / "docs" / "manifests" / "graphviz_manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
     )
     print(f"Verified and extracted to {destination}", flush=True)

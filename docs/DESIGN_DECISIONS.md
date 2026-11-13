@@ -46,6 +46,9 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 - **Alternative/Preis:** Ein fachlich abstrahiertes Modell wäre leichter lesbar,
   müsste aber mit eigener Mappingtabelle und eigener Evaluationsprojektion gelten.
 - **Nachweis:** Preprocessing-Tests, XML-Audit, `src/discovery.py`.
+- **Stand 12.11.:** Für Refinement, finales Modell und Decision Mining ergänzt durch D37 (Events entfernt bzw.
+  gleichzeitige Wiederholungen zusammengefasst, weiterhin keine Umbenennung, keine Sortierung, eigene
+  Evaluationsprojektion `tmp/evaluation/abstracted_sequences.json`). Baselines unverändert.
 
 ### D04: Alle Fälle bewerten und Varianten mit Fallhäufigkeit gewichten
 
@@ -226,6 +229,10 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 - **Preis/Offen:** Für Simulation können gerade seltene Betrugs-/Ablehnungswege
   wichtig sein. Verteilungen nach Ausgang und diese Ausschlüsse im Bericht
   diskutieren; Ressourcen, Dauern und Routingwahrscheinlichkeiten sind nicht kalibriert.
+- **Stand 12.11. (D37):** `W_Call after offers` ist als Artefakt abstrahiert; `O_Sent (online only)`
+  (G1 nicht gewählt) und `W_Assess potential fraud` bleiben im Log, nicht im Modell. Replay nach Ausgang
+  vorher → nachher: Pending 79,00 → 83,28 %, Denied 75,24 → 84,99 %, Cancelled 85,42 → 89,68 %,
+  ohne Endzustand (98 Fälle) 0 → 0 %.
 
 ## Datenabhängige Entscheidungen
 
@@ -381,6 +388,7 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 - **Offen gelegt:** Leitplankenstufe zuerst auf Top 5, dann Top 10 begrenzt; alle Top-10 enthalten R1 und
   scheitern an der Generalization → Stufe läuft jetzt bis zum ersten bestandenen Kandidaten (Regel unverändert).
 - **Nachweis:** `docs/MANUAL_EDITS.md`, `results/manual_edits/screen.json`.
+- **Stand 12.11.:** Durch D37 ersetzt; dieses Modell liegt als Vergleich in `results/before_abstraction/final/`.
 
 ### D30: Generalization alignmentbasiert, wenn Labels doppelt vorkommen
 
@@ -438,21 +446,77 @@ vom Autor selbst zu formulieren; dieses Dokument ist keine fertige Berichtsvorla
 ### D35: Decision Mining in Merkmalsstufen; Feature Engineering
 
 - **Wahl (Tutorium):** pro XOR-Split drei Bäume mit identischem Split und identischen CART-Parametern:
-  (A) nur Case-Attribute, (B) Case + letzte bekannte Event-Attribute (Primärmodell, BPMN-Guards),
-  (C) B + Feature Engineering aus dem synchronisierten Präfix: Anzahl Events, Angebote, `A_Incomplete`,
-  Besuche desselben Gateways (Schleifenzähler), verstrichene Tage seit Fallbeginn, letzte Aktivität.
+  (A) nur Case-Attribute, (B) Case + letzte bekannte Event-Attribute, (C) B + Feature Engineering aus dem
+  synchronisierten Präfix: Anzahl Events, Angebote, `A_Incomplete`, letzte Aktivität und deren Häufigkeit
+  (Schleifenzähler), verstrichene Tage seit Fallbeginn. C ist das finale Modell (D36).
 - **Feature Engineering:** neue Eingangsgrößen aus Rohdaten ableiten, die fachliches Wissen kodieren
   (Folie 48: Häufigkeiten, Zeitaggregate, jüngste Muster). Nur Information vor der Entscheidung →
   kein Leakage; Log-Moves aktualisieren nichts (Test `test_engineered_features_use_only_the_synchronized_prefix`).
-- **Ergebnis:** mittlere Balanced Accuracy (Test) 0,514 → 0,562 → 0,749; Splits über Zufallsniveau
-  (1/Zweige) 5 → 8 → 14 von 18.
+- **Ergebnis:** mittlere Balanced Accuracy (Test, feste Parameter) 0,514 → 0,562 → 0,744; Splits über
+  Zufallsniveau (1/Zweige) 5 → 8 → 14 von 18.
+- **Korrektur 30.10.:** erste Fassung nutzte Besuche des XOR-Gateways; diese stehen nicht im Log und
+  hängen vom Modellpfad ab → als Bedingung nicht aus der Fallhistorie berechenbar → ersetzt durch die
+  Häufigkeit der letzten Aktivität (0,749 → 0,744).
 - **Grenze:** Verlaufsmerkmale (Schleifenzähler, letzte Aktivität) beschreiben teils den Prozesszustand,
-  nicht Geschäftsregeln; Simulation braucht dann zustandsabhängiges Routing. Primärmodell bleibt B,
-  weil seine Regeln direkt als BPMN-Bedingungen lesbar sind.
+  nicht Geschäftsregeln; Simulation braucht dann zustandsabhängiges Routing (Zähler je Fall).
 - **Modellwahl (Folien 49, 52):** CART wegen extrahierbarer Regeln (wie Rozinat/van der Aalst 2006,
   de Leoni/van der Aalst 2013); Alternativen NN + XAI (Park et al. 2023) oder Surrogatmodell:
   genauer, aber Regeln weniger direkt. Ausgabe entspricht Guards G(t) eines Colored Petri Net.
 - **Nachweis:** `results/decision_mining/feature_stages.{csv,tex}`, `decision_mining.json` (`stages`).
+
+### D36: Finales Decision Mining mit Bedingungen; CART-Parameter je Split optimiert
+
+- **Entscheidung (30.10.):** Finales Ergebnis sind die gelernten Bedingungen (BPMN-Guards);
+  Verzweigungswahrscheinlichkeiten nur im Anhang; kein Hybrid.
+- **Vorher:** feste Parameter (Tiefe 3, Blatt ≥ 50), nicht optimiert → 10 von 18 Bäumen nur Mehrheit.
+- **Wahl:** je Split Rastersuche `max_depth` {2–5} × `min_samples_leaf` {25, 50, 100, 200} ×
+  `class_weight` {keine, balanced}; gruppierte 5-fach-Kreuzvalidierung nur auf Trainingsfällen;
+  Zielgröße Balanced Accuracy; Sparsamkeit: wenigste Blätter innerhalb 0,005 des Besten.
+- **Grund:** Zweige unausgewogen (Mehrheit 50–92 %); Accuracy belohnt „immer Mehrheit“. Gruppierung
+  nach Fall verhindert, dass Entscheidungen desselben Falls in Training und Validierung liegen.
+  Tiefe ≤ 5 hält die Regeln als BPMN-Bedingungen lesbar.
+- **Ergebnis:** mittlere Balanced Accuracy (Test) 0,810; 18 / 18 Splits über Zufallsniveau; kein Zweig
+  unvorhergesagt; Kreuzvalidierung ≈ Test (keine Überanpassung).
+- **Preis:** bei 5 Splits Accuracy unter Mehrheitsquote; harte Guards: 7,09 % vollständige Testfälle
+  (vorher 9,46 %), weil jede Entscheidung eines Falls stimmen muss.
+- **Nachweis:** `results/decision_mining/decision_tuning.tex`, `decision_mining.json` (`tuning`), `docs/OPTIMIZATION.md`.
+- **Stand 12.11.:** Werte oben gelten für das Modell vor der Event-Abstraktion (D37, Archiv
+  `results/before_abstraction/decision_mining/`); neues Modell: 11 Splits, Mittel 0,790, harte Guards 13,28 % (Test).
+
+## Event-Abstraktion (2026-11-12)
+
+### D37: Logging-Artefakte vor dem Refinement entfernen; Edge Cases behalten
+
+- **Befund:** Das bisherige finale Modell (98 Knoten, 25 Tasks, 18 XOR-, 2 AND-Paare) ist durch
+  Artefakte aufgebläht: 6 Tasks (4 W_-Completion-Events, `O_Created`, `O_Accepted`), 10 von 18 XORs
+  (D05, D08, D11, D12, D17 entscheiden nur, ob ein W_-`complete` geloggt wurde; D01, D09, D10, D16, D18
+  wiederholen gleichzeitige Pro-Angebot-Events), 1 von 2 AND-Blöcken (`W_Validate application`).
+  Bäume an D05/D08 nahe Zufall (Balanced Accuracy 0,600/0,528).
+- **Wahl:** Regelbasierte Abstraktion der Completion-Projektion (`src/event_abstraction.py`):
+  MIRROR (`O_Created`, `O_Accepted` streichen), WORK_ITEM (5 W_-Completion-Events streichen),
+  SIMULTANEOUS (direkte Wiederholung von `O_Cancelled`, `O_Refused`, `O_Sent` innerhalb ≤ 1 s
+  zusammenfassen). Behalten: `W_Assess potential fraud`, `O_Sent (online only)`, späte Stornierung,
+  Ablehnungen (echte Edge Cases). Alle 31.509 Fälle bleiben.
+- **Grund:** Zeitstempel belegen dieselbe Systemaktion: `O_Created` 100 % direkt nach `O_Create Offer`;
+  `O_Accepted` 100 % direkt vor `A_Pending` (≤ 1 s); W_-`complete` nur 0,2–12,8 % der W_-Events,
+  und wenn vorhanden zu 54–100 % binnen 1 s an einem A_-Zustand; Wiederholungen 99,5–100 % ≤ 1 s.
+- **Alternativen geprüft:** (a) stärkere Frequenzfilterung auf unverändertem Log: kein Kandidat
+  ≥ 80 % kleiner und präziser (Artefakte sind häufig, z. B. `W_Complete application` in 60,6 % der Fälle);
+  (b) W_-Tasks nur im Modell löschen: höchstens 21,09 % exakt replaybar; (c) Abstraktion: gewählt.
+- **Folge-Entscheidungen:** gleiche Discovery-Familie (häufige Varianten + IMf), Regel ≥ 80 %, max.
+  Align-ET; Obergrenze 82 % entfällt (kein Kandidat in [80, 82], Lücke 77,61 → 85,35 %; die Grenze
+  hätte in allen Kennzahlen bessere Kandidaten ausgeschlossen; Abweichung offen). Fünf neue Edits auf
+  dem neuen Baum, gleiche Leitplanken; gewählt R1 (`A_Complete` erst nach dem ersten versendeten Angebot).
+- **Ergebnis:** 85,35 % exakter Replay, Align-ET 0,826, Alignment-Generalization 0,989, 56 Knoten,
+  ECyM 35; BPMN 17 Tasks, 11 XOR-, 2 AND-Paare. Vorher (anderes Log): 80,43 %, 0,695, 0,988, 98, 166.
+- **Preis:** Werte auf zwei verschiedenen Logs nicht direkt vergleichbar → gemeinsamer Vergleich auf
+  dem abstrahierten Log (alte Modelle mit verborgenen Labels, `results/abstraction/comparison.csv`);
+  Anzahl gleichzeitig stornierter Angebote geht verloren; W_-Arbeitsperspektive (bereits durch D02
+  weitgehend ausgeblendet) fehlt vollständig; Regeländerung nach dem Erkundungslauf.
+- **Nicht geändert:** Baselines 3.3.1/3.3.2 (Alpha, HM, IM, Genetic) bleiben auf der Completion-Projektion (D02).
+- **Nachweis:** `results/abstraction/abstraction_audit.json`, `candidates.csv`, `manual_edits/screen.csv`,
+  `comparison.csv`, `results/assessment/final_model.json`, `docs/EVENT_ABSTRACTION.md`; Tests
+  `tests/test_event_abstraction.py`.
 
 ## Nächste Schritte nach wissenschaftlicher Priorität
 

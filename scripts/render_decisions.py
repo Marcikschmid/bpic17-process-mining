@@ -12,7 +12,7 @@ from scripts.mine_decisions import MODEL
 OUT=ROOT/'results/decision_mining'
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def short_feature(name):return name.replace('case_','c.').replace('event_','e.').replace('FirstWithdrawalAmount','FirstWithdrawal').replace('ApplicationType','AppType')
+def short_feature(name):return name.replace('case_','c.').replace('event_','e.').replace('eng_','h.').replace('FirstWithdrawalAmount','FirstWithdrawal').replace('ApplicationType','AppType')
 def leaf_text(leaf,branches):
     tests=[]
     for p in leaf['predicates']:
@@ -80,7 +80,8 @@ def main():
             for fid,label in labels.items():
                 count=g['branch_counts'].get(fid,0)
                 fig.text(.07,y,f'{label} | aligned support {count:,}',fontsize=10);y-=.027
-            fig.text(.06,y-.025,'Learned rules (training cases only; depth <= 3; minimum leaf size 50)',fontsize=11,weight='bold')
+            chosen=g['tuning']['selected']
+            fig.text(.06,y-.025,f'Learned rules (training cases only; tuned: depth <= {chosen["max_depth"]}; minimum leaf {chosen["min_samples_leaf"]}; class weight {chosen["class_weight"]})',fontsize=11,weight='bold')
             y-=.065
             for leaf in g['leaves']:
                 rule=leaf_text(leaf,branches)+f' [train n={leaf["samples"]:,}]'
@@ -89,7 +90,7 @@ def main():
                 y-=.028*len(wrapped)+.016
             absent=', '.join(branches[f] for f in g['never_predicted_branches']) or 'none'
             fig.text(.06,.16,f'Branches never predicted by this tree: {absent}',fontsize=10,color='#9a421c')
-            fig.text(.06,.115,'c. = case input at start; e. = last synchronized event input. Missing numeric value = -1; explicit *_known flags.',fontsize=9)
+            fig.text(.06,.115,'c. = case input at start; e. = last synchronized event input; h. = case history before the decision. Missing numeric value = -1; explicit *_known flags.',fontsize=9)
             fig.text(.06,.088,'Inputs update after synchronous moves only. One optimal alignment per variant; alternative alignments may change decisions.',fontsize=9)
             fig.text(.06,.061,f'Statistical associations; not bank policy. Structural replay coverage {structural:.2f}% is measured without these guards.',fontsize=9)
             pdf.savefig(fig)
@@ -191,7 +192,7 @@ def main():
 const modeler=new BpmnJS({container:'#canvas'});window.modeler=modeler;
 const decisions=DECISION_RECORDS;const jump=document.getElementById('jump');
 for(const g of decisions){const o=document.createElement('option');o.value=g.id;o.textContent=g.id;jump.append(o);}
-function humanPredicate(p){let n=p.feature.replace('case_','Fall.').replace('event_','Angebot.');if(n.includes('=')&&p.threshold>=0&&p.threshold<1){const i=n.indexOf('=');return n.slice(0,i)+(p.op==='<='?' ≠ ':' = ')+n.slice(i+1);}return n+' '+p.op+' '+Number(p.threshold.toFixed(4));}
+function humanPredicate(p){let n=p.feature.replace('case_','Fall.').replace('event_','Angebot.').replace('eng_','Verlauf.');if(n.includes('=')&&p.threshold>=0&&p.threshold<1){const i=n.indexOf('=');return n.slice(0,i)+(p.op==='<='?' ≠ ':' = ')+n.slice(i+1);}return n+' '+p.op+' '+Number(p.threshold.toFixed(4));}
 function focusDecision(id){const g=decisions.find(g=>g.id===id);const e=modeler.get('elementRegistry').get(g.bpmn_id);const note=modeler.get('elementRegistry').get('note_'+id);const left=Math.min(e.x,note.x)-80;const top=Math.min(e.y,note.y)-80;modeler.get('canvas').viewbox({x:left,y:top,width:Math.max(900,Math.max(e.x+e.width,note.x+note.width)-left+80),height:Math.max(650,Math.max(e.y+e.height,note.y+note.height)-top+160)});jump.value=id;let text=g.id+' · Gelernter Entscheidungsblock\\n\\nTest-Accuracy '+g.accuracy.toFixed(3)+'; Mehrheit '+g.majority_accuracy.toFixed(3)+'; Macro-F1 '+g.macro_f1.toFixed(3)+'\\n\\nStatistische Regeln. Harte Guards: GUARDED_TEST % vollständige Testfallabdeckung.\\n\\n';for(const leaf of g.leaves){text+=g.branches[leaf.class]+': '+(leaf.predicates.map(humanPredicate).join(' UND ')||'immer')+'\\nTraining n='+leaf.samples+'\\n\\n';}text+='Fehlend: numerisch -1; *_known zeigt bekannte Werte. Für den formalen Ausdruck einen Pfeil anklicken.';document.getElementById('details').textContent=text;}
 jump.onchange=()=>focusDecision(jump.value);
 modeler.on('element.click',e=>{const b=e.element.businessObject;const docs=(b.documentation||[]).map(x=>x.text).join('\\n');document.getElementById('details').textContent=(b.name||b.id)+'\\n\\n'+docs+'\\n\\n'+(b.conditionExpression?b.conditionExpression.body:'');});
@@ -199,8 +200,8 @@ fetch('decision_model.bpmn').then(r=>r.text()).then(async xml=>{const r=await mo
 </script>'''
     viewer=viewer.replace('DECISION_RECORDS',json.dumps(list(records.values()),ensure_ascii=False)).replace('GUARDED_TEST',german(guarded_test)).replace('FIRST_SPLIT',json.dumps(splits[0]['id']))
     (OUT/'viewer.html').write_text(viewer,encoding='utf-8')
-    rows=['\\begin{table}[t]','\\centering','\\caption{Alignment-based decision mining~\\cite{deleoni2013dataaware}: held-out results; case-wise 70/30 split, seed 20261018; fixed full-log control-flow model.}','\\label{tab:decision-mining}','\\begin{tabular}{lrrrr}','\\hline','XOR & Test $n$ & Accuracy & Majority & Macro-F1 \\\\','\\hline']
-    for g in records.values():rows.append(f'{g["id"]} & {g["test"]:,} & {g["accuracy"]:.3f} & {g["majority_accuracy"]:.3f} & {g["macro_f1"]:.3f} \\\\')
+    rows=['\\begin{table}[t]','\\centering','\\caption{Alignment-based decision mining~\\cite{deleoni2013dataaware}: held-out results of the final tuned trees (case, event and history features); case-wise 70/30 split, seed 20261018; fixed control-flow model.}','\\label{tab:decision-mining}','\\begin{tabular}{lrrrrr}','\\hline','XOR & Test $n$ & Accuracy & Majority & Balanced & Macro-F1 \\\\','\\hline']
+    for g in records.values():rows.append(f'{g["id"]} & {g["test"]:,} & {g["accuracy"]:.3f} & {g["majority_accuracy"]:.3f} & {g["balanced_accuracy"]:.3f} & {g["macro_f1"]:.3f} \\\\')
     rows+=['\\hline','\\end{tabular}','\\end{table}']
     (OUT/'decision_metrics.tex').write_text('\n'.join(rows)+'\n',encoding='utf-8')
     coverage=['\\begin{table}[t]','\\centering','\\caption{Exact whole-case replay of the same BPMN structure, before and after enforcing learned guards.}','\\label{tab:guarded-coverage}','\\begin{tabular}{lrrr}','\\hline','Cases & $n$ & Structure (\\%) & Guards (\\%) \\\\','\\hline']
@@ -216,24 +217,27 @@ fetch('decision_model.bpmn').then(r=>r.text()).then(async xml=>{const r=await mo
     import math
     max_height=max(v[3] for v in coordinates.values())
     overlap=max(120,math.ceil(max_height)+20)
-    step=820-overlap
+    # Panel slice as tall as the A3-landscape figure area allows at full width
+    # (about 0.55 x width), never below the former fixed 820 units, and at least
+    # twice the overlap so that every panel shows at least as much new content as
+    # it repeats (narrow BPMN with tall rule blocks would otherwise need dozens of panels).
+    panel_height=max(820,math.floor(0.55*width),2*overlap)
+    step=panel_height-overlap
     if step<=0:raise ValueError('Decision block too tall for readable report panels')
-    panels=max(1,math.ceil((height-820)/step)+1)
+    panels=max(1,math.ceil((height-panel_height)/step)+1)
     for i in range(panels):
-        top=height-i*step;bottom=max(0,top-820)
+        top=height-i*step;bottom=max(0,top-panel_height)
         if i:appendix.append('\\clearpage')
         appendix.extend([f'\\subsection{{BPMN with Decision Blocks: Panel {i+1}/{panels}}}',
+            *(['\\label{app:decision-panels}'] if i==0 else []),
             '\\begin{figure}[h!]','\\centering',
             f'\\includegraphics[viewport=0 {bottom:.3f} {width:.3f} {top:.3f},clip,width=\\textwidth,height=0.87\\textheight,keepaspectratio]{{figures/decision_bpmn.pdf}}',
             f'\\caption{{XOR splits {splits[0]["id"]}--{splits[-1]["id"]}: learned decision blocks; merges {merges[0]["id"]}--{merges[-1]["id"]}: no branch choice. Overlapping vector panel {i+1}/{panels}. Experimental hard guards: {guarded_all:,}/{data["cases"]:,} fitting cases; unguarded structure: {data["exact_structural_fitting_cases"]:,}/{data["cases"]:,}.}}',
             '\\end{figure}'])
-    appendix.extend(['\\clearpage','\\newgeometry{layoutwidth=297mm,layoutheight=210mm,margin=12mm,headheight=15pt,headsep=5mm,footskip=7mm}',
-        '\\setlength{\\paperwidth}{297mm}','\\setlength{\\paperheight}{210mm}','\\pdfpagewidth=\\paperwidth','\\pdfpageheight=\\paperheight','\\onecolumn'])
-    for i,key in enumerate(records):
-        if i:appendix.append('\\clearpage')
-        appendix.extend([f'\\subsection{{Decision Block {key}}}',f'\\includegraphics[width=\\textwidth,height=0.94\\textheight,keepaspectratio]{{figures/decision_blocks/{key}.pdf}}'])
+    # Single decision-block pages are not part of the report appendix (removed on 2026-11-12 to
+    # shorten it); they stay available as blocks/<id>.pdf and decision_blocks.pdf.
     (OUT/'decision_appendix.tex').write_text('\n'.join(appendix)+'\n',encoding='utf-8')
-    annotation_audit={'source_sha256':sha(OUT/'decision_mining.json'),'panels':panels,'panel_height':820,
+    annotation_audit={'source_sha256':sha(OUT/'decision_mining.json'),'panels':panels,'panel_height':panel_height,
         'panel_step':step,'panel_overlap':overlap,'max_shape_height':max_height,
         'splits_with_visible_rules':len(records),'original_leaf_paths':sum(len(g['leaves']) for g in records.values()),
         'compact_rule_paths':sum(len(compact_rules(g['leaves'])) for g in records.values()),

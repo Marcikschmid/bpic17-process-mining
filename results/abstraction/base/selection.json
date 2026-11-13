@@ -1,0 +1,42 @@
+{
+  "candidate": "abstracted_0.70_imf_0.00",
+  "training_coverage": 0.7,
+  "noise_threshold": 0.0,
+  "training_cases": 22153,
+  "training_variants": 24,
+  "exact_replay": {
+    "cases": 31509,
+    "fitting_cases": 26892,
+    "fitting_percentage": 85.34704370179949,
+    "variants": 2680,
+    "states": 23,
+    "sound": true
+  },
+  "align_et_precision": 0.7658290493532145,
+  "size": {
+    "nodes": 46,
+    "arcs": 56
+  },
+  "silent_transitions": 11,
+  "extended_cardoso": 24,
+  "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+  "seconds": 0.692,
+  "selection": {
+    "rule": "1. sound and exact whole-case replay >= 80 % (lecture of 2026-10-29, slide 36);\n2. maximize Align-ET precision (exact finite-state solver);\n3. tie: fewer nodes, then lower coverage, then lower noise.\nDeviation from the unabstracted refinement, stated openly: the upper band bound\n82 % (own choice) is dropped. No abstracted candidate lies in [80, 82] % (gap\n77.61 -> 85.35 % in this sweep), and the bound would have excluded candidates\nthat are better in replay, precision and size than every candidate inside the band\nof the unabstracted log.",
+    "evaluated": 53,
+    "not_evaluated": [
+      "abstracted_0.95_imf_0.00",
+      "abstracted_1.00_imf_0.00"
+    ],
+    "eligible": 21,
+    "selected": "abstracted_0.70_imf_0.00",
+    "identical_tree_settings": [
+      "abstracted_0.70_imf_0.00",
+      "abstracted_0.70_imf_0.03",
+      "abstracted_0.75_imf_0.00",
+      "abstracted_0.75_imf_0.03",
+      "abstracted_0.75_imf_0.05"
+    ]
+  },
+  "input_cache_sha256": "c5885d77693f7e9bd061772ab08cdc46bebbf70c9f83a32f4b8ee443d511f696"
+}

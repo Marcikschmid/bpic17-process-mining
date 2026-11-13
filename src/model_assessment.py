@@ -23,13 +23,16 @@ from pm4py.objects.log.obj import Event, EventLog, Trace
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "tmp/evaluation/projected_sequences.json"
+# Completion projection after event abstraction (src/event_abstraction.py, scripts/abstract_log.py):
+# input of the refinement, manual edits, final model and decision mining since the abstraction step.
+ABSTRACTED_CACHE = ROOT / "tmp/evaluation/abstracted_sequences.json"
 SEED = 20261029
 TOKEN_PARAMETERS = {"pm4py:param:activity_key": "concept:name", "show_progress_bar": False,
                     "multiprocessing": False, "cleaning_token_flood": False}
 
 
-def load_sequences():
-    data = json.loads(CACHE.read_text(encoding="utf-8"))
+def load_sequences(cache=None):
+    data = json.loads(Path(cache or CACHE).read_text(encoding="utf-8"))
     return data, [tuple(t["activities"]) for t in data["traces"]]
 
 
@@ -177,12 +180,13 @@ def simplicity(net, initial, final, reachability=None):
 
 
 def assess(net, initial, final, pnml_path=None, data=None, sequences=None, log=None,
-           token=True, alignments=True, diagnostics=False):
+           token=True, alignments=True, diagnostics=False, cache=None):
     """Return (record, diagnostics or None). Finite-state metrics need a bounded net."""
     from src.replay_coverage import ExactReplay
     from src.soundness import soundness_report
+    cache = Path(cache or CACHE)
     if data is None:
-        data, sequences = load_sequences()
+        data, sequences = load_sequences(cache)
     log = log if log is not None else event_log(data)
     record = {"soundness": soundness_report(net, initial, final, pnml_path=pnml_path),
               "duplicate_visible_labels": duplicate_labels(net)}
@@ -207,7 +211,7 @@ def assess(net, initial, final, pnml_path=None, data=None, sequences=None, log=N
     else:
         record["finite_state_metrics"] = "not computed: net is not bounded with a reachable final marking"
     record["evaluation_input"] = {"cases": len(sequences), "events": sum(map(len, sequences)),
-                                  "variants": len(set(sequences)), "cache": CACHE.relative_to(ROOT).as_posix()}
+                                  "variants": len(set(sequences)), "cache": cache.relative_to(ROOT).as_posix()}
     return record, found
 
 

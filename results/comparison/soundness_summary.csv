@@ -7,4 +7,6 @@ Alpha (classic),alpha_miner,yes,no (witness),no,n/c,n/c,>= 10 (certified),no,n/c
 Genetic (seed 20261025),genetic_miner,yes,no (witness),no,n/c,n/c,15 (certified),no,n/c,n/c,no
 "Inductive (IM, full log)",inductive_miner,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
 IMf refined (before edits),refined_imf,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
-Final model (IMf + manual edits),final_model,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
+Final before abstraction (IMf + G2+G3+R3+R4),final_before_abstraction,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
+Abstracted IMf (before edits),abstracted_base,yes,yes,yes,yes,yes,0,yes,yes,yes,yes
+Final model (abstraction + IMf + R1),final_model,yes,yes,yes,yes,yes,0,yes,yes,yes,yes

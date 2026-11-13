@@ -2,6 +2,10 @@
 
 Copies values from results/assessment/<name>.json (scripts/assess_model.py) and
 the certified dead-transition / replay-ceiling audits; nothing is recomputed.
+Each row states its evaluation log: C = completion projection (24 labels),
+A = abstracted log (17 labels, scripts/abstract_log.py). Values of C and A rows
+are not directly comparable; results/abstraction/comparison.tex evaluates all
+models on the common abstracted log.
 Writes results/comparison/{model_comparison,soundness_summary}.{csv,tex} and
 model_comparison.md. Rows whose record is missing are skipped and listed.
 """
@@ -12,15 +16,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ASSESSMENT = ROOT / "results/assessment"
 OUT = ROOT / "results/comparison"
-MODELS = (("alpha_miner", "Alpha (classic)"),
-          ("heuristics_miner", "Heuristics, dep. 0.5 (default)"),
-          ("heuristics_dep_0.7", "Heuristics, dep. 0.7"),
-          ("heuristics_dep_0.9", "Heuristics, dep. 0.9"),
-          ("heuristics_dep_0.99", "Heuristics, dep. 0.99"),
-          ("genetic_miner", "Genetic (seed 20261025)"),
-          ("inductive_miner", "Inductive (IM, full log)"),
-          ("refined_imf", "IMf refined (before edits)"),
-          ("final_model", "Final model (IMf + manual edits)"))
+MODELS = (("alpha_miner", "Alpha (classic)", None),
+          ("heuristics_miner", "Heuristics, dep. 0.5 (default)", None),
+          ("heuristics_dep_0.7", "Heuristics, dep. 0.7", None),
+          ("heuristics_dep_0.9", "Heuristics, dep. 0.9", None),
+          ("heuristics_dep_0.99", "Heuristics, dep. 0.99", None),
+          ("genetic_miner", "Genetic (seed 20261025)", None),
+          ("inductive_miner", "Inductive (IM, full log)", None),
+          ("refined_imf", "IMf refined (before edits)", None),
+          ("final_before_abstraction", "Final before abstraction (IMf + G2+G3+R3+R4)",
+           ROOT / "results/before_abstraction/assessment/final_model.json"),
+          ("abstracted_base", "Abstracted IMf (before edits)", None),
+          ("final_model", "Final model (abstraction + IMf + R1)", None))
+LOGS = {"tmp/evaluation/projected_sequences.json": "C", "tmp/evaluation/abstracted_sequences.json": "A"}
 
 
 def certified():
@@ -51,12 +59,13 @@ def flag(value):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     proofs, quality, soundness, missing = certified(), [], [], []
-    for name, label in MODELS:
-        path = ASSESSMENT / f"{name}.json"
+    for name, label, path in MODELS:
+        path = path or ASSESSMENT / f"{name}.json"
         if not path.exists():
             missing.append(name)
             continue
         record = json.loads(path.read_text(encoding="utf-8"))
+        log = LOGS[record["evaluation_input"]["cache"]]
         h, s = record["headline"], record["soundness"]
         classical, behaviour = s["classical"], s.get("behavioural", {})
         bounded = classical["status"] == "ok"
@@ -66,7 +75,7 @@ def main():
             replay_text = f"<= {proof['ceiling_pct']:.2f} (certified)"
         else:
             replay_text = number(replay, 2)
-        quality.append({"model": label, "record": name, "sound": flag(h["sound"]), "exact_replay_pct": replay_text,
+        quality.append({"model": label, "record": name, "log": log, "sound": flag(h["sound"]), "exact_replay_pct": replay_text,
                         "token_fitness": number(h["token_fitness"]), "alignment_fitness": number(h["alignment_fitness"]),
                         "token_precision": number(h["token_precision"]), "align_et_precision": number(h["align_et_precision"]),
                         "token_generalization": number(h["generalization"]),
@@ -91,15 +100,16 @@ def main():
             writer.writeheader()
             writer.writerows(rows)
     tex = lambda value: str(value).replace("_", r"\_").replace("<=", r"$\leq$").replace(">=", r"$\geq$")
-    quality_tex = [r"\begin{tabular}{lrrrrrrrrrrr}", r"\hline",
-                   r" & \multicolumn{3}{c}{Fitness} & \multicolumn{2}{c}{Precision} & \multicolumn{2}{c}{Generalization} & \multicolumn{4}{c}{Simplicity} \\",
-                   r"Model & Exact \% & Token & Align. & Token & Align-ET & Token & Align. & Arc deg. & Nodes & Cardoso & ECyM \\", r"\hline"]
+    quality_tex = [r"\begin{tabular}{llrrrrrrrrrrr}", r"\hline",
+                   r" & & \multicolumn{3}{c}{Fitness} & \multicolumn{2}{c}{Precision} & \multicolumn{2}{c}{Generalization} & \multicolumn{4}{c}{Simplicity} \\",
+                   r"Model & Log & Exact \% & Token & Align. & Token & Align-ET & Token & Align. & Arc deg. & Nodes & Cardoso & ECyM \\", r"\hline"]
     for r in quality:
-        quality_tex.append(" & ".join(tex(r[k]) for k in ("model", "exact_replay_pct", "token_fitness", "alignment_fitness",
+        quality_tex.append(" & ".join(tex(r[k]) for k in ("model", "log", "exact_replay_pct", "token_fitness", "alignment_fitness",
                                                           "token_precision", "align_et_precision", "token_generalization",
                                                           "alignment_generalization", "arc_degree", "nodes",
                                                           "extended_cardoso", "extended_cyclomatic")) + r" \\")
-    quality_tex += [r"\hline", r"\end{tabular}"]
+    quality_tex += [r"\hline", r"\multicolumn{13}{l}{Log: C = completion projection (24 labels), A = abstracted log "
+                    r"(17 labels); C and A values are not directly comparable.} \\", r"\hline", r"\end{tabular}"]
     sound_tex = [r"\begin{tabular}{lllllllllll}", r"\hline",
                  r"Model & WF-net & Bounded & Safe & Opt.\ compl. & Proper compl. & Dead trans. & Sound & Easy & Relaxed & Woflan \\",
                  r"\hline"]
@@ -110,21 +120,26 @@ def main():
     sound_tex += [r"\hline", r"\end{tabular}"]
     (OUT / "model_comparison.tex").write_text("\n".join(quality_tex) + "\n", encoding="utf-8", newline="\n")
     # Compact main-body version: the refinement path IM -> IMf -> final, one column per model.
-    path = {r["record"]: r for r in quality if r["record"] in ("inductive_miner", "refined_imf", "final_model")}
-    if len(path) == 3:
-        order = ("inductive_miner", "refined_imf", "final_model")
-        compact = [r"\begin{tabular}{llrrr}", r"\hline", r"Criterion & Measure & IM & IMf & Final \\", r"\hline"]
+    order = ("inductive_miner", "refined_imf", "final_before_abstraction", "abstracted_base", "final_model")
+    path = {r["record"]: r for r in quality if r["record"] in order}
+    if len(path) == len(order):
+        compact = [r"\begin{tabular}{llrrrrr}", r"\hline",
+                   r"Criterion & Measure & IM & IMf & Final (before) & Abstr.\ IMf & Final \\", r"\hline",
+                   "& evaluation log & " + " & ".join(path[r]["log"] for r in order) + r" \\"]
         for criterion, measure, key in (("Fitness", "exact replay \\%", "exact_replay_pct"), ("", "alignment", "alignment_fitness"),
                                         ("Precision", "Align-ET", "align_et_precision"),
                                         ("Generalization", "alignment", "alignment_generalization"),
                                         ("Simplicity", "arc degree", "arc_degree"), ("", "nodes", "nodes"),
                                         ("", "Ext.\\ Cardoso", "extended_cardoso"), ("", "ECyM", "extended_cyclomatic")):
             compact.append(f"{criterion} & {measure} & " + " & ".join(tex(path[r][key]) for r in order) + r" \\")
-        compact += [r"\hline", r"\end{tabular}"]
+        compact += [r"\hline", r"\multicolumn{7}{l}{C = completion projection, A = abstracted log; "
+                    r"common-log comparison: results/abstraction/comparison.tex} \\", r"\hline", r"\end{tabular}"]
         (OUT / "final_quality.tex").write_text("\n".join(compact) + "\n", encoding="utf-8", newline="\n")
     (OUT / "soundness_summary.tex").write_text("\n".join(sound_tex) + "\n", encoding="utf-8", newline="\n")
     md = ["# Model comparison (generated by scripts/render_model_comparison.py)", "",
-          "All models evaluated on the same full completion projection (31,509 cases). `n/c` = not computable "
+          "All models evaluated on all 31,509 cases. Column `log`: C = completion projection (24 labels), "
+          "A = abstracted log (17 labels, [event abstraction](../../docs/EVENT_ABSTRACTION.md)); C and A values are "
+          "not directly comparable, see [common-log comparison](../abstraction/comparison.csv). `n/c` = not computable "
           "(finite-state metric on an unbounded net). `(certified)` = exact-replay ceiling or dead-transition count "
           "from exact rational certificates, not from replay.", "", "## Quality dimensions", "",
           "| " + " | ".join(quality[0]) + " |", "|" + "---|" * len(quality[0])]

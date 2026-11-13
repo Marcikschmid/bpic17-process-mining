@@ -1,0 +1,33 @@
+{
+  "R1": {
+    "cases_with_A_Complete": 31362,
+    "A_Complete_before_first_sent_offer": 0
+  },
+  "R2": {
+    "O_Returned_before_first_A_Validating": 0,
+    "A_Incomplete_before_first_A_Validating": 0,
+    "direct_A_Validating_repetition_cases": 4,
+    "A_Incomplete_directly_followed_by_O_Returned_cases": 1157
+  },
+  "R3": {
+    "A_Pending": {
+      "cases": 17228,
+      "without_prior_A_Validating": 0
+    },
+    "A_Denied": {
+      "cases": 3752,
+      "without_prior_A_Validating": 169
+    },
+    "A_Cancelled": {
+      "cases": 10431,
+      "without_prior_A_Validating": 9417
+    }
+  },
+  "G1": {
+    "cases_with_O_Sent_online_only": 1800
+  },
+  "G2": {
+    "cases_with_O_Create_Offer_after_first_A_Validating": 1807
+  },
+  "cases": 31509
+}

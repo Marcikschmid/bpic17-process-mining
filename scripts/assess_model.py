@@ -1,6 +1,7 @@
-"""Assess one saved model (PNML or PTML) on the full completion projection.
+"""Assess one saved model (PNML or PTML) on all cases of a sequence cache.
 
-Writes <out>/<name>.json: soundness (WF-net, classical, easy, relaxed, Woflan),
+Default cache: the completion projection (log C); `--cache` selects another one,
+e.g. the abstracted log (log A) for the final model. Writes <out>/<name>.json: soundness (WF-net, classical, easy, relaxed, Woflan),
 all four quality dimensions and a flat headline row. With --diagnostics also
 writes conformance CSVs (log/model moves per activity, escaping edges, trace
 fitness distribution, deviating variants) to <out>/<name>_diagnostics/.
@@ -89,16 +90,21 @@ def main():
     parser.add_argument("--no-token", action="store_true", help="Skip PM4Py token replay metrics.")
     parser.add_argument("--no-alignments", action="store_true", help="Skip alignment fitness and Align-ET.")
     parser.add_argument("--diagnostics", action="store_true", help="Write conformance diagnostics CSVs.")
+    parser.add_argument("--cache", type=Path, default=CACHE,
+                        help="Sequence cache (default: completion projection; abstracted models: "
+                             "tmp/evaluation/abstracted_sequences.json).")
     args = parser.parse_args()
     out = args.out if args.out.is_absolute() else ROOT / args.out
     model = args.model if args.model.is_absolute() else ROOT / args.model
+    cache = args.cache if args.cache.is_absolute() else ROOT / args.cache
     out.mkdir(parents=True, exist_ok=True)
     net, initial, final, pnml = load_model(model, out, args.name)
-    data, sequences = load_sequences()
+    data, sequences = load_sequences(cache)
     record, found = assess(net, initial, final, pnml_path=pnml, data=data, sequences=sequences,
-                           token=not args.no_token, alignments=not args.no_alignments, diagnostics=args.diagnostics)
+                           token=not args.no_token, alignments=not args.no_alignments, diagnostics=args.diagnostics,
+                           cache=cache)
     result = {"name": args.name, "model": model.relative_to(ROOT).as_posix(), "model_sha256": sha(model),
-              "pnml_sha256": sha(pnml), "input_cache_sha256": sha(CACHE), "raw_sha256": data["raw_sha256"],
+              "pnml_sha256": sha(pnml), "input_cache_sha256": sha(cache), "raw_sha256": data["raw_sha256"],
               "pm4py": version("pm4py"), "created_utc": datetime.now(timezone.utc).isoformat(),
               "implementation_sha256": {p: sha(ROOT / p) for p in IMPLEMENTATION},
               "headline": headline(record), **record}

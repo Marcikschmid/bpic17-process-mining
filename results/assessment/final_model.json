@@ -1,38 +1,38 @@
 {
   "name": "final_model",
   "model": "results/final/final_model.pnml",
-  "model_sha256": "4ec2b8093d84bdd827992f3d3298c3aa652da363d98e51ec62ffaaf96f31e13f",
-  "pnml_sha256": "4ec2b8093d84bdd827992f3d3298c3aa652da363d98e51ec62ffaaf96f31e13f",
-  "input_cache_sha256": "1838e245ca3ba7f5a3c86067d8afeb50c2dc35ff2134cdca90a3db201a35279d",
+  "model_sha256": "f2c5c96a779cd79bd85670a6389c811b342e43637636123a6e7836cd21d8c6d3",
+  "pnml_sha256": "f2c5c96a779cd79bd85670a6389c811b342e43637636123a6e7836cd21d8c6d3",
+  "input_cache_sha256": "c5885d77693f7e9bd061772ab08cdc46bebbf70c9f83a32f4b8ee443d511f696",
   "raw_sha256": "183c5e5189282779c811c78c33ff936351b3dd201165d612211fc220936f8249",
   "pm4py": "2.7.23.11",
-  "created_utc": "2026-10-30T09:55:06.859513+00:00",
+  "created_utc": "2026-11-13T18:15:09.951204+00:00",
   "implementation_sha256": {
-    "src/model_assessment.py": "4eb9d46bddc5f8ffdafde4e7a25e09a77a21df2b909e0eedb817f4e0362c8e01",
+    "src/model_assessment.py": "97e6339058c55bf241261b4ce4ec571d96b2057d7c26230aa786be5301a063cb",
     "src/soundness.py": "d4d3cd076b3ce6ab1cbff905ca00b407d06f86744a0df5c3de7dcb32622f113c",
     "src/simplicity.py": "7e63ca88f0164b3a22f19486a9da1830ace934bc0dce6b0fc3bc594738318061",
     "src/replay_coverage.py": "fb894dbc5f2c6c8d88287f274cc7718834a0c3ff03948783ca14a619dbc17156",
     "src/finite_alignment.py": "b32dca5ac65bcd59e82c2a96436cd406e091fb3bd09909f3db9be2b154987f47",
     "src/finite_precision.py": "3c34afc45e5d49034d5057c02b8e1e387e99debed16dcaa5755ad69da1246cde",
-    "scripts/assess_model.py": "2240e34ee0ca9cf6ca11a5d45cddec103e49b5b006ff2438cde6ef63e1ec138a"
+    "scripts/assess_model.py": "c2d9ff8e3ae15f4b9f9f85da18d0812eb57775dba566a2b2e6924121bc4b95cb"
   },
   "headline": {
     "workflow_net": true,
     "sound": true,
     "easy_sound": true,
     "relaxed_sound": true,
-    "exact_replay_pct": 80.43098797169063,
+    "exact_replay_pct": 85.34704370179949,
     "token_fitness": null,
-    "alignment_fitness": 0.9785986375684694,
+    "alignment_fitness": 0.9831091951674653,
     "token_precision": null,
-    "align_et_precision": 0.694566378928376,
+    "align_et_precision": 0.8263938199140068,
     "generalization": null,
-    "alignment_generalization": 0.9879686369768543,
-    "arc_degree_simplicity": 0.7101449275362319,
-    "nodes": 98,
-    "arcs": 118,
-    "extended_cardoso": 55,
-    "extended_cyclomatic": 166
+    "alignment_generalization": 0.9887317042963405,
+    "arc_degree_simplicity": 0.7000000000000001,
+    "nodes": 56,
+    "arcs": 68,
+    "extended_cardoso": 30,
+    "extended_cyclomatic": 35
   },
   "soundness": {
     "workflow_net": true,
@@ -44,15 +44,15 @@
     ],
     "classical": {
       "status": "ok",
-      "states_seen": 94,
-      "state_pairs_seen": 219,
-      "seconds": 0.024,
+      "states_seen": 29,
+      "state_pairs_seen": 46,
+      "seconds": 0.01,
       "limits": {
         "max_states": 30000,
         "timeout_seconds": 90
       },
-      "value": 166,
-      "strongly_connected_components": 41,
+      "value": 35,
+      "strongly_connected_components": 18,
       "bounded": true,
       "final_reachable": true,
       "option_to_complete": true,
@@ -64,7 +64,7 @@
     "unsound_reason": null,
     "behavioural": {
       "exploration_complete": true,
-      "states_explored": 94,
+      "states_explored": 29,
       "easy_sound": true,
       "relaxed_sound": true,
       "transitions_not_on_complete_run": [],
@@ -74,56 +74,55 @@
     "woflan": {
       "status": "ok",
       "sound": true,
-      "seconds": 5.051
+      "seconds": 2.998
     },
     "woflan_agrees": true
   },
   "duplicate_visible_labels": [
-    "A_Cancelled",
-    "A_Validating",
-    "O_Cancelled"
+    "O_Create Offer",
+    "O_Sent (mail and online)"
   ],
   "simplicity": {
-    "arc_degree_pm4py": 0.7101449275362319,
+    "arc_degree_pm4py": 0.7000000000000001,
     "size_own": {
-      "nodes": 98,
-      "arcs": 118
+      "nodes": 56,
+      "arcs": 68
     },
-    "extended_cardoso_own": 55,
-    "extended_cyclomatic_own": 166,
-    "places": 41,
-    "transitions": 57,
-    "silent_transitions": 32
+    "extended_cardoso_own": 30,
+    "extended_cyclomatic_own": 35,
+    "places": 24,
+    "transitions": 32,
+    "silent_transitions": 15
   },
   "token": {
     "fitness": {
-      "perc_fit_traces": 27.534990002856325,
-      "average_trace_fitness": 0.9673086168414529,
-      "log_fitness": 0.966155604324425,
-      "percentage_of_fitting_traces": 27.534990002856325
+      "perc_fit_traces": 77.30489701355168,
+      "average_trace_fitness": 0.980117584402339,
+      "log_fitness": 0.9773264402472718,
+      "percentage_of_fitting_traces": 77.30489701355168
     },
-    "generalization": 0.8515456839432418,
-    "fitting_cases": 8676,
-    "precision": 0.6957922281434106,
-    "seconds": 123.822,
+    "generalization": 0.8281964386148601,
+    "fitting_cases": 24358,
+    "precision": 0.8329766170884971,
+    "seconds": 7.02,
     "valid": false
   },
   "exact_replay": {
     "cases": 31509,
-    "fitting_cases": 25343,
-    "fitting_percentage": 80.43098797169063,
-    "variants": 5623,
-    "states": 94,
+    "fitting_cases": 26892,
+    "fitting_percentage": 85.34704370179949,
+    "variants": 2680,
+    "states": 29,
     "sound": true
   },
   "alignment_fitness": {
-    "log_fitness": 0.9785986375684694,
-    "average_trace_fitness": 0.98232342243335,
-    "percentage_of_fitting_traces": 80.43098797169063,
-    "best_worst_cost": 90008,
-    "variants": 5623,
+    "log_fitness": 0.9831091951674653,
+    "average_trace_fitness": 0.9860375124034543,
+    "percentage_of_fitting_traces": 85.34704370179949,
+    "best_worst_cost": 70005,
+    "variants": 2680,
     "cases": 31509,
-    "alignment_generalization": 0.9879686369768543,
+    "alignment_generalization": 0.9887317042963405,
     "transitions_never_fired": 0,
     "method": "exact finite-state Dijkstra alignments; PM4Py cost profile and fitness formula",
     "pm4py_crosscheck": {
@@ -132,16 +131,16 @@
       "seed": 20261029,
       "selection": "shortest third, fixed-seed random third, longest third"
     },
-    "seconds": 40.15
+    "seconds": 1.416
   },
   "align_et_precision": {
-    "precision": 0.694566378928376,
-    "prefixes": 27816,
-    "weighted_unfit_prefixes": 45326,
-    "weighted_enabled": 1189391,
-    "weighted_escaping": 363280,
+    "precision": 0.8263938199140068,
+    "prefixes": 8957,
+    "weighted_unfit_prefixes": 25794,
+    "weighted_enabled": 840765,
+    "weighted_escaping": 145962,
     "method": "PM4Py Align-ET formula; exact weighted finite-state prefix solver",
-    "complete_model_states": 94,
+    "complete_model_states": 29,
     "silent_move_cost": 1,
     "sync_move_cost": 0,
     "pm4py_crosscheck": {
@@ -149,12 +148,12 @@
       "prefixes_checked": 192,
       "seed": 20261029
     },
-    "seconds": 3.295
+    "seconds": 0.455
   },
   "evaluation_input": {
     "cases": 31509,
-    "events": 475306,
-    "variants": 5623,
-    "cache": "tmp/evaluation/projected_sequences.json"
+    "events": 364930,
+    "variants": 2680,
+    "cache": "tmp/evaluation/abstracted_sequences.json"
   }
 }

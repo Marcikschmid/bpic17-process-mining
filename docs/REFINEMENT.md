@@ -10,7 +10,7 @@ Iterationsgrafik und finale BPMN-Modelltafel wurden visuell geprüft.
 
 Die offizielle Software **bpmn-js 18.31.0** ist projektlokal unter
 `.tools/bpmn-js/` installiert. Paketquelle, npm-SHA-512 und Dateien-Prüfsummen
-stehen in `docs/bpmn_viewer_manifest.json`. Die bpmn.io-Kennzeichnung bleibt erhalten.
+stehen in `docs/manifests/bpmn_viewer_manifest.json`. Die bpmn.io-Kennzeichnung bleibt erhalten.
 Beim Anzeigen werden keine Bibliotheken von einem CDN geladen.
 
 ```powershell

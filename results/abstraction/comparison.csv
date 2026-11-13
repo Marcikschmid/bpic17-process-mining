@@ -1,0 +1,6 @@
+model,discovered_on,own_exact_pct,own_align_et,own_nodes,common_exact_pct,common_align_et,common_alignment_generalization,common_nodes,common_visible_tasks
+inductive_miner,completion,100.0,0.292614,87,100.0,0.294493,0.848189,87,17
+refined_imf,completion,80.4532,0.597674,89,82.9382,0.682914,0.84486,89,15
+final_before_abstraction,completion,80.431,0.694566,98,82.1289,0.787845,0.809012,98,19
+abstracted_base,abstracted,85.347,0.765829,46,85.347,0.765829,0.991749,46,15
+final_model,abstracted,85.347,0.826394,56,85.347,0.826394,0.988732,56,17

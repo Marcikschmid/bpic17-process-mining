@@ -1,0 +1,86 @@
+{
+  "tables/model_comparison.tex": {
+    "source": "results/comparison/model_comparison.tex",
+    "sha256": "f127452447b7472d1d55ede405be302cbeab94ca3a9fe7165dfe582a6a2e9287"
+  },
+  "tables/soundness_summary.tex": {
+    "source": "results/comparison/soundness_summary.tex",
+    "sha256": "8d5d4788349d9bcd34c85199a87c3a5623544fe6686d078892427806cc0c5d8b"
+  },
+  "tables/holdout_check.tex": {
+    "source": "results/comparison/holdout_check.tex",
+    "sha256": "f960c993ba3676feda9f94650a324375305c4bdfb2d6a1bdf654642753a6f180"
+  },
+  "tables/conformance_to_edits.tex": {
+    "source": "results/manual_edits/conformance_to_edits.tex",
+    "sha256": "7fb1b90c45097aa74dca114b915aa627e0fd21967553f1c03f3555abade5662f"
+  },
+  "tables/single_edits.tex": {
+    "source": "results/manual_edits/single_edits.tex",
+    "sha256": "999a4c88be4c93c2c900b429476754439a5e3adbaf3fc9f93cae9b3d911161f9"
+  },
+  "tables/guard_stage.tex": {
+    "source": "results/manual_edits/guard_stage.tex",
+    "sha256": "ae45a2ec03c41938490e3abade622be25e9e7bd75091b673e18e3fbb8ac08a20"
+  },
+  "tables/abstraction_rules.tex": {
+    "source": "results/abstraction/abstraction_rules.tex",
+    "sha256": "f6387d33f6dc4eb1a34ff933b045e9a19fd98c8ddce7d0a52a0caa64e25f1ba3"
+  },
+  "tables/abstraction_comparison.tex": {
+    "source": "results/abstraction/comparison.tex",
+    "sha256": "f27081cd24c91e7da96922d97c5f92e3343899b456741b6e6a3c7976360ac889"
+  },
+  "tables/abstracted_candidates.tex": {
+    "source": "results/abstraction/discovery_candidates.tex",
+    "sha256": "a7176b4fcc3bcaff47a68750edffd986722ea02f5454e6846f141b408c3dca01"
+  },
+  "tables/abstracted_single_edits.tex": {
+    "source": "results/abstraction/single_edits.tex",
+    "sha256": "5407d90b90eb00b71fa3e0181fe920df07b65dbbbe39eb76baddc42b480d9ee3"
+  },
+  "tables/abstracted_guard_stage.tex": {
+    "source": "results/abstraction/guard_stage.tex",
+    "sha256": "d501842510a351b0a35b8c8a7632a06b0cdfb1b130d4ff5fc8ea68bfba38147d"
+  },
+  "tables/block_structure.tex": {
+    "source": "results/final/block_structure.tex",
+    "sha256": "9f56dc52806085a2c2d28df559e0c94ab6151a24a5249476192f751ec4096e71"
+  },
+  "tables/final_quality.tex": {
+    "source": "results/comparison/final_quality.tex",
+    "sha256": "f84965272bfd8f5d2f5fe5fa36559fb3ec8c86eadfa3f81656183cbfb3b5c797"
+  },
+  "tables/metric_methods.tex": {
+    "source": "results/comparison/metric_methods.tex",
+    "sha256": "46fe4d5bd7536a6ccbcb3fd59408d98bbe2c4fc0b6a6e1805bd20962f222c1a0"
+  },
+  "tables/feature_stages.tex": {
+    "source": "results/decision_mining/feature_stages.tex",
+    "sha256": "c167c0fb752698f540c488ba1a7431292b5dde59b6c7fe1dc395aa35652c51f2"
+  },
+  "tables/decision_tuning.tex": {
+    "source": "results/decision_mining/decision_tuning.tex",
+    "sha256": "ca2d7f92352c549d8367799933a03266c123740b84f1613ea157ae5cf0acf00d"
+  },
+  "tables/branch_probabilities.tex": {
+    "source": "results/decision_mining/branch_probabilities.tex",
+    "sha256": "ff3416f2a9de1cc1485f74b28928f83fbbe3c2e3564ff397b9c3148e2c505bbb"
+  },
+  "figures/final_edited_bpmn.pdf": {
+    "source": "results/final/final_bpmn.pdf",
+    "sha256": "85d81b1cffe45a116c5f0c297b373c9fe3527a54a274a727572d615b728b25a7"
+  },
+  "figures/branch_probabilities.pdf": {
+    "source": "results/decision_mining/branch_probabilities.pdf",
+    "sha256": "fdd05c7687aa9f471e881a99b563570eb7ab44f795087b19c2d9f4c6dbdc5eb9"
+  },
+  "figures/alpha_miner.pdf": {
+    "source": "results/alpha/alpha_miner.pdf",
+    "sha256": "141a1d0c4af7facc1795041ba025a7468099a7ac475f8f88b0df604cf41f2db0"
+  },
+  "figures/heuristics_net.pdf": {
+    "source": "results/heuristics/native/heuristics_net.pdf",
+    "sha256": "ab7c9c9ff01602cdf06b57bee24ffa97b2cbffe3f0ede34ab91bbd7cda93fcf5"
+  }
+}

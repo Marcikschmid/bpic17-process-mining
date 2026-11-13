@@ -123,7 +123,7 @@ nativer leerer Transitionsnamen korrigiert und gegen den ursprünglichen Graphen
 - [Vergleich und Modell](../results/genetic/comparison.md)
 - [Alle Parameter: tatsächliche Werte, Bedeutung und Gründe](MINER_PARAMETERS.md)
 - [26 Designentscheidungen mit Evidenz und Grenzen](DESIGN_DECISIONS.md)
-- [Verifikationsprotokoll](genetic_verification.json)
+- [Verifikationsprotokoll](manifests/genetic_verification.json)
 
 Reproduktionsbefehle nach Vorbereitung des Sequenz-Caches:
 

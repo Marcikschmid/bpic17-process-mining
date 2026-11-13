@@ -1,29 +1,22 @@
 \begin{table}[t]
 \centering
-\caption{Alignment-based decision mining~\cite{deleoni2013dataaware}: held-out results; case-wise 70/30 split, seed 20261018; fixed full-log control-flow model.}
+\caption{Alignment-based decision mining~\cite{deleoni2013dataaware}: held-out results of the final tuned trees (case, event and history features); case-wise 70/30 split, seed 20261018; fixed control-flow model.}
 \label{tab:decision-mining}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrrrr}
 \hline
-XOR & Test $n$ & Accuracy & Majority & Macro-F1 \\
+XOR & Test $n$ & Accuracy & Majority & Balanced & Macro-F1 \\
 \hline
-D01 & 3,490 & 0.793 & 0.793 & 0.442 \\
-D02 & 6,592 & 0.722 & 0.722 & 0.419 \\
-D03 & 9,453 & 0.837 & 0.651 & 0.792 \\
-D04 & 9,453 & 0.777 & 0.707 & 0.765 \\
-D05 & 6,151 & 0.829 & 0.829 & 0.453 \\
-D06 & 11,021 & 0.858 & 0.858 & 0.462 \\
-D07 & 13,279 & 0.534 & 0.504 & 0.533 \\
-D08 & 6,592 & 0.899 & 0.899 & 0.473 \\
-D09 & 445 & 0.726 & 0.726 & 0.421 \\
-D10 & 11,952 & 0.922 & 0.922 & 0.480 \\
-D11 & 11,021 & 0.542 & 0.510 & 0.535 \\
-D12 & 6,687 & 0.599 & 0.513 & 0.596 \\
-D13 & 12,381 & 0.890 & 0.890 & 0.471 \\
-D14 & 6,687 & 0.857 & 0.780 & 0.545 \\
-D15 & 5,219 & 0.846 & 0.743 & 0.742 \\
-D16 & 1,726 & 0.777 & 0.777 & 0.437 \\
-D17 & 4,660 & 0.702 & 0.699 & 0.466 \\
-D18 & 1,444 & 0.793 & 0.793 & 0.442 \\
+D01 & 8,293 & 0.957 & 0.523 & 0.956 & 0.957 \\
+D02 & 8,293 & 0.973 & 0.629 & 0.966 & 0.971 \\
+D03 & 9,453 & 0.837 & 0.651 & 0.767 & 0.792 \\
+D04 & 10,635 & 0.629 & 0.889 & 0.648 & 0.518 \\
+D05 & 9,453 & 0.787 & 0.702 & 0.830 & 0.775 \\
+D06 & 9,453 & 0.915 & 0.877 & 0.885 & 0.830 \\
+D07 & 9,453 & 0.570 & 0.868 & 0.712 & 0.517 \\
+D08 & 11,798 & 0.838 & 0.563 & 0.856 & 0.838 \\
+D09 & 1,559 & 0.795 & 0.917 & 0.715 & 0.606 \\
+D10 & 1,430 & 0.546 & 0.871 & 0.714 & 0.500 \\
+D11 & 11,798 & 0.633 & 0.595 & 0.641 & 0.631 \\
 \hline
 \end{tabular}
 \end{table}

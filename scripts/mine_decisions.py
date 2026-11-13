@@ -9,19 +9,58 @@ for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):os.envi
 os.environ['PM4PY_DEFAULT_IS_THREADING_MANAGEMENT_ENABLED']='False'
 from src.runtime import configure_runtime
 configure_runtime()
-from src.decision_mining import bpmn_net,observations,encode_features,encode_stage,tree_rules,predict_rules,guarded_accepts,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,STAGES
+from src.decision_mining import bpmn_net,observations,encode_final,encode_stage,tree_rules,predict_rules,guarded_accepts,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,STAGES,FINAL_STAGE
 from src.finite_alignment import FiniteAligner
 
 OUT=ROOT/'results/decision_mining';CACHE=ROOT/'tmp/decision_mining';SEED=20261018
 # Final model after manual edits (scripts/export_final_model.py); the run of 2026-10-18 used results/refinement.
 MODEL=ROOT/'results/final'
+# The final model's manifest names the sequence cache it was evaluated on. With event abstraction,
+# the raw completion events are abstracted by the same rules (src/event_abstraction.py) before
+# alignment, so attributes stay attached to the events that remain.
+def final_input():
+    manifest=json.loads((MODEL/'manifest.json').read_text(encoding='utf-8'))
+    return ROOT/manifest.get('evaluation_cache','tmp/evaluation/projected_sequences.json'),bool(manifest.get('event_abstraction'))
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def write(p,x):
     p.parent.mkdir(parents=True,exist_ok=True)
     temp=p.with_suffix('.tmp');temp.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8');temp.replace(p)
 
+# CART hyperparameters of the final model: grid search on TRAINING cases only, grouped
+# 5-fold CV (all decisions of one case in one fold), objective balanced accuracy (mean
+# recall per branch; plain accuracy rewards majority-only trees). Parsimony: among
+# settings within TOLERANCE of the best mean, the fewest leaves, then the smallest depth.
+GRID={'max_depth':(2,3,4,5),'min_samples_leaf':(25,50,100,200),'class_weight':(None,'balanced')}
+TOLERANCE=0.005;FOLDS=5
+# Fixed parameters of the feature-stage comparison (same for all stages, as before tuning).
+STAGE_PARAMETERS={'max_depth':3,'min_samples_leaf':50}
+
+
+def tune(X,y,groups):
+    from itertools import product
+    from sklearn.model_selection import GroupKFold,cross_val_score
+    from sklearn.tree import DecisionTreeClassifier
+    results=[]
+    for depth,leaf,weight in product(*GRID.values()):
+        parameters={'max_depth':depth,'min_samples_leaf':leaf,'class_weight':weight}
+        scores=cross_val_score(DecisionTreeClassifier(random_state=SEED,**parameters),X,y,groups=groups,
+                               cv=GroupKFold(n_splits=FOLDS),scoring='balanced_accuracy')
+        leaves=DecisionTreeClassifier(random_state=SEED,**parameters).fit(X,y).get_n_leaves()
+        results.append({**parameters,'cv_balanced_accuracy':float(scores.mean()),'cv_std':float(scores.std()),'leaves':int(leaves)})
+    best=max(r['cv_balanced_accuracy'] for r in results)
+    chosen=min((r for r in results if r['cv_balanced_accuracy']>=best-TOLERANCE),
+               key=lambda r:(r['leaves'],r['max_depth'],-r['min_samples_leaf'],str(r['class_weight'])))
+    return {'grid':GRID,'folds':FOLDS,'grouping':'case id','objective':'balanced_accuracy','tolerance':TOLERANCE,
+            'results':results,'best_cv_balanced_accuracy':best,'selected_cv_balanced_accuracy':chosen['cv_balanced_accuracy'],
+            'selected':{k:chosen[k] for k in GRID}}
+
 def data_rows():
-    """Streaming original-order completion projection; parse only allowed inputs."""
+    """Streaming original-order completion projection; parse only allowed inputs.
+
+    If the final model was built on the abstracted log, the same event abstraction is
+    applied per case (timestamps are read for the simultaneity rule)."""
+    from src.event_abstraction import abstract_events
+    _,abstracted=final_input()
     path=ROOT/'data/raw/BPI Challenge 2017.xes.gz'
     with gzip.open(path,'rb') as stream:
         for _,element in ET.iterparse(stream,events=('end',)):
@@ -40,6 +79,7 @@ def data_rows():
                 elif child.attrib.get('key') in (*CASE_FIELDS,'concept:name'):
                     key=child.attrib['key'];value=child.attrib['value']
                     attributes[key]=float(value) if key=='RequestedAmount' else value
+            if abstracted:events,_=abstract_events(events)
             yield attributes['concept:name'],attributes,events
             element.clear()
 
@@ -60,7 +100,7 @@ def main():
     if not equivalence['equivalent'] or not machine.sound:raise ValueError('BPMN decision net mismatch')
     print(f'Flow net: {machine.state_count} states; complete language equivalence {equivalence}',flush=True)
     aligner=FiniteAligner(net,im,fm)
-    input_path=ROOT/'tmp/evaluation/projected_sequences.json';data=json.loads(input_path.read_text(encoding='utf-8'))
+    input_path,_=final_input();data=json.loads(input_path.read_text(encoding='utf-8'))
     if sha(ROOT/'data/raw/BPI Challenge 2017.xes.gz')!=data['raw_sha256']:raise ValueError('Raw source changed')
     identity={'bpmn_sha256':sha(bpmn),'input_cache_sha256':sha(input_path),
               'implementation_sha256':sha(ROOT/'src/finite_alignment.py'),'cost_profile':'sync=0,tau=1,visible/log=10000'}
@@ -117,20 +157,21 @@ def main():
         if not table:raise ValueError(f'No aligned observations for {key}')
         write(OUT/'observations'/f'{key}.json',table)
         train=[r for r in table if r['split']=='train'];test=[r for r in table if r['split']=='test']
+        y=np.array([r['flow'] for r in train]);truth=[r['flow'] for r in test];majority=Counter(y).most_common(1)[0][0]
+        labels=gateway['outgoing'];counts=Counter(r['flow'] for r in table)
+        # Final model: engineered features; CART parameters tuned on training cases only.
         vectorizer=DictVectorizer(sparse=False)
-        X=vectorizer.fit_transform([encode_features(r['features']) for r in train]);y=np.array([r['flow'] for r in train])
-        clf=DecisionTreeClassifier(max_depth=3,min_samples_leaf=50,random_state=SEED)
-        clf.fit(X,y);names=vectorizer.get_feature_names_out().tolist();leaves=tree_rules(clf,names)
-        predictions=clf.predict(vectorizer.transform([encode_features(r['features']) for r in test])) if test else []
-        truth=[r['flow'] for r in test];majority=Counter(y).most_common(1)[0][0]
+        X=vectorizer.fit_transform([encode_final(r['features']) for r in train]);names=vectorizer.get_feature_names_out().tolist()
+        tuning=tune(X,y,[r['case_id'] for r in train])
+        clf=DecisionTreeClassifier(random_state=SEED,**tuning['selected']).fit(X,y);leaves=tree_rules(clf,names)
+        predictions=clf.predict(vectorizer.transform([encode_final(r['features']) for r in test])) if test else []
         # Exported predicates must reproduce the fitted sklearn tree on EVERY observation.
-        encoded_rows=[encode_features(r['features']) for r in table]
+        encoded_rows=[encode_final(r['features']) for r in table]
         expected_predictions=clf.predict(vectorizer.transform(encoded_rows))
         for encoded,expected in zip(encoded_rows,expected_predictions):
             # sklearn trees use float32 internally; cast numeric values before rule checks.
             checked={k:float(np.float32(v)) if isinstance(v,(int,float)) else v for k,v in encoded.items()}
             if predict_rules(leaves,checked)!=str(expected):raise ValueError('Exported rule differs from classifier')
-        labels=gateway['outgoing'];counts=Counter(r['flow'] for r in table)
         summary={**gateway,'status':'ok','observations':len(table),'train':len(train),'test':len(test),
             'train_cases':len(set(r['case_id'] for r in train)),'test_cases':len(set(r['case_id'] for r in test)),
             'branch_counts':dict(counts),'unobserved_branches':list(set(labels)-counts.keys()),
@@ -142,16 +183,13 @@ def main():
             'confusion_matrix':confusion_matrix(truth,predictions,labels=labels).tolist() if test else None,
             'features':names,'leaves':leaves,'depth':clf.get_depth(),
             'used_features':sorted({p['feature'] for l in leaves for p in l['predicates']}),
-            'class_order':clf.classes_.tolist(),'parameters':clf.get_params(),
+            'class_order':clf.classes_.tolist(),'parameters':clf.get_params(),'tuning':tuning,
             'rule_check_rows':len(table)}
-        # Feature-set stages (tutorial): same split, same CART parameters, same test cases.
+        # Feature-set stages (tutorial): same split, same FIXED CART parameters, same test cases.
         summary['stages']={}
         for stage in STAGES:
-            if stage=='case_event':
-                summary['stages'][stage]={k:summary[k] for k in ('accuracy','balanced_accuracy','macro_f1','used_features','depth')}
-                summary['stages'][stage]['leaves']=len(leaves);continue
             staged=DictVectorizer(sparse=False);Xs=staged.fit_transform([encode_stage(r['features'],stage) for r in train])
-            model=DecisionTreeClassifier(max_depth=3,min_samples_leaf=50,random_state=SEED).fit(Xs,y)
+            model=DecisionTreeClassifier(random_state=SEED,**STAGE_PARAMETERS).fit(Xs,y)
             stage_leaves=tree_rules(model,staged.get_feature_names_out().tolist())
             guess=model.predict(staged.transform([encode_stage(r['features'],stage) for r in test])) if test else []
             summary['stages'][stage]={'accuracy':float(accuracy_score(truth,guess)) if test else None,
@@ -160,14 +198,15 @@ def main():
                 'used_features':sorted({p['feature'] for l in stage_leaves for p in l['predicates']}),
                 'depth':model.get_depth(),'leaves':len(stage_leaves)}
         summaries.append(summary)
-        print(f'{key}: n={len(table)} test={len(test)} accuracy={summary["accuracy"]:.4f} majority={summary["majority_accuracy"]:.4f}',flush=True)
+        print(f'{key}: n={len(table)} test={len(test)} {tuning["selected"]} cv={tuning["selected_cv_balanced_accuracy"]:.4f} '
+              f'balanced={summary["balanced_accuracy"]:.4f} accuracy={summary["accuracy"]:.4f} majority={summary["majority_accuracy"]:.4f}',flush=True)
     models={g['id']:g for g in summaries if g['kind']=='split'}
     guarded={'train':Counter(),'test':Counter()}
     with (OUT/'guarded_replay.csv').open('w',newline='',encoding='utf-8') as f:
         writer=csv.writer(f);writer.writerow(['case_id','split','structural_fit','guarded_fit'])
         for i,(case_id,attributes,events) in enumerate(data_rows()):
             structural=original.accepts(tuple(e['concept:name'] for e in events))
-            fit=guarded_accepts(aligner,events,attributes,choices,models) if structural else False
+            fit=guarded_accepts(aligner,events,attributes,choices,models,encode=encode_final) if structural else False
             split='train' if case_id in training else 'test'
             guarded[split]['cases']+=1;guarded[split]['structural_fitting_cases']+=structural;guarded[split]['guarded_fitting_cases']+=fit
             writer.writerow([case_id,split,int(structural),int(fit)])
@@ -176,16 +215,18 @@ def main():
                          'write_operation_at_95_percent':count/activity_counts[label]>=.95}
                    for field,count in fields.items()} for label,fields in field_counts.items()}
     report={'status':'ok','created_utc':datetime.now(timezone.utc).isoformat(),'seed':SEED,
-        'implementation_sha256':{p:sha(ROOT/p) for p in ('src/finite_alignment.py','src/decision_mining.py','scripts/mine_decisions.py')},
-        'method':'de Leoni & van der Aalst (2013), Algorithm 1; CART replaces C4.5, explicit missingness',
+        'implementation_sha256':{p:sha(ROOT/p) for p in ('src/finite_alignment.py','src/decision_mining.py','src/event_abstraction.py','scripts/mine_decisions.py')},
+        'method':'de Leoni & van der Aalst (2013), Algorithm 1; CART replaces C4.5 (parameters tuned by grouped CV on training cases, balanced accuracy); explicit missingness',
+        'final_feature_stage':FINAL_STAGE,'stage_parameters':STAGE_PARAMETERS,
         'identity':identity,'raw_sha256':data['raw_sha256'],'gateways':summaries,
+        'input_cache':input_path.relative_to(ROOT).as_posix(),'event_abstraction':final_input()[1],
         'cases':len(case_ids),'variants':len(grouped),'observations':rows,'exact_structural_fitting_cases':replay_fits,
         'alignment_cost_sum':alignment_cost,'flow_net_states':len(aligner.states),'bpmn_language_equivalence':equivalence,
         'reference_checks':reference,'training_cases':len(training),'testing_cases':len(testing),
         'write_operations':writes,'write_threshold_percentage':95,'guarded_replay':guarded,
         'case_fields':CASE_FIELDS,'event_fields':EVENT_FIELDS,'engineered_fields':[*ENGINEERED,'eng_last_activity'],
-        'feature_stages':{'case':'case attributes only','case_event':'case + last synchronized event attributes (primary; BPMN guards)',
-                          'engineered':'case_event + aggregates of the synchronized prefix (counts, gateway visits, elapsed days, last activity)'},
+        'feature_stages':{'case':'case attributes only','case_event':'case + last synchronized event attributes',
+                          'engineered':'case_event + aggregates of the synchronized prefix (counts, last activity and its count, elapsed days); final model'},
         'excluded':['case/Event/Offer IDs','Accepted','Selected','resource','Action','EventOrigin',
                     'raw timestamps and activity labels as direct inputs (engineered stage uses prefix aggregates only)'],
         'limitations':['One deterministic optimal alignment; choices/parallel data order may be ambiguous.',

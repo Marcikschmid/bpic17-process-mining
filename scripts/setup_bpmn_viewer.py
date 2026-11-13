@@ -16,7 +16,7 @@ TARGET = ROOT / '.tools/bpmn-js'
 
 
 def main():
-    manifest_path=ROOT/'docs/bpmn_viewer_manifest.json'
+    manifest_path=ROOT/'docs/manifests/bpmn_viewer_manifest.json'
     pinned=json.loads(manifest_path.read_text())['version'] if manifest_path.exists() else 'latest'
     metadata = json.load(urllib.request.urlopen('https://registry.npmjs.org/bpmn-js/'+pinned, timeout=60))
     data = urllib.request.urlopen(metadata['dist']['tarball'], timeout=120).read()
@@ -39,7 +39,7 @@ def main():
     manifest = {'package': 'bpmn-js', 'version': metadata['version'],
         'source': metadata['dist']['tarball'], 'integrity': metadata['dist']['integrity'],
         'license': metadata.get('license'), 'artifacts_sha256': hashes}
-    (ROOT / 'docs/bpmn_viewer_manifest.json').write_text(json.dumps(manifest, indent=2)+'\n',encoding='utf-8',newline='\n')
+    (ROOT / 'docs/manifests/bpmn_viewer_manifest.json').write_text(json.dumps(manifest, indent=2)+'\n',encoding='utf-8',newline='\n')
     print(f"Installed local bpmn-js {metadata['version']}; {len(hashes)} files; SHA-512 verified")
 
 

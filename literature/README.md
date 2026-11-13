@@ -53,7 +53,7 @@ Untersucht Kundeninteraktion und Wartezeiten und enthält ein BPMN-Modell. Einst
 
 ## Zusätzlich: Python-Codebeispiel
 
-[GitHub-Original](https://github.com/hjonks/process-mining-project-bpi2017) · [Lokale README](code/hjonks/process-mining-project-bpi2017-f24496edf84a50ef4b39ef09d7ddcbafd6b64970/README.md)
+[GitHub-Original](https://github.com/hjonks/process-mining-project-bpi2017) · lokale Kopie (nicht im Repository): `code/hjonks/process-mining-project-bpi2017-f24496edf84a50ef4b39ef09d7ddcbafd6b64970/README.md`
 
 Repository: `hjonks/process-mining-project-bpi2017`; heruntergeladener Commit: `f24496edf84a50ef4b39ef09d7ddcbafd6b64970`.
 

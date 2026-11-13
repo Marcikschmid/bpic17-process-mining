@@ -1,11 +1,18 @@
 """Promote the selected manually edited tree to the final model (results/final/).
 
-Input: results/manual_edits/selected/model.ptml (selected by scripts/manual_edits.py).
+Default input: results/abstraction/manual_edits/selected/model.ptml (selected by
+scripts/manual_edits_abstracted.py on the abstracted log). The final model before
+event abstraction (results/before_abstraction/final/) came from
+`--source results/manual_edits/selected/model.ptml --cache tmp/evaluation/projected_sequences.json
+--out results/before_abstraction/final`.
 Exports PTML, PNML and BPMN 2.0, verifies complete language equivalence of the
 BPMN round trip with the tree's Petri net, counts the block structure
 (process-tree operators and the BPMN gateways they become) and renders the BPMN.
+The manifest records the sequence cache the model is evaluated on; decision
+mining reads it to apply the same event abstraction to the raw events.
 Quality metrics come from scripts/assess_model.py (results/assessment/final_model.json).
 """
+import argparse
 import json
 import sys
 from collections import Counter
@@ -19,9 +26,10 @@ import pm4py
 from pm4py.objects.bpmn.obj import BPMN
 from pm4py.objects.process_tree.obj import Operator
 from pm4py.visualization.bpmn import visualizer
+from src.model_assessment import ABSTRACTED_CACHE
 from src.replay_coverage import ExactReplay
 
-SOURCE = ROOT / "results/manual_edits/selected/model.ptml"
+SOURCE = ROOT / "results/abstraction/manual_edits/selected/model.ptml"
 OUT = ROOT / "results/final"
 NAMES = {Operator.SEQUENCE: "sequence ->", Operator.XOR: "exclusive choice X", Operator.PARALLEL: "parallel +",
          Operator.LOOP: "loop *"}
@@ -49,6 +57,18 @@ def render(bpmn, path, rankdir):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, default=SOURCE)
+    parser.add_argument("--cache", type=Path, default=ABSTRACTED_CACHE, help="Sequence cache the model is evaluated on.")
+    parser.add_argument("--out", type=Path, default=OUT)
+    args = parser.parse_args()
+    source, cache, out = (p if p.is_absolute() else ROOT / p for p in (args.source, args.cache, args.out))
+    cache_data = json.loads(cache.read_text(encoding="utf-8"))
+    export(source, out, {"evaluation_cache": cache.relative_to(ROOT).as_posix(), "evaluation_cache_sha256": sha(cache),
+                         "event_abstraction": "abstraction" in cache_data})
+
+
+def export(SOURCE, OUT, evaluation):
     OUT.mkdir(parents=True, exist_ok=True)
     tree = pm4py.read_ptml(str(SOURCE))
     pm4py.write_ptml(tree, str(OUT / "final_model.ptml"))
@@ -98,7 +118,8 @@ def main():
     render(imported, OUT / "final_bpmn", "TB")
     render(imported, OUT / "final_bpmn_lr", "LR")
     write_json(OUT / "manifest.json", {"source": SOURCE.relative_to(ROOT).as_posix(), "source_sha256": sha(SOURCE),
-        "selection": "results/manual_edits/screen.json", "pm4py": version("pm4py"),
+        "selection": (SOURCE.parent.parent / "screen.json").relative_to(ROOT).as_posix(), **evaluation,
+        "pm4py": version("pm4py"),
         "states": machine.state_count, "sound": machine.sound, "bpmn_language_equivalence": equivalence,
         "artifacts": {p.name: sha(p) for p in sorted(OUT.iterdir()) if p.is_file() and p.name != "manifest.json"},
         "implementation_sha256": {p: sha(ROOT / p) for p in ("scripts/export_final_model.py", "src/replay_coverage.py")}})

@@ -1,0 +1,178 @@
+{
+  "common_log": "tmp/evaluation/abstracted_sequences.json",
+  "common_log_sha256": "c5885d77693f7e9bd061772ab08cdc46bebbf70c9f83a32f4b8ee443d511f696",
+  "hidden_labels": [
+    "O_Accepted",
+    "O_Created",
+    "W_Call after offers",
+    "W_Call incomplete files",
+    "W_Complete application",
+    "W_Handle leads",
+    "W_Validate application"
+  ],
+  "models": [
+    {
+      "model": "inductive_miner",
+      "label": "IM (baseline)",
+      "discovered_on": "completion",
+      "pnml": "results/models/inductive_miner.pnml",
+      "pnml_sha256": "73b0dd03aece52551424d2e5fb7ba3b5c72fab50f14c27429cac795db9df3dca",
+      "hidden_transitions": 7,
+      "own_log": {
+        "exact_replay_pct": 100.0,
+        "align_et_precision": 0.2926135820916598,
+        "alignment_generalization": 0.9756702764431168,
+        "nodes": 87,
+        "extended_cardoso": 47,
+        "extended_cyclomatic": 1552
+      },
+      "abstracted_log": {
+        "exact_replay_pct": 100.0,
+        "fitting_cases": 31509,
+        "align_et_precision": 0.2944928984369424,
+        "alignment_fitness": 0.9997268608054166,
+        "alignment_generalization": 0.8481888575812606,
+        "sound": true,
+        "states": 484,
+        "nodes": 87,
+        "arcs": 114,
+        "visible_tasks": 17,
+        "extended_cardoso": 47
+      }
+    },
+    {
+      "model": "refined_imf",
+      "label": "Refined IMf (before edits)",
+      "discovered_on": "completion",
+      "pnml": "results/refinement/final_model.pnml",
+      "pnml_sha256": "6f782b41bb492e152d09782aee7535ea3c70a3674521f8b0e373cf1666cd9d15",
+      "hidden_transitions": 6,
+      "own_log": {
+        "exact_replay_pct": 80.45320384652004,
+        "align_et_precision": 0.5976739688393717,
+        "alignment_generalization": 0.9911636244631823,
+        "nodes": 89,
+        "extended_cardoso": 52,
+        "extended_cyclomatic": 551
+      },
+      "abstracted_log": {
+        "exact_replay_pct": 82.93820813101019,
+        "fitting_cases": 26133,
+        "align_et_precision": 0.6829141045572065,
+        "alignment_fitness": 0.9797074876336608,
+        "alignment_generalization": 0.8448598048298472,
+        "sound": true,
+        "states": 187,
+        "nodes": 89,
+        "arcs": 108,
+        "visible_tasks": 15,
+        "extended_cardoso": 52
+      }
+    },
+    {
+      "model": "final_before_abstraction",
+      "label": "Final before abstraction (G2+G3+R3+R4)",
+      "discovered_on": "completion",
+      "pnml": "results/before_abstraction/final/final_model.pnml",
+      "pnml_sha256": "4ec2b8093d84bdd827992f3d3298c3aa652da363d98e51ec62ffaaf96f31e13f",
+      "hidden_transitions": 6,
+      "own_log": {
+        "exact_replay_pct": 80.43098797169063,
+        "align_et_precision": 0.694566378928376,
+        "alignment_generalization": 0.9879686369768543,
+        "nodes": 98,
+        "extended_cardoso": 55,
+        "extended_cyclomatic": 166
+      },
+      "abstracted_log": {
+        "exact_replay_pct": 82.12891554793869,
+        "fitting_cases": 25878,
+        "align_et_precision": 0.7878448161273253,
+        "alignment_fitness": 0.9792369948547593,
+        "alignment_generalization": 0.8090123570396615,
+        "sound": true,
+        "states": 94,
+        "nodes": 98,
+        "arcs": 118,
+        "visible_tasks": 19,
+        "extended_cardoso": 55
+      }
+    },
+    {
+      "model": "abstracted_base",
+      "label": "Abstracted IMf (before edits)",
+      "discovered_on": "abstracted",
+      "pnml": "results/abstraction/base/model.pnml",
+      "pnml_sha256": "6b4edd8f86ac65f6869d4a03448c06d5fa1a97f6ff29d783b4a5592a9560456b",
+      "hidden_transitions": 0,
+      "own_log": {
+        "exact_replay_pct": 85.34704370179949,
+        "align_et_precision": 0.7658290493532145,
+        "alignment_generalization": 0.9917477413275471,
+        "nodes": 46,
+        "extended_cardoso": 24,
+        "extended_cyclomatic": 25
+      },
+      "abstracted_log": {
+        "exact_replay_pct": 85.34704370179949,
+        "fitting_cases": 26892,
+        "align_et_precision": 0.7658290493532145,
+        "alignment_fitness": 0.9833466134792012,
+        "alignment_generalization": 0.9917489483038516,
+        "sound": true,
+        "states": 23,
+        "nodes": 46,
+        "arcs": 56,
+        "visible_tasks": 15,
+        "extended_cardoso": 24
+      }
+    },
+    {
+      "model": "final_model",
+      "label": "Final (abstraction + R1)",
+      "discovered_on": "abstracted",
+      "pnml": "results/final/final_model.pnml",
+      "pnml_sha256": "f2c5c96a779cd79bd85670a6389c811b342e43637636123a6e7836cd21d8c6d3",
+      "hidden_transitions": 0,
+      "own_log": {
+        "exact_replay_pct": 85.34704370179949,
+        "align_et_precision": 0.8263938199140068,
+        "alignment_generalization": 0.9887317042963405,
+        "nodes": 56,
+        "extended_cardoso": 30,
+        "extended_cyclomatic": 35
+      },
+      "abstracted_log": {
+        "exact_replay_pct": 85.34704370179949,
+        "fitting_cases": 26892,
+        "align_et_precision": 0.8263938199140068,
+        "alignment_fitness": 0.9831091951674653,
+        "alignment_generalization": 0.9887317042963405,
+        "sound": true,
+        "states": 29,
+        "nodes": 56,
+        "arcs": 68,
+        "visible_tasks": 17,
+        "extended_cardoso": 30
+      }
+    }
+  ],
+  "holdout": {
+    "before_abstraction": {
+      "train_only_tree_identical": true,
+      "test_cases_with_unseen_variant_pct": 14.704326668782397,
+      "final_train_exact_pct": 80.47696771853464,
+      "final_test_exact_pct": 80.3237067597588
+    },
+    "abstracted": {
+      "train_only_tree_identical": true,
+      "test_cases_with_unseen_variant_pct": 6.759758806728023,
+      "final_train_exact_pct": 85.32825535001814,
+      "final_test_exact_pct": 85.3908812017349
+    }
+  },
+  "holdout_source": "results/comparison/holdout_check.json",
+  "holdout_sha256": "0b3e28bbda37c4e202f9bf43fd05b153574b57881ed7b6c851aa48390ba40614",
+  "alignment_generalization_note": "Alignment generalization of projected models counts the hidden (now silent) transitions that optimal alignments never need as unused; it is biased against projected models and therefore not shown in the report table.",
+  "implementation_sha256": "84cbd3b708b1622a3b1c4cc1ab50a3c6b18d58fb52c5274bde5c796503425bef"
+}

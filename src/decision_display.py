@@ -29,7 +29,7 @@ def compact_rules(leaves):
 
 
 def predicate_text(predicate):
-    feature=predicate['feature'].replace('case_','').replace('event_','last.')
+    feature=predicate['feature'].replace('case_','').replace('event_','last.').replace('eng_','hist.')
     if '=' in feature and 0<=predicate['threshold']<1:
         name,value=feature.split('=',1)
         return f'{name} {"!=" if predicate["op"]=="<=" else "="} {json.dumps(value,ensure_ascii=False)}'
@@ -50,5 +50,6 @@ def annotation_text(gateway,width=68):
                 text=' AND '.join(predicate_text(p) for p in rule['predicates']) or 'TRUE'
                 lines.extend(textwrap.wrap(f'{branch}: {text}',width=width,subsequent_indent='    ',break_long_words=False,break_on_hyphens=False))
         lines.append('')
-    lines.extend(['last. = last synchronized offer value', 'Learned associations; not bank policy.'])
+    lines.extend(['last. = last synchronized offer value', 'hist. = case history before this decision',
+                  'Learned associations; not bank policy.'])
     return '\n'.join(lines)

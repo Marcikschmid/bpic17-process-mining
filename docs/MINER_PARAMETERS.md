@@ -4,7 +4,7 @@ Die Werte stammen aus der tatsächlichen Python-Konfiguration. Baseline, ausgew�
 
 **Hauptziel:** gültiges, soundes Modell und ungefähr 80 % exakte Fallabdeckung als Bedingungen; danach Präzision erhöhen. Einfachheit als zusätzlicher Auswahlgrund, Generalization nur mit ihren Grenzen interpretieren.
 
-**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur 9,46 % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.
+**Aktuelle Priorität:** Das Modell mit harten Guards erreicht im Test nur 7,09 % vollständige Fallabdeckung. Dieser Verlust muss zuerst erklärt oder verbessert werden; zusätzliche Präzision allein löst ihn nicht.
 
 ## Alle gemeinsam verwendeten Schlüssel
 

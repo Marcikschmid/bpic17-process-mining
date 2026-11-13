@@ -1,0 +1,1272 @@
+{
+  "identity": {
+    "input_cache_sha256": "c5885d77693f7e9bd061772ab08cdc46bebbf70c9f83a32f4b8ee443d511f696",
+    "implementation_sha256": "00f78c86fc1b80e1f4c1d4c484a474318a7c247bbd232676e5e5a6f1d34e430f"
+  },
+  "evaluation_cases": 31509,
+  "training_rule": "Most frequent variants up to the case coverage; stable lexicographic tie break; coverage 1.00 = all cases",
+  "candidates": {
+    "abstracted_0.50_imf_0.00": {
+      "training_coverage": 0.5,
+      "noise_threshold": 0.0,
+      "training_cases": 16512,
+      "training_variants": 8,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21489,
+        "fitting_percentage": 68.19956202989621,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8918275127856045,
+      "size": {
+        "nodes": 37,
+        "arcs": 42
+      },
+      "silent_transitions": 5,
+      "extended_cardoso": 19,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', 'O_Create Offer', 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.652
+    },
+    "abstracted_0.50_imf_0.03": {
+      "training_coverage": 0.5,
+      "noise_threshold": 0.03,
+      "training_cases": 16512,
+      "training_variants": 8,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21489,
+        "fitting_percentage": 68.19956202989621,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8918275127856045,
+      "size": {
+        "nodes": 37,
+        "arcs": 42
+      },
+      "silent_transitions": 5,
+      "extended_cardoso": 19,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', 'O_Create Offer', 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.72
+    },
+    "abstracted_0.50_imf_0.05": {
+      "training_coverage": 0.5,
+      "noise_threshold": 0.05,
+      "training_cases": 16512,
+      "training_variants": 8,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21489,
+        "fitting_percentage": 68.19956202989621,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8918275127856045,
+      "size": {
+        "nodes": 37,
+        "arcs": 42
+      },
+      "silent_transitions": 5,
+      "extended_cardoso": 19,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', 'O_Create Offer', 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.589
+    },
+    "abstracted_0.50_imf_0.10": {
+      "training_coverage": 0.5,
+      "noise_threshold": 0.1,
+      "training_cases": 16512,
+      "training_variants": 8,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21489,
+        "fitting_percentage": 68.19956202989621,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8918275127856045,
+      "size": {
+        "nodes": 37,
+        "arcs": 42
+      },
+      "silent_transitions": 5,
+      "extended_cardoso": 19,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', 'O_Create Offer', 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.64
+    },
+    "abstracted_0.50_imf_0.20": {
+      "training_coverage": 0.5,
+      "noise_threshold": 0.2,
+      "training_cases": 16512,
+      "training_variants": 8,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21489,
+        "fitting_percentage": 68.19956202989621,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8918275127856045,
+      "size": {
+        "nodes": 37,
+        "arcs": 42
+      },
+      "silent_transitions": 5,
+      "extended_cardoso": 19,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', 'O_Create Offer', 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.657
+    },
+    "abstracted_0.55_imf_0.00": {
+      "training_coverage": 0.55,
+      "noise_threshold": 0.0,
+      "training_cases": 17815,
+      "training_variants": 10,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.756
+    },
+    "abstracted_0.55_imf_0.03": {
+      "training_coverage": 0.55,
+      "noise_threshold": 0.03,
+      "training_cases": 17815,
+      "training_variants": 10,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.93
+    },
+    "abstracted_0.55_imf_0.05": {
+      "training_coverage": 0.55,
+      "noise_threshold": 0.05,
+      "training_cases": 17815,
+      "training_variants": 10,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 1.118
+    },
+    "abstracted_0.55_imf_0.10": {
+      "training_coverage": 0.55,
+      "noise_threshold": 0.1,
+      "training_cases": 17815,
+      "training_variants": 10,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 1.456
+    },
+    "abstracted_0.55_imf_0.20": {
+      "training_coverage": 0.55,
+      "noise_threshold": 0.2,
+      "training_cases": 17815,
+      "training_variants": 10,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 1.06
+    },
+    "abstracted_0.60_imf_0.00": {
+      "training_coverage": 0.6,
+      "noise_threshold": 0.0,
+      "training_cases": 18986,
+      "training_variants": 12,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.996
+    },
+    "abstracted_0.60_imf_0.03": {
+      "training_coverage": 0.6,
+      "noise_threshold": 0.03,
+      "training_cases": 18986,
+      "training_variants": 12,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 1.112
+    },
+    "abstracted_0.60_imf_0.05": {
+      "training_coverage": 0.6,
+      "noise_threshold": 0.05,
+      "training_cases": 18986,
+      "training_variants": 12,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.647
+    },
+    "abstracted_0.60_imf_0.10": {
+      "training_coverage": 0.6,
+      "noise_threshold": 0.1,
+      "training_cases": 18986,
+      "training_variants": 12,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.586
+    },
+    "abstracted_0.60_imf_0.20": {
+      "training_coverage": 0.6,
+      "noise_threshold": 0.2,
+      "training_cases": 18986,
+      "training_variants": 12,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.543
+    },
+    "abstracted_0.65_imf_0.00": {
+      "training_coverage": 0.65,
+      "noise_threshold": 0.0,
+      "training_cases": 20570,
+      "training_variants": 16,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 23695,
+        "fitting_percentage": 75.20073629756577,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7800888403691861,
+      "size": {
+        "nodes": 44,
+        "arcs": 52
+      },
+      "silent_transitions": 9,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.744
+    },
+    "abstracted_0.65_imf_0.03": {
+      "training_coverage": 0.65,
+      "noise_threshold": 0.03,
+      "training_cases": 20570,
+      "training_variants": 16,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 1.047
+    },
+    "abstracted_0.65_imf_0.05": {
+      "training_coverage": 0.65,
+      "noise_threshold": 0.05,
+      "training_cases": 20570,
+      "training_variants": 16,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.83
+    },
+    "abstracted_0.65_imf_0.10": {
+      "training_coverage": 0.65,
+      "noise_threshold": 0.1,
+      "training_cases": 20570,
+      "training_variants": 16,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.68
+    },
+    "abstracted_0.65_imf_0.20": {
+      "training_coverage": 0.65,
+      "noise_threshold": 0.2,
+      "training_cases": 20570,
+      "training_variants": 16,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 22555,
+        "fitting_percentage": 71.58272239677552,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8938250810609685,
+      "size": {
+        "nodes": 38,
+        "arcs": 44
+      },
+      "silent_transitions": 6,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( ->( 'A_Cancelled', 'O_Cancelled' ), ->( +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ), X( 'A_Pending', ->( 'A_Denied', 'O_Refused' ) ) ) ) )",
+      "seconds": 0.69
+    },
+    "abstracted_0.70_imf_0.00": {
+      "training_coverage": 0.7,
+      "noise_threshold": 0.0,
+      "training_cases": 22153,
+      "training_variants": 24,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 26892,
+        "fitting_percentage": 85.34704370179949,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7658290493532145,
+      "size": {
+        "nodes": 46,
+        "arcs": 56
+      },
+      "silent_transitions": 11,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.692
+    },
+    "abstracted_0.70_imf_0.03": {
+      "training_coverage": 0.7,
+      "noise_threshold": 0.03,
+      "training_cases": 22153,
+      "training_variants": 24,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 26892,
+        "fitting_percentage": 85.34704370179949,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7658290493532145,
+      "size": {
+        "nodes": 46,
+        "arcs": 56
+      },
+      "silent_transitions": 11,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.045
+    },
+    "abstracted_0.70_imf_0.05": {
+      "training_coverage": 0.7,
+      "noise_threshold": 0.05,
+      "training_cases": 22153,
+      "training_variants": 24,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24165,
+        "fitting_percentage": 76.6923736075407,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8632863847119472,
+      "size": {
+        "nodes": 40,
+        "arcs": 48
+      },
+      "silent_transitions": 8,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.159
+    },
+    "abstracted_0.70_imf_0.10": {
+      "training_coverage": 0.7,
+      "noise_threshold": 0.1,
+      "training_cases": 22153,
+      "training_variants": 24,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24165,
+        "fitting_percentage": 76.6923736075407,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8632863847119472,
+      "size": {
+        "nodes": 40,
+        "arcs": 48
+      },
+      "silent_transitions": 8,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.051
+    },
+    "abstracted_0.70_imf_0.20": {
+      "training_coverage": 0.7,
+      "noise_threshold": 0.2,
+      "training_cases": 22153,
+      "training_variants": 24,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24165,
+        "fitting_percentage": 76.6923736075407,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8632863847119472,
+      "size": {
+        "nodes": 40,
+        "arcs": 48
+      },
+      "silent_transitions": 8,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.095
+    },
+    "abstracted_0.75_imf_0.00": {
+      "training_coverage": 0.75,
+      "noise_threshold": 0.0,
+      "training_cases": 23705,
+      "training_variants": 38,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 26892,
+        "fitting_percentage": 85.34704370179949,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7658290493532145,
+      "size": {
+        "nodes": 46,
+        "arcs": 56
+      },
+      "silent_transitions": 11,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.792
+    },
+    "abstracted_0.75_imf_0.03": {
+      "training_coverage": 0.75,
+      "noise_threshold": 0.03,
+      "training_cases": 23705,
+      "training_variants": 38,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 26892,
+        "fitting_percentage": 85.34704370179949,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7658290493532145,
+      "size": {
+        "nodes": 46,
+        "arcs": 56
+      },
+      "silent_transitions": 11,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.152
+    },
+    "abstracted_0.75_imf_0.05": {
+      "training_coverage": 0.75,
+      "noise_threshold": 0.05,
+      "training_cases": 23705,
+      "training_variants": 38,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 26892,
+        "fitting_percentage": 85.34704370179949,
+        "variants": 2680,
+        "states": 23,
+        "sound": true
+      },
+      "align_et_precision": 0.7658290493532145,
+      "size": {
+        "nodes": 46,
+        "arcs": 56
+      },
+      "silent_transitions": 11,
+      "extended_cardoso": 24,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( ->( *( 'O_Create Offer', tau ), 'O_Sent (mail and online)' ), tau ) ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.026
+    },
+    "abstracted_0.75_imf_0.10": {
+      "training_coverage": 0.75,
+      "noise_threshold": 0.1,
+      "training_cases": 23705,
+      "training_variants": 38,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24165,
+        "fitting_percentage": 76.6923736075407,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8632863847119472,
+      "size": {
+        "nodes": 40,
+        "arcs": 48
+      },
+      "silent_transitions": 8,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.874
+    },
+    "abstracted_0.75_imf_0.20": {
+      "training_coverage": 0.75,
+      "noise_threshold": 0.2,
+      "training_cases": 23705,
+      "training_variants": 38,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24165,
+        "fitting_percentage": 76.6923736075407,
+        "variants": 2680,
+        "states": 18,
+        "sound": true
+      },
+      "align_et_precision": 0.8632863847119472,
+      "size": {
+        "nodes": 40,
+        "arcs": 48
+      },
+      "silent_transitions": 8,
+      "extended_cardoso": 20,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), 'O_Sent (mail and online)', 'A_Complete', X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ), X( ->( X( 'A_Cancelled', 'A_Pending' ), X( tau, 'O_Cancelled' ) ), ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.898
+    },
+    "abstracted_0.80_imf_0.00": {
+      "training_coverage": 0.8,
+      "noise_threshold": 0.0,
+      "training_cases": 25222,
+      "training_variants": 67,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 30475,
+        "fitting_percentage": 96.71839791805516,
+        "variants": 2680,
+        "states": 60,
+        "sound": true
+      },
+      "align_et_precision": 0.661268698707128,
+      "size": {
+        "nodes": 59,
+        "arcs": 74
+      },
+      "silent_transitions": 18,
+      "extended_cardoso": 30,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( X( tau, *( 'O_Cancelled', tau ) ), ->( *( ->( 'O_Create Offer', X( tau, ->( X( 'O_Sent (mail and online)', 'O_Sent (online only)' ), X( tau, 'A_Complete' ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ) ) ), tau ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 1.348
+    },
+    "abstracted_0.80_imf_0.03": {
+      "training_coverage": 0.8,
+      "noise_threshold": 0.03,
+      "training_cases": 25222,
+      "training_variants": 67,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27382,
+        "fitting_percentage": 86.90215493985845,
+        "variants": 2680,
+        "states": 39,
+        "sound": true
+      },
+      "align_et_precision": 0.6498387885024508,
+      "size": {
+        "nodes": 66,
+        "arcs": 84
+      },
+      "silent_transitions": 21,
+      "extended_cardoso": 38,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ) ), X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, ->( X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), 'O_Cancelled' ) ) ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.922
+    },
+    "abstracted_0.80_imf_0.05": {
+      "training_coverage": 0.8,
+      "noise_threshold": 0.05,
+      "training_cases": 25222,
+      "training_variants": 67,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27382,
+        "fitting_percentage": 86.90215493985845,
+        "variants": 2680,
+        "states": 39,
+        "sound": true
+      },
+      "align_et_precision": 0.6709473552738401,
+      "size": {
+        "nodes": 65,
+        "arcs": 82
+      },
+      "silent_transitions": 20,
+      "extended_cardoso": 37,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ) ), X( tau, ->( +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ), X( tau, 'A_Pending' ) ) ), X( tau, +( X( tau, 'A_Cancelled' ), 'O_Cancelled' ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.632
+    },
+    "abstracted_0.80_imf_0.10": {
+      "training_coverage": 0.8,
+      "noise_threshold": 0.1,
+      "training_cases": 25222,
+      "training_variants": 67,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24453,
+        "fitting_percentage": 77.60639817195087,
+        "variants": 2680,
+        "states": 37,
+        "sound": true
+      },
+      "align_et_precision": 0.7338799316857418,
+      "size": {
+        "nodes": 66,
+        "arcs": 82
+      },
+      "silent_transitions": 21,
+      "extended_cardoso": 37,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), +( 'A_Complete', *( 'O_Sent (mail and online)', tau ) ), X( tau, ->( +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ), X( tau, 'A_Pending' ) ) ), X( tau, +( X( tau, 'A_Cancelled' ), 'O_Cancelled' ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.587
+    },
+    "abstracted_0.80_imf_0.20": {
+      "training_coverage": 0.8,
+      "noise_threshold": 0.2,
+      "training_cases": 25222,
+      "training_variants": 67,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 19989,
+        "fitting_percentage": 63.439017423593256,
+        "variants": 2680,
+        "states": 36,
+        "sound": true
+      },
+      "align_et_precision": 0.734755162295343,
+      "size": {
+        "nodes": 64,
+        "arcs": 78
+      },
+      "silent_transitions": 19,
+      "extended_cardoso": 36,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'O_Sent (online only)' ), 'A_Complete', X( tau, ->( +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ), 'A_Pending' ) ), X( tau, +( 'A_Cancelled', 'O_Cancelled' ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 1.028
+    },
+    "abstracted_0.85_imf_0.00": {
+      "training_coverage": 0.85,
+      "noise_threshold": 0.0,
+      "training_cases": 26792,
+      "training_variants": 139,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 30884,
+        "fitting_percentage": 98.01643974737377,
+        "variants": 2680,
+        "states": 60,
+        "sound": true
+      },
+      "align_et_precision": 0.6457873802368523,
+      "size": {
+        "nodes": 60,
+        "arcs": 76
+      },
+      "silent_transitions": 19,
+      "extended_cardoso": 30,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( X( tau, *( 'O_Cancelled', tau ) ), ->( *( ->( 'O_Create Offer', X( tau, ->( X( 'O_Sent (mail and online)', 'O_Sent (online only)' ), X( tau, 'A_Complete' ), X( tau, +( X( tau, 'O_Returned' ), *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ) ) ), tau ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.766
+    },
+    "abstracted_0.85_imf_0.03": {
+      "training_coverage": 0.85,
+      "noise_threshold": 0.03,
+      "training_cases": 26792,
+      "training_variants": 139,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27890,
+        "fitting_percentage": 88.51439271319306,
+        "variants": 2680,
+        "states": 25,
+        "sound": true
+      },
+      "align_et_precision": 0.639651165932611,
+      "size": {
+        "nodes": 59,
+        "arcs": 74
+      },
+      "silent_transitions": 19,
+      "extended_cardoso": 30,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( ->( 'O_Create Offer', X( tau, 'O_Sent (mail and online)' ), X( tau, 'A_Complete' ), X( tau, +( 'O_Returned', *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ), tau ), X( tau, ->( X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), *( 'O_Cancelled', tau ) ) ) ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 1.042
+    },
+    "abstracted_0.85_imf_0.05": {
+      "training_coverage": 0.85,
+      "noise_threshold": 0.05,
+      "training_cases": 26792,
+      "training_variants": 139,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27468,
+        "fitting_percentage": 87.17509283061982,
+        "variants": 2680,
+        "states": 39,
+        "sound": true
+      },
+      "align_et_precision": 0.649636218607237,
+      "size": {
+        "nodes": 67,
+        "arcs": 86
+      },
+      "silent_transitions": 22,
+      "extended_cardoso": 39,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ) ), X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, ->( X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), *( 'O_Cancelled', tau ) ) ) ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.574
+    },
+    "abstracted_0.85_imf_0.10": {
+      "training_coverage": 0.85,
+      "noise_threshold": 0.1,
+      "training_cases": 26792,
+      "training_variants": 139,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 24334,
+        "fitting_percentage": 77.22872829985084,
+        "variants": 2680,
+        "states": 35,
+        "sound": true
+      },
+      "align_et_precision": 0.7054059202100929,
+      "size": {
+        "nodes": 64,
+        "arcs": 80
+      },
+      "silent_transitions": 21,
+      "extended_cardoso": 36,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), +( 'A_Complete', *( 'O_Sent (mail and online)', tau ) ), X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ), X( tau, *( 'O_Cancelled', tau ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.551
+    },
+    "abstracted_0.85_imf_0.20": {
+      "training_coverage": 0.85,
+      "noise_threshold": 0.2,
+      "training_cases": 26792,
+      "training_variants": 139,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 19904,
+        "fitting_percentage": 63.16925322923609,
+        "variants": 2680,
+        "states": 35,
+        "sound": true
+      },
+      "align_et_precision": 0.7244864072401123,
+      "size": {
+        "nodes": 62,
+        "arcs": 76
+      },
+      "silent_transitions": 18,
+      "extended_cardoso": 35,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), 'A_Concept', 'A_Accepted', *( 'O_Create Offer', tau ), *( 'O_Sent (mail and online)', tau ), X( tau, 'O_Sent (online only)' ), 'A_Complete', X( +( 'A_Cancelled', *( 'O_Cancelled', tau ) ), ->( +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ), 'A_Pending' ) ), X( tau, ->( 'A_Denied', 'O_Refused', X( tau, 'W_Assess potential fraud' ) ) ) )",
+      "seconds": 0.668
+    },
+    "abstracted_0.90_imf_0.00": {
+      "training_coverage": 0.9,
+      "noise_threshold": 0.0,
+      "training_cases": 28359,
+      "training_variants": 326,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 31311,
+        "fitting_percentage": 99.37160811196802,
+        "variants": 2680,
+        "states": 932,
+        "sound": true
+      },
+      "align_et_precision": 0.535202782917936,
+      "size": {
+        "nodes": 78,
+        "arcs": 100
+      },
+      "silent_transitions": 28,
+      "extended_cardoso": 42,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'O_Cancelled', tau ) ), ->( +( X( tau, 'W_Assess potential fraud' ), ->( *( ->( 'O_Create Offer', X( tau, ->( X( 'O_Sent (mail and online)', 'O_Sent (online only)' ), X( tau, 'A_Complete' ), X( tau, +( X( tau, *( 'O_Returned', tau ) ), X( tau, *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ) ) ) ), tau ), X( tau, ->( 'A_Denied', X( tau, 'O_Refused' ) ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ) )",
+      "seconds": 1.162
+    },
+    "abstracted_0.90_imf_0.03": {
+      "training_coverage": 0.9,
+      "noise_threshold": 0.03,
+      "training_cases": 28359,
+      "training_variants": 326,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27968,
+        "fitting_percentage": 88.76194103272081,
+        "variants": 2680,
+        "states": 25,
+        "sound": true
+      },
+      "align_et_precision": 0.613816573038659,
+      "size": {
+        "nodes": 59,
+        "arcs": 74
+      },
+      "silent_transitions": 19,
+      "extended_cardoso": 30,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', *( ->( 'O_Create Offer', X( tau, 'O_Sent (mail and online)' ), X( tau, 'A_Complete' ), X( tau, +( *( 'O_Returned', tau ), *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ), tau ), X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), *( 'O_Cancelled', tau ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.975
+    },
+    "abstracted_0.90_imf_0.05": {
+      "training_coverage": 0.9,
+      "noise_threshold": 0.05,
+      "training_cases": 28359,
+      "training_variants": 326,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27968,
+        "fitting_percentage": 88.76194103272081,
+        "variants": 2680,
+        "states": 25,
+        "sound": true
+      },
+      "align_et_precision": 0.613816573038659,
+      "size": {
+        "nodes": 59,
+        "arcs": 74
+      },
+      "silent_transitions": 19,
+      "extended_cardoso": 30,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', *( ->( 'O_Create Offer', X( tau, 'O_Sent (mail and online)' ), X( tau, 'A_Complete' ), X( tau, +( *( 'O_Returned', tau ), *( ->( 'A_Validating', X( tau, 'A_Incomplete' ) ), tau ) ) ) ), tau ), X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), *( 'O_Cancelled', tau ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.72
+    },
+    "abstracted_0.90_imf_0.10": {
+      "training_coverage": 0.9,
+      "noise_threshold": 0.1,
+      "training_cases": 28359,
+      "training_variants": 326,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27191,
+        "fitting_percentage": 86.29597892665588,
+        "variants": 2680,
+        "states": 37,
+        "sound": true
+      },
+      "align_et_precision": 0.6357341658353961,
+      "size": {
+        "nodes": 63,
+        "arcs": 80
+      },
+      "silent_transitions": 20,
+      "extended_cardoso": 36,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ) ), X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ), X( tau, *( 'O_Cancelled', tau ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.677
+    },
+    "abstracted_0.90_imf_0.20": {
+      "training_coverage": 0.9,
+      "noise_threshold": 0.2,
+      "training_cases": 28359,
+      "training_variants": 326,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21298,
+        "fitting_percentage": 67.59338601669364,
+        "variants": 2680,
+        "states": 33,
+        "sound": true
+      },
+      "align_et_precision": 0.6989284339226333,
+      "size": {
+        "nodes": 60,
+        "arcs": 74
+      },
+      "silent_transitions": 21,
+      "extended_cardoso": 35,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, ->( 'A_Concept', 'A_Accepted', X( 'O_Sent (online only)', ->( *( 'O_Create Offer', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( 'A_Cancelled', 'A_Pending' ), X( tau, *( 'O_Cancelled', tau ) ) ) ) )",
+      "seconds": 0.479
+    },
+    "abstracted_0.95_imf_0.00": {
+      "training_coverage": 0.95,
+      "noise_threshold": 0.0,
+      "training_cases": 29934,
+      "training_variants": 1105,
+      "status": "Reachability cap reached; no exact coverage reported",
+      "size": {
+        "nodes": 118,
+        "arcs": 150
+      },
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'O_Cancelled', tau ) ), ->( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( +( *( 'O_Create Offer', tau ), X( tau, +( 'A_Complete', X( tau, *( 'O_Sent (mail and online)', tau ) ), X( tau, +( X( tau, *( ->( 'A_Validating', X( tau, *( 'O_Returned', tau ) ) ), tau ) ), X( tau, +( X( tau, *( 'O_Sent (online only)', tau ) ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ) ) ) ), X( tau, *( ->( 'A_Denied', X( tau, 'O_Refused' ) ), tau ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ) )",
+      "seconds": 2.727
+    },
+    "abstracted_0.95_imf_0.03": {
+      "training_coverage": 0.95,
+      "noise_threshold": 0.03,
+      "training_cases": 29934,
+      "training_variants": 1105,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 30539,
+        "fitting_percentage": 96.92151448792409,
+        "variants": 2680,
+        "states": 1680,
+        "sound": true
+      },
+      "align_et_precision": 0.4815397528957317,
+      "size": {
+        "nodes": 80,
+        "arcs": 102
+      },
+      "silent_transitions": 28,
+      "extended_cardoso": 47,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( X( tau, *( 'O_Cancelled', tau ) ), ->( +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ), X( tau, +( *( ->( 'A_Validating', X( tau, *( 'O_Returned', tau ) ) ), tau ), X( tau, +( X( tau, *( 'O_Sent (online only)', tau ) ), *( 'A_Incomplete', tau ) ) ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.275
+    },
+    "abstracted_0.95_imf_0.05": {
+      "training_coverage": 0.95,
+      "noise_threshold": 0.05,
+      "training_cases": 29934,
+      "training_variants": 1105,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 28061,
+        "fitting_percentage": 89.0570947983116,
+        "variants": 2680,
+        "states": 90,
+        "sound": true
+      },
+      "align_et_precision": 0.6079622920542525,
+      "size": {
+        "nodes": 66,
+        "arcs": 84
+      },
+      "silent_transitions": 21,
+      "extended_cardoso": 38,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ), ->( 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ), X( tau, 'A_Pending' ), X( tau, +( X( tau, 'A_Cancelled' ), *( 'O_Cancelled', tau ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.861
+    },
+    "abstracted_0.95_imf_0.10": {
+      "training_coverage": 0.95,
+      "noise_threshold": 0.1,
+      "training_cases": 29934,
+      "training_variants": 1105,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 27191,
+        "fitting_percentage": 86.29597892665588,
+        "variants": 2680,
+        "states": 31,
+        "sound": true
+      },
+      "align_et_precision": 0.6554249220748716,
+      "size": {
+        "nodes": 62,
+        "arcs": 78
+      },
+      "silent_transitions": 20,
+      "extended_cardoso": 35,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( 'A_Complete', *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ) ), X( tau, +( *( 'O_Returned', tau ), *( ->( 'A_Validating', X( tau, *( 'A_Incomplete', tau ) ) ), tau ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ), X( tau, *( 'O_Cancelled', tau ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 0.945
+    },
+    "abstracted_0.95_imf_0.20": {
+      "training_coverage": 0.95,
+      "noise_threshold": 0.2,
+      "training_cases": 29934,
+      "training_variants": 1105,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21973,
+        "fitting_percentage": 69.73563108952997,
+        "variants": 2680,
+        "states": 1828,
+        "sound": true
+      },
+      "align_et_precision": 0.5200361632254723,
+      "size": {
+        "nodes": 85,
+        "arcs": 106
+      },
+      "silent_transitions": 30,
+      "extended_cardoso": 51,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'O_Cancelled', tau ) ), ->( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( X( *( 'O_Sent (online only)', tau ), ->( *( 'O_Create Offer', tau ), *( 'O_Sent (mail and online)', tau ) ) ), 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) ) ), X( 'A_Cancelled', 'A_Pending' ) ) ) )",
+      "seconds": 1.382
+    },
+    "abstracted_1.00_imf_0.00": {
+      "training_coverage": 1.0,
+      "noise_threshold": 0.0,
+      "training_cases": 31509,
+      "training_variants": 2680,
+      "status": "Reachability cap reached; no exact coverage reported",
+      "size": {
+        "nodes": 113,
+        "arcs": 144
+      },
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'O_Cancelled', tau ) ), ->( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( +( *( 'O_Create Offer', tau ), X( tau, +( X( tau, *( 'O_Sent (mail and online)', tau ) ), X( tau, *( 'O_Sent (online only)', tau ) ), ->( 'A_Complete', X( tau, +( *( 'A_Validating', tau ), X( tau, +( X( tau, *( 'O_Returned', tau ) ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ) ) ) ) ), X( tau, *( ->( 'A_Denied', X( tau, 'O_Refused' ) ), tau ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ) )",
+      "seconds": 3.597
+    },
+    "abstracted_1.00_imf_0.03": {
+      "training_coverage": 1.0,
+      "noise_threshold": 0.03,
+      "training_cases": 31509,
+      "training_variants": 2680,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 30697,
+        "fitting_percentage": 97.422958519788,
+        "variants": 2680,
+        "states": 1232,
+        "sound": true
+      },
+      "align_et_precision": 0.5220403655495068,
+      "size": {
+        "nodes": 75,
+        "arcs": 96
+      },
+      "silent_transitions": 25,
+      "extended_cardoso": 44,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( X( tau, *( 'O_Cancelled', tau ) ), ->( +( *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ), X( tau, *( 'O_Sent (online only)', tau ) ), ->( 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 2.215
+    },
+    "abstracted_1.00_imf_0.05": {
+      "training_coverage": 1.0,
+      "noise_threshold": 0.05,
+      "training_cases": 31509,
+      "training_variants": 2680,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 30697,
+        "fitting_percentage": 97.422958519788,
+        "variants": 2680,
+        "states": 1232,
+        "sound": true
+      },
+      "align_et_precision": 0.5220403655495068,
+      "size": {
+        "nodes": 75,
+        "arcs": 96
+      },
+      "silent_transitions": 25,
+      "extended_cardoso": 44,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), X( tau, 'W_Assess potential fraud' ), 'A_Concept', 'A_Accepted', +( X( tau, *( 'O_Cancelled', tau ) ), ->( +( *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ), X( tau, *( 'O_Sent (online only)', tau ) ), ->( 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ), X( tau, 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 2.845
+    },
+    "abstracted_1.00_imf_0.10": {
+      "training_coverage": 1.0,
+      "noise_threshold": 0.1,
+      "training_cases": 31509,
+      "training_variants": 2680,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 28066,
+        "fitting_percentage": 89.0729632803326,
+        "variants": 2680,
+        "states": 97,
+        "sound": true
+      },
+      "align_et_precision": 0.6078174173244596,
+      "size": {
+        "nodes": 73,
+        "arcs": 92
+      },
+      "silent_transitions": 24,
+      "extended_cardoso": 43,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( X( tau, 'W_Assess potential fraud' ), ->( 'A_Concept', 'A_Accepted' ) ), +( *( 'O_Sent (mail and online)', tau ), *( 'O_Create Offer', tau ), ->( 'A_Complete', X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ) ) ), X( tau, +( X( tau, *( 'O_Cancelled', tau ) ), X( 'A_Cancelled', 'A_Pending' ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) )",
+      "seconds": 1.597
+    },
+    "abstracted_1.00_imf_0.20": {
+      "training_coverage": 1.0,
+      "noise_threshold": 0.2,
+      "training_cases": 31509,
+      "training_variants": 2680,
+      "exact_replay": {
+        "cases": 31509,
+        "fitting_cases": 21999,
+        "fitting_percentage": 69.81814719603922,
+        "variants": 2680,
+        "states": 1700,
+        "sound": true
+      },
+      "align_et_precision": 0.5369662768435721,
+      "size": {
+        "nodes": 78,
+        "arcs": 98
+      },
+      "silent_transitions": 26,
+      "extended_cardoso": 47,
+      "tree": "->( 'A_Create Application', X( tau, 'A_Submitted' ), +( 'A_Accepted', 'A_Concept', X( tau, *( 'O_Cancelled', tau ) ), ->( +( X( tau, *( 'W_Assess potential fraud', tau ) ), ->( *( 'O_Create Offer', tau ), +( 'A_Complete', *( 'O_Sent (mail and online)', tau ) ), X( tau, +( *( 'A_Validating', tau ), *( 'O_Returned', tau ), X( tau, *( 'A_Incomplete', tau ) ) ) ), X( tau, ->( 'A_Denied', 'O_Refused' ) ) ) ), X( 'A_Cancelled', 'A_Pending' ) ) ) )",
+      "seconds": 3.84
+    }
+  },
+  "selection": {
+    "rule": "1. sound and exact whole-case replay >= 80 % (lecture of 2026-10-29, slide 36);\n2. maximize Align-ET precision (exact finite-state solver);\n3. tie: fewer nodes, then lower coverage, then lower noise.\nDeviation from the unabstracted refinement, stated openly: the upper band bound\n82 % (own choice) is dropped. No abstracted candidate lies in [80, 82] % (gap\n77.61 -> 85.35 % in this sweep), and the bound would have excluded candidates\nthat are better in replay, precision and size than every candidate inside the band\nof the unabstracted log.",
+    "evaluated": 53,
+    "not_evaluated": [
+      "abstracted_0.95_imf_0.00",
+      "abstracted_1.00_imf_0.00"
+    ],
+    "eligible": 21,
+    "selected": "abstracted_0.70_imf_0.00",
+    "identical_tree_settings": [
+      "abstracted_0.70_imf_0.00",
+      "abstracted_0.70_imf_0.03",
+      "abstracted_0.75_imf_0.00",
+      "abstracted_0.75_imf_0.03",
+      "abstracted_0.75_imf_0.05"
+    ]
+  }
+}

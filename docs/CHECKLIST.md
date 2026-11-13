@@ -8,6 +8,8 @@
 - [x] Python-Umgebung und verwendete Paketversionen dokumentieren und prüfen.
 - [x] Graphviz-Rendering und lokalen Jupyter-Kernel prüfen; Kernel-Codeausführung erfolgreich.
 - [x] Vollständigen Event Log laden und Vorschau eines Falls speichern.
+- [x] Repository aufgeräumt (13.11.): Kursmaterial (Folien, Assignment, Vorlage, Kurs-`index.html`) nicht mehr getrackt, nur lokal; Manifeste nach `docs/manifests/`; kurze README, Architekturübersicht (`docs/ARCHITECTURE.md`), Reproduktionsanleitung, Doku-Index und Ordner-READMEs für `scripts/` und `results/`.
+- [ ] Entscheiden, ob das Kursmaterial auch aus der Git-Historie entfernt werden soll (erfordert Force-Push).
 
 ## Einführung und technische Grundlagen
 - [ ] Anwendungsbereich, Entstehung und Prozess des Logs anhand externer Quellen beschreiben.
@@ -56,13 +58,16 @@
 - [x] Finales BPMN mit Blockstruktur-Tabelle (18 XOR-, 2 AND-Paare), sprachäquivalent zum Petri-Netz.
 - [x] Held-out-Prüfung: Discovery auf Trainingsfällen ergibt identischen Baum; Test 80,32 % vs. Training 80,48 %.
 - [x] Decision Mining zweistufig: zuerst Wahrscheinlichkeitsgraph, dann Bedingungen; Neuberechnung auf dem finalen Modell (18 Splits, Guards Test 9,46 %).
-- [x] Decision Mining in Merkmalsstufen (Tutorium): nur Case → + Event → + Feature Engineering; Balanced Accuracy 0,514 → 0,562 → 0,749 (D35).
+- [x] Decision Mining in Merkmalsstufen (Tutorium): nur Case → + Event → + Feature Engineering; Balanced Accuracy 0,514 → 0,562 → 0,744 (D35).
+- [x] Finales Decision Mining mit Bedingungen: CART-Parameter je Split per gruppierter Kreuzvalidierung optimiert (Balanced Accuracy 0,810, 18/18 Splits über Zufall); Wahrscheinlichkeiten nur im Anhang (D36, docs/OPTIMIZATION.md).
 - [x] Messverfahren je Qualitätskriterium verglichen (Token vs. Alignment vs. exakte Abdeckung usw.), was verwendet und warum (D34, results/comparison/metric_methods.md).
 - [x] Anforderung „mindestens 80 % aller Fälle“ (Folie 36) umgesetzt; 100 %-Konformität bewusst nicht angestrebt (D33).
+- [x] Event-Abstraktion (12.11., D37): Logging-Artefakte statt Edge Cases identifiziert (Zeitstempel-Evidenz), Alternativen geprüft, Refinement + 32 Edit-Kombinationen neu; finales Modell 85,35 %, Align-ET 0,826, 56 Knoten, 17 Tasks, 11 XOR-/2 AND-Paare; Decision Mining (11 Splits, 0,790, Guards Test 13,28 %) und Signavio neu; fairer Vergleich auf gemeinsamem Log (docs/EVENT_ABSTRACTION.md). Die Einträge oben zu G2+G3+R3+R4, 18 XOR, 80,43 %, 0,810 beschreiben das archivierte Vorgängermodell.
+- [ ] Eigene Berichtstexte an die Event-Abstraktion anpassen (Liste veralteter Zahlen als `writenote` in `report/sections/04_process_model.tex`).
 - [ ] Finales Modell in SAP Signavio importieren, Screenshot in den Anhang (Dateien und Anleitung: docs/SIGNAVIO.md).
 - [x] Event vs. Case vs. Trace vs. Variante als Tabelle (README, report/tables/concepts.tex).
-- [ ] Eigene Fließtexte zu allen neuen Tabellen schreiben (Stichpunkte als `%`-Kommentare in 04_process_model.tex).
-- [ ] Entscheiden: Hybrid aus Regeln (nur wo besser als Mehrheit) und Wahrscheinlichkeiten für die Simulation umsetzen oder nur diskutieren.
+- [ ] Eigene Fließtexte zu allen neuen Tabellen schreiben (Stichpunkte sichtbar im PDF: blau = schreiben, rot = kürzen/verschieben).
+- [x] Entschieden (30.10.): kein Hybrid; Bedingungen final, Wahrscheinlichkeiten im Anhang.
 - [ ] Änderungen committen und Branch pushen.
 
 ## Advanced: eine Option auswählen
@@ -71,6 +76,7 @@
 
 ## Bericht und Reproduzierbarkeit
 - [ ] Englischer Bericht mit höchstens fünf Seiten ohne Literatur und Anhang.
+- [ ] Rote Kürzungsnotizen umsetzen; vor der Abgabe alle Notizen mit `\authornotesfalse` in `report/main.tex` ausblenden und Seitenzahl prüfen.
 - [ ] Abstract in vier bis fünf selbst geschriebenen Sätzen.
 - [x] Öffentlichen Repository-Link anklickbar im technischen LaTeX-Abschnitt eintragen.
 - [ ] Die faktischen Parametertabellen und Seeds sind im Anhang; zentrale Designentscheidungen im eigenen Bericht erläutern.

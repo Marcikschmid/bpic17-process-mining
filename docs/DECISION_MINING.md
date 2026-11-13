@@ -2,30 +2,50 @@
 
 ## Ergebnis und Grenzen
 
+**Stand 2026-11-12 (Event-Abstraktion, D37, [EVENT_ABSTRACTION.md](EVENT_ABSTRACTION.md)):**
+Neu gerechnet auf dem finalen Modell nach Abstraktion + R1 (`results/final/`, Manifest:
+`tmp/evaluation/abstracted_sequences.json`). `scripts/mine_decisions.py` wendet dieselbe
+Abstraktion auf die Roh-Events an; die Attribute stammen weiterhin von `O_Create Offer`.
+11 XOR-Splits (7 Wahlen, 4 Schleifen, alle zweiwegig), 304.527 ausgerichtete Entscheidungen;
+Merkmalsstufen 0,535 → 0,632 → 0,701, final optimiert 0,790; 11 / 11 über Zufallsniveau;
+harte Guards 4.130 / 31.509 = 13,11 % (Test 13,28 %), Struktur 85,35 %. Mittelwerte nicht direkt
+mit dem Vorlauf vergleichbar: die dortigen Artefakt-Splits (W_-Logging, Zählschleifen) waren
+leicht vorherzusagen. Vorlauf archiviert in `results/before_abstraction/decision_mining/`;
+die Zahlen unten beschreiben diesen Vorlauf.
+
 **Stand 2026-10-30:** Neu gerechnet auf dem finalen Modell nach den manuellen
 Änderungen G2+G3+R3+R4 (`results/final/`, [MANUAL_EDITS.md](MANUAL_EDITS.md)). Der
 Lauf vom 2026-10-18 auf dem verfeinerten IMf-Modell (16 Splits, 453.820
 Beobachtungen, Guards 3.277 / 31.509 = 10,40 %, Test 10,19 %) ist im Git-Verlauf erhalten.
 
 **Zweistufig (Tutor-Feedback, D31):**
-1. **Verzweigungswahrscheinlichkeiten** ohne Daten: Häufigkeit je ausgehendem
+1. **Verzweigungswahrscheinlichkeiten** ohne Daten (nur Anhang): Häufigkeit je ausgehendem
    XOR-Fluss aus den optimalen Alignments, `results/decision_mining/branch_probabilities.{pdf,png,csv,tex}`
    (`scripts/render_branch_probabilities.py`). Schleifensplits zählen je Besuch.
-2. **Bedingungen** nach de Leoni/van der Aalst (2013) mit CART, wie unten beschrieben,
-   in drei Merkmalsstufen (Tutorium, D35): nur Case-Attribute → + Event-Attribute
-   (Primärmodell, BPMN-Bedingungen) → + Feature Engineering.
+2. **Bedingungen = finales Ergebnis** nach de Leoni/van der Aalst (2013) mit CART:
+   Merkmalsstufen (Tutorium, D35), danach Parameteroptimierung des finalen Baums je Split (D36).
 
-| Stufe | Merkmale | Mittlere Balanced Accuracy (Test) | Splits über Zufallsniveau (1/Zweige) |
-|---|---|---:|---:|
-| A: Case | `ApplicationType`, `LoanGoal`, `RequestedAmount` | 0,514 | 5 / 18 |
-| B: Case + Event (primär) | + letzte synchronisierte Angebotswerte | 0,562 | 8 / 18 |
-| C: + Feature Engineering | + Anzahl Events/Angebote/`A_Incomplete`, Gateway-Besuche, Tage seit Fallbeginn, letzte Aktivität | 0,749 | 14 / 18 |
+| Stufe | Merkmale | CART-Parameter | Mittlere Balanced Accuracy (Test) | Splits über Zufallsniveau (1/Zweige) |
+|---|---|---|---:|---:|
+| A: Case | `ApplicationType`, `LoanGoal`, `RequestedAmount` | fest (Tiefe 3, Blatt 50) | 0,514 | 5 / 18 |
+| B: + Event | + letzte synchronisierte Angebotswerte | fest | 0,562 | 8 / 18 |
+| C: + Verlauf (Feature Engineering) | + Anzahl Events/Angebote/`A_Incomplete`, letzte Aktivität und deren Häufigkeit, Tage seit Fallbeginn | fest | 0,744 | 14 / 18 |
+| **Final** | wie C | **optimiert je Split** | **0,810** | **18 / 18** |
 
-Gleicher Fall-Split, gleiche CART-Parameter, gleiche Testfälle für alle Stufen
-(`results/decision_mining/feature_stages.{csv,tex}`). Feature Engineering = neue
-Eingangsgrößen aus Rohdaten ableiten, die Fachwissen kodieren; hier ausschließlich
-aus dem synchronisierten Präfix vor der Entscheidung (kein Leakage). Grenze: Verlaufs-
-merkmale beschreiben teils den Prozesszustand statt Geschäftsregeln.
+Stufen A–C: gleicher Fall-Split, gleiche feste CART-Parameter, gleiche Testfälle → reiner
+Vergleich der Merkmalssätze (`results/decision_mining/feature_stages.{csv,tex}`).
+Feature Engineering = neue Eingangsgrößen aus Rohdaten ableiten, die Fachwissen kodieren;
+hier ausschließlich aus Events vor der Entscheidung (kein Leakage) und nur Größen, die
+aus der Fallhistorie berechenbar sind (Gateway-Besuche stehen nicht im Log und wurden
+deshalb durch die Häufigkeit der letzten Aktivität als Schleifenzähler ersetzt).
+Grenze: Verlaufsmerkmale beschreiben teils den Prozesszustand statt Geschäftsregeln.
+
+**Optimierung des finalen Baums (D36, [OPTIMIZATION.md](OPTIMIZATION.md)):** je Split
+Rastersuche `max_depth` {2, 3, 4, 5} × `min_samples_leaf` {25, 50, 100, 200} ×
+`class_weight` {keine, balanced}; gruppierte 5-fach-Kreuzvalidierung nur auf Trainingsfällen
+(alle Entscheidungen eines Falls im selben Fold); Zielgröße Balanced Accuracy; innerhalb
+von 0,005 des Besten der Baum mit den wenigsten Blättern. Kreuzvalidierung und Test
+liegen nah beieinander (z. B. D01 0,976 / 0,975). Gewählte Parameter: `decision_tuning.tex`.
 
 Modellwahl (Vorlesung 29.10., Folien 49/52): CART liefert direkt lesbare Regeln
 (Rozinat/van der Aalst 2006; de Leoni/van der Aalst 2013); neuronale Netze mit XAI
@@ -56,24 +76,26 @@ zu gemeinsamen Regelpfaden zusammengefasst; ein vollständiger Präfixabgleich
 gegen sämtliche ursprünglichen Blattpfade sichert dieselbe Klassifikation.
 Die formalen Bedingungen in der BPMN-Datei bleiben unverändert.
 
-**Die Regeln sind keine validierten Geschäftsregeln der Bank.** Ihre Test-Accuracy
-liegt je Split zwischen 0,534 und 0,922. **10 von 18 Bäumen** des Primärmodells sagen nur
-die Mehrheitsklasse vorher (Balanced Accuracy = 1/Zweige: D01, D02, D05, D06, D08, D09,
-D10, D13, D16, D18); nur 7 Splits schlagen die Mehrheitsbaseline um mehr als 1 Prozentpunkt
-(D03, D04, D07, D11, D12, D14, D15).
+**Die Regeln sind keine validierten Geschäftsregeln der Bank.** Balanced Accuracy der
+finalen Bäume im Test 0,528–0,984 (Mittel 0,810); **kein Zweig bleibt unvorhergesagt**
+(vorher sagten 10 von 18 Bäumen nur die Mehrheit vorher). Preis der Zielgröße: bei
+D02, D05, D06, D08 und D13 liegt die einfache Accuracy unter der Mehrheitsquote, weil
+der Baum seltene Wege erkennen soll (`class_weight=balanced` in 10 von 18 Splits).
 Deshalb werden Accuracy, Macro-F1, Balanced Accuracy, Zweighäufigkeiten und
 nicht vorhergesagte Zweige gemeinsam ausgewiesen.
 
-Wird jeder Baum als harte Routingbedingung erzwungen, können **3.055 / 31.509 Fälle
-(9,70 %)** vollständig replayt werden. Im getrennten Test sind es **894 / 9.453
-(9,46 %)**; im Training 2.161 / 22.056 (9,80 %). Das wurde durch vollständiges
+Wird jeder Baum als harte Routingbedingung erzwungen, können **2.263 / 31.509 Fälle
+(7,18 %)** vollständig replayt werden. Im getrennten Test sind es **670 / 9.453
+(7,09 %)**; im Training 1.593 / 22.056 (7,22 %). Das wurde durch vollständiges
 guardabhängiges Tau-/NFA-Replay aller Fälle geprüft, mit allen erlaubten Pfaden,
 ohne Token-Einfügung und ohne Beschränkung auf das eine gewählte Alignment.
+Vorher (Mehrheitsbäume, Stufe B): 3.055 Fälle (9,70 %). Ein Fall passt nur, wenn
+alle seine Entscheidungen richtig vorhergesagt werden; deterministische Bedingungen
+können einen stochastischen Prozess nicht vollständig abbilden.
 
 Die **80,43 %** (25.343 Fälle) des finalen Modells betreffen das Kontrollflussmodell **ohne** diese Guards.
-Ursache des Verlusts: Mehrheitsbäume schließen Minderheitszweige deterministisch aus;
-für Simulation daher Wahrscheinlichkeiten aus Schritt 1 dort verwenden, wo ein Baum
-die Mehrheitsbaseline nicht schlägt (Hybrid nicht implementiert, offene Entscheidung).
+Finales Ergebnis sind die Bedingungen; die Wahrscheinlichkeitsversion steht nur im Anhang
+(Entscheidung 30.10., kein Hybrid).
 Dessen PNML, BPMN und Qualitätswerte bleiben erhalten. Die bisherigen Precision-,
 Generalization- und Simplicity-Werte werden dem experimentellen Guard-Modell nicht
 als neu gemessene Werte zugeschrieben. Für realistische Simulation sind zusätzliche

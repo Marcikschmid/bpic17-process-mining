@@ -50,3 +50,14 @@ results/decision_mining/observations/
 # Downloaded third-party literature stays local; track source catalogues only
 literature/bpic2017/*.pdf
 literature/code/
+
+# Course materials (lecture slides, assignment, template) and personal notes stay local:
+# third-party copyright, not part of the analysis code.
+/1 Introduction/
+/2 Process Mining/
+/Allgemeines/
+/index.html
+/Praktical cource.txt
+
+# Local assistant settings
+.claude/

@@ -1,12 +1,12 @@
 {
   "source_bpmn": "results/final/final_model.bpmn",
-  "decision_mining_sha256": "6a7715a273c3973bfaaeaa6cf040d0832b66e0b40fac01ad3b1bbbd3a9964712",
+  "decision_mining_sha256": "7ee96138a4393ba9a04bb759411f6a3b4d1e61d08b28e737a93b7688a1d77184",
   "files": [
     {
       "file": "results/signavio/bpic17_final_probabilities.bpmn",
-      "sha256": "fbec2d10af51fa9266ace8cf83cec7e9a12f09ed5d00290c7f29075b227c2af7",
-      "tasks": 25,
-      "sequence_flows": 87,
+      "sha256": "31e14ef8e51fe8df1e2b419f7274cf0e95dcb9d57b7dac97c06e4d96a0c1537d",
+      "tasks": 17,
+      "sequence_flows": 57,
       "diagram": {
         "duplicate_ids": 0,
         "nodes_without_shape": [],
@@ -18,9 +18,9 @@
     },
     {
       "file": "results/signavio/bpic17_final_rules.bpmn",
-      "sha256": "6408ba89a77492d8472ce4c76c955c80963efadf25bd9d52fe3f905e10171bdb",
-      "tasks": 25,
-      "sequence_flows": 87,
+      "sha256": "9a6c0efc2c11453d4d9f7bc724ef812f7ff24d93af855df2efb6ec53ca48f3be",
+      "tasks": 17,
+      "sequence_flows": 57,
       "diagram": {
         "duplicate_ids": 0,
         "nodes_without_shape": [],

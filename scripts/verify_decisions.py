@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):os.environ[key]='1'
 from scripts.mine_decisions import MODEL
-from src.decision_mining import bpmn_net,encode_features,predict_rules,observations,NS,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,feel_guard
+from src.decision_mining import bpmn_net,encode_final,predict_rules,observations,NS,CASE_FIELDS,EVENT_FIELDS,ENGINEERED,feel_guard
 OUT=ROOT/'results/decision_mining'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def main():
@@ -34,7 +34,7 @@ def main():
             for flow in gateway['outgoing']:
                 assert flows[flow].find('b:conditionExpression',NS).text==feel_guard(gateway['leaves'],flow)
             checked+=1
-        selections=json.loads((ROOT/'docs/decision_report_manifest.json').read_text())
+        selections=json.loads((ROOT/'docs/manifests/decision_report_manifest.json').read_text())
         for p,record in selections.items():assert sha(ROOT/'report'/p)==record['sha256']==sha(ROOT/record['source']),p
         result={'status':'ok','scientific_audit_source_sha256':audit['source_sha256'],
             'presentation_manifest_sha256':sha(OUT/'presentation_manifest.json'),'report_copies_checked':len(selections),
@@ -80,7 +80,7 @@ def main():
             assert set(row['features'])<=allowed
             assert row['flow'] in g['outgoing'] and row['gateway']==g['id']
             assert row['split']==('train' if row['case_id'] in train else 'test')
-            encoded_raw=encode_features(row['features']);encoded={k:float(np.float32(v)) if isinstance(v,(float,int)) else v for k,v in encoded_raw.items()}
+            encoded_raw=encode_final(row['features']);encoded={k:float(np.float32(v)) if isinstance(v,(float,int)) else v for k,v in encoded_raw.items()}
             prediction=predict_rules(g['leaves'],encoded);rules_checked+=1;counts[row['flow']]+=1
             assert exported_prediction(g['leaves'],encoded_raw)==prediction
             if row['split']=='test':test_truth.append(row['flow']);test_pred.append(prediction)

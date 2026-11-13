@@ -1,0 +1,21 @@
+\begin{tabular}{llrl}
+\hline
+Rule & Label & Events & Evidence \\
+\hline
+Mirror (drop) & \texttt{O\_Created} & 42,995 & directly preceded by \texttt{O\_Create Offer}: 100.0\,\%; $\le$60\,s: 100.0\,\% \\
+Mirror (drop) & \texttt{O\_Accepted} & 17,228 & directly followed by \texttt{A\_Pending}: 100.0\,\%; $\le$60\,s: 100.0\,\% \\
+Work item (drop) & \texttt{W\_Complete application} & 19,104 & complete share 12.8\,\%; A\_ event $\le$1\,s: 99.7\,\% \\
+Work item (drop) & \texttt{W\_Validate application} & 15,848 & complete share 7.6\,\%; A\_ event $\le$1\,s: 89.2\,\% \\
+Work item (drop) & \texttt{W\_Call incomplete files} & 2,793 & complete share 1.7\,\%; A\_ event $\le$1\,s: 79.5\,\% \\
+Work item (drop) & \texttt{W\_Handle leads} & 3,493 & complete share 7.4\,\%; A\_ event $\le$1\,s: 99.9\,\% \\
+Work item (drop) & \texttt{W\_Call after offers} & 342 & complete share 0.2\,\%; A\_ event $\le$1\,s: 54.1\,\% \\
+Simultaneous (collapse) & \texttt{O\_Cancelled} & 4,429 & direct repetitions $\le$1\,s: 99.5\,\% \\
+Simultaneous (collapse) & \texttt{O\_Refused} & 975 & direct repetitions $\le$1\,s: 100.0\,\% \\
+Simultaneous (collapse) & \texttt{O\_Sent (mail and online)} & 3,111 & direct repetitions $\le$1\,s: 99.9\,\% \\
+Simultaneous (collapse) & \texttt{O\_Sent (online only)} & 85 & direct repetitions $\le$1\,s: 100.0\,\% \\
+Edge case (keep) & \texttt{W\_Assess potential fraud} & 282 & in 0.9\,\% of cases \\
+Edge case (keep) & \texttt{O\_Sent (online only)} & 2,026 & in 5.7\,\% of cases \\
+\hline
+\multicolumn{4}{l}{Events 475,306 $\rightarrow$ 364,930; labels 24 $\rightarrow$ 17; variants 5,623 $\rightarrow$ 2,680; cases 31,509 (all kept)} \\
+\hline
+\end{tabular}

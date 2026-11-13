@@ -1,14 +1,17 @@
-\begin{tabular}{llrrr}
+\begin{tabular}{llrrrrr}
 \hline
-Criterion & Measure & IM & IMf & Final \\
+Criterion & Measure & IM & IMf & Final (before) & Abstr.\ IMf & Final \\
 \hline
-Fitness & exact replay \% & 100.00 & 80.45 & 80.43 \\
- & alignment & 1.000 & 0.977 & 0.979 \\
-Precision & Align-ET & 0.293 & 0.598 & 0.695 \\
-Generalization & alignment & 0.976 & 0.991 & 0.988 \\
-Simplicity & arc degree & 0.617 & 0.701 & 0.710 \\
- & nodes & 87 & 89 & 98 \\
- & Ext.\ Cardoso & 47 & 52 & 55 \\
- & ECyM & 1,552 & 551 & 166 \\
+& evaluation log & C & C & C & A & A \\
+Fitness & exact replay \% & 100.00 & 80.45 & 80.43 & 85.35 & 85.35 \\
+ & alignment & 1.000 & 0.977 & 0.979 & 0.983 & 0.983 \\
+Precision & Align-ET & 0.293 & 0.598 & 0.695 & 0.766 & 0.826 \\
+Generalization & alignment & 0.976 & 0.991 & 0.988 & 0.992 & 0.989 \\
+Simplicity & arc degree & 0.617 & 0.701 & 0.710 & 0.697 & 0.700 \\
+ & nodes & 87 & 89 & 98 & 46 & 56 \\
+ & Ext.\ Cardoso & 47 & 52 & 55 & 24 & 30 \\
+ & ECyM & 1,552 & 551 & 166 & 25 & 35 \\
+\hline
+\multicolumn{7}{l}{C = completion projection, A = abstracted log; common-log comparison: results/abstraction/comparison.tex} \\
 \hline
 \end{tabular}

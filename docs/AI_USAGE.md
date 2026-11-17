@@ -66,6 +66,8 @@ Dieses Arbeitsprotokoll dient als Grundlage für die spätere, eigene Nutzungser
 
 | 2026-11-13 | Claude Code (Claude Opus 5.5) | Auf Nutzerwunsch Repository aufgeräumt: Kursmaterial aus dem Tracking genommen (lokal erhalten, `.gitignore`), maschinelle Manifeste nach `docs/manifests/` verschoben (Skriptpfade angepasst, Genetic-Prüfung und Report-Auswahl neu ausgeführt), überflüssige `.gitkeep` entfernt; README gekürzt; neue englische Dokumente `ARCHITECTURE.md` (Mermaid-Diagramme, Modul- und Stufenübersicht, Invarianten), `REPRODUCE.md`, `CONCEPTS.md`, Doku-Index und READMEs für `scripts/` und `results/`; veraltete `CODEBASE.md` ersetzt; keine Berichtssätze erzeugt | Offen |
 
+| 2026-11-17 | Claude Code (Claude Opus 5.5) | Auf Nutzerwunsch Repository bereinigt: Bericht aus der Versionierung genommen (lokal erhalten, `.gitignore`), Signavio-Export committet, `main` per Fast-Forward aktualisiert und einziger Branch (Branch `assignment-feedback` gelöscht); Git-Historie in separater Kopie umgeschrieben (Bericht, Vorlesungsfolien, Aufgabenvorlage und Aufgabenstellung aus allen Commits entfernt, Endstand unverändert), vorher Sicherung als Bundle, per Force-Push veröffentlicht; lokale Dateien unverändert | Offen |
+
 Für weitere Schritte die tatsächlich verwendeten Modelle, Prompts beziehungsweise Tätigkeiten und die eigene Prüfung ergänzen. Der technische Importcheck und die Vorschau eines Falls sind Vorarbeiten zur Analyse; wissenschaftliche Berichtstexte wurden nicht verfasst.
 
 Die Aufgabenstellung verlangt eine Nutzungserklärung. Für Schreibunterstützung erlaubt sie Verbesserungen von Präzision und Klarheit und untersagt das Generieren ganzer Sätze oder Absätze. Die Verantwortung für den Inhalt liegt beim Autor.

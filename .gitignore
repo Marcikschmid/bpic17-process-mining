@@ -20,8 +20,8 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 
-# LaTeX build output
-report/build/
+# LaTeX report: kept only locally; the submitted version is edited in Overleaf
+report/
 *.aux
 *.bbl
 *.bcf

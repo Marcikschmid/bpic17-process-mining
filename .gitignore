@@ -61,3 +61,6 @@ literature/code/
 
 # Local assistant settings
 .claude/
+
+# Diagram exports made in SAP Signavio (kept only locally)
+results/signavio/*.pdf

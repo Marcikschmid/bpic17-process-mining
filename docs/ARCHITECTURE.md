@@ -155,6 +155,7 @@ directly comparable; `compare_abstraction.py` evaluates all models on log A.
 | `model_assessment.py` | One quality gate for any Petri net: soundness, four quality dimensions, diagnostics |
 | `soundness.py` | WF-net structure, classical/easy/relaxed soundness, Woflan cross-check |
 | `replay_coverage.py` | Exact whole-case acceptance on the complete marking graph; language equivalence |
+| `bpmn_layout.py` | Block-structured left-to-right BPMN diagram layout for modelling tools (standard sizes, orthogonal flows, wrapped rows, legend boxes below the diagram) |
 | `finite_alignment.py` | Optimal alignments on a finite marking graph (cross-checked against PM4Py costs) |
 | `finite_precision.py` | PM4Py Align-ET computed on the finite marking graph |
 | `simplicity.py` | Own size, Extended Cardoso and Extended Cyclomatic measures |
@@ -194,7 +195,7 @@ directly comparable; `compare_abstraction.py` evaluates all models on log A.
 | `verify_evaluation.py`, `verify_refinement.py` | Case weights, checksums, PM4Py reference samples |
 | `verify_genetic_trial.py`, `audit_*dead_transitions.py` | Genetic export and exact unboundedness/dead-transition certificates |
 | `verify_decisions.py` | Every rule prediction, the case split, all raw-data snapshots, report copies |
-| `export_signavio.py` | Signavio files: diagram completeness and language equivalence with the final net |
+| `export_signavio.py` | Three Signavio files (plain, branch probabilities, decision rules with legend): own names, block-structured layout (`src/bpmn_layout.py`), diagram completeness, orthogonal non-overlapping layout and language equivalence with the final net |
 
 ## 7. Extending the pipeline
 

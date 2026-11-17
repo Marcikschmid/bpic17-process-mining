@@ -3,33 +3,108 @@
   "decision_mining_sha256": "7ee96138a4393ba9a04bb759411f6a3b4d1e61d08b28e737a93b7688a1d77184",
   "files": [
     {
-      "file": "results/signavio/bpic17_final_probabilities.bpmn",
-      "sha256": "31e14ef8e51fe8df1e2b419f7274cf0e95dcb9d57b7dac97c06e4d96a0c1537d",
+      "file": "results/signavio/bpic17_final_plain.bpmn",
+      "sha256": "d8cf73b27bfcfb1743647dd49a7a935e7508bb89a5878a3763d99ebd3c0aee7c",
+      "name": "Control flow - BPIC-17 final model",
       "tasks": 17,
       "sequence_flows": 57,
+      "flow_labels": 0,
+      "layout": {
+        "name": "Control flow - BPIC-17 final model",
+        "width": 1430,
+        "height": 1575,
+        "rows": 4,
+        "row_widths": [
+          1230,
+          1220,
+          1060,
+          948
+        ],
+        "flow_label_gap": 60,
+        "legend_boxes": 0,
+        "legend_columns": 0
+      },
       "diagram": {
         "duplicate_ids": 0,
         "nodes_without_shape": [],
         "flows_without_edge": [],
-        "edges_below_two_waypoints": []
+        "edges_below_two_waypoints": [],
+        "non_orthogonal_edges": [],
+        "overlapping_shapes": [],
+        "negative_coordinates": []
+      },
+      "language_equivalent_to_final_pnml": true,
+      "ok": true
+    },
+    {
+      "file": "results/signavio/bpic17_final_probabilities.bpmn",
+      "sha256": "95af98ef0700c543b332588f201ef2211657d46d5b53a53902b9f7872099c986",
+      "name": "Branch probabilities - BPIC-17 final model",
+      "tasks": 17,
+      "sequence_flows": 57,
+      "flow_labels": 22,
+      "layout": {
+        "name": "Branch probabilities - BPIC-17 final model",
+        "width": 1434,
+        "height": 1575,
+        "rows": 4,
+        "row_widths": [
+          1232,
+          1228,
+          1068,
+          954
+        ],
+        "flow_label_gap": 62,
+        "legend_boxes": 0,
+        "legend_columns": 0
+      },
+      "diagram": {
+        "duplicate_ids": 0,
+        "nodes_without_shape": [],
+        "flows_without_edge": [],
+        "edges_below_two_waypoints": [],
+        "non_orthogonal_edges": [],
+        "overlapping_shapes": [],
+        "negative_coordinates": []
       },
       "language_equivalent_to_final_pnml": true,
       "ok": true
     },
     {
       "file": "results/signavio/bpic17_final_rules.bpmn",
-      "sha256": "9a6c0efc2c11453d4d9f7bc724ef812f7ff24d93af855df2efb6ec53ca48f3be",
+      "sha256": "3ec2d064986cbd4a20160e04a2fc81c9144b4f93627fbd11766f9a6baec6f976",
+      "name": "Decision rules - BPIC-17 final model",
       "tasks": 17,
       "sequence_flows": 57,
+      "flow_labels": 22,
+      "layout": {
+        "name": "Decision rules - BPIC-17 final model",
+        "width": 1430,
+        "height": 2353,
+        "rows": 4,
+        "row_widths": [
+          1230,
+          1220,
+          1060,
+          948
+        ],
+        "flow_label_gap": 60,
+        "legend_boxes": 12,
+        "legend_columns": 3
+      },
       "diagram": {
         "duplicate_ids": 0,
         "nodes_without_shape": [],
         "flows_without_edge": [],
-        "edges_below_two_waypoints": []
+        "edges_below_two_waypoints": [],
+        "non_orthogonal_edges": [],
+        "overlapping_shapes": [],
+        "negative_coordinates": []
       },
       "language_equivalent_to_final_pnml": true,
       "ok": true
     }
   ],
-  "implementation_sha256": "0ab1f320404c55bb636bbd67586029bd79f51f06fded5e2dd9515fb40804c59c"
+  "implementation_sha256": "13462a635739ca23c0187bda7bde5c6f13e6071d9bf01c027592b4cb85cfedee",
+  "layout_sha256": "7981e8256f0e2294b13f3e0e8b00d7b52d4b4d337ccb08d0c85f5e175313575b"
 }

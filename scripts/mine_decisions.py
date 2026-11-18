@@ -33,7 +33,9 @@ def write(p,x):
 GRID={'max_depth':(2,3,4,5),'min_samples_leaf':(25,50,100,200),'class_weight':(None,'balanced')}
 TOLERANCE=0.005;FOLDS=5
 # Fixed parameters of the feature-stage comparison (same for all stages, as before tuning).
-STAGE_PARAMETERS={'max_depth':3,'min_samples_leaf':50}
+# class_weight='balanced' in every stage (2026-11-18): without it the objective (balanced accuracy)
+# rewards weighting, so the tuning step would absorb a gain that belongs to class weighting.
+STAGE_PARAMETERS={'max_depth':3,'min_samples_leaf':50,'class_weight':'balanced'}
 
 
 def tune(X,y,groups):
@@ -226,8 +228,9 @@ def main():
         'write_operations':writes,'write_threshold_percentage':95,'guarded_replay':guarded,
         'case_fields':CASE_FIELDS,'event_fields':EVENT_FIELDS,'engineered_fields':[*ENGINEERED,'eng_last_activity'],
         'feature_stages':{'case':'case attributes only','case_event':'case + last synchronized event attributes',
+                          'case_history':'case + prefix aggregates, without event attributes (order check)',
                           'engineered':'case_event + aggregates of the synchronized prefix (counts, last activity and its count, elapsed days); final model'},
-        'excluded':['case/Event/Offer IDs','Accepted','Selected','resource','Action','EventOrigin',
+        'excluded':['case/Event/Offer IDs','Accepted','Selected','CreditScore (retrospective; encodes later acceptance)','resource','Action','EventOrigin',
                     'raw timestamps and activity labels as direct inputs (engineered stage uses prefix aggregates only)'],
         'limitations':['One deterministic optimal alignment; choices/parallel data order may be ambiguous.',
            'Control-flow discovered using full log: held-out metrics assess guards conditional on this fixed model.',

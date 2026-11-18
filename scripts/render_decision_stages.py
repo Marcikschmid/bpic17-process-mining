@@ -1,7 +1,9 @@
 """Compare the decision-mining feature stages and report the tuned final trees.
 
 Reads results/decision_mining/decision_mining.json. Stages (case -> +event ->
-+engineered) use the same split, test cases and FIXED CART parameters; 'final'
++engineered; case_history = case + history without event attributes, order check)
+use the same split, test cases and FIXED CART parameters incl. balanced class
+weights; 'final'
 is the tuned engineered tree whose rules are the BPMN conditions. Writes
 feature_stages.{csv,tex} and decision_tuning.tex. Balanced accuracy 1/k (k =
 number of branches) = the tree never beats always predicting one branch.
@@ -12,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results/decision_mining"
-STAGES = ("case", "case_event", "engineered")
+STAGES = ("case", "case_event", "case_history", "engineered")
 
 
 def main():
@@ -33,16 +35,16 @@ def main():
         writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
-    columns = (*STAGES, "final")
+    columns = ("case", "case_event", "engineered", "case_history", "final")
     above = {c: sum(r[f"{c}_balanced"] > 1 / r["branches"] + 1e-9 for r in rows) for c in columns}
     mean = {c: sum(r[f"{c}_balanced"] for r in rows) / len(rows) for c in columns}
-    tex = [r"\begin{tabular}{lrrrrrrr}", r"\hline",
-           r" & & & & \multicolumn{4}{c}{Balanced accuracy (test)} \\",
-           r" & & & & \multicolumn{3}{c}{fixed: depth 3, leaf 50} & tuned \\",
-           r"Split & Branches & Test $n$ & Majority acc. & Case & +Event & +History & Final \\", r"\hline"]
+    tex = [r"\begin{tabular}{lrrrrrrrr}", r"\hline",
+           r" & & & & \multicolumn{5}{c}{Balanced accuracy (test)} \\",
+           r" & & & & \multicolumn{4}{c}{fixed: depth 3, leaf 50, balanced class weights} & tuned \\",
+           r"Split & Branches & Test $n$ & Majority acc. & Case & +Event & +History & Case+History & Final \\", r"\hline"]
     for r in rows:
         tex.append(f"{r['split']} & {r['branches']} & {r['test']:,} & {r['majority_accuracy']:.3f} & {r['case_balanced']:.3f} & "
-                   f"{r['case_event_balanced']:.3f} & {r['engineered_balanced']:.3f} & {r['final_balanced']:.3f} \\\\")
+                   f"{r['case_event_balanced']:.3f} & {r['engineered_balanced']:.3f} & {r['case_history_balanced']:.3f} & {r['final_balanced']:.3f} \\\\")
     tex += [r"\hline", "Mean & & & & " + " & ".join(f"{mean[c]:.3f}" for c in columns) + r" \\",
             "Splits above chance ($1/k$) & & & & " + " & ".join(f"{above[c]} / {len(rows)}" for c in columns) + r" \\",
             r"\hline", r"\end{tabular}"]

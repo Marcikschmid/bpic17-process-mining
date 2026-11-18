@@ -28,7 +28,7 @@ class DecisionTests(unittest.TestCase):
         with self.assertRaises(ValueError):FiniteAligner(*pm4py.convert_to_petri_net(parse("->('A','B')")),max_states=1)
 
     def test_future_outcome_and_log_only_moves_do_not_update_inputs(self):
-        events=[{'CreditScore':400,'Accepted':True},{'CreditScore':999},{'CreditScore':700}]
+        events=[{'OfferedAmount':400,'Accepted':True,'CreditScore':900},{'OfferedAmount':999},{'OfferedAmount':700}]
         alignment={'moves':[{'kind':'tau','transition':'choice','event_index':None},
             {'kind':'sync','transition':'A','event_index':0},
             {'kind':'log','transition':None,'event_index':1},
@@ -36,9 +36,10 @@ class DecisionTests(unittest.TestCase):
             {'kind':'sync','transition':'B','event_index':2},
             {'kind':'tau','transition':'choice','event_index':None}]}
         rows=observations(events,{'RequestedAmount':1000,'concept:name':'secret'},alignment,{'choice':('D01','flow')})
-        self.assertNotIn('event_CreditScore',rows[0]['features'])
-        self.assertEqual(rows[1]['features']['event_CreditScore'],400)
-        self.assertEqual(rows[2]['features']['event_CreditScore'],700)
+        self.assertNotIn('event_OfferedAmount',rows[0]['features'])
+        self.assertEqual(rows[1]['features']['event_OfferedAmount'],400)
+        self.assertEqual(rows[2]['features']['event_OfferedAmount'],700)
+        self.assertFalse(any('CreditScore' in k for r in rows for k in r['features']))
         self.assertFalse(any('Accepted' in k or 'secret' in str(v) for r in rows for k,v in r['features'].items()))
 
     def test_engineered_features_use_only_the_synchronized_prefix(self):

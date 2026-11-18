@@ -11,12 +11,15 @@ BPMN='http://www.omg.org/spec/BPMN/20100524/MODEL'
 NS={'b':BPMN,'di':'http://www.omg.org/spec/BPMN/20100524/DI',
     'dc':'http://www.omg.org/spec/DD/20100524/DC','edge':'http://www.omg.org/spec/DD/20100524/DI'}
 CASE_FIELDS=('ApplicationType','LoanGoal','RequestedAmount')
-EVENT_FIELDS=('CreditScore','FirstWithdrawalAmount','MonthlyCost','NumberOfTerms','OfferedAmount')
+# CreditScore is excluded (2026-11-18): on O_Create Offer it is a retrospective snapshot like
+# Accepted/Selected; a positive score occurs for 15,256 of 15,260 offers that are later accepted
+# and for none of the offers in cancelled cases, i.e. it encodes the future outcome.
+EVENT_FIELDS=('FirstWithdrawalAmount','MonthlyCost','NumberOfTerms','OfferedAmount')
 # Feature engineering: aggregates of the synchronized prefix only (known before the decision).
 # Every feature is computable from the case history alone (log-observable, path-independent),
 # so it can serve as a guard variable; XOR gateway visits are not in the log and are excluded.
 ENGINEERED=('eng_events_so_far','eng_offers_so_far','eng_incomplete_so_far','eng_last_activity_count','eng_elapsed_days')
-STAGES=('case','case_event','engineered')
+STAGES=('case','case_event','case_history','engineered')
 FINAL_STAGE='engineered'
 
 
@@ -119,6 +122,8 @@ def encode_stage(features,stage):
         result['case_RequestedAmount_known']=int('case_RequestedAmount' in features)
         return result
     result=encode_features(features)
+    if stage=='case_history':   # order check: history without event attributes
+        result={k:v for k,v in result.items() if not k.startswith('event_')}
     for k in ENGINEERED:result[k]=float(features.get(k,-1))
     result['eng_elapsed_days_known']=int('eng_elapsed_days' in features)
     result['eng_last_activity']=features.get('eng_last_activity','__NONE__')

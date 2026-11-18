@@ -66,7 +66,7 @@ def letter(index):
 
 
 def parse_rules(text):
-    """Rule block of render_decisions.py -> (test accuracy, {branch label: [conditions]})."""
+    """Rule block of render_decisions.py -> (balanced test accuracy, {branch label: [conditions]})."""
     lines, rules, current = text.split("\n"), {}, None
     for line in lines[2:]:
         match = re.match(r"(B\d+): (.*)", line)
@@ -83,7 +83,7 @@ def parse_rules(text):
 def legend_block(decision, accuracy, entries):
     """One legend box: the branch with the most conditions is the complement ('otherwise') of the others."""
     rest = max(entries[::-1], key=lambda entry: (len(entry[1]), sum(len(rule) for rule in entry[1])))
-    lines = [f"{decision} | test accuracy {accuracy}"]
+    lines = [f"{decision} | balanced accuracy (test) {accuracy}"]
     for entry in [e for e in entries if e is not rest] + [rest]:
         mark, rules = entry
         if entry is rest:

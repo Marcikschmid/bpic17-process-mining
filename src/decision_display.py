@@ -39,7 +39,7 @@ def predicate_text(predicate):
 def annotation_text(gateway,width=68):
     """All rules appear inside the BPMN annotation, with matching branch IDs."""
     rules=compact_rules(gateway['leaves'])
-    lines=[f'{gateway["id"]} | learned XOR rules',f'Test accuracy: {gateway["accuracy"]:.3f}', '']
+    lines=[f'{gateway["id"]} | learned XOR rules',f'Balanced accuracy (test): {gateway["balanced_accuracy"]:.3f}', '']
     for flow in gateway['outgoing']:
         branch=gateway['branches'][flow]
         paths=[rule for rule in rules if rule['class']==flow]

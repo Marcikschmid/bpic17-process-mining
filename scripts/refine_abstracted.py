@@ -10,10 +10,11 @@ Selection rule of the base model (stated before the manual-edit stage):
 2. maximize Align-ET precision (exact finite-state solver);
 3. tie: fewer nodes, then lower coverage, then lower noise.
 Deviation from the unabstracted refinement, stated openly: the upper band bound
-82 % (own choice) is dropped. No abstracted candidate lies in [80, 82] % (gap
-77.61 -> 85.35 % in this sweep), and the bound would have excluded candidates
-that are better in replay, precision and size than every candidate inside the band
-of the unabstracted log.
+82 % (own choice) is dropped. In the first abstracted sweep (log without work
+items, archived in results/before_workitems/) no candidate lay in [80, 82] % (gap
+77.61 -> 85.35 %); the lecture requires at least 80 %, not at most 82 %.
+Since 2026-11-19 the abstracted log contains one event per started W_ work-item
+instance (src/event_abstraction.py); the same grid and rule are applied to it.
 
 Writes results/abstraction/candidates.{json,csv} and results/abstraction/base/.
 """

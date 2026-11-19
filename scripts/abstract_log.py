@@ -2,7 +2,8 @@
 
 Streams the unchanged raw XES once. Checks that its completion events reproduce
 tmp/evaluation/projected_sequences.json (same cases, order and labels), applies
-the abstraction rules with the original timestamps and writes:
+the abstraction rules to the raw events (all life-cycle transitions, original
+timestamps; W_ work items as one event per started instance) and writes:
 
 - tmp/evaluation/abstracted_sequences.json: same schema as the projection cache
   (input of refinement, manual edits, final assessment and decision mining);
@@ -22,8 +23,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from src.event_abstraction import (DROPPED, MIRROR, RULES, SIMULTANEITY_SECONDS, SIMULTANEOUS, WORK_ITEM,
-                                   abstract_labels)
+from src.event_abstraction import (MIRROR, RULES, SIMULTANEITY_SECONDS, SIMULTANEOUS, TERMINAL, abstract_labels,
+                                   is_work_item)
 
 RAW = ROOT / "data/raw/BPI Challenge 2017.xes.gz"
 SOURCE = ROOT / "tmp/evaluation/projected_sequences.json"
@@ -92,7 +93,8 @@ def main():
     lifecycle = defaultdict(Counter)
     label_counts, label_cases = Counter(), Counter()
     mirror = {label: {"events": 0, "adjacent_partner": 0, "gaps": []} for label in MIRROR}
-    work = {label: {"completions": 0, "adjacent_a_within_1s": 0, "neighbours": Counter()} for label in WORK_ITEM}
+    work = defaultdict(lambda: {"completions": 0, "adjacent_a_within_1s": 0, "neighbours": Counter(),
+                                "started_instances": 0, "terminal_of_started": Counter(), "cases": 0})
     repeats = {label: {"direct_repetitions": 0, "gaps": []} for label in SIMULTANEOUS}
     applied, traces, before, after = Counter(), [], [], []
     for index, (case_id, events) in enumerate(raw_cases()):
@@ -103,6 +105,21 @@ def main():
             raise ValueError(f"Completion projection differs from cache at case {index} ({case_id})")
         for a, l, _ in events:
             lifecycle[a][l] += 1
+        state = {}
+        for a, l, _ in events:  # work-item instances (same definition as src/event_abstraction.py)
+            if not is_work_item(a):
+                continue
+            if l == "start" and state.get(a) != "started":
+                state[a] = "started"
+                work[a]["started_instances"] += 1
+            elif l == "schedule" and state.get(a) != "started":
+                state[a] = "scheduled"
+            elif l in TERMINAL:
+                if state.get(a) == "started":
+                    work[a]["terminal_of_started"][l] += 1
+                state.pop(a, None)
+        for a in {a for a, l, _ in events if is_work_item(a) and l == "start"}:
+            work[a]["cases"] += 1
         for a in set(labels):
             label_cases[a] += 1
         label_counts.update(labels)
@@ -114,7 +131,7 @@ def main():
                 if 0 <= j < len(completed) and completed[j][0] == partner:
                     mirror[a]["adjacent_partner"] += 1
                     mirror[a]["gaps"].append(abs(t - completed[j][1]))
-            if a in work:
+            if is_work_item(a):
                 work[a]["completions"] += 1
                 neighbours = [completed[j] for j in (i - 1, i + 1) if 0 <= j < len(completed)]
                 close = [b for b, u in neighbours if b.startswith("A_") and abs(u - t) <= 1]
@@ -124,7 +141,7 @@ def main():
             if a in repeats and i and completed[i - 1][0] == a:
                 repeats[a]["direct_repetitions"] += 1
                 repeats[a]["gaps"].append(abs(t - completed[i - 1][1]))
-        kept, rules = abstract_labels(labels, [t for _, t in completed])
+        kept, rules = abstract_labels([a for a, _, _ in events], [t for _, _, t in events], [l for _, l, _ in events])
         applied.update(rules)
         before.append(labels)
         after.append(kept)
@@ -138,9 +155,16 @@ def main():
                        "gap_to_partner": gap_stats(v["gaps"])} for a, v in mirror.items()},
         "WORK_ITEM": {a: {"raw_events": sum(lifecycle[a].values()), "raw_lifecycle": dict(sorted(lifecycle[a].items())),
                           "complete_share_of_raw_pct": 100 * lifecycle[a]["complete"] / sum(lifecycle[a].values()),
-                          "completion_events": v["completions"], "cases_with_completion_pct": 100 * label_cases[a] / cases,
-                          "adjacent_A_event_within_1s_pct": 100 * v["adjacent_a_within_1s"] / v["completions"],
-                          "adjacent_A_events": dict(v["neighbours"].most_common())} for a, v in work.items()},
+                          "started_instances": v["started_instances"],
+                          "cases_with_started_instance_pct": 100 * v["cases"] / cases,
+                          "terminal_of_started_instances": dict(v["terminal_of_started"]),
+                          "started_instances_ending_in_complete_pct":
+                              100 * v["terminal_of_started"]["complete"] / v["started_instances"]
+                              if v["started_instances"] else None,
+                          "completion_events": v["completions"],
+                          "completion_adjacent_A_event_within_1s_pct":
+                              100 * v["adjacent_a_within_1s"] / v["completions"] if v["completions"] else None,
+                          "adjacent_A_events": dict(v["neighbours"].most_common())} for a, v in sorted(work.items())},
         "SIMULTANEOUS": {a: {"direct_repetitions": v["direct_repetitions"], **gap_stats(v["gaps"])}
                          for a, v in repeats.items()},
         "KEPT": {a: {"events": label_counts[a], "cases_pct": 100 * label_cases[a] / cases}
@@ -149,7 +173,7 @@ def main():
     for a in ("A_Complete", "A_Incomplete", "A_Validating", "A_Concept"):
         evidence.setdefault("reference_application_states", {})[a] = {
             "events": label_counts[a], "cases_pct": 100 * label_cases[a] / cases}
-    removed = {a: label_counts[a] for a in sorted(DROPPED)}
+    removed = {a: label_counts[a] for a in sorted(set(MIRROR) | {a for a in label_counts if is_work_item(a)})}
     cache = {"raw_sha256": source["raw_sha256"], "source_cache": SOURCE.relative_to(ROOT).as_posix(),
              "source_cache_sha256": sha(SOURCE), "abstraction": {"rules": RULES, "applied": dict(applied),
              "implementation_sha256": sha(ROOT / "src/event_abstraction.py")},
@@ -186,9 +210,10 @@ def write_table(audit):
                     f"{pct(v['partner_directly_' + side + '_pct'])}; $\\le$60\\,s: "
                     f"{pct(v['gap_to_partner']['within_60s_pct'])} \\\\")
     for a, v in ev["WORK_ITEM"].items():
-        rows.append(f"Work item (drop) & {tex(a)} & {v['completion_events']:,} & complete share "
-                    f"{pct(v['complete_share_of_raw_pct'])}; A\\_ event $\\le$1\\,s: "
-                    f"{pct(v['adjacent_A_event_within_1s_pct'])} \\\\")
+        ending = v["started_instances_ending_in_complete_pct"]
+        rows.append(f"Work item (1 per instance) & {tex(a)} & {v['started_instances']:,} & in "
+                    f"{pct(v['cases_with_started_instance_pct'])} of cases; started instances ending in complete: "
+                    f"{'--' if ending is None else pct(ending)} \\\\")
     for a, v in ev["SIMULTANEOUS"].items():
         rows.append(f"Simultaneous (collapse) & {tex(a)} & {v['direct_repetitions']:,} & "
                     f"direct repetitions $\\le$1\\,s: {pct(v['within_1s_pct'])} \\\\")

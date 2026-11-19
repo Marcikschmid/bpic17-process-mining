@@ -26,9 +26,15 @@ MODELS = (("alpha_miner", "Alpha (classic)", None),
           ("refined_imf", "IMf refined (before edits)", None),
           ("final_before_abstraction", "Final before abstraction (IMf + G2+G3+R3+R4)",
            ROOT / "results/before_abstraction/assessment/final_model.json"),
-          ("abstracted_base", "Abstracted IMf (before edits)", None),
-          ("final_model", "Final model (abstraction + IMf + R1)", None))
-LOGS = {"tmp/evaluation/projected_sequences.json": "C", "tmp/evaluation/abstracted_sequences.json": "A"}
+          ("abstracted_base_v1", "Abstracted IMf, no work items (before edits)",
+           ROOT / "results/before_workitems/assessment/abstracted_base.json"),
+          ("final_abstraction_r1", "Previous final (abstraction + IMf + R1)",
+           ROOT / "results/before_domain/assessment/final_model.json"),
+          ("abstracted_base", "Abstracted IMf with work items (before edits)", None),
+          ("final_model", "Final model (work items + IMf + domain edits)", None))
+# Evaluation log by event count: C = completion projection, A = abstracted without work items (v1),
+# W = abstracted with one event per started work-item instance (current).
+LOGS = {475306: "C", 364930: "A", 491858: "W"}
 
 
 def certified():
@@ -65,7 +71,7 @@ def main():
             missing.append(name)
             continue
         record = json.loads(path.read_text(encoding="utf-8"))
-        log = LOGS[record["evaluation_input"]["cache"]]
+        log = LOGS[record["evaluation_input"]["events"]]
         h, s = record["headline"], record["soundness"]
         classical, behaviour = s["classical"], s.get("behavioural", {})
         bounded = classical["status"] == "ok"
@@ -109,7 +115,8 @@ def main():
                                                           "alignment_generalization", "arc_degree", "nodes",
                                                           "extended_cardoso", "extended_cyclomatic")) + r" \\")
     quality_tex += [r"\hline", r"\multicolumn{13}{l}{Log: C = completion projection (24 labels), A = abstracted log "
-                    r"(17 labels); C and A values are not directly comparable.} \\", r"\hline", r"\end{tabular}"]
+                    r"without work items (17 labels), W = abstracted log with work items (24 labels); "
+                    r"values on different logs are not directly comparable.} \\", r"\hline", r"\end{tabular}"]
     sound_tex = [r"\begin{tabular}{lllllllllll}", r"\hline",
                  r"Model & WF-net & Bounded & Safe & Opt.\ compl. & Proper compl. & Dead trans. & Sound & Easy & Relaxed & Woflan \\",
                  r"\hline"]

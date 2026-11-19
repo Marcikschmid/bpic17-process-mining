@@ -1,7 +1,9 @@
 """Report tables of the abstraction stage (factual; numbers copied from saved results).
 
-Reads results/abstraction/{candidates.json, manual_edits/screen.json, manual_edits/evidence.json}.
-Writes results/abstraction/{discovery_candidates,single_edits,guard_stage}.tex.
+Reads results/abstraction/candidates.json and writes discovery_candidates.tex.
+The single-edit and guard-stage tables of the first abstraction (log without work
+items) are only written if results/abstraction/manual_edits/ exists; since
+2026-11-19 the edit stage is scripts/domain_edits.py (scripts/render_domain_edits.py).
 """
 import json
 from pathlib import Path
@@ -16,8 +18,6 @@ def tex(text):
 
 def main():
     candidates = json.loads((OUT / "candidates.json").read_text(encoding="utf-8"))
-    screen = json.loads((OUT / "manual_edits/screen.json").read_text(encoding="utf-8"))
-    evidence = json.loads((OUT / "manual_edits/evidence.json").read_text(encoding="utf-8"))
     selected = candidates["selection"]["selected"]
     # One row per distinct tree among evaluated candidates >= 70 % replay, best precision first.
     seen, rows = {}, []
@@ -38,8 +38,11 @@ def main():
               f"{len(seen)} distinct trees $\\geq$70\\,\\%; rule: $\\geq$80\\,\\% exact, max.\\ Align-ET}} \\\\",
               r"\hline", r"\end{tabular}"]
     (OUT / "discovery_candidates.tex").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-
-    e = evidence
+    if not (OUT / "manual_edits/screen.json").exists():
+        print("written: discovery_candidates.tex", flush=True)
+        return
+    screen = json.loads((OUT / "manual_edits/screen.json").read_text(encoding="utf-8"))
+    e = json.loads((OUT / "manual_edits/evidence.json").read_text(encoding="utf-8"))
     proof = {"R1": f"A\\_Complete before first sent offer: {e['R1']['A_Complete_before_first_sent_offer']} of "
                    f"{e['R1']['cases_with_A_Complete']:,} cases",
              "R2": f"O\\_Returned / A\\_Incomplete before first A\\_Validating: "

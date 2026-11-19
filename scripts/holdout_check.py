@@ -5,8 +5,10 @@ results/decision_mining/case_split.json, seed 20261018) for both pipelines:
 
 - before abstraction: completion projection, frequent variants up to 60%
   coverage, IMf noise 0.03 (base of the earlier final model);
-- abstracted (final): abstracted log, the coverage/noise of the selected
-  abstracted base (results/abstraction/base/selection.json).
+- abstracted without work items (previous final, archived): abstracted log v1,
+  coverage/noise of results/before_workitems/abstraction/base/selection.json;
+- abstracted (final): abstracted log with work items, the coverage/noise of the
+  selected abstracted base (results/abstraction/base/selection.json).
 
 If the training-only tree equals the selected tree, test cases played no role
 in discovery and exact whole-case replay on the 30% test cases is a held-out
@@ -28,6 +30,8 @@ from src.replay_coverage import ExactReplay
 
 SPLIT = ROOT / "results/decision_mining/case_split.json"
 BASE = json.loads((ROOT / "results/abstraction/base/selection.json").read_text(encoding="utf-8"))
+BASE_V1 = json.loads((ROOT / "results/before_workitems/abstraction/base/selection.json").read_text(encoding="utf-8"))
+CACHE_V1 = ROOT / "tmp/evaluation/abstracted_sequences_v1.json"
 PIPELINES = {
     "before_abstraction": {"cache": CACHE, "coverage": 0.60, "noise": 0.03,
                            "reference": json.loads((ROOT / "results/refinement/final_metrics.json")
@@ -36,10 +40,17 @@ PIPELINES = {
                                                       ROOT / "results/refinement/final_model.pnml"),
                                       "final_before_abstraction": ("Final before abstraction",
                                                                    ROOT / "results/before_abstraction/final/final_model.pnml")}},
+    "abstracted_v1": {"cache": CACHE_V1, "coverage": BASE_V1["training_coverage"], "noise": BASE_V1["noise_threshold"],
+                      "reference": BASE_V1["tree"],
+                      "models": {"abstracted_base_v1": ("Abstracted IMf, no work items (before edits)",
+                                                        ROOT / "results/before_workitems/abstraction/base/model.pnml"),
+                                 "final_abstraction_r1": ("Previous final (abstraction + R1)",
+                                                          ROOT / "results/before_domain/final/final_model.pnml")}},
     "abstracted": {"cache": ABSTRACTED_CACHE, "coverage": BASE["training_coverage"], "noise": BASE["noise_threshold"],
                    "reference": BASE["tree"],
-                   "models": {"abstracted_base": ("Abstracted IMf (before edits)", ROOT / "results/abstraction/base/model.pnml"),
-                              "final_model": ("Final (abstraction + R1)", ROOT / "results/final/final_model.pnml")}},
+                   "models": {"abstracted_base": ("Abstracted IMf with work items (before edits)",
+                                                  ROOT / "results/abstraction/base/model.pnml"),
+                              "final_model": ("Final (work items + domain edits)", ROOT / "results/final/final_model.pnml")}},
 }
 
 
@@ -91,7 +102,8 @@ def main():
     rows.append(r"\hline")
     for name, pipeline in result["pipelines"].items():
         discovery = pipeline["training_only_discovery"]
-        title = "before abstraction" if name == "before_abstraction" else "abstracted"
+        title = {"before_abstraction": "before abstraction", "abstracted_v1": "abstracted, no work items",
+                 "abstracted": "abstracted with work items"}[name]
         rows.append(f"Train-only IMf, {title} & \\multicolumn{{4}}{{l}}{{"
                     f"{'identical' if discovery['identical_to_selected_tree'] else 'different'} tree "
                     f"({discovery['training_variants']} variants); unseen test variants "

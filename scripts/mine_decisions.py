@@ -61,7 +61,7 @@ def data_rows():
 
     If the final model was built on the abstracted log, the same event abstraction is
     applied per case (timestamps are read for the simultaneity rule)."""
-    from src.event_abstraction import abstract_events
+    from src.event_abstraction import abstract_case
     _,abstracted=final_input()
     path=ROOT/'data/raw/BPI Challenge 2017.xes.gz'
     with gzip.open(path,'rb') as stream:
@@ -71,17 +71,21 @@ def data_rows():
             for child in element:
                 if child.tag.split('}')[-1]=='event':
                     raw={e.attrib.get('key'):e for e in child}
-                    if raw.get('lifecycle:transition') is None or raw['lifecycle:transition'].attrib.get('value')!='complete':continue
-                    event={'concept:name':raw['concept:name'].attrib['value']}
+                    lifecycle=raw['lifecycle:transition'].attrib.get('value') if 'lifecycle:transition' in raw else None
+                    # Abstracted log: W_ work items enter once per started instance (all life cycles needed);
+                    # otherwise the completion projection.
+                    if lifecycle!='complete' and not (abstracted and lifecycle is not None):continue
+                    event={'concept:name':raw['concept:name'].attrib['value'],'lifecycle:transition':lifecycle}
                     # Only for prefix aggregates (elapsed days); never a direct input.
                     if 'time:timestamp' in raw:event['time:timestamp']=datetime.fromisoformat(raw['time:timestamp'].attrib['value']).timestamp()
-                    for field in EVENT_FIELDS:
-                        if field in raw:event[field]=float(raw[field].attrib['value'])
+                    if lifecycle=='complete':
+                        for field in EVENT_FIELDS:
+                            if field in raw:event[field]=float(raw[field].attrib['value'])
                     events.append(event)
                 elif child.attrib.get('key') in (*CASE_FIELDS,'concept:name'):
                     key=child.attrib['key'];value=child.attrib['value']
                     attributes[key]=float(value) if key=='RequestedAmount' else value
-            if abstracted:events,_=abstract_events(events)
+            if abstracted:events,_=abstract_case(events)
             yield attributes['concept:name'],attributes,events
             element.clear()
 

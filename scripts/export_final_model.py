@@ -1,7 +1,9 @@
 """Promote the selected manually edited tree to the final model (results/final/).
 
-Default input: results/abstraction/manual_edits/selected/model.ptml (selected by
-scripts/manual_edits_abstracted.py on the abstracted log). The final model before
+Default input: results/domain/selected/model.ptml (domain revision selected by
+scripts/domain_edits.py on the abstracted log, 2026-11-19). The previous final model
+(abstraction + R1, archived in results/before_domain/final/) came from
+`--source results/abstraction/manual_edits/selected/model.ptml`. The final model before
 event abstraction (results/before_abstraction/final/) came from
 `--source results/manual_edits/selected/model.ptml --cache tmp/evaluation/projected_sequences.json
 --out results/before_abstraction/final`.
@@ -29,7 +31,7 @@ from pm4py.visualization.bpmn import visualizer
 from src.model_assessment import ABSTRACTED_CACHE
 from src.replay_coverage import ExactReplay
 
-SOURCE = ROOT / "results/abstraction/manual_edits/selected/model.ptml"
+SOURCE = ROOT / "results/domain/selected/model.ptml"
 OUT = ROOT / "results/final"
 NAMES = {Operator.SEQUENCE: "sequence ->", Operator.XOR: "exclusive choice X", Operator.PARALLEL: "parallel +",
          Operator.LOOP: "loop *"}
